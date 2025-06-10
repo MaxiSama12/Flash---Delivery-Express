@@ -1,7 +1,5 @@
-import {BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom'
-import HomePages from './pages/HomePages'
-import LoginPages from './pages/LoginPages'
-import { HOME, LOGIN } from './router/route'
+import {Routes, Route} from 'react-router-dom'
+
 
 
 function App() {
@@ -11,8 +9,9 @@ function App() {
     
     <BrowserRouter>
     <Routes>
-      <Route path={HOME} element={<HomePages/>} />
-      <Route path={LOGIN} element={<LoginPages/>} />
+
+
+
     </Routes>
     </BrowserRouter>
 
