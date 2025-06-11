@@ -1,19 +1,15 @@
-import {Routes, Route} from 'react-router-dom'
-
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HeroHomePage from './components/ui/HeroHomePage';
 
 function App() {
-
-
   return (
-    
-    <BrowserRouter>
-    <Routes>
-
-    </Routes>
-    </BrowserRouter>
-
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<HeroHomePage />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
+
