@@ -1,0 +1,5 @@
+export const HOME = '/'
+export const LOGIN = '/login'
+export const REGISTERCLIENTE = '/registerCliente'
+export const REGISTERREPARTIDOR = '/registerRepartidor'
+export const REGISTERVENDEDOR = '/registerVendedor'
