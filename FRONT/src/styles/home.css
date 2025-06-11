@@ -134,6 +134,8 @@ nav {
   position: absolute;
   left: -150px;
   z-index: -2;
+  filter: brightness(0) saturate(100%) invert(21%) sepia(13%) saturate(3955%)
+    hue-rotate(280deg) brightness(95%) contrast(94%);
 }
 .about-section-image-container {
   flex: 0.9;
@@ -147,7 +149,7 @@ nav {
 }
 .primary-subheading {
   font-weight: 700;
-  color: #fe9e0d;
+  color: #ca98c7;
   font-size: 1.15rem;
 }
 .about-buttons-container {

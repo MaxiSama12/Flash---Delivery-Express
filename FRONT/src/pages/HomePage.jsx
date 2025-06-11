@@ -1,4 +1,5 @@
 
+import CatalogoHomePage from '../components/ui/CatalogoHomePage'
 import HeroHomePage from '../components/ui/HeroHomePage'
 import InfoHomePage from '../components/ui/InfoHomePage'
 
@@ -7,6 +8,7 @@ const HomePage = () => {
     <div>
       <HeroHomePage />
       <InfoHomePage />
+      <CatalogoHomePage />
     </div>
   )
 }

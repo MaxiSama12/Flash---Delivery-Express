@@ -4,7 +4,7 @@ import { BsFillPlayCircleFill } from "react-icons/bs";
 
 const InfoHomePage = () => {
   return (
-        <div className="about-section-container">
+    <div className="about-section-container">
       <div className="about-background-image-container">
         <img src={AboutBackground} alt="" />
       </div>
@@ -32,8 +32,7 @@ const InfoHomePage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default InfoHomePage
-
+export default InfoHomePage;

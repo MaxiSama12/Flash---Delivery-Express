@@ -14,14 +14,13 @@ const HeroHomePage = () => {
         </div>
         <div className="home-text-section">
           <h1 className="primary-heading">
-            Your Favourite Food Delivered Hot & Fresh
+            Tu Comida Favorita, Más Cerca Que Nunca
           </h1>
           <p className="primary-text">
-            Healthy switcher chefs do all the prep work, like peeding, chopping
-            & marinating, so you can cook a fresh food.
+            Tu delivery de confianza para todo: comidas, bebidas, farmacia, y lo que se te ocurra. Rápido, fácil y cuando lo necesitás.
           </p>
           <button className="secondary-button">
-            Order Now <FiArrowRight />{" "}
+            Pedí ahora! <FiArrowRight />{" "}
           </button>
         </div>
         <div className="home-image-section">
