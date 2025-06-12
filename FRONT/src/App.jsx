@@ -4,8 +4,9 @@ import LoginPages from './pages/LoginPages'
 import RegisterClientePages from './pages/RegisterClientePages'
 import RegisterVendedorPages from './pages/RegisterVendedorPages'
 import RegisterRepartidorPages from './pages/RegisterRepartidorPages'
-import { HOME, LOGIN, REGISTERCLIENTE, REGISTERVENDEDOR, REGISTERREPARTIDOR, DASHBOARDVENDEDOR } from './router/route'
-import Dashboard from './components/dashboard/Dashboard'
+import { HOME, LOGIN, REGISTERCLIENTE, REGISTERVENDEDOR, REGISTERREPARTIDOR, DASHBOARDVENDEDOR, DASHBOARDREPARTIDOR } from './router/route'
+import DashboardVendedor from './components/dashboard/DashboardVendedor'
+import DashboardRepartidor from './components/dashboard/DashboardRepartidor'
 
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
       <Route path={REGISTERCLIENTE} element={<RegisterClientePages/>} />
       <Route path={REGISTERVENDEDOR} element={<RegisterVendedorPages/>} />
       <Route path={REGISTERREPARTIDOR} element={<RegisterRepartidorPages/>} />
-      <Route path={DASHBOARDVENDEDOR} element={<Dashboard/>} />
+      <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor/>} />
+      <Route path={DASHBOARDREPARTIDOR} element={<DashboardRepartidor/>} />
     </Routes>
     </BrowserRouter>
 

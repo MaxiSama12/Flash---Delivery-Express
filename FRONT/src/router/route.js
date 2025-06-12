@@ -6,6 +6,8 @@ export const REGISTERCLIENTE = '/register-cliente'
 
 
 export const REGISTERREPARTIDOR = '/register-repartidor'
+export const DASHBOARDREPARTIDOR = '/dashboard-repartidor'
+
 
 
 export const REGISTERVENDEDOR = '/register-vendedor'
