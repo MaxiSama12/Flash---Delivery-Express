@@ -1,0 +1,44 @@
+{
+  "clientes": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@doe.com",
+      "telefono": "3819212354",
+      "direccion": "avenida siempre viva 123",
+      "password": "cliente123",
+      "rol": "cliente"
+    },
+    {
+      "_comentario": "metimos otro objeto con rol de vendedor en el array de clientes para probar la navegacion condicional desde el login",
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "jane@smith.com",
+      "telefono": "3526721283",
+      "password": "vendedor123",
+      "rol": "vendedor"
+    }
+  ],
+  "vendedores": [
+    {
+      "id": 1,
+      "name": "Jane Smith",
+      "email": "jane@smith.com",
+      "telefono": "3526721283",
+      "direccion": "avenida siempre viva 123",
+      "password": "vendedor123",
+      "rol": "vendedor"
+    }
+  ],
+  "repartidores": [
+    {
+      "id": 1,
+      "name": "Carlos Perez",
+      "email": "carlos@perez.com",
+      "telefono": "3819212354",
+      "vehiculo": "Motocicleta",
+      "password": "repartidor123",
+      "rol": "repartidor"
+    }
+  ]
+}
