@@ -9,7 +9,7 @@ const RegisterFormRepartidor = () => {
     vehiculo: "",
     activo: true,
     password: "",
-    rol: "repartidor",
+    rol: "repartidor"
   });
 
   const handleChange = (e) => {
@@ -38,22 +38,22 @@ const RegisterFormRepartidor = () => {
       </label>
 
       <label>
-        Teléfono:
+        Correo electrónico:
         <input
-          type="text"
-          name="telefono"
-          value={formData.telefono}
+          type="email"
+          name="email"
+          value={formData.email}
           onChange={handleChange}
           className="registro-input"
         />
       </label>
 
       <label>
-        Correo electrónico:
+        Teléfono:
         <input
-          type="email"
-          name="email"
-          value={formData.email}
+          type="text"
+          name="telefono"
+          value={formData.telefono}
           onChange={handleChange}
           className="registro-input"
         />
