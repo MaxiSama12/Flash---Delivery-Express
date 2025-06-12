@@ -1,6 +1,7 @@
 import AboutBackground from "../../Assets/homePage/about-background.png";
 import AboutBackgroundImage from "../../Assets/homePage/about-background-image.png";
 import { BsFillPlayCircleFill } from "react-icons/bs";
+import "../../styles/home.css";
 
 const InfoHomePage = () => {
   return (
