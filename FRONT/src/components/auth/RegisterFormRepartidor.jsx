@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import "../../styles/RegisterForm.css";
+import { REPARTIDORES } from "../../endpoints/endpoints";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { LOGIN } from "../../router/route";
 
 const RegisterFormRepartidor = () => {
   const [formData, setFormData] = useState({
@@ -9,17 +13,24 @@ const RegisterFormRepartidor = () => {
     vehiculo: "",
     activo: true,
     password: "",
-    rol: "repartidor"
+    rol: "repartidor",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Registro de repartidor exitoso (demo)");
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      await axios.post(REPARTIDORES, formData);
+      alert(`!Repartidor Registrado!, Bienvenido ${formData.nombre}`);
+      console.log(formData);
+      navigate(LOGIN);
+    } catch (error) {
+      console.log("Ocurrió un error registrando al cliente: ", error);
+    }
   };
 
   return (
@@ -80,10 +91,15 @@ const RegisterFormRepartidor = () => {
           className="registro-input"
         />
       </label>
-
+      <br />
+      <br />
       <button type="submit" className="registro-button">
         Registrarse
       </button>
+
+      <div className="text-center my-2">
+        <p>Ya tienes una cuenta?,<a href={LOGIN}>inicia sesión aquí</a></p>
+      </div>
     </form>
   );
 };

@@ -3,6 +3,7 @@ import axios from "axios";
 import "../../styles/LoginForm.css";
 import { useNavigate } from "react-router-dom";
 import {
+  DASHBOARDREPARTIDOR,
   DASHBOARDVENDEDOR,
   HOME,
   REGISTERCLIENTE,
@@ -35,13 +36,15 @@ const LoginForm = () => {
         if (userFound.password === formData.password) {
           console.log("el usuario encontrado fue: ", userFound);
           alert(
-            `Inicio de sesión exitoso, bienvenido ${userFound.name}`
+            `Inicio de sesión exitoso, bienvenido ${userFound.nombre}`
           );
 
           if (userFound.rol === "cliente") {
             navigate(HOME);
           } else if (userFound.rol === "vendedor") {
             navigate(DASHBOARDVENDEDOR);
+          } else if(userFound.rol === "repartidor") {
+            navigate(DASHBOARDREPARTIDOR);
           }
         } else {
           setLoginError("la contraseña es incorrecta");

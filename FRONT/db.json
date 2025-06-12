@@ -1,8 +1,8 @@
 {
   "clientes": [
     {
-      "id": 1,
-      "name": "John Doe",
+      "id": "1",
+      "nombre": "John Doe",
       "email": "john@doe.com",
       "telefono": "3819212354",
       "direccion": "avenida siempre viva 123",
@@ -11,18 +11,45 @@
     },
     {
       "_comentario": "metimos otro objeto con rol de vendedor en el array de clientes para probar la navegacion condicional desde el login",
-      "id": 2,
-      "name": "Jane Smith",
+      "id": "2",
+      "nombre": "Jane Smith",
       "email": "jane@smith.com",
       "telefono": "3526721283",
       "password": "vendedor123",
+      "rol": "vendedor"
+    },
+    {
+      "id": "0c9a",
+      "nombre": "Esteban",
+      "email": "maxi@gmail.com",
+      "telefono": "3814563422",
+      "direccion": "pasaje 1234",
+      "password": "Maxisama123",
+      "rol": "cliente"
+    },
+    {
+      "id": "ba35",
+      "nombre": "Carlos",
+      "telefono": "048389473",
+      "email": "carlos@gmail.com",
+      "vehiculo": "Bicicleta",
+      "activo": true,
+      "password": "Carlos123",
+      "rol": "repartidor"
+    },
+    {
+      "id": "9801",
+      "nombre": "Pablo",
+      "email": "pablo@gmail.com",
+      "password": "Pablo123",
+      "telefono": "785328393",
       "rol": "vendedor"
     }
   ],
   "vendedores": [
     {
-      "id": 1,
-      "name": "Jane Smith",
+      "id": "1",
+      "nombre": "Jane Smith",
       "email": "jane@smith.com",
       "telefono": "3526721283",
       "direccion": "avenida siempre viva 123",
@@ -32,8 +59,8 @@
   ],
   "repartidores": [
     {
-      "id": 1,
-      "name": "Carlos Perez",
+      "id": "1",
+      "nombre": "Carlos Perez",
       "email": "carlos@perez.com",
       "telefono": "3819212354",
       "vehiculo": "Motocicleta",
