@@ -3,7 +3,6 @@ import Card from "./Card";
 import { useState } from "react";
 
 const CatalogoHomePage = () => {
-
   const productos = [
     {
       id: 1,
@@ -124,7 +123,7 @@ const CatalogoHomePage = () => {
 
   return (
     <div className="cat-section-container">
-      <div className="about-section-text-container">
+      <div className="container">
         <p className="primary-subheading">Catálogo</p>
         <div className="section-principal-category">
           <h1 className="primary-heading">Menú de Productos</h1>
@@ -142,11 +141,6 @@ const CatalogoHomePage = () => {
                 {category.charAt(0).toUpperCase() + category.slice(1)}
               </button>
             ))}
-            {/* 
-            <div className="category">Comida</div>
-            <div className="category">Bebidas</div>
-            <div className="category">Limpieza</div>
-            <div className="category">Papelería</div> */}
           </div>
         </div>
         <div className="card-container">
