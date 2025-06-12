@@ -12,22 +12,20 @@ const InfoHomePage = () => {
         <img src={AboutBackgroundImage} alt="" />
       </div>
       <div className="about-section-text-container">
-        <p className="primary-subheading">About</p>
+        <p className="primary-subheading">Desde 2020</p>
         <h1 className="primary-heading">
-          Food Is An Important Part Of A Balanced Diet
+          Cinco Años Haciendo tu Vida Más Fácil
         </h1>
         <p className="primary-text">
-          Lorem ipsum dolor sit amet consectetur. Non tincidunt magna non et
-          elit. Dolor turpis molestie dui magnis facilisis at fringilla quam.
+          Conectamos personas con lo que necesitan en minutos. Desde tus platos favoritos hasta productos esenciales, todo al alcance de un clic. Rápido, seguro y donde estés.
         </p>
         <p className="primary-text">
-          Non tincidunt magna non et elit. Dolor turpis molestie dui magnis
-          facilisis at fringilla quam.
+          Hacés el pedido y nosotros nos encargamos del resto.
         </p>
         <div className="about-buttons-container">
-          <button className="secondary-button">Learn More</button>
+          <button className="secondary-button">Saber Más</button>
           <button className="watch-video-button">
-            <BsFillPlayCircleFill /> Watch Video
+            <BsFillPlayCircleFill /> Ver Video
           </button>
         </div>
       </div>
