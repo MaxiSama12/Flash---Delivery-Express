@@ -1,50 +1,51 @@
 import React from "react";
+import { FaInfoCircle, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function Footer() {
   return (
     <footer
-      className="text-white mt-5"
-      style={{
-        backgroundColor: "#56649C",
-        padding: "2rem 0",
-      }}
-    >
-      <div className="container text-center">
-        <div className="row">
-          {/* Columna 1 - Logo y nombre */}
-          <div className="col-md-4 mb-3">
-            <h4 style={{ color: "#343C58" }}>FlashExpress</h4>
-            <p style={{ fontSize: "0.9rem" }}>
-              Envíos rápidos, seguros y eficientes.
-            </p>
-          </div>
-
-          {/* Columna 2 - Links rápidos */}
-          <div className="col-md-4 mb-3">
-            <h6 style={{ color: "#343C58" }}>Navegación</h6>
-            <ul className="list-unstyled">
-              <li><a href="#" className="text-white text-decoration-none">Inicio</a></li>
-              <li><a href="#" className="text-white text-decoration-none">Servicios</a></li>
-              <li><a href="#" className="text-white text-decoration-none">Contacto</a></li>
-            </ul>
-          </div>
-
-          {/* Columna 3 - Contacto */}
-          <div className="col-md-4 mb-3">
-            <h6 style={{ color: "#343C58" }}>Contacto</h6>
-            <p style={{ fontSize: "0.9rem" }}>
-              Email: info@flashexpress.com <br />
-              Tel: +54 381 123 4567
-            </p>
-          </div>
-        </div>
-
-        <hr style={{ backgroundColor: "#583445" }} />
-
-        <p className="mt-3" style={{ fontSize: "0.8rem" }}>
-          © {new Date().getFullYear()} FlashExpress. Todos los derechos reservados.
-        </p>
+  className="text-white text-center py-4 d-none d-lg-block"
+  style={{ backgroundColor: "#56649C" }}
+>
+  <div className="container">
+    <div className="row justify-content-center gap-4">
+      <div className="col-auto">
+        <a
+          href="#"
+          className="text-white d-flex align-items-center gap-2 nav-item-hover"
+          style={{ textDecoration: "none" }}
+        >
+          <FaInfoCircle />
+          <span>Sobre Nosotros</span>
+        </a>
       </div>
-    </footer>
+      <div className="col-auto">
+        <a
+          href="#"
+          className="text-white d-flex align-items-center gap-2 nav-item-hover"
+          style={{ textDecoration: "none" }}
+        >
+          <FaPhoneAlt />
+          <span>Contáctenos</span>
+        </a>
+      </div>
+      <div className="col-auto">
+        <a
+          href="https://www.google.com/maps"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white d-flex align-items-center gap-2 nav-item-hover"
+          style={{ textDecoration: "none" }}
+        >
+          <FaMapMarkerAlt />
+          <span>Ubicación</span>
+        </a>
+      </div>
+    </div>
+
+    <hr style={{ backgroundColor: "rgba(255,255,255,0.2)" }} />
+    <p className="mb-0">© {new Date().getFullYear()} Flash Express. Todos los derechos reservados.</p>
+  </div>
+</footer>
   );
 }
