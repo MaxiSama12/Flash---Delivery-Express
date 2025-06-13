@@ -53,8 +53,7 @@ const TopRatedStoresCarousel = () => {
           <h1 className="primary-heading">Mejores Comercios</h1>
         </div>
         <Swiper
-          modules={[Navigation, Pagination]}
-          navigation
+          modules={[Pagination]}
           pagination={{ clickable: true }}
           grabCursor={true}
           spaceBetween={10}
