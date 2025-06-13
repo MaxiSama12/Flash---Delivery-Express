@@ -15,7 +15,7 @@ const InfoHomePage = () => {
       <div className="about-section-text-container">
         <p className="primary-subheading">Desde 2020</p>
         <h1 className="primary-heading">
-          Cinco Años Haciendo tu Vida Más Fácil
+          Haciendo tu Vida Más Fácil
         </h1>
         <p className="primary-text">
           Conectamos personas con lo que necesitan en minutos. Desde tus platos favoritos hasta productos esenciales, todo al alcance de un clic. Rápido, seguro y donde estés.
