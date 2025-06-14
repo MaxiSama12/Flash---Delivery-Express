@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "../../styles/RegisterForm.css";
-import { useNavigate } from "react-router-dom";
-import { REPARTIDORES } from "../../endpoints/endpoints";
+import { Link, useNavigate } from "react-router-dom";
+import { VENDEDORES } from "../../endpoints/endpoints";
 import axios from "axios";
-import { LOGIN } from "../../router/route";
+import { LOGIN, REGISTERCOMERCIO } from "../../router/route";
 
 const RegisterFormVendedor = () => {
   const [formData, setFormData] = useState({
@@ -22,12 +22,12 @@ const RegisterFormVendedor = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      await axios.post(REPARTIDORES, formData);
-      alert(`!Repartidor Registrado!, Bienvenido ${formData.nombre}`);
+      await axios.post(VENDEDORES, formData);
+      alert(`!Vendedor Registrado!, Bienvenido ${formData.nombre}`);
       console.log(formData);
-      navigate(LOGIN);
+      navigate(REGISTERCOMERCIO);
     } catch (error) {
-      console.log("Ocurrió un error registrando al cliente: ", error);
+      console.log("Ocurrió un error registrando al vendedor: ", error);
     }
   };
 
@@ -81,7 +81,7 @@ const RegisterFormVendedor = () => {
       </button>
       <div className="text-center my-2">
         <p>
-          Ya tienes una cuenta?,<a href={LOGIN}>inicia sesión aquí</a>
+          Ya tienes una cuenta?,<Link to={LOGIN}>inicia sesión aquí</Link>
         </p>
       </div>
     </form>
