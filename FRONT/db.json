@@ -61,6 +61,14 @@
       "password": "vendedor123",
       "telefono": "781156796586",
       "rol": "vendedor"
+    },
+    {
+      "id": "65f0",
+      "nombre": "Jorge",
+      "email": "jorge@vendedor",
+      "password": "Vendedor123",
+      "telefono": "381764857",
+      "rol": "vendedor"
     }
   ],
   "vendedores": [
@@ -79,6 +87,14 @@
       "email": "masisama92@gmail.com",
       "password": "vendedor123",
       "telefono": "781156796586",
+      "rol": "vendedor"
+    },
+    {
+      "id": "65f0",
+      "nombre": "Jorge",
+      "email": "jorge@vendedor",
+      "password": "Vendedor123",
+      "telefono": "381764857",
       "rol": "vendedor"
     }
   ],
@@ -113,6 +129,16 @@
       "id_usuario": "",
       "id_rubro": "1",
       "email": "s"
+    },
+    {
+      "id": "7e93",
+      "nombre": "Jorge comidas",
+      "direccion": "Jujuy al 4000",
+      "telefono": "38674498",
+      "descripcion": "Empresa dedicada a la venta de comidas caseras.",
+      "activo": true,
+      "id_usuario": "",
+      "id_rubro": "1"
     }
   ],
   "rubros": [
