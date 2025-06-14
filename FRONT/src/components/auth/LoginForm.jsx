@@ -1,16 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
+import { DASHBOARDREPARTIDOR,  DASHBOARDVENDEDOR,  HOME,  REGISTERCLIENTE,REGISTERREPARTIDOR,  REGISTERVENDEDOR,} from "../../router/route";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { CLIENTES } from "../../endpoints/endpoints"; 
 import "../../styles/LoginForm.css";
-import { useNavigate } from "react-router-dom";
-import {
-  DASHBOARDREPARTIDOR,
-  DASHBOARDVENDEDOR,
-  HOME,
-  REGISTERCLIENTE,
-  REGISTERREPARTIDOR,
-  REGISTERVENDEDOR,
-} from "../../router/route";
-import { CLIENTES } from "../../endpoints/endpoints";
+import axios from "axios";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -38,7 +31,6 @@ const LoginForm = () => {
           alert(
             `Inicio de sesión exitoso, bienvenido ${userFound.nombre}`
           );
-
           if (userFound.rol === "cliente") {
             navigate(HOME);
           } else if (userFound.rol === "vendedor") {
@@ -97,9 +89,9 @@ const LoginForm = () => {
 
       <div className="login-links">
         <p>¿No tienes una cuenta?</p>
-        <a href={REGISTERCLIENTE}>Registrate como Cliente</a>
-        <a href={REGISTERVENDEDOR}>Registrate como Vendedor</a>
-        <a href={REGISTERREPARTIDOR}>Registrate como Repartidor</a>
+        <Link to={REGISTERCLIENTE}>Registrate como Cliente</Link>
+        <Link to={REGISTERVENDEDOR}>Registrate como Vendedor</Link>
+        <Link to={REGISTERREPARTIDOR}>Registrate como Repartidor</Link>
       </div>
     </form>
   );
