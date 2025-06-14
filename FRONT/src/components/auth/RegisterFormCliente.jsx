@@ -3,7 +3,7 @@ import axios from "axios";
 import "../../styles/RegisterForm.css";
 import { CLIENTES } from "../../endpoints/endpoints";
 import { LOGIN } from "../../router/route";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const RegisterFormCliente = () => {
   const [formData, setFormData] = useState({
     nombre: "",
@@ -96,7 +96,7 @@ const RegisterFormCliente = () => {
       </button>
       <div className="text-center my-2">
         <p>
-          Ya tienes una cuenta?,<a href={LOGIN}>inicia sesión aquí</a>
+          Ya tienes una cuenta?,<Link to={LOGIN}>inicia sesión aquí</Link>
         </p>
       </div>
     </form>

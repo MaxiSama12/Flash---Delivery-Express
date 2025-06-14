@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../../styles/RegisterForm.css";
 import { REPARTIDORES } from "../../endpoints/endpoints";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LOGIN } from "../../router/route";
 
 const RegisterFormRepartidor = () => {
@@ -98,7 +98,7 @@ const RegisterFormRepartidor = () => {
       </button>
 
       <div className="text-center my-2">
-        <p>Ya tienes una cuenta?,<a href={LOGIN}>inicia sesión aquí</a></p>
+        <p>Ya tienes una cuenta?,<Link to={LOGIN}>inicia sesión aquí</Link></p>
       </div>
     </form>
   );
