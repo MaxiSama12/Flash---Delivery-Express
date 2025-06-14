@@ -3,6 +3,7 @@ import BannerBackground from "../../Assets/homePage/home-banner-background.png";
 import BannerImage from "../../Assets/homePage/home-banner-image.png";
 import { FiArrowRight } from "react-icons/fi";
 import "../../styles/home.css"
+import Navbar from "../layout/Navbar";
 
 const HeroHomePage = () => {
   return (

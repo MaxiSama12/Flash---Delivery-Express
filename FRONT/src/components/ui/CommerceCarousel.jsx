@@ -48,7 +48,7 @@ const TopRatedStoresCarousel = () => {
   return (
     <section id="top-rated-stores" className="position-relative py-4">
       <div className="container mt-5">
-        <p className="primary-subheading">Catálogo</p>
+        <p className="primary-subheading">Top-10</p>
         <div className="section-principal-category">
           <h1 className="primary-heading">Mejores Comercios</h1>
         </div>
