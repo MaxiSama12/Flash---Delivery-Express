@@ -25,7 +25,7 @@ function App() {
 
         
         
-        <Route path='/' element={<DashboardRepartidor />} />
+        <Route path='/' element={<DashboardVendedor />} />
 
         {/* <Route path={HOME} element={<HomePage />} />
         <Route path={LOGIN} element={<LoginPages />} />

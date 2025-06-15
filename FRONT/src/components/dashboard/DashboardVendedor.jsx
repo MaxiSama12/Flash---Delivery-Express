@@ -3,91 +3,105 @@ import { Container, Row, Col, Card, Button, ListGroup, Badge } from 'react-boots
 
 export default function VendedorDashboard() {
   const [stats, setStats] = useState({
-    totalSales: 0,
-    todaySales: 0,
-    totalEarnings: 0,
+    totalOrders: 0,
     pendingOrders: 0,
+    completedOrders: 0,
+    totalEarnings: 0,
   });
 
   const [recentOrders, setRecentOrders] = useState([]);
 
   useEffect(() => {
-    // Simulación de datos
+    const pedidos = [
+      { id: 1, cliente: 'Juan', total: 1000, status: 'pendiente' },
+      { id: 2, cliente: 'Ana', total: 1500, status: 'completado' },
+      { id: 3, cliente: 'Luis', total: 2000, status: 'completado' },
+    ];
+
+    const total = pedidos.length;
+    const pendientes = pedidos.filter(p => p.status === 'pendiente').length;
+    const completados = pedidos.filter(p => p.status === 'completado').length;
+    const ganancias = pedidos
+      .filter(p => p.status === 'completado')
+      .reduce((suma, p) => suma + p.total, 0);
+
     setStats({
-      totalSales: 45,
-      todaySales: 5,
-      totalEarnings: 12500,
-      pendingOrders: 3,
+      totalOrders: total,
+      pendingOrders: pendientes,
+      completedOrders: completados,
+      totalEarnings: ganancias,
     });
 
-    setRecentOrders([
-      {
-        id: 301,
-        cliente: 'Juan Pérez',
-        total: 1500,
-        status: 'pendiente',
-      },
-      {
-        id: 302,
-        cliente: 'Ana López',
-        total: 2300,
-        status: 'completado',
-      },
-    ]);
+    setRecentOrders(pedidos);
   }, []);
 
   return (
     <Container className="py-4">
-      <h1 className="mb-4 text-success">Panel de Vendedor 🛒</h1>
+      <h2 className="mb-4 text-success">¡Bienvenido al Panel del Vendedor!</h2>
 
       {/* Estadísticas */}
       <Row className="mb-4">
-        <Col>
+        <Col md={3}>
           <Card className="text-center">
             <Card.Body>
-              <Card.Title>Total Ventas</Card.Title>
-              <h4><Badge bg="primary">{stats.totalSales}</Badge></h4>
+              <Card.Title>Total Pedidos</Card.Title>
+              <h4><Badge bg="primary">{stats.totalOrders}</Badge></h4>
             </Card.Body>
           </Card>
         </Col>
-        <Col>
+        <Col md={3}>
           <Card className="text-center">
             <Card.Body>
-              <Card.Title>Ventas Hoy</Card.Title>
-              <h4><Badge bg="success">{stats.todaySales}</Badge></h4>
+              <Card.Title>Pendientes</Card.Title>
+              <h4><Badge bg="warning">{stats.pendingOrders}</Badge></h4>
             </Card.Body>
           </Card>
         </Col>
-        <Col>
+        <Col md={3}>
           <Card className="text-center">
             <Card.Body>
-              <Card.Title>Ganancias</Card.Title>
-              <h4><Badge bg="warning">${stats.totalEarnings}</Badge></h4>
+              <Card.Title>Completados</Card.Title>
+              <h4><Badge bg="success">{stats.completedOrders}</Badge></h4>
             </Card.Body>
           </Card>
         </Col>
-        <Col>
+        <Col md={3}>
           <Card className="text-center">
             <Card.Body>
-              <Card.Title>Pedidos Pendientes</Card.Title>
-              <h4><Badge bg="danger">{stats.pendingOrders}</Badge></h4>
+              <Card.Title>Ingresos</Card.Title>
+              <h4><Badge bg="info">${stats.totalEarnings}</Badge></h4>
             </Card.Body>
           </Card>
         </Col>
       </Row>
 
+      {/* Acciones rápidas */}
+      <h4 className="mb-3">Acciones rápidas</h4>
+      <Row className="mb-4">
+        <Col><Button variant="primary" className="w-100">Agregar producto</Button></Col>
+        <Col><Button variant="secondary" className="w-100">Ver pedidos</Button></Col>
+        <Col><Button variant="warning" className="w-100">Gestionar productos</Button></Col>
+      </Row>
+
       {/* Pedidos recientes */}
-      <h3 className="mb-3">Pedidos Recientes</h3>
+      <h4>Pedidos recientes</h4>
       {recentOrders.length === 0 ? (
-        <p>No hay pedidos recientes</p>
+        <p>No hay pedidos</p>
       ) : (
         <ListGroup>
           {recentOrders.map(order => (
             <ListGroup.Item key={order.id}>
-              <strong>Pedido #{order.id}</strong> - Cliente: {order.cliente}<br />
-              Total: ${order.total} - Estado: <Badge bg={order.status === 'pendiente' ? 'danger' : 'success'}>{order.status}</Badge>
-              <div className="mt-2">
-                {order.status === 'pendiente' && <Button variant="outline-success" size="sm">Marcar como Completado</Button>}
+              <div className="d-flex justify-content-between align-items-center">
+                <div>
+                  <strong>Pedido #{order.id}</strong> - Cliente: {order.cliente}<br />
+                  Total: ${order.total} - Estado:{' '}
+                  <Badge bg={order.status === 'pendiente' ? 'danger' : 'success'}>
+                    {order.status}
+                  </Badge>
+                </div>
+                {order.status === 'pendiente' && (
+                  <Button variant="outline-success" size="sm">Marcar como completado</Button>
+                )}
               </div>
             </ListGroup.Item>
           ))}
