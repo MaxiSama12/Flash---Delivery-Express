@@ -1,20 +1,42 @@
-
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axiosInstance from "../utils/axiosInstance";
+import axios from "axios";
 import Swal from "sweetalert2";
 import Card from "../components/ui/Card";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { COMERCIOS, PRODUCTOS } from "../endpoints/endpoints";
+import "../styles/comercio.css";
 
 const ComercioPage = () => {
   const { id } = useParams();
   const [comercio, setComercio] = useState(null);
+  const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const getProductos = async () => {
+    try {
+      const res = await axios.get(`${PRODUCTOS}`);
+      res.data = res.data.filter(
+        (producto) => producto.id_comercio == id
+      );
+      setProductos(res.data);
+        console.log("productos", res.data);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error al cargar los productos",
+        text: error.response?.data?.mensaje || "Error desconocido",
+      });
+    }
+  };
+
   const getComercio = async () => {
     try {
-      const res = await axiosInstance.get(`/comercios/${id}`);
-      setComercio(res.data.comercio);
+      const res = await axios.get(`${COMERCIOS}/${id}`);
+      setComercio(res.data);
+      console.log("comercio", res.data);
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -28,8 +50,8 @@ const ComercioPage = () => {
 
   useEffect(() => {
     getComercio();
+    getProductos();
   }, [id]);
-
 
   return (
     <>
@@ -74,18 +96,16 @@ const ComercioPage = () => {
           </>
         ) : (
           <>
-            <p>{comercio.descripcion}</p>
+            <p>{comercio.nombre}</p>
             <p>{comercio.detalles}</p>
 
             <div className="image-gallery">
-              {comercio.gallery.map((image, idx) => (
+              {productos.map((producto, idx) => (
                 <div key={idx} className="gallery-item">
-                  <div className="image-wrapper">
-                    <Card image={image.url} />
-                  </div>
+                    <Card producto={{ ...producto }} />
                 </div>
               ))}
-            </div>            
+            </div>
           </>
         )}
       </div>
