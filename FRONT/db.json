@@ -111,48 +111,329 @@
   ],
   "comercios": [
     {
-      "id": "1",
-      "nombre": "Supermercado ABC",
-      "direccion": "Calle Falsa 123",
-      "telefono": "3811234567",
-      "email": "contacto@supermercadoabc.com",
-      "id_rubro": "1",
-      "id_vendedor": "1"
+      "id_comercio": "1",
+      "nombre": "Supermercado Vea",
+      "direccion": "Calle Ejemplo 1",
+      "telefono": "3800000001",
+      "descripcion": "Descripción de Supermercado Vea",
+      "rating": 4.1,
+      "activo": true,
+      "id_admin": "1",
+      "id_rubro": "7"
     },
     {
-      "id": "7541",
-      "nombre": "Alta milanga",
-      "direccion": "Las Heras 123",
-      "telefono": "84736719",
-      "descripcion": "Sangucheria familiar",
+      "id_comercio": "2",
+      "nombre": "Mc Donalds",
+      "direccion": "Calle Ejemplo 2",
+      "telefono": "3800000002",
+      "descripcion": "Descripción de Mc Donalds",
+      "rating": 4.2,
       "activo": true,
-      "id_usuario": "",
-      "id_rubro": "1",
-      "email": "s"
+      "id_admin": "2",
+      "id_rubro": "1"
     },
     {
-      "id": "7e93",
-      "nombre": "Jorge comidas",
-      "direccion": "Jujuy al 4000",
-      "telefono": "38674498",
-      "descripcion": "Empresa dedicada a la venta de comidas caseras.",
+      "id_comercio": "3",
+      "nombre": "Farmacia del Pueblo",
+      "direccion": "Calle Ejemplo 3",
+      "telefono": "3800000003",
+      "descripcion": "Descripción de Farmacia del Pueblo",
+      "rating": 4.3,
       "activo": true,
-      "id_usuario": "",
+      "id_admin": "2",
+      "id_rubro": "2"
+    },
+    {
+      "id_comercio": "4",
+      "nombre": "Libreria San Pablo",
+      "direccion": "Calle Ejemplo 4",
+      "telefono": "3800000004",
+      "descripcion": "Descripción de Libreria San Pablo",
+      "rating": 4.5,
+      "activo": true,
+      "id_admin": "2",
+      "id_rubro": "3"
+    },
+    {
+      "id_comercio": "5",
+      "nombre": "La Pizzada",
+      "direccion": "Calle Ejemplo 5",
+      "telefono": "3800000005",
+      "descripcion": "Descripción de La Pizzada",
+      "rating": 3.6,
+      "activo": true,
+      "id_admin": "2",
       "id_rubro": "1"
     }
   ],
   "rubros": [
     {
-      "id": "1",
-      "nombre": "Alimentos"
+      "id_rubro": "1",
+      "nombre_rubro": "Restaurante"
     },
     {
-      "id": "2",
-      "nombre": "Bebidas"
+      "id_rubro": "2",
+      "nombre_rubro": "Farmacia"
     },
     {
-      "id": "3",
-      "nombre": "Limpieza"
+      "id_rubro": "3",
+      "nombre_rubro": "Libreria"
+    },
+    {
+      "id_rubro": "4",
+      "nombre_rubro": "Ferreteria"
+    },
+    {
+      "id_rubro": "5",
+      "nombre_rubro": "Carniceria"
+    },
+    {
+      "id_rubro": "6",
+      "nombre_rubro": "Panaderia"
+    },
+    {
+      "id_rubro": "7",
+      "nombre_rubro": "Supermercado"
+    },
+    {
+      "id_rubro": "8",
+      "nombre_rubro": "Bebidas"
+    }
+  ],
+  "categorias": [
+    {
+      "id_categoria": "1",
+      "nombre_categoria": "Hamburguesas"
+    },
+    {
+      "id_categoria": "2",
+      "nombre_categoria": "Pizzas"
+    },
+    {
+      "id_categoria": "3",
+      "nombre_categoria": "Medicamentos"
+    },
+    {
+      "id_categoria": "4",
+      "nombre_categoria": "Fideos"
+    },
+    {
+      "id_categoria": "5",
+      "nombre_categoria": "Panificados"
+    },
+    {
+      "id_categoria": "6",
+      "nombre_categoria": "Gaseosas"
+    },
+    {
+      "id_categoria": "7",
+      "nombre_categoria": "Limpieza"
+    },
+    {
+      "id_categoria": "8",
+      "nombre_categoria": "Snacks"
+    }
+  ],
+  "productos": [
+    {
+      "id_producto": "1",
+      "nombre": "Hamburguesa Argenta",
+      "descripcion": "Descripción de Hamburguesa Argenta",
+      "precio": 1199,
+      "rating": 4.4,
+      "disponible": true,
+      "id_comercio": "4",
+      "id_categoria": "1"
+    },
+    {
+      "id_producto": "2",
+      "nombre": "Pizza Calabresa",
+      "descripcion": "Descripción de Pizza Calabresa",
+      "precio": 2836,
+      "rating": 3.7,
+      "disponible": true,
+      "id_comercio": "3",
+      "id_categoria": "2"
+    },
+    {
+      "id_producto": "3",
+      "nombre": "Fideos Matarazzo x 500g",
+      "descripcion": "Descripción de Fideos Matarazzo x 500g",
+      "precio": 2782,
+      "rating": 3.6,
+      "disponible": true,
+      "id_comercio": "1",
+      "id_categoria": "4"
+    },
+    {
+      "id_producto": "4",
+      "nombre": "Tafirol Paracetamol 500mg",
+      "descripcion": "Descripción de Tafirol Paracetamol 500mg",
+      "precio": 2671,
+      "rating": 4.3,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "3"
+    },
+    {
+      "id_producto": "5",
+      "nombre": "Producto Genérico 5",
+      "descripcion": "Descripción de Producto Genérico 5",
+      "precio": 1122,
+      "rating": 4.2,
+      "disponible": true,
+      "id_comercio": "4",
+      "id_categoria": "2"
+    },
+    {
+      "id_producto": "6",
+      "nombre": "Producto Genérico 6",
+      "descripcion": "Descripción de Producto Genérico 6",
+      "precio": 949,
+      "rating": 4.2,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "8"
+    },
+    {
+      "id_producto": "7",
+      "nombre": "Producto Genérico 7",
+      "descripcion": "Descripción de Producto Genérico 7",
+      "precio": 1439,
+      "rating": 4.3,
+      "disponible": true,
+      "id_comercio": "1",
+      "id_categoria": "1"
+    },
+    {
+      "id_producto": "8",
+      "nombre": "Producto Genérico 8",
+      "descripcion": "Descripción de Producto Genérico 8",
+      "precio": 1559,
+      "rating": 4.8,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "5"
+    },
+    {
+      "id_producto": "9",
+      "nombre": "Producto Genérico 9",
+      "descripcion": "Descripción de Producto Genérico 9",
+      "precio": 1476,
+      "rating": 3.6,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "6"
+    },
+    {
+      "id_producto": "10",
+      "nombre": "Producto Genérico 10",
+      "descripcion": "Descripción de Producto Genérico 10",
+      "precio": 1004,
+      "rating": 3.5,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "8"
+    },
+    {
+      "id_producto": "11",
+      "nombre": "Producto Genérico 11",
+      "descripcion": "Descripción de Producto Genérico 11",
+      "precio": 652,
+      "rating": 3.9,
+      "disponible": true,
+      "id_comercio": "3",
+      "id_categoria": "3"
+    },
+    {
+      "id_producto": "12",
+      "nombre": "Producto Genérico 12",
+      "descripcion": "Descripción de Producto Genérico 12",
+      "precio": 2387,
+      "rating": 3.5,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "8"
+    },
+    {
+      "id_producto": "13",
+      "nombre": "Producto Genérico 13",
+      "descripcion": "Descripción de Producto Genérico 13",
+      "precio": 2921,
+      "rating": 3.9,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "2"
+    },
+    {
+      "id_producto": "14",
+      "nombre": "Producto Genérico 14",
+      "descripcion": "Descripción de Producto Genérico 14",
+      "precio": 2847,
+      "rating": 3.2,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "1"
+    },
+    {
+      "id_producto": "15",
+      "nombre": "Producto Genérico 15",
+      "descripcion": "Descripción de Producto Genérico 15",
+      "precio": 1382,
+      "rating": 4.6,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "2"
+    },
+    {
+      "id_producto": "16",
+      "nombre": "Producto Genérico 16",
+      "descripcion": "Descripción de Producto Genérico 16",
+      "precio": 2592,
+      "rating": 4.1,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "7"
+    },
+    {
+      "id_producto": "17",
+      "nombre": "Producto Genérico 17",
+      "descripcion": "Descripción de Producto Genérico 17",
+      "precio": 1447,
+      "rating": 3.4,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "2"
+    },
+    {
+      "id_producto": "18",
+      "nombre": "Producto Genérico 18",
+      "descripcion": "Descripción de Producto Genérico 18",
+      "precio": 2315,
+      "rating": 4.7,
+      "disponible": true,
+      "id_comercio": "1",
+      "id_categoria": "5"
+    },
+    {
+      "id_producto": "19",
+      "nombre": "Producto Genérico 19",
+      "descripcion": "Descripción de Producto Genérico 19",
+      "precio": 2108,
+      "rating": 3.5,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "2"
+    },
+    {
+      "id_producto": "20",
+      "nombre": "Producto Genérico 20",
+      "descripcion": "Descripción de Producto Genérico 20",
+      "precio": 2618,
+      "rating": 3.2,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "3"
     }
   ]
 }
