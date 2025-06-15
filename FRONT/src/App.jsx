@@ -1,19 +1,21 @@
 import {Routes, Route} from 'react-router-dom'
-
-
+import Tienda from './pages/Tienda';
 
 function App() {
-
-
   return (
-    
-    <BrowserRouter>
-    <Routes>
 
-    </Routes>
-    </BrowserRouter>
+    <div>
+      <Tienda/>
 
+    </div>
   )
+  /*<BrowserRouter>
+      <Routes>
+  
+      </Routes>
+      </BrowserRouter>*/
+    
+
 }
 
 export default App

@@ -1,0 +1,49 @@
+.producto-card {
+  background-color: #f8f9fa;
+  color: #212529;
+  padding: 1rem;
+  min-height: 220px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+
+.producto-title {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.producto-price {
+  font-size: 0.95rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.producto-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.btn-add {
+  background-color: #56649c;
+  color: white;
+  border: none;
+  padding: 0.4rem;
+  width: 100%;
+  font-size: 0.85rem;
+  border-radius: 4px;
+}
+
+.btn-remove {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ced4da;
+  padding: 0.4rem;
+  width: 100%;
+  font-size: 0.85rem;
+  border-radius: 4px;
+}
+

@@ -1,0 +1,43 @@
+.carrito-container {
+  background-color: #1e1e2f;
+  color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.carrito-header {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.carrito-item {
+  border-bottom: 1px solid #444;
+  padding: 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.carrito-total {
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.btn-finalizar {
+  background-color: #56649c;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  width: 100%;
+  margin-top: 1rem;
+  border-radius: 5px;
+}
+.carrito-item .small {
+  color: #adb5bd;
+  font-size: 0.875rem;
+  margin-top: 2px;
+  display: block;
+}
