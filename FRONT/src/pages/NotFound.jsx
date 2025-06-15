@@ -14,7 +14,7 @@ const NotFound = () => {
                     <img src={notfound} alt="Error 404" className="not-found-image" />
                     <div className="text-content">
                         <h1>Error 404!</h1>
-                        <p>Page Not Found</p>
+                        <p>Página no encontrada.</p>
                         <p>Lo sentimos, la página que estás buscando no existe.</p>
                         <p>Por favor, verifica la URL o vuelve a la página de <Link to="/">Inicio</Link>.</p>
                         <p>Si necesitas ayuda, contacta con el soporte técnico.</p>
