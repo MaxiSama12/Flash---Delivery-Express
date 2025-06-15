@@ -8,15 +8,15 @@ import Footer from "../components/layout/Footer";
 
 const HomePage = () => {
   return (
-    <div>
-      <Navbar />
-      <HeroHomePage />
-      <CatalogoHomePage />
-      <CommerceCarousel />
-      <InfoHomePage />
-      <SectionRegister />
-      <Footer />
-    </div>
+        <div>
+          <Navbar />
+          <HeroHomePage />
+          <CatalogoHomePage />
+          <CommerceCarousel />
+          <InfoHomePage />
+          <SectionRegister />
+        <Footer />
+      </div>
   );
 };
 

@@ -2,33 +2,22 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   FaUserCircle,
   FaBox,
-  FaSearch,
   FaChevronDown,
   FaHome,
   FaMapMarkerAlt,
+  FaShoppingCart,
 } from "react-icons/fa";
 import logo from "../../assets/logo.png";
-import "../../styles/navbar.css"
+import "../../styles/navbar.css";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const [showSearchDesktop, setShowSearchDesktop] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
-
-  const desktopSearchRef = useRef();
   const dropdownRef = useRef();
 
-  // Detecta clics afuera para cerrar menús
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (
-        desktopSearchRef.current &&
-        !desktopSearchRef.current.contains(e.target) &&
-        !e.target.closest(".search-toggle-desktop")
-      ) {
-        setShowSearchDesktop(false);
-      }
-
       if (
         dropdownRef.current &&
         !dropdownRef.current.contains(e.target) &&
@@ -42,7 +31,6 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Detecta redimensionamiento de pantalla
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 992);
@@ -55,65 +43,100 @@ const Navbar = () => {
   return (
     <>
       {isMobile ? (
-        <>
-          {/* 📱 NAVBAR MOBILE SUPERIOR */}
-          <nav
-            className="navbar fixed-top"
-            style={{
-              backgroundColor: "#56649C",
-              padding: "0.5rem 1rem",
-              boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-              zIndex: 1000,
-            }}
-          >
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Buscar..."
-              style={{ width: "100%" }}
-            />
-          </nav>
+  <>
+    {/* 📱 NAVBAR MOBILE SUPERIOR CON CATEGORÍAS Y COMERCIOS */}
+    <nav
+      className="navbar fixed-top d-flex flex-column"
+      style={{
+        backgroundColor: "#56649C",
+        padding: "0.5rem 1rem",
+        boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+        zIndex: 1000,
+      }}
+    >
+      {/* Botones arriba */}
+      <div className="w-100 d-flex justify-content-around mb-2">
 
-          {/* 📱 BARRA INFERIOR FIJA */}
-          <div
-            className="fixed-bottom d-flex justify-content-around align-items-center"
-            style={{
-              backgroundColor: "#56649C",
-              padding: "0.5rem 0",
-              boxShadow: "0 -2px 5px rgba(0,0,0,0.2)",
-              zIndex: 1000,
-            }}
-          >
-            <a
-              href="#"
-              className="text-white d-flex flex-column align-items-center nav-item-hover"
-              style={{ textDecoration: "none" }}
-            >
-              <FaUserCircle size={22} />
-              <small>Perfil</small>
-            </a>
-            <a
-              href="#"
-              className="text-white d-flex flex-column align-items-center nav-item-hover"
-              style={{ textDecoration: "none" }}
-            >
-              <FaBox size={22} />
-              <small>Pedidos</small>
-            </a>
+                  <NavLink
+                    to="/categorias"
+                    className={({ isActive }) =>
+                      `btn btn-light w-50 mx-1${
+                    isActive ? "fw-bold" : ""
+                        }`
+                      }
+                    >
+                      <button className="btn">Categorías</button>
+                    </NavLink>
 
-            <a
-              href="#"
-              className="text-white d-flex flex-column align-items-center nav-item-hover"
-              style={{ textDecoration: "none" }}
-            >
-            <FaHome size={22} />
-            <small>Inicio</small>
-            </a>
 
-          </div>
-        </>
-      ) : (
-        // 🖥️ NAVBAR DESKTOP
+                  <NavLink
+                    to="/comercios"
+                    className={({ isActive }) =>
+                      `btn btn-light w-50 mx-1${
+                    isActive ? "fw-bold" : ""
+                        }`
+                      }
+                    >
+                      <button className="btn">Comercios</button>
+                    </NavLink>
+      </div>
+
+    </nav>
+
+    {/* 📱 BARRA INFERIOR FIJA */}
+    <div
+      className="fixed-bottom d-flex justify-content-around align-items-center"
+      style={{
+        backgroundColor: "#56649C",
+        padding: "0.5rem 0",
+        boxShadow: "0 -2px 5px rgba(0,0,0,0.2)",
+        zIndex: 1000,
+      }}
+    >
+                  <NavLink
+                    to="/mi-perfil"
+                    className={({ isActive }) =>
+                      `text-white d-flex flex-column align-items-center nav-item-hover ${
+                    isActive ? "fw-bold" : ""
+                        }`
+                      }
+                    >
+                      <FaUserCircle size={22} />
+                      <small>Perfil</small>
+                    </NavLink>
+
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                      `text-white d-flex flex-column align-items-center nav-item-hover ${
+                    isActive ? "fw-bold" : ""
+                        }`
+                      }
+                    >
+                      <FaHome size={22} />
+                      <small>Inicio</small>
+                    </NavLink>
+
+
+
+                    <NavLink
+                    to="/mis-pedidos"
+                    className={({ isActive }) =>
+                      `text-white d-flex flex-column align-items-center nav-item-hover ${
+                    isActive ? "fw-bold" : ""
+                        }`
+                      }
+                    >
+                      <FaBox size={22} />
+                      <small>Pedidos</small>
+                    </NavLink>
+
+    </div>
+  </>
+) : (
+
+
+  // 🖥️ NAVBAR DESKTOP ...
         <nav
           className="navbar fixed-top"
           style={{
@@ -125,10 +148,7 @@ const Navbar = () => {
         >
           <div className="container-fluid d-flex justify-content-between align-items-center">
             {/* Logo */}
-            <a
-              className="navbar-brand text-white d-flex align-items-center"
-              href="#"
-            >
+            <a className="navbar-brand text-white d-flex align-items-center" href="#">
               <img
                 src={logo}
                 alt="Logo"
@@ -136,37 +156,64 @@ const Navbar = () => {
               />
             </a>
 
-            {/* Menú desktop */}
+            {/* Centro con Categorías y Comercios */}
+            <div className="d-flex gap-3">
+
+
+
+              <NavLink
+                    to="/categorias"
+                    className={({ isActive }) =>
+                      `${
+                    isActive ? "fw-bold" : ""
+                        }`
+                      }
+                    >
+                      <button className="btn btn-light">Categorías</button>
+                    </NavLink>
+
+
+                  <NavLink
+                    to="/comercios"
+                    className={({ isActive }) =>
+                      `${
+                    isActive ? "fw-bold" : ""
+                        }`
+                      }
+                    >
+                      <button className="btn btn-light">Comercios</button>
+                    </NavLink>
+
+
+            </div>
+
+            {/* Íconos y Dropdown */}
             <div className="d-none d-lg-flex align-items-center gap-3">
-              <div ref={desktopSearchRef}>
-                {showSearchDesktop && (
-                  <input
-                    type="text"
-                    className="form-control nav-item-hover"
-                    placeholder="Buscar..."
-                    style={{ maxWidth: "200px" }}
-                  />
-                )}
-              </div>
-              <a href="#" className="nav-item-hover search-toggle-desktop">
-                <FaSearch
-                  color="white"
-                  style={{ cursor: "pointer" }}
-                  onClick={() =>
-                    setShowSearchDesktop(!showSearchDesktop)
-                  }
-                />
-              </a>
 
-              <a
-                href="#"
-                className="nav-item-hover d-flex align-items-center gap-1"
-              >
-                <FaUserCircle size={24} />
-                Mi Perfil
-              </a>
+              <NavLink
+                    to="/carrito"
+                    className={({ isActive }) =>
+                      `nav-item-hover d-flex align-items-center gap-1 ${
+                    isActive ? "fw-bold" : ""
+                        }`
+                      }
+                    >
+                      <FaShoppingCart size={22} />
+                    </NavLink>
 
-              {/* Dropdown */}
+
+                  <NavLink
+                    to="/mi-perfil"
+                    className={({ isActive }) =>
+                      `nav-item-hover d-flex align-items-center gap-1 ${
+                    isActive ? "fw-bold" : ""
+                        }`
+                      }
+                    >
+                      <FaUserCircle size={22} />
+                      <small>Mi Perfil</small>
+                    </NavLink>
+
               <div className="position-relative" ref={dropdownRef}>
                 <button
                   className="btn text-white d-flex align-items-center gap-2"
@@ -190,29 +237,48 @@ const Navbar = () => {
                       zIndex: 999,
                     }}
                   >
-                    <a
-                      href="#"
-                      className="nav-item-hover text-white d-flex align-items-center gap-2 mb-3"
-                    >
-                      <FaBox /> Mis Pedidos
-                    </a>
 
 
-                    <a
-                      href="#"
-                      className="nav-item-hover text-white d-flex align-items-center gap-2 mb-3"
+
+                    <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                      `nav-item-hover text-white d-flex align-items-center gap-2 mb-3 ${
+                    isActive ? "fw-bold" : ""
+                        }`
+                      }
                     >
                       <FaHome size={22} />
                       <small>Inicio</small>
-                    </a>
+                    </NavLink>
 
-                    <a
-                      href="#"
-                      className="nav-item-hover text-white d-flex align-items-center gap-2 mb-3"
+
+
+                    <NavLink
+                    to="/mis-pedidos"
+                    className={({ isActive }) =>
+                      `nav-item-hover text-white d-flex align-items-center gap-2 mb-3 ${
+                    isActive ? "fw-bold" : ""
+                        }`
+                      }
+                    >
+                      <FaBox size={22} />
+                      <small>Mis Pedidos</small>
+                    </NavLink>
+
+
+                    <NavLink
+                    to="/mis-direcciones"
+                    className={({ isActive }) =>
+                      `nav-item-hover text-white d-flex align-items-center gap-2 mb-3 ${
+                    isActive ? "fw-bold" : ""
+                        }`
+                      }
                     >
                       <FaMapMarkerAlt size={22} />
                       <small>Mis Direcciones</small>
-                    </a>
+                    </NavLink>
+
                   </div>
                 )}
               </div>
