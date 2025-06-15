@@ -22,7 +22,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={HOME} element={<HomePage />} />
+
+        
+        
+        <Route path='/' element={<DashboardRepartidor />} />
+
+        {/* <Route path={HOME} element={<HomePage />} />
         <Route path={LOGIN} element={<LoginPages />} />
         <Route path={REGISTERCLIENTE} element={<RegisterClientePages />} />
 
@@ -34,9 +39,9 @@ function App() {
 
         <Route path={REGISTERVENDEDOR} element={<RegisterVendedorPages />} />
         <Route path={REGISTERCOMERCIO} element={<RegisterComercioPages />} />
-        <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor />} />
+        <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor />} /> */}
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter> 
   );
 }
 export default App;
