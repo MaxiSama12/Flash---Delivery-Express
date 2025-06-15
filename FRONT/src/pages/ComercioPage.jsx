@@ -18,11 +18,9 @@ const ComercioPage = () => {
   const getProductos = async () => {
     try {
       const res = await axios.get(`${PRODUCTOS}`);
-      res.data = res.data.filter(
-        (producto) => producto.id_comercio == id
-      );
+      res.data = res.data.filter((producto) => producto.id_comercio == id);
       setProductos(res.data);
-        console.log("productos", res.data);
+      console.log("productos", res.data);
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -63,8 +61,7 @@ const ComercioPage = () => {
             : `linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${comercio.url_imagen})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          height: "80vh",
+          backgroundRepeat: "no-repeat"
         }}
       >
         <div className={`hero-content-detail ${!loading ? "loaded" : ""}`}>
@@ -96,13 +93,18 @@ const ComercioPage = () => {
           </>
         ) : (
           <>
-            <p>{comercio.nombre}</p>
-            <p>{comercio.detalles}</p>
+            <p className="comercio-descripcion">{comercio.descripcion}</p>
+            <div className="comercio-info">
+              <span className="comercio-info-item">
+                📍 {comercio.direccion}
+              </span>
+              <span className="comercio-info-item">📞 {comercio.telefono}</span>
+            </div>
 
             <div className="image-gallery">
               {productos.map((producto, idx) => (
                 <div key={idx} className="gallery-item">
-                    <Card producto={{ ...producto }} />
+                  <Card producto={{ ...producto }} />
                 </div>
               ))}
             </div>

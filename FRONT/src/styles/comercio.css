@@ -8,21 +8,32 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 70vh;
-    background-color: #ccc; 
+    height: 30vh;
+    min-height: 120px;
+    background-color: #ccc;
+    margin-bottom: 0;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
 }
 
 .hero-content-detail {
-    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    z-index: 2;
 }
 
-.hero-content-detail.loaded {
-    padding-top: 50vh; /* Solo se aplica cuando la imagen está cargada */
-}
+
 
 .hero-content-detail h3 {
-    font-size: 3rem;
+    font-size: 2rem;
     text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
 
 /* Detalles del Proyecto */
@@ -46,7 +57,7 @@
 /* Galería de Imágenes */
 .image-gallery {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     margin-top: 2rem;
 }
@@ -69,6 +80,22 @@
 }
 
 /* Responsive */
+@media (max-width: 1200px) {
+    .image-gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 900px) {
+    .image-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .hero-section-detail {
+        height: 40vh;
+    }
+    .hero-content-detail h3 {
+        font-size: 1.3rem;
+    }
+}
 @media (max-width: 768px) {
     .image-gallery {
         grid-template-columns: 1fr;
@@ -91,6 +118,23 @@
         margin-top: 70px;
     }
 }
+@media (max-width: 600px) {
+    .image-gallery {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .hero-section-detail {
+        height: 40vh;
+        min-height: 90px;
+    }
+    .hero-content-detail h3 {
+        font-size: 1rem;
+    }
+    .comercio-info {
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+}
 
 .gallery-img {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -102,14 +146,82 @@
 }
 
 .back-button {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     padding: 0.6rem 1.2rem;
     font-size: 1rem;
     background-color: #3e5f8a;
     color: white;
     border: none;
+    border-radius: 2rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.back-button:hover {
+    background-color: #2f4c6f;
+}
+
+/* Estilos para descripción, dirección y teléfono */
+.comercio-descripcion {
+    font-size: 1.15rem;
+    color: #444;
+    margin-bottom: 0.7rem;
+    background: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.comercio-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.comercio-info-item {
+    font-size: 1.05rem;
+    color: #3e5f8a;
+    background: #eaf1fa;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+
+/* Grilla de cards: 4 por fila */
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.gallery-img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.back-button {
+    margin-top: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    background-color: #3e5f8a;
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 .back-button:hover {
