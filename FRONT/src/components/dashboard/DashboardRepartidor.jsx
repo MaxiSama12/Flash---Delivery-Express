@@ -1,5 +1,6 @@
-import React, {  useState } from 'react';
 import { Container, Row, Col, Card, Button, ListGroup, Badge } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function RepartidorDashboard() {
   const [stats, setStats] = useState({
@@ -9,20 +10,21 @@ export default function RepartidorDashboard() {
     activeRoutes: 1,
   });
 
-  const [availableOrders, setAvailableOrders] = useState([
-    {
-      id: 1,
-      comercioAddress: 'Calle 123',
-      deliveryAddress: 'Avenida 456',
-      total: 25.0,
-    },
-    {
-      id: 2,
-      comercioAddress: 'Calle 789',
-      deliveryAddress: 'Avenida 101',
-      total: 40.0,
-    },
-  ]);
+  const [availableOrders, setAvailableOrders] = useState([]);
+
+useEffect(() => {
+  const fetchPedidos = async () => {
+    try {
+      const res = await axios.get('http://localhost:3001/pedidos');
+      const completados = res.data.filter(p => p.status === 'completado');
+      setAvailableOrders(completados);
+    } catch (error) {
+      console.error('Error al cargar pedidos:', error);
+    }
+  };
+
+  fetchPedidos();
+}, []);
 
   const [myRoutes, setMyRoutes] = useState([
     {

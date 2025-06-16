@@ -10,7 +10,7 @@
       "id": "2",
       "cliente": "Ana",
       "total": 1500,
-      "status": "pendiente"
+      "status": "completado"
     },
     {
       "id": "3",
@@ -88,7 +88,7 @@
       "id": "15",
       "cliente": "Andrés",
       "total": 1950,
-      "status": "en ruta",
+      "status": "pendiente",
       "repartidorAsignado": true
     }
   ],
@@ -112,10 +112,10 @@
       "stock": 20
     },
     {
-      "id": "8e2a",
-      "nombre": "Gaseosa",
-      "precio": 1500,
-      "stock": 10
+      "id": "f6cf",
+      "nombre": "Gaseosa Pepsi",
+      "precio": 3000,
+      "stock": 30
     }
   ]
 }
