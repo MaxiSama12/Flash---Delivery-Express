@@ -10,19 +10,19 @@
       "id": "2",
       "cliente": "Ana",
       "total": 1500,
-      "status": "completado"
+      "status": "pendiente"
     },
     {
       "id": "3",
       "cliente": "Luis",
       "total": 2000,
-      "status": "completado"
+      "status": "pendiente"
     },
     {
       "id": "4",
       "cliente": "Carlos",
       "total": 800,
-      "status": "completado"
+      "status": "pendiente"
     },
     {
       "id": "5",
@@ -112,10 +112,10 @@
       "stock": 20
     },
     {
-      "nombre": "GGaseosa",
-      "precio": 2000,
-      "stock": 5,
-      "id": "346a"
+      "id": "8e2a",
+      "nombre": "Gaseosa",
+      "precio": 1500,
+      "stock": 10
     }
   ]
 }

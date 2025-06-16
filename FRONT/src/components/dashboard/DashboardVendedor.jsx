@@ -25,14 +25,12 @@ export default function VendedorDashboard() {
 
   const [modalActivo, setModalActivo] = useState(null);
 
-  // Para nuevo producto
   const [nuevoProducto, setNuevoProducto] = useState({
     nombre: '',
     precio: '',
     stock: '',
   });
 
-  // Para producto a editar
   const [productoEditar, setProductoEditar] = useState({
     id: null,
     nombre: '',
@@ -40,7 +38,6 @@ export default function VendedorDashboard() {
     stock: '',
   });
 
-  // Cargar datos dentro del useEffect para evitar warning
   useEffect(() => {
     const cargarDatos = async () => {
       try {
