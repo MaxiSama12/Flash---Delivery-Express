@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Gilda+Display&family=Roboto:wght@400&display=swap');
+
+.not-found-content {
+    margin-top: 100px; 
+    margin-bottom: 50px; 
+    padding: 20px; 
+    min-height: calc(100vh - 280px); 
+}
+
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 20px; 
+    flex-wrap: wrap; 
+}
+
+.not-found-image {
+    max-width: 300px; 
+    height: auto; 
+}
+
+.text-content {
+    text-align: center; 
+    max-width: 600px; 
+}
+
+.not-found-content h1 {
+    font-family: 'Gilda Display', serif; 
+    font-size: 2.5rem;
+    font-weight: 700; 
+    margin-bottom: 1rem; 
+}
+
+.text-content p {
+    font-family: 'Roboto', sans-serif; 
+    font-size: 1rem; 
+    font-weight: 400; 
+    margin-bottom: 0.5rem; 
+}
+
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .not-found-image {
+        max-width: 200px;
+    }
+
+    .not-found-content {
+        margin-top: 80px; 
+        padding: 10px;
+    }
+
+    .not-found-content h1 {
+        font-size: 2rem; 
+    }
+
+    .text-content p {
+        font-size: 0.9rem;
+    }
+}
