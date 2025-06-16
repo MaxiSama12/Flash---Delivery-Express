@@ -20,6 +20,7 @@ import DashboardRepartidor from "./components/dashboard/DashboardRepartidor";
 import RegisterComercioPages from "./pages/RegisterComercioPages";
 import HomePage from "./pages/HomePage";
 import ComercioPage from "./pages/ComercioPage";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -28,13 +29,13 @@ function App() {
         <Route path={HOME} element={<HomePage />} />
         <Route path={LOGIN} element={<LoginPages />} />
         <Route path={REGISTERCLIENTE} element={<RegisterClientePages />} />
-
+        {console.log("hola mundo")}
         <Route
           path={REGISTERREPARTIDOR}
           element={<RegisterRepartidorPages />}
         />
         <Route path={DASHBOARDREPARTIDOR} element={<DashboardRepartidor />} />
-
+        <Route path="*" element ={<NotFound />} />
         <Route path={REGISTERVENDEDOR} element={<RegisterVendedorPages />} />
         <Route path={REGISTERCOMERCIO} element={<RegisterComercioPages />} />
         <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor />} />
