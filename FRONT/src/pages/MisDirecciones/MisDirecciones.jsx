@@ -12,7 +12,7 @@ export default function MisDirecciones() {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{ paddingTop: "100px" }}>
       <h2 className="text-center my-4">Mis direcciones</h2>
 
       <div className="mb-4">
