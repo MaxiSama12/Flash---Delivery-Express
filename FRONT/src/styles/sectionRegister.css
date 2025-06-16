@@ -2,6 +2,7 @@
   padding: 50px 10%;
   /* background: linear-gradient(to bottom, #000 50%, #ffffff 50%); */
   text-align: center;
+  /* margin-bottom: 5rem; */
 }
 
 .section-title {
@@ -58,7 +59,12 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
+
 @media (max-width: 768px) {
+  
+  .services-section{
+    padding: 0% 10%;
+  }
   .services-container {
     grid-template-columns: 1fr;
   }

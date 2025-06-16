@@ -207,35 +207,39 @@
   ],
   "categorias": [
     {
-      "id_categoria": "1",
+      "id": "0",
+      "nombre_categoria": "Todos"
+    },
+    {
+      "id": "1",
       "nombre_categoria": "Hamburguesas"
     },
     {
-      "id_categoria": "2",
+      "id": "2",
       "nombre_categoria": "Pizzas"
     },
     {
-      "id_categoria": "3",
+      "id": "3",
       "nombre_categoria": "Medicamentos"
     },
     {
-      "id_categoria": "4",
+      "id": "4",
       "nombre_categoria": "Fideos"
     },
     {
-      "id_categoria": "5",
+      "id": "5",
       "nombre_categoria": "Panificados"
     },
     {
-      "id_categoria": "6",
+      "id": "6",
       "nombre_categoria": "Gaseosas"
     },
     {
-      "id_categoria": "7",
+      "id": "7",
       "nombre_categoria": "Limpieza"
     },
     {
-      "id_categoria": "8",
+      "id": "8",
       "nombre_categoria": "Snacks"
     }
   ],
