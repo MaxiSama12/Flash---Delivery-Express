@@ -9,7 +9,7 @@ const CatalogoHomePage = () => {
   const [activeFilter, setActiveFilter] = useState("0");
   const [productos, setProductos] = useState([]);
   const [categorias, setCategorias] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(8); // 🆕
+  const [visibleCount, setVisibleCount] = useState(8);
 
   const getProductos = async () => {
     try {
@@ -51,7 +51,7 @@ const CatalogoHomePage = () => {
       ? productos
       : productos.filter((producto) => producto.id_categoria === activeFilter);
 
-  const visibleProducts = filteredProducts.slice(0, visibleCount); 
+  const visibleProducts = filteredProducts.slice(0, visibleCount);
 
   return (
     <div className="cat-section-container">
@@ -63,12 +63,11 @@ const CatalogoHomePage = () => {
             {categorias.map((categoria) => (
               <button
                 key={categoria.id}
-                className={`category ${
-                  activeFilter === categoria.id ? "active" : ""
-                }`}
+                className={`category ${activeFilter === categoria.id ? "active" : ""}`}
                 onClick={() => setActiveFilter(categoria.id)}
               >
-                {categoria.nombre_categoria.charAt(0).toUpperCase() + categoria.nombre_categoria.slice(1)}
+                {categoria.nombre_categoria.charAt(0).toUpperCase() +
+                  categoria.nombre_categoria.slice(1)}
               </button>
             ))}
           </div>
@@ -82,7 +81,10 @@ const CatalogoHomePage = () => {
 
         {visibleCount < filteredProducts.length && (
           <div className="ver-mas-container">
-            <button className="ver-mas-btn" onClick={() => setVisibleCount((prev) => prev + 8)}>
+            <button
+              className="ver-mas-btn"
+              onClick={() => setVisibleCount((prev) => prev + 8)}
+            >
               Ver más
             </button>
           </div>
