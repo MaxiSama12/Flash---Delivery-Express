@@ -10,10 +10,10 @@ const RegisterFormComercio = () => {
     nombre: "",
     direccion: "",
     telefono: "",
-    descripcion: "",
     activo: true,
     id_usuario: "",
     id_rubro: "",
+    url_image: "",
   });
 
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ const RegisterFormComercio = () => {
       await axios.post(COMERCIOS, formData);
       alert(`!Comercio Registrado!, ahora vamos a iniciar sesión`);
       console.log(formData);
-      navigate(LOGIN)
+      navigate(LOGIN);
     } catch (error) {
       console.log("Ocurrió un error registrando al cliente: ", error);
     }
@@ -80,16 +80,18 @@ const RegisterFormComercio = () => {
             className="registro-input"
           />
         </label>
+        <br />
         <label>
-          Descripción:
+          URL de la imagen:
           <input
             type="text"
             name="descripcion"
-            value={formData.descripcion}
+            value={formData.url_image}
             onChange={handleChange}
             className="registro-input"
           />
         </label>
+
         <br />
         <label>Rubro:</label>
         <br />
@@ -111,8 +113,7 @@ const RegisterFormComercio = () => {
         <button type="submit" className="registro-button">
           Registrar comercio
         </button>
-        <div className="text-center my-2">
-        </div>
+        <div className="text-center my-2"></div>
       </form>
     </div>
   );
