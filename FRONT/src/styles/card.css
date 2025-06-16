@@ -1,0 +1,131 @@
+.card {
+  width: 250px;
+  max-width: 269px;
+  min-height: 400px;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 250px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgb(226, 232, 240);
+}
+
+.card-image {
+  position: relative;
+  min-height: 200px;
+  height: 200px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rating {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  color: gold;
+  margin-right: 4px;
+  font-size: 16px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  padding: 12px;
+  gap: 15px;
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: #222;
+}
+
+.description {
+  font-size: 14px;
+  color: #666;
+  margin: 8px 0;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: start;
+  /* padding: 16px; */
+}
+
+.card-content-price {
+  display: flex;
+  justify-content: space-between;
+  align-self: end;
+  font-weight: 500;
+  margin-top: auto;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 500;
+  color: #000;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-100%);
+  transition: transform 0.4s ease-in-out;
+  z-index: 2;
+}
+
+.buy-button {
+  padding: 0.6rem 1.5rem;
+  background-color: #9c5698;
+  border: none;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: white;
+}
+
+.buy-button:hover {
+  background-color: #7a3e6b;
+}
+
+.card:hover .image-overlay {
+  transform: translateY(0%);
+}
+
+.card:hover .title {
+  color: #9c5698;
+}
