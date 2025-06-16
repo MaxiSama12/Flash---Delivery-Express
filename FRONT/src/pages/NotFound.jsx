@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
+
 import '../styles/NotFound.css';
 import notfound from '../assets/notFound/notfound.png';
 
 const NotFound = () => {
     return (
         <div>
-            <Navbar />
+           
             <main className="not-found-content">
                 <div className="content-wrapper">
                     <img src={notfound} alt="Error 404" className="not-found-image" />
@@ -22,7 +21,7 @@ const NotFound = () => {
                     </div>
                 </div>
             </main>
-            <Footer />
+          
         </div>
     );
 };
