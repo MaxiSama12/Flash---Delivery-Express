@@ -18,6 +18,11 @@ export default function VendedorDashboard() {
       { id: 3, cliente: 'Luis', total: 2000, status: 'completado' },
     ];
 
+    setRecentOrders(pedidos);
+    actualizarEstadisticas(pedidos);
+  }, []);
+
+  const actualizarEstadisticas = (pedidos) => {
     const total = pedidos.length;
     const pendientes = pedidos.filter(p => p.status === 'pendiente').length;
     const completados = pedidos.filter(p => p.status === 'completado').length;
@@ -31,9 +36,16 @@ export default function VendedorDashboard() {
       completedOrders: completados,
       totalEarnings: ganancias,
     });
+  };
 
-    setRecentOrders(pedidos);
-  }, []);
+  const marcarComoCompletado = (id) => {
+    const actualizados = recentOrders.map(pedido =>
+      pedido.id === id ? { ...pedido, status: 'completado' } : pedido
+    );
+
+    setRecentOrders(actualizados);
+    actualizarEstadisticas(actualizados);
+  };
 
   return (
     <Container className="py-4">
@@ -100,7 +112,13 @@ export default function VendedorDashboard() {
                   </Badge>
                 </div>
                 {order.status === 'pendiente' && (
-                  <Button variant="outline-success" size="sm">Marcar como completado</Button>
+                  <Button
+                    variant="outline-success"
+                    size="sm"
+                    onClick={() => marcarComoCompletado(order.id)}
+                  >
+                    Marcar como completado
+                  </Button>
                 )}
               </div>
             </ListGroup.Item>
