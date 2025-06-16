@@ -45,4 +45,3 @@ const Carrito = ({ carrito, finalizarCompra }) => {
 };
 
 export default Carrito;
-
