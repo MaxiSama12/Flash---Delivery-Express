@@ -77,45 +77,361 @@
       "cliente": "Felipe",
       "total": 1800,
       "status": "pendiente"
+    }
+  ],
+  "comercios": [
+    {
+      "id": "1",
+      "nombre": "Supermercado Vea",
+      "direccion": "Calle Ejemplo 1",
+      "telefono": "3800000001",
+      "descripcion": "Descripción de Supermercado Vea",
+      "rating": 4.1,
+      "activo": true,
+      "id_admin": "1",
+      "id_rubro": "7",
+      "url_imagen": "https://www.webretail.com.ar/wp-content/uploads/2023/04/Vea-Cencosud.jpg"
     },
     {
-      "id": "14",
-      "cliente": "Camila",
-      "total": 1600,
-      "status": "pendiente"
+      "id": "2",
+      "nombre": "Mc Donalds",
+      "direccion": "Calle Ejemplo 2",
+      "telefono": "3800000002",
+      "descripcion": "Descripción de Mc Donalds",
+      "rating": 4.2,
+      "activo": true,
+      "id_admin": "2",
+      "id_rubro": "1",
+      "url_imagen": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=80"
     },
     {
-      "id": "15",
-      "cliente": "Andrés",
-      "total": 1950,
-      "status": "pendiente",
-      "repartidorAsignado": true
+      "id": "3",
+      "nombre": "Farmacia del Pueblo",
+      "direccion": "Calle Ejemplo 3",
+      "telefono": "3800000003",
+      "descripcion": "Descripción de Farmacia del Pueblo",
+      "rating": 4.3,
+      "activo": true,
+      "id_admin": "2",
+      "id_rubro": "2",
+      "url_imagen": "https://images.unsplash.com/photo-1588776814546-ec7e8c1b1b1b?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "4",
+      "nombre": "Libreria San Pablo",
+      "direccion": "Calle Ejemplo 4",
+      "telefono": "3800000004",
+      "descripcion": "Descripción de Libreria San Pablo",
+      "rating": 4.5,
+      "activo": true,
+      "id_admin": "2",
+      "id_rubro": "3",
+      "url_imagen": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "5",
+      "nombre": "La Pizzada",
+      "direccion": "Calle Ejemplo 5",
+      "telefono": "3800000005",
+      "descripcion": "Descripción de La Pizzada",
+      "rating": 3.6,
+      "activo": true,
+      "id_admin": "2",
+      "id_rubro": "1",
+      "url_imagen": "https://images.unsplash.com/photo-1548365328-8b849e6c7b8b?auto=format&fit=crop&w=400&q=80"
+    }
+  ],
+  "rubros": [
+    {
+      "id": "1",
+      "nombre_rubro": "Restaurante"
+    },
+    {
+      "id": "2",
+      "nombre_rubro": "Farmacia"
+    },
+    {
+      "id": "3",
+      "nombre_rubro": "Libreria"
+    },
+    {
+      "id": "4",
+      "nombre_rubro": "Ferreteria"
+    },
+    {
+      "id": "5",
+      "nombre_rubro": "Carniceria"
+    },
+    {
+      "id": "6",
+      "nombre_rubro": "Panaderia"
+    },
+    {
+      "id": "7",
+      "nombre_rubro": "Supermercado"
+    },
+    {
+      "id": "8",
+      "nombre_rubro": "Bebidas"
+    }
+  ],
+  "categorias": [
+    {
+      "id": "0",
+      "nombre_categoria": "Todos"
+    },
+    {
+      "id": "1",
+      "nombre_categoria": "Hamburguesas"
+    },
+    {
+      "id": "2",
+      "nombre_categoria": "Pizzas"
+    },
+    {
+      "id": "3",
+      "nombre_categoria": "Medicamentos"
+    },
+    {
+      "id": "4",
+      "nombre_categoria": "Fideos"
+    },
+    {
+      "id": "5",
+      "nombre_categoria": "Panificados"
+    },
+    {
+      "id": "6",
+      "nombre_categoria": "Gaseosas"
+    },
+    {
+      "id": "7",
+      "nombre_categoria": "Limpieza"
+    },
+    {
+      "id": "8",
+      "nombre_categoria": "Snacks"
     }
   ],
   "productos": [
     {
-      "nombre": "Producto A",
-      "precio": 100,
-      "stock": 10,
-      "id": "1"
+      "id": "1",
+      "nombre": "Hamburguesa Argenta",
+      "descripcion": "Descripción de Hamburguesa Argenta",
+      "precio": 1199,
+      "rating": 4.4,
+      "disponible": true,
+      "id_comercio": "4",
+      "id_categoria": "1",
+      "url_imagen": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=400&q=80"
     },
     {
       "id": "2",
-      "nombre": "Producto B",
-      "precio": 200,
-      "stock": 5
+      "nombre": "Pizza Calabresa",
+      "descripcion": "Descripción de Pizza Calabresa",
+      "precio": 2836,
+      "rating": 3.7,
+      "disponible": true,
+      "id_comercio": "3",
+      "id_categoria": "2",
+      "url_imagen": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80"
     },
     {
       "id": "3",
-      "nombre": "Producto C",
-      "precio": 150,
-      "stock": 20
+      "nombre": "Fideos Matarazzo x 500g",
+      "descripcion": "Descripción de Fideos Matarazzo x 500g",
+      "precio": 2782,
+      "rating": 3.6,
+      "disponible": true,
+      "id_comercio": "1",
+      "id_categoria": "4",
+      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
     },
     {
-      "id": "f6cf",
-      "nombre": "Gaseosa Pepsi",
-      "precio": 3000,
-      "stock": 30
+      "id": "4",
+      "nombre": "Tafirol Paracetamol 500mg",
+      "descripcion": "Descripción de Tafirol Paracetamol 500mg",
+      "precio": 2671,
+      "rating": 4.3,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "3",
+      "url_imagen": "https://images.unsplash.com/photo-1588776814546-ec7e8c1b1b1b?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "5",
+      "nombre": "Producto Genérico 5",
+      "descripcion": "Descripción de Producto Genérico 5",
+      "precio": 1122,
+      "rating": 4.2,
+      "disponible": true,
+      "id_comercio": "4",
+      "id_categoria": "2",
+      "url_imagen": "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "6",
+      "nombre": "Producto Genérico 6",
+      "descripcion": "Descripción de Producto Genérico 6",
+      "precio": 949,
+      "rating": 4.2,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "8",
+      "url_imagen": "https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "7",
+      "nombre": "Producto Genérico 7",
+      "descripcion": "Descripción de Producto Genérico 7",
+      "precio": 1439,
+      "rating": 4.3,
+      "disponible": true,
+      "id_comercio": "1",
+      "id_categoria": "1",
+      "url_imagen": "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "8",
+      "nombre": "Producto Genérico 8",
+      "descripcion": "Descripción de Producto Genérico 8",
+      "precio": 1559,
+      "rating": 4.8,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "5"
+    },
+    {
+      "id": "9",
+      "nombre": "Producto Genérico 9",
+      "descripcion": "Descripción de Producto Genérico 9",
+      "precio": 1476,
+      "rating": 3.6,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "6",
+      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "10",
+      "nombre": "Producto Genérico 10",
+      "descripcion": "Descripción de Producto Genérico 10",
+      "precio": 1004,
+      "rating": 3.5,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "8",
+      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "11",
+      "nombre": "Producto Genérico 11",
+      "descripcion": "Descripción de Producto Genérico 11",
+      "precio": 652,
+      "rating": 3.9,
+      "disponible": true,
+      "id_comercio": "3",
+      "id_categoria": "3",
+      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "12",
+      "nombre": "Producto Genérico 12",
+      "descripcion": "Descripción de Producto Genérico 12",
+      "precio": 2387,
+      "rating": 3.5,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "8",
+      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "13",
+      "nombre": "Producto Genérico 13",
+      "descripcion": "Descripción de Producto Genérico 13",
+      "precio": 2921,
+      "rating": 3.9,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "2",
+      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "14",
+      "nombre": "Producto Genérico 14",
+      "descripcion": "Descripción de Producto Genérico 14",
+      "precio": 2847,
+      "rating": 3.2,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "1",
+      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "15",
+      "nombre": "Producto Genérico 15",
+      "descripcion": "Descripción de Producto Genérico 15",
+      "precio": 1382,
+      "rating": 4.6,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "2",
+      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "16",
+      "nombre": "Producto Genérico 16",
+      "descripcion": "Descripción de Producto Genérico 16",
+      "precio": 2592,
+      "rating": 4.1,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "7",
+      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "17",
+      "nombre": "Producto Genérico 17",
+      "descripcion": "Descripción de Producto Genérico 17",
+      "precio": 1447,
+      "rating": 3.4,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "2",
+      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "18",
+      "nombre": "Producto Genérico 18",
+      "descripcion": "Descripción de Producto Genérico 18",
+      "precio": 2315,
+      "rating": 4.7,
+      "disponible": true,
+      "id_comercio": "1",
+      "id_categoria": "5",
+      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "19",
+      "nombre": "Producto Genérico 19",
+      "descripcion": "Descripción de Producto Genérico 19",
+      "precio": 2108,
+      "rating": 3.5,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "2",
+      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "20",
+      "nombre": "Producto Genérico 20",
+      "descripcion": "Descripción de Producto Genérico 20",
+      "precio": 2618,
+      "rating": 3.2,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "3",
+      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
     }
   ]
 }

@@ -11,6 +11,7 @@ import {
   Modal,
   Form,
 } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 
 export default function VendedorDashboard() {
   const [stats, setStats] = useState({
@@ -38,16 +39,21 @@ export default function VendedorDashboard() {
     stock: '',
   });
 
+  const {id} = useParams(); 
+
   useEffect(() => {
     const cargarDatos = async () => {
       try {
-        const resPedidos = await axios.get('http://localhost:3001/pedidos');
-        const resProductos = await axios.get('http://localhost:3001/productos');
-
+        const resPedidos = await axios.get('http://localhost:3000/pedidos');
+        const resProductos = await axios.get('http://localhost:3000/productos');
+const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio === id);
         setRecentOrders(resPedidos.data);
-        setProductos(resProductos.data);
+        setProductos(resProductosfilter);
 
         actualizarStats(resPedidos.data);
+        console.log("respuesta de productos", resProductos);
+        console.log("filtrado", resProductosfilter)
+
       } catch (error) {
         console.error('Error cargando datos:', error);
       }
@@ -125,7 +131,7 @@ export default function VendedorDashboard() {
       id: producto.id,
       nombre: producto.nombre,
       precio: producto.precio.toString(),
-      stock: producto.stock.toString(),
+      //stock: producto.stock.toString(),
     });
     setModalActivo('editarProducto');
   };

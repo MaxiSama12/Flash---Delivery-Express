@@ -15,7 +15,7 @@ export default function RepartidorDashboard() {
 useEffect(() => {
   const fetchPedidos = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/pedidos');
+      const res = await axios.get('http://localhost:3000/pedidos');
       const completados = res.data.filter(p => p.status === 'completado');
       setAvailableOrders(completados);
     } catch (error) {
