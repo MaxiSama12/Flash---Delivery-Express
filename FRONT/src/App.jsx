@@ -1,27 +1,46 @@
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import "./index.css"
-import MisDirecciones from './pages/MisDirecciones/MisDirecciones';
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer'
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
+import LoginPages from "./pages/LoginPages";
+import RegisterClientePages from "./pages/RegisterClientePages";
+import RegisterVendedorPages from "./pages/RegisterVendedorPages";
+import RegisterRepartidorPages from "./pages/RegisterRepartidorPages";
+import "./index.css";
+import {
+  HOME,
+  LOGIN,
+  REGISTERCLIENTE,
+  REGISTERVENDEDOR,
+  REGISTERREPARTIDOR,
+  DASHBOARDVENDEDOR,
+  DASHBOARDREPARTIDOR,
+  REGISTERCOMERCIO,
+  COMERCIO
+} from "./router/route";
+import DashboardVendedor from "./components/dashboard/DashboardVendedor";
+import DashboardRepartidor from "./components/dashboard/DashboardRepartidor";
+import RegisterComercioPages from "./pages/RegisterComercioPages";
+import HomePage from "./pages/HomePage";
+import ComercioPage from "./pages/ComercioPage";
+
 function App() {
   return (
-
     <BrowserRouter>
-    <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
-        <Navbar />
-        <div className="flex-grow-1 container">
       <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/mis-direcciones" element={<MisDirecciones />} />
-      </Routes>
-      </div>
-        <Footer />
-      </div>
-   </BrowserRouter>
+        <Route path={HOME} element={<HomePage />} />
+        <Route path={LOGIN} element={<LoginPages />} />
+        <Route path={REGISTERCLIENTE} element={<RegisterClientePages />} />
 
+        <Route
+          path={REGISTERREPARTIDOR}
+          element={<RegisterRepartidorPages />}
+        />
+        <Route path={DASHBOARDREPARTIDOR} element={<DashboardRepartidor />} />
+
+        <Route path={REGISTERVENDEDOR} element={<RegisterVendedorPages />} />
+        <Route path={REGISTERCOMERCIO} element={<RegisterComercioPages />} />
+        <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor />} />
+        <Route path={`${COMERCIO}/:id`} element={<ComercioPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
 export default App;
-
