@@ -18,6 +18,7 @@ import {
 import DashboardVendedor from "./components/dashboard/DashboardVendedor";
 import DashboardRepartidor from "./components/dashboard/DashboardRepartidor";
 import RegisterComercioPages from "./pages/RegisterComercioPages";
+import ListaComerciosPage from "./pages/ListaComerciosPage";
 import HomePage from "./pages/HomePage";
 import ComercioPage from "./pages/ComercioPage";
 import NotFound from "./pages/NotFound";
@@ -28,6 +29,7 @@ function App() {
       <Routes>
         <Route path={HOME} element={<HomePage />} />
         <Route path={LOGIN} element={<LoginPages />} />
+        <Route path={LISTACOMERCIO} element={<ListaComerciosPage />} />
         <Route path={REGISTERCLIENTE} element={<RegisterClientePages />} />
         {console.log("hola mundo")}
         <Route

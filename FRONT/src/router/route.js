@@ -1,5 +1,6 @@
 export const HOME = '/'
 export const LOGIN = '/login'
+export const LISTACOMERCIO = '/comercios'
 
 
 export const REGISTERCLIENTE = '/register-cliente'
