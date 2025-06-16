@@ -1,45 +1,69 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { Container, Row, Col, Card, Button, ListGroup, Badge } from 'react-bootstrap';
 
 export default function RepartidorDashboard() {
   const [stats, setStats] = useState({
-    totalDeliveries: 2,
-    todayDeliveries: 3,
-    totalEarnings: 10000,
+    totalDeliveries: 4,
+    todayDeliveries: 2,
+    totalEarnings: 20,
     activeRoutes: 1,
   });
 
-  const [availableOrders, setAvailableOrders] = useState([]);
-  const [myRoutes, setMyRoutes] = useState([]);
+  // Pedidos disponibles
+  const [availableOrders, setAvailableOrders] = useState([
+    {
+      id: 1,
+      comercioAddress: 'Calle 123',
+      deliveryAddress: 'Avenida 456',
+      total: 25.0,
+    },
+    {
+      id: 2,
+      comercioAddress: 'Calle 789',
+      deliveryAddress: 'Avenida 101',
+      total: 40.0,
+    },
+  ]);
 
-  useEffect(() => {
-    // Simulación de datos
-    setStats({
-      totalDeliveries: 4,
-      todayDeliveries: 2,
-      totalEarnings: 20,
-      activeRoutes: 1,
-    });
+  // Rutas asignadas
+  const [myRoutes, setMyRoutes] = useState([
+    {
+      id: 101,
+      pickupAddress: 'Calle 321',
+      deliveryAddress: 'Avenida 654',
+      estimatedTime: 30,
+      status: 'asignada',
+    },
+  ]);
 
-    setAvailableOrders([
-      {
-        id: 1,
-        comercioAddress: 'Calle 123',
-        deliveryAddress: 'Avenida 456',
-        total: 25.00,
-      },
-    ]);
+  // Función para aceptar un pedido
+  const aceptarPedido = (pedido) => {
+    // 1. Quitar pedido de pedidos disponibles
+    const nuevosPedidos = availableOrders.filter((o) => o.id !== pedido.id);
+    setAvailableOrders(nuevosPedidos);
 
-    setMyRoutes([
-      {
-        id: 101,
-        pickupAddress: 'Calle 123',
-        deliveryAddress: 'Avenida 456',
-        estimatedTime: 30,
-        status: 'asignada',
-      },
-    ]);
-  }, []);
+    // 2. Crear nueva ruta con datos del pedido
+    const nuevaRuta = {
+      id: Math.floor(Math.random() * 1000) + 200, // id random para ejemplo
+      pickupAddress: pedido.comercioAddress,
+      deliveryAddress: pedido.deliveryAddress,
+      estimatedTime: 30, // puedes cambiar para estimar tiempo dinámico
+      status: 'asignada',
+      total: pedido.total, // agregamos total para calcular ganancias luego
+    };
+
+    // 3. Agregar nueva ruta a rutas asignadas
+    const nuevasRutas = [...myRoutes, nuevaRuta];
+    setMyRoutes(nuevasRutas);
+
+    // 4. Actualizar stats
+    setStats((prev) => ({
+      totalDeliveries: prev.totalDeliveries + 1,
+      todayDeliveries: prev.todayDeliveries + 1, // suponiendo que se cuenta hoy
+      totalEarnings: prev.totalEarnings + pedido.total,
+      activeRoutes: prev.activeRoutes + 1,
+    }));
+  };
 
   return (
     <Container className="py-4">
@@ -51,7 +75,9 @@ export default function RepartidorDashboard() {
           <Card className="text-center">
             <Card.Body>
               <Card.Title>Total Entregas</Card.Title>
-              <h4><Badge bg="primary">{stats.totalDeliveries}</Badge></h4>
+              <h4>
+                <Badge bg="primary">{stats.totalDeliveries}</Badge>
+              </h4>
             </Card.Body>
           </Card>
         </Col>
@@ -59,7 +85,9 @@ export default function RepartidorDashboard() {
           <Card className="text-center">
             <Card.Body>
               <Card.Title>Hoy</Card.Title>
-              <h4><Badge bg="success">{stats.todayDeliveries}</Badge></h4>
+              <h4>
+                <Badge bg="success">{stats.todayDeliveries}</Badge>
+              </h4>
             </Card.Body>
           </Card>
         </Col>
@@ -67,7 +95,9 @@ export default function RepartidorDashboard() {
           <Card className="text-center">
             <Card.Body>
               <Card.Title>Ganancias</Card.Title>
-              <h4><Badge bg="warning">${stats.totalEarnings}</Badge></h4>
+              <h4>
+                <Badge bg="warning">${stats.totalEarnings}</Badge>
+              </h4>
             </Card.Body>
           </Card>
         </Col>
@@ -75,7 +105,9 @@ export default function RepartidorDashboard() {
           <Card className="text-center">
             <Card.Body>
               <Card.Title>Rutas Activas</Card.Title>
-              <h4><Badge bg="info">{stats.activeRoutes}</Badge></h4>
+              <h4>
+                <Badge bg="info">{stats.activeRoutes}</Badge>
+              </h4>
             </Card.Body>
           </Card>
         </Col>
@@ -87,13 +119,20 @@ export default function RepartidorDashboard() {
         <p>No hay pedidos disponibles</p>
       ) : (
         <ListGroup>
-          {availableOrders.map(order => (
+          {availableOrders.map((order) => (
             <ListGroup.Item key={order.id}>
-              <strong>Pedido #{order.id}</strong> - ${order.total}<br />
+              <strong>Pedido #{order.id}</strong> - ${order.total}
+              <br />
               Recoger en: {order.comercioAddress} <br />
               Entregar en: {order.deliveryAddress}
               <div className="mt-2">
-                <Button variant="success" size="sm">Aceptar</Button>
+                <Button
+                  variant="success"
+                  size="sm"
+                  onClick={() => aceptarPedido(order)}
+                >
+                  Aceptar
+                </Button>
               </div>
             </ListGroup.Item>
           ))}
@@ -106,11 +145,14 @@ export default function RepartidorDashboard() {
         <p>No tienes rutas asignadas</p>
       ) : (
         <ListGroup>
-          {myRoutes.map(route => (
+          {myRoutes.map((route) => (
             <ListGroup.Item key={route.id}>
-              <strong>Ruta #{route.id}</strong><br />
-              Desde: {route.pickupAddress} - Hasta: {route.deliveryAddress}<br />
-              Estado: <Badge bg="secondary">{route.status}</Badge> - Tiempo estimado: {route.estimatedTime} minutos
+              <strong>Ruta #{route.id}</strong>
+              <br />
+              Desde: {route.pickupAddress} - Hasta: {route.deliveryAddress}
+              <br />
+              Estado: <Badge bg="secondary">{route.status}</Badge> - Tiempo estimado:{' '}
+              {route.estimatedTime} minutos
             </ListGroup.Item>
           ))}
         </ListGroup>

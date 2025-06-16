@@ -18,7 +18,7 @@ import RegisterComercioPages from "./pages/RegisterComercioPages";
 import HomePage from "./pages/HomePage";
 
 import DashboardVendedor from "./components/dashboard/DashboardVendedor";
-import DashboardRepartidor from "./components/dashboard/DashboardVendedor";
+import DashboardRepartidor from "./components/dashboard/DashboardRepartidor";
 
 function App() {
   return (
@@ -26,8 +26,8 @@ function App() {
       <Routes>
 
         
+          <Route path='/vendedor' element={<DashboardVendedor />} />    
         
-        <Route path='/vendedor' element={<DashboardVendedor />} />
         <Route path='/repartidor' element={<DashboardRepartidor />} />
 
 
