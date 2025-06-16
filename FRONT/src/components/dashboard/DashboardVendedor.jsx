@@ -25,37 +25,39 @@ export default function VendedorDashboard() {
 
   const [modalActivo, setModalActivo] = useState(null);
 
+  // Para nuevo producto
   const [nuevoProducto, setNuevoProducto] = useState({
     nombre: '',
     precio: '',
     stock: '',
   });
 
-  // Para edición inline
-  const [editandoProductoId, setEditandoProductoId] = useState(null);
-  const [productoEditado, setProductoEditado] = useState({
+  // Para producto a editar
+  const [productoEditar, setProductoEditar] = useState({
+    id: null,
     nombre: '',
     precio: '',
     stock: '',
   });
 
+  // Cargar datos dentro del useEffect para evitar warning
   useEffect(() => {
+    const cargarDatos = async () => {
+      try {
+        const resPedidos = await axios.get('http://localhost:3001/pedidos');
+        const resProductos = await axios.get('http://localhost:3001/productos');
+
+        setRecentOrders(resPedidos.data);
+        setProductos(resProductos.data);
+
+        actualizarStats(resPedidos.data);
+      } catch (error) {
+        console.error('Error cargando datos:', error);
+      }
+    };
+
     cargarDatos();
   }, []);
-
-  const cargarDatos = async () => {
-    try {
-      const resPedidos = await axios.get('http://localhost:3001/pedidos');
-      const resProductos = await axios.get('http://localhost:3001/productos');
-
-      setRecentOrders(resPedidos.data);
-      setProductos(resProductos.data);
-
-      actualizarStats(resPedidos.data);
-    } catch (error) {
-      console.error('Error cargando datos:', error);
-    }
-  };
 
   const actualizarStats = (pedidos) => {
     const total = pedidos.length;
@@ -90,17 +92,19 @@ export default function VendedorDashboard() {
     }
   };
 
+  // Manejo campos nuevo producto
   const handleNuevoProductoChange = (e) => {
     const { name, value } = e.target;
     setNuevoProducto((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Agregar nuevo producto
   const agregarProducto = async (e) => {
     e.preventDefault();
     if (
-      !nuevoProducto.nombre ||
-      !nuevoProducto.precio ||
-      !nuevoProducto.stock
+      !nuevoProducto.nombre.trim() ||
+      !nuevoProducto.precio.toString().trim() ||
+      !nuevoProducto.stock.toString().trim()
     ) {
       alert('Por favor, complete todos los campos');
       return;
@@ -108,7 +112,7 @@ export default function VendedorDashboard() {
 
     try {
       const nuevo = {
-        nombre: nuevoProducto.nombre,
+        nombre: nuevoProducto.nombre.trim(),
         precio: Number(nuevoProducto.precio),
         stock: Number(nuevoProducto.stock),
       };
@@ -121,6 +125,56 @@ export default function VendedorDashboard() {
     }
   };
 
+  // Manejo para abrir modal editar y cargar datos del producto
+  const abrirEditarProducto = (producto) => {
+    setProductoEditar({
+      id: producto.id,
+      nombre: producto.nombre,
+      precio: producto.precio.toString(),
+      stock: producto.stock.toString(),
+    });
+    setModalActivo('editarProducto');
+  };
+
+  // Manejo cambios producto editar
+  const handleEditarProductoChange = (e) => {
+    const { name, value } = e.target;
+    setProductoEditar((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Guardar producto editado
+  const guardarProductoEditado = async (e) => {
+    e.preventDefault();
+
+    if (
+      !productoEditar.nombre.trim() ||
+      !productoEditar.precio.toString().trim() ||
+      !productoEditar.stock.toString().trim()
+    ) {
+      alert('Por favor, complete todos los campos');
+      return;
+    }
+
+    try {
+      const actualizado = {
+        nombre: productoEditar.nombre.trim(),
+        precio: Number(productoEditar.precio),
+        stock: Number(productoEditar.stock),
+      };
+      await axios.put(`http://localhost:3001/productos/${productoEditar.id}`, actualizado);
+
+      setProductos((prev) =>
+        prev.map((prod) =>
+          prod.id === productoEditar.id ? { ...prod, ...actualizado } : prod
+        )
+      );
+      setModalActivo(null);
+      setProductoEditar({ id: null, nombre: '', precio: '', stock: '' });
+    } catch (error) {
+      console.error('Error editando producto:', error);
+    }
+  };
+
   const eliminarProducto = async (id) => {
     try {
       await axios.delete(`http://localhost:3001/productos/${id}`);
@@ -128,50 +182,6 @@ export default function VendedorDashboard() {
     } catch (error) {
       console.error('Error eliminando producto:', error);
     }
-  };
-
-  // Edición inline
-  const iniciarEdicion = (producto) => {
-    setEditandoProductoId(producto.id);
-    setProductoEditado({
-      nombre: producto.nombre,
-      precio: producto.precio,
-      stock: producto.stock,
-    });
-  };
-
-  const handleCambioEdicion = (e) => {
-    const { name, value } = e.target;
-    setProductoEditado((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const guardarEdicion = async () => {
-    try {
-      await axios.patch(`http://localhost:3001/productos/${editandoProductoId}`, {
-        nombre: productoEditado.nombre,
-        precio: Number(productoEditado.precio),
-        stock: Number(productoEditado.stock),
-      });
-      setProductos((prev) =>
-        prev.map((prod) =>
-          prod.id === editandoProductoId
-            ? {
-                ...prod,
-                nombre: productoEditado.nombre,
-                precio: Number(productoEditado.precio),
-                stock: Number(productoEditado.stock),
-              }
-            : prod
-        )
-      );
-      setEditandoProductoId(null);
-    } catch (error) {
-      console.error('Error al actualizar producto:', error);
-    }
-  };
-
-  const cancelarEdicion = () => {
-    setEditandoProductoId(null);
   };
 
   return (
@@ -279,6 +289,8 @@ export default function VendedorDashboard() {
                 value={nuevoProducto.precio}
                 onChange={handleNuevoProductoChange}
                 placeholder="Precio"
+                min="0"
+                step="0.01"
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formStock">
@@ -289,6 +301,8 @@ export default function VendedorDashboard() {
                 value={nuevoProducto.stock}
                 onChange={handleNuevoProductoChange}
                 placeholder="Stock"
+                min="0"
+                step="1"
               />
             </Form.Group>
           </Modal.Body>
@@ -361,77 +375,21 @@ export default function VendedorDashboard() {
                   key={prod.id}
                   className="d-flex justify-content-between align-items-center"
                 >
-                  {editandoProductoId === prod.id ? (
-                    <div className="flex-grow-1 me-3">
-                      <input
-                        type="text"
-                        name="nombre"
-                        value={productoEditado.nombre}
-                        onChange={handleCambioEdicion}
-                        className="form-control mb-2"
-                        placeholder="Nombre"
-                      />
-                      <input
-                        type="number"
-                        name="precio"
-                        value={productoEditado.precio}
-                        onChange={handleCambioEdicion}
-                        className="form-control mb-2"
-                        placeholder="Precio"
-                      />
-                      <input
-                        type="number"
-                        name="stock"
-                        value={productoEditado.stock}
-                        onChange={handleCambioEdicion}
-                        className="form-control mb-2"
-                        placeholder="Stock"
-                      />
-                    </div>
-                  ) : (
-                    <div>
-                      <strong>{prod.nombre}</strong> - Precio: ${prod.precio} - Stock: {prod.stock}
-                    </div>
-                  )}
-
                   <div>
-                    {editandoProductoId === prod.id ? (
-                      <>
-                        <Button
-                          variant="success"
-                          size="sm"
-                          className="me-2"
-                          onClick={guardarEdicion}
-                        >
-                          Guardar
-                        </Button>
-                        <Button
-                          variant="secondary"
-                          size="sm"
-                          onClick={cancelarEdicion}
-                        >
-                          Cancelar
-                        </Button>
-                      </>
-                    ) : (
-                      <>
-                        <Button
-                          variant="outline-primary"
-                          size="sm"
-                          className="me-2"
-                          onClick={() => iniciarEdicion(prod)}
-                        >
-                          Editar
-                        </Button>
-                        <Button
-                          variant="danger"
-                          size="sm"
-                          onClick={() => eliminarProducto(prod.id)}
-                        >
-                          Eliminar
-                        </Button>
-                      </>
-                    )}
+                    <strong>{prod.nombre}</strong> - Precio: ${prod.precio} - Stock: {prod.stock}
+                  </div>
+                  <div>
+                    <Button
+                      variant="outline-primary"
+                      size="sm"
+                      className="me-2"
+                      onClick={() => abrirEditarProducto(prod)}
+                    >
+                      Editar
+                    </Button>
+                    <Button variant="danger" size="sm" onClick={() => eliminarProducto(prod.id)}>
+                      Eliminar
+                    </Button>
                   </div>
                 </ListGroup.Item>
               ))}
@@ -444,7 +402,59 @@ export default function VendedorDashboard() {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {/* Modal Editar Producto */}
+      <Modal show={modalActivo === 'editarProducto'} onHide={() => setModalActivo(null)}>
+        <Form onSubmit={guardarProductoEditado}>
+          <Modal.Header closeButton>
+            <Modal.Title>Editar Producto</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form.Group className="mb-3" controlId="editNombre">
+              <Form.Label>Nombre</Form.Label>
+              <Form.Control
+                type="text"
+                name="nombre"
+                value={productoEditar.nombre}
+                onChange={handleEditarProductoChange}
+                placeholder="Nombre del producto"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="editPrecio">
+              <Form.Label>Precio</Form.Label>
+              <Form.Control
+                type="number"
+                name="precio"
+                value={productoEditar.precio}
+                onChange={handleEditarProductoChange}
+                placeholder="Precio"
+                min="0"
+                step="0.01"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="editStock">
+              <Form.Label>Stock</Form.Label>
+              <Form.Control
+                type="number"
+                name="stock"
+                value={productoEditar.stock}
+                onChange={handleEditarProductoChange}
+                placeholder="Stock"
+                min="0"
+                step="1"
+              />
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => setModalActivo(null)}>
+              Cancelar
+            </Button>
+            <Button type="submit" variant="primary">
+              Guardar cambios
+            </Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
     </Container>
-    
   );
 }
