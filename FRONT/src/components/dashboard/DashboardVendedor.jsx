@@ -445,5 +445,6 @@ export default function VendedorDashboard() {
         </Modal.Footer>
       </Modal>
     </Container>
+    
   );
 }
