@@ -13,7 +13,8 @@ import {
   DASHBOARDVENDEDOR,
   DASHBOARDREPARTIDOR,
   REGISTERCOMERCIO,
-  COMERCIO
+  COMERCIO,
+  LISTACOMERCIO
 } from "./router/route";
 import DashboardVendedor from "./components/dashboard/DashboardVendedor";
 import DashboardRepartidor from "./components/dashboard/DashboardRepartidor";
