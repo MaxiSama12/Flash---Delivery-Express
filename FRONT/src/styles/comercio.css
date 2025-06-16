@@ -157,7 +157,7 @@
 }
 
 .categoria-list li.active {
-  background-color: #007bff;
+  background-color: #7a3e6b;
   color: white;
   font-weight: bold;
   cursor: default;
@@ -182,7 +182,7 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #007bff;
+  background-color: #9c5698;
   color: white;
   border: none;
   border-radius: 50%;
@@ -198,7 +198,7 @@
 }
 
 .filters-toggle-button:hover {
-  background-color: #0056b3;
+  background-color: #7a3e6b;
 }
 
 .filters-close-button {
@@ -273,9 +273,10 @@
 }
 
 .no-results-message {
+  position: absolute;
   font-size: 1.5rem;
   color: #555;
-  /* text-align: center; */
+  text-align: center;
   padding: 2rem;
   font-weight: 500;
 }
