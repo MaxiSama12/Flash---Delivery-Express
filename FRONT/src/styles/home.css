@@ -310,3 +310,22 @@ body {
   background-color: rgb(100, 150, 200);
   color: white;
 }
+
+.ver-mas-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.ver-mas-btn {
+  padding: 10px 20px;
+  background-color: #9c5698;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.ver-mas-btn:hover {
+  background-color: #7a3e6b;
+}
