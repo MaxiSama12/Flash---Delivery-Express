@@ -9,7 +9,6 @@ export default function RepartidorDashboard() {
     activeRoutes: 1,
   });
 
-  // Pedidos disponibles
   const [availableOrders, setAvailableOrders] = useState([
     {
       id: 1,
@@ -25,7 +24,6 @@ export default function RepartidorDashboard() {
     },
   ]);
 
-  // Rutas asignadas
   const [myRoutes, setMyRoutes] = useState([
     {
       id: 101,
@@ -36,30 +34,25 @@ export default function RepartidorDashboard() {
     },
   ]);
 
-  // Función para aceptar un pedido
   const aceptarPedido = (pedido) => {
-    // 1. Quitar pedido de pedidos disponibles
     const nuevosPedidos = availableOrders.filter((o) => o.id !== pedido.id);
     setAvailableOrders(nuevosPedidos);
 
-    // 2. Crear nueva ruta con datos del pedido
     const nuevaRuta = {
-      id: Math.floor(Math.random() * 1000) + 200, // id random para ejemplo
+      id: Math.floor(Math.random() * 1000) + 200, 
       pickupAddress: pedido.comercioAddress,
       deliveryAddress: pedido.deliveryAddress,
-      estimatedTime: 30, // puedes cambiar para estimar tiempo dinámico
+      estimatedTime: 30, 
       status: 'asignada',
-      total: pedido.total, // agregamos total para calcular ganancias luego
+      total: pedido.total, 
     };
 
-    // 3. Agregar nueva ruta a rutas asignadas
     const nuevasRutas = [...myRoutes, nuevaRuta];
     setMyRoutes(nuevasRutas);
 
-    // 4. Actualizar stats
     setStats((prev) => ({
       totalDeliveries: prev.totalDeliveries + 1,
-      todayDeliveries: prev.todayDeliveries + 1, // suponiendo que se cuenta hoy
+      todayDeliveries: prev.todayDeliveries + 1, 
       totalEarnings: prev.totalEarnings + pedido.total,
       activeRoutes: prev.activeRoutes + 1,
     }));

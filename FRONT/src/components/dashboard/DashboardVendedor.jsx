@@ -92,13 +92,11 @@ export default function VendedorDashboard() {
     }
   };
 
-  // Manejo campos nuevo producto
   const handleNuevoProductoChange = (e) => {
     const { name, value } = e.target;
     setNuevoProducto((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Agregar nuevo producto
   const agregarProducto = async (e) => {
     e.preventDefault();
     if (
@@ -125,7 +123,6 @@ export default function VendedorDashboard() {
     }
   };
 
-  // Manejo para abrir modal editar y cargar datos del producto
   const abrirEditarProducto = (producto) => {
     setProductoEditar({
       id: producto.id,
@@ -136,13 +133,11 @@ export default function VendedorDashboard() {
     setModalActivo('editarProducto');
   };
 
-  // Manejo cambios producto editar
   const handleEditarProductoChange = (e) => {
     const { name, value } = e.target;
     setProductoEditar((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Guardar producto editado
   const guardarProductoEditado = async (e) => {
     e.preventDefault();
 
