@@ -112,33 +112,63 @@
   "comercios": [
     {
       "id": "1",
-      "nombre": "Supermercado ABC",
+      "nombre": "Supermercado Vea",
       "direccion": "Calle Falsa 123",
-      "telefono": "3811234567",
-      "email": "contacto@supermercadoabc.com",
+      "telefono": "381 123 4567",
       "id_rubro": "1",
-      "id_vendedor": "1"
+      "id_vendedor": "1",
+      "time": "25-40 min",
+      "activo": true,
+      "url_imagen": "https://www.webretail.com.ar/wp-content/uploads/2023/04/Vea-Cencosud.jpg",
+      "rating": 4.7
     },
     {
-      "id": "7541",
-      "nombre": "Alta milanga",
-      "direccion": "Las Heras 123",
-      "telefono": "84736719",
-      "descripcion": "Sangucheria familiar",
-      "activo": true,
-      "id_usuario": "",
+      "id": "2",
+      "nombre": "Librería San Pablo",
+      "direccion": "Calle Falsa 123",
+      "telefono": "381 167 7348",
       "id_rubro": "1",
-      "email": "s"
+      "id_vendedor": "1",
+      "time": "40-60 min",
+      "activo": true,
+      "url_imagen": "https://recursos-we-us-east-1.s3.amazonaws.com/Weyop/LSP/Contenidos/2024-08-15%2015%3A25%3A51/descarga%20%284%29.png",
+      "rating": 4.9
     },
     {
-      "id": "7e93",
-      "nombre": "Jorge comidas",
-      "direccion": "Jujuy al 4000",
-      "telefono": "38674498",
-      "descripcion": "Empresa dedicada a la venta de comidas caseras.",
+      "id": "3",
+      "nombre": "Farmacia Del Pueblo",
+      "direccion": "Calle Falsa 123",
+      "telefono": "381 193 8574",
+      "id_rubro": "1",
+      "id_vendedor": "1",
+      "time": "45-65 min",
       "activo": true,
-      "id_usuario": "",
-      "id_rubro": "1"
+      "url_imagen": "https://images.rappi.com.ar/marketplace/store_type_1626975357300.jpg",
+      "rating": 4.5
+    },
+    {
+      "id": "4",
+      "nombre": "McDonald's",
+      "direccion": "Calle Falsa 123",
+      "telefono": "381 674 9172",
+      "id_rubro": "1",
+      "id_vendedor": "1",
+      "time": "45-65 min",
+      "activo": true,
+      "url_imagen": "https://cdn.aarp.net/content/dam/aarpe/es/home/trabajo/pequenos-negocios/info-2021/comprar-franquicia-de-McDonalds/_jcr_content/root/container_main/container_body_main/container_body1/container_body_cf/container_image/articlecontentfragment/cfimage.coreimg.50.932.jpeg/content/dam/aarp/work/work_at_plus/2021/09/1140-mcdonalds-esp.jpg",
+      "rating": 4.2
+    },
+    {
+      "id": "5",
+      "nombre": "La Pizzada",
+      "direccion": "Calle Falsa 123",
+      "telefono": "381 543 8467",
+      "id_rubro": "1",
+      "id_vendedor": "1",
+      "time": "15-30 min",
+      "activo": true,
+      "url_imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0D7HfefHBN8fEVhms12IV_7Wfx7mBbwqANg&s",
+      "rating": 5
     }
   ],
   "rubros": [
