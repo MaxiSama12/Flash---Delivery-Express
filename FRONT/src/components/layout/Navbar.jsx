@@ -58,18 +58,6 @@ const Navbar = () => {
       <div className="w-100 d-flex justify-content-around mb-2">
 
                   <NavLink
-                    to="/categorias"
-                    className={({ isActive }) =>
-                      `btn btn-light w-50 mx-1${
-                    isActive ? "fw-bold" : ""
-                        }`
-                      }
-                    >
-                      <button className="btn">Categorías</button>
-                    </NavLink>
-
-
-                  <NavLink
                     to="/comercios"
                     className={({ isActive }) =>
                       `btn btn-light w-50 mx-1${
@@ -79,6 +67,7 @@ const Navbar = () => {
                     >
                       <button className="btn">Comercios</button>
                     </NavLink>
+
       </div>
 
     </nav>
@@ -93,6 +82,18 @@ const Navbar = () => {
         zIndex: 1000,
       }}
     >
+                  <NavLink
+                    to="/carrito"
+                    className={({ isActive }) =>
+                      `text-white d-flex flex-column align-items-center nav-item-hover ${
+                    isActive ? "fw-bold" : ""
+                        }`
+                      }
+                    >
+                      <FaShoppingCart size={22} />
+                      <small>Carrito</small>
+                    </NavLink>
+
                   <NavLink
                     to="/mi-perfil"
                     className={({ isActive }) =>
@@ -148,30 +149,23 @@ const Navbar = () => {
         >
           <div className="container-fluid d-flex justify-content-between align-items-center">
             {/* Logo */}
-            <a className="navbar-brand text-white d-flex align-items-center" href="#">
-              <img
-                src={logo}
-                alt="Logo"
-                style={{ height: "70px", marginRight: "10px" }}
-              />
-            </a>
-
-            {/* Centro con Categorías y Comercios */}
-            <div className="d-flex gap-3">
-
-
-
-              <NavLink
-                    to="/categorias"
+            <NavLink
+                    to="/"
                     className={({ isActive }) =>
-                      `${
-                    isActive ? "fw-bold" : ""
+                      `navbar-brand text-white d-flex align-items-center ${
+                    isActive ? "navbar-brand text-white d-flex align-items-center" : ""
                         }`
                       }
                     >
-                      <button className="btn btn-light">Categorías</button>
+                        <img
+                        src={logo}
+                        alt="Logo"
+                        style={{ height: "70px", marginRight: "10px" }}
+                        />
                     </NavLink>
 
+            {/* Centro con Categorías y Comercios */}
+            <div className="d-flex gap-3">
 
                   <NavLink
                     to="/comercios"
@@ -183,7 +177,6 @@ const Navbar = () => {
                     >
                       <button className="btn btn-light">Comercios</button>
                     </NavLink>
-
 
             </div>
 
@@ -237,8 +230,6 @@ const Navbar = () => {
                       zIndex: 999,
                     }}
                   >
-
-
 
                     <NavLink
                     to="/"

@@ -31,7 +31,7 @@ export default function Footer() {
       </div>
       <div className="col-auto">
         <a
-          href="https://www.google.com/maps"
+          href="https://maps.app.goo.gl/gtDeXKn6GEpMkdZPA"
           target="_blank"
           rel="noopener noreferrer"
           className="text-white d-flex align-items-center gap-2 nav-item-hover"

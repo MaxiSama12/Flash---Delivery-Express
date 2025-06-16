@@ -1,6 +1,8 @@
 import { useState } from "react";
 import ModalAgregarDireccion from "../MisDirecciones/ModalAgregarDirecciones";
 import "../../pages/MisDirecciones/misDirecciones.css";
+import Navbar from "../../components/layout/Navbar";
+import Footer from "../../components/layout/Footer";
 
 export default function MisDirecciones() {
   const [mostrarModal, setMostrarModal] = useState(false);
@@ -12,7 +14,9 @@ export default function MisDirecciones() {
   };
 
   return (
-    <div className="container" style={{ paddingTop: "100px" }}>
+    <div className="d-flex flex-column min-vh-100">
+      <Navbar/>
+    <div className="container flex-fill" style={{ paddingTop: "100px" }}>
       <h2 className="text-center my-4">Mis direcciones</h2>
 
       <div className="mb-4">
@@ -38,6 +42,8 @@ export default function MisDirecciones() {
           onAgregar={agregarDireccion}
         />
       )}
+    </div>
+    <Footer/>
     </div>
   );
 }
