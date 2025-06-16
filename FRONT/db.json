@@ -1,112 +1,82 @@
 {
-  "clientes": [
+  "pedidos": [
     {
       "id": "1",
-      "nombre": "John Doe",
-      "email": "john@doe.com",
-      "telefono": "3819212354",
-      "direccion": "avenida siempre viva 123",
-      "password": "cliente123",
-      "rol": "cliente"
+      "cliente": "Juan",
+      "total": 1000,
+      "status": "completado"
     },
     {
-      "_comentario": "metimos otro objeto con rol de vendedor en el array de clientes para probar la navegacion condicional desde el login",
       "id": "2",
-      "nombre": "Jane Smith",
-      "email": "jane@smith.com",
-      "telefono": "3526721283",
-      "password": "vendedor123",
-      "rol": "vendedor"
+      "cliente": "Ana",
+      "total": 1500,
+      "status": "completado"
     },
     {
-      "id": "0c9a",
-      "nombre": "Esteban",
-      "email": "maxi@gmail.com",
-      "telefono": "3814563422",
-      "direccion": "pasaje 1234",
-      "password": "Maxisama123",
-      "rol": "cliente"
+      "id": "3",
+      "cliente": "Luis",
+      "total": 2000,
+      "status": "pendiente"
     },
     {
-      "id": "ba35",
-      "nombre": "Carlos",
-      "telefono": "048389473",
-      "email": "carlos@gmail.com",
-      "vehiculo": "Bicicleta",
-      "activo": true,
-      "password": "Carlos123",
-      "rol": "repartidor"
+      "id": "4",
+      "cliente": "Carlos",
+      "total": 800,
+      "status": "pendiente"
     },
     {
-      "id": "9801",
-      "nombre": "Pablo",
-      "email": "pablo@gmail.com",
-      "password": "Pablo123",
-      "telefono": "785328393",
-      "rol": "vendedor"
+      "id": "5",
+      "cliente": "Marta",
+      "total": 2200,
+      "status": "pendiente"
     },
     {
-      "id": "2865",
-      "nombre": "Juancito",
-      "email": "juan@gmail.com",
-      "telefono": "18923817",
-      "direccion": "calle juan 1233",
-      "password": "CLiente123",
-      "rol": "cliente"
+      "id": "6",
+      "cliente": "Sofía",
+      "total": 1700,
+      "status": "pendiente"
     },
     {
-      "id": "d253",
-      "nombre": "Esteban",
-      "email": "masisama92@gmail.com",
-      "password": "vendedor123",
-      "telefono": "781156796586",
-      "rol": "vendedor"
+      "id": "7",
+      "cliente": "Pablo",
+      "total": 1900,
+      "status": "pendiente"
     },
     {
-      "id": "65f0",
-      "nombre": "Jorge",
-      "email": "jorge@vendedor",
-      "password": "Vendedor123",
-      "telefono": "381764857",
-      "rol": "vendedor"
-    }
-  ],
-  "vendedores": [
-    {
-      "id": "1",
-      "nombre": "Jane Smith",
-      "email": "jane@smith.com",
-      "telefono": "3526721283",
-      "direccion": "avenida siempre viva 123",
-      "password": "vendedor123",
-      "rol": "vendedor"
+      "id": "8",
+      "cliente": "Lucía",
+      "total": 950,
+      "status": "pendiente"
     },
     {
-      "id": "d253",
-      "nombre": "Esteban",
-      "email": "masisama92@gmail.com",
-      "password": "vendedor123",
-      "telefono": "781156796586",
-      "rol": "vendedor"
+      "id": "9",
+      "cliente": "Diego",
+      "total": 1100,
+      "status": "pendiente"
     },
     {
-      "id": "65f0",
-      "nombre": "Jorge",
-      "email": "jorge@vendedor",
-      "password": "Vendedor123",
-      "telefono": "381764857",
-      "rol": "vendedor"
-    }
-  ],
-  "repartidores": [
+      "id": "10",
+      "cliente": "Valentina",
+      "total": 1250,
+      "status": "pendiente"
+    },
     {
-      "id": "1",
-      "nombre": "Carlos Perez",
-      "email": "carlos@perez.com",
-      "telefono": "3819212354",
-      "vehiculo": "Motocicleta",
-      "password": "repartidor123",
-      "rol": "repartidor"
+      "id": "11",
+      "cliente": "Matías",
+      "total": 1400,
+      "status": "pendiente"
+    },
+    {
+      "id": "12",
+      "cliente": "Laura",
+      "total": 2100,
+      "status": "pendiente"
+    },
+    {
+      "id": "13",
+      "cliente": "Felipe",
+      "total": 1800,
+      "status": "pendiente"
     }
   ],
   "comercios": [
