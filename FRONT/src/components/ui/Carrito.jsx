@@ -26,7 +26,6 @@ const Carrito = ({ carrito, finalizarCompra }) => {
     <strong>${producto.precio * producto.cantidad}</strong>
   </div>
 ))}
-
           <div className="carrito-total">
             <span>Total:</span>
             <span>${total}</span>

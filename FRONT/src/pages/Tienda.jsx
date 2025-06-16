@@ -4,7 +4,6 @@ import Carrito from "../components/ui/Carrito";
 import useCarrito from "../hooks/useCarrito";
 import "../styles/Tienda.css";
 
-
 const productos = [
   { nombre: "Producto A", precio: 500 },
   { nombre: "Producto B", precio: 2000 },
@@ -25,7 +24,7 @@ const Tienda = () => {
           alt="Logo Flash"
           className="tienda-logo"
         />
-        <h1 className="tienda-header">TIENDA FLASH</h1>
+        <h1 className="tienda-header">TIENDA</h1>
       </div>
 
       <div className="tienda-scroll">
