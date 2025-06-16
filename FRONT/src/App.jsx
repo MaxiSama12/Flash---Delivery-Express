@@ -29,7 +29,7 @@ function App() {
         <Route path={HOME} element={<HomePage />} />
         <Route path={LOGIN} element={<LoginPages />} />
         <Route path={REGISTERCLIENTE} element={<RegisterClientePages />} />
-
+        {console.log("hola mundo")}
         <Route
           path={REGISTERREPARTIDOR}
           element={<RegisterRepartidorPages />}
