@@ -13,11 +13,14 @@ import {
   DASHBOARDVENDEDOR,
   DASHBOARDREPARTIDOR,
   REGISTERCOMERCIO,
+  COMERCIO
 } from "./router/route";
 import DashboardVendedor from "./components/dashboard/DashboardVendedor";
 import DashboardRepartidor from "./components/dashboard/DashboardRepartidor";
 import RegisterComercioPages from "./pages/RegisterComercioPages";
 import HomePage from "./pages/HomePage";
+import ComercioPage from "./pages/ComercioPage";
+
 function App() {
   return (
     <BrowserRouter>
@@ -35,6 +38,7 @@ function App() {
         <Route path={REGISTERVENDEDOR} element={<RegisterVendedorPages />} />
         <Route path={REGISTERCOMERCIO} element={<RegisterComercioPages />} />
         <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor />} />
+        <Route path={`${COMERCIO}/:id`} element={<ComercioPage />} />
       </Routes>
     </BrowserRouter>
   );
