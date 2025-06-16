@@ -16,11 +16,12 @@ import {
   COMERCIO,
   LISTACOMERCIO
 } from "./router/route";
+import RegisterComercioPages from "./pages/RegisterComercioPages";
+import HomePage from "./pages/HomePage";
+
 import DashboardVendedor from "./components/dashboard/DashboardVendedor";
 import DashboardRepartidor from "./components/dashboard/DashboardRepartidor";
-import RegisterComercioPages from "./pages/RegisterComercioPages";
 import ListaComerciosPage from "./pages/ListaComerciosPage";
-import HomePage from "./pages/HomePage";
 import ComercioPage from "./pages/ComercioPage";
 import NotFound from "./pages/NotFound";
 
@@ -28,7 +29,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={HOME} element={<HomePage />} />
+
+        
+          <Route path="/vendedor/:id" element={<DashboardVendedor />} />    
+        
+        <Route path='/repartidor' element={<DashboardRepartidor />} />
+
+
+         <Route path={HOME} element={<HomePage />} />
         <Route path={LOGIN} element={<LoginPages />} />
         <Route path={LISTACOMERCIO} element={<ListaComerciosPage />} />
         <Route path={REGISTERCLIENTE} element={<RegisterClientePages />} />
@@ -44,7 +52,7 @@ function App() {
         <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor />} />
         <Route path={`${COMERCIO}/:id`} element={<ComercioPage />} />
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter> 
   );
 }
 export default App;
