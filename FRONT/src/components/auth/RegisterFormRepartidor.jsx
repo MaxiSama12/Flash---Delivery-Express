@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/RegisterForm.css";
-import { REPARTIDORES } from "../../endpoints/endpoints";
+import { CLIENTES, REPARTIDORES } from "../../endpoints/endpoints";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { LOGIN } from "../../router/route";
@@ -24,7 +24,7 @@ const RegisterFormRepartidor = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      await axios.post(REPARTIDORES, formData);
+      await axios.post(CLIENTES, formData);
       alert(`!Repartidor Registrado!, Bienvenido ${formData.nombre}`);
       console.log(formData);
       navigate(LOGIN);
