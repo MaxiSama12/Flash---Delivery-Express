@@ -77,6 +77,9 @@ const Cart = ({ isBouncing }) => {
             <Button
               variant="success"
               className="d-flex align-items-center justify-content-center gap-2"
+              onClick={() => {
+                console.log("contenido del carrito", cart);
+              }}
             >
               <BsCash />
               Pagar
