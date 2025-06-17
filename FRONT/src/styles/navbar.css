@@ -1,22 +1,25 @@
 .nav-item-hover {
-  color: white;
+  color: #4c4c4c;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
   position: relative;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .nav-item-hover:hover {
-  color: #CA98C7;
+  transform: scale(1.05);
+  color: #2c2c2c;
 }
 
 .nav-item-hover::after {
   content: "";
   position: absolute;
-  bottom: -3px;
+  bottom: -5px;
   left: 0;
   height: 2px;
   width: 100%;
-  background-color: #CA98C7;
+  background-color: #9c5698;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
@@ -25,6 +28,32 @@
   opacity: 1;
 }
 
-.navbar{
-  justify-content: space-around !important;
+.link-comercio {
+  text-decoration: none;
+  color: #4c4c4c;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  font-size: 18px;
+}
+
+.link-comercio:hover {
+  transform: scale(1.05);
+  color: #2c2c2c;
+}
+
+.link-comercio::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #9c5698;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.link-comercio:hover::after {
+  opacity: 1;
 }

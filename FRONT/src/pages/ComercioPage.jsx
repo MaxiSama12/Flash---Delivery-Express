@@ -7,7 +7,7 @@ import Footer from "../components/layout/Footer";
 const ComercioPage = () => {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <HeroComercioPage />
       <ProductosComercioPage />
       <Footer />
