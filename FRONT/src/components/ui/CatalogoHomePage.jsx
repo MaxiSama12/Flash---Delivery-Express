@@ -1,14 +1,16 @@
-import "../../styles/home.css";
-import Card from "./Card";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { PRODUCTOS } from "../../endpoints/endpoints";
 import Swal from "sweetalert2";
+import "../../styles/home.css";
+import Card from "./Card";
+import { PRODUCTOS, CATEGORIAS } from "../../endpoints/endpoints";
 
-const CatalogoHomePage = () => {
-  
-  const [activeFilter, setActiveFilter] = useState("todos");
+const CatalogoHomePage = ({ onAddToCartAnimation }) => {
+  const [activeFilter, setActiveFilter] = useState("0");
   const [productos, setProductos] = useState([]);
+  const [categorias, setCategorias] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(8);
+
   const getProductos = async () => {
     try {
       const res = await axios.get(`${PRODUCTOS}`);
@@ -22,14 +24,34 @@ const CatalogoHomePage = () => {
     }
   };
 
+  const getCategorias = async () => {
+    try {
+      const res = await axios.get(`${CATEGORIAS}`);
+      setCategorias(res.data);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error al cargar las categorías",
+        text: error.response?.data?.mensaje || "Error desconocido",
+      });
+    }
+  };
+
   useEffect(() => {
     getProductos();
+    getCategorias();
   }, []);
 
+  useEffect(() => {
+    setVisibleCount(8);
+  }, [activeFilter]);
+
   const filteredProducts =
-    activeFilter === "todos"
+    activeFilter === "0"
       ? productos
-      : productos.filter((producto) => producto.category === activeFilter);
+      : productos.filter((producto) => producto.id_categoria === activeFilter);
+
+  const visibleProducts = filteredProducts.slice(0, visibleCount);
 
   return (
     <div className="cat-section-container">
@@ -38,26 +60,41 @@ const CatalogoHomePage = () => {
         <div className="section-principal-category">
           <h1 className="primary-heading">Menú de Productos</h1>
           <div className="filter-category">
-            {["todos", "comida", "librería", "supermercado"].map((category) => (
+            {categorias.map((categoria) => (
               <button
-                key={category}
+                key={categoria.id}
                 className={`category ${
-                  activeFilter.toLowerCase() === category.toLowerCase()
-                    ? "active"
-                    : ""
+                  activeFilter === categoria.id ? "active" : ""
                 }`}
-                onClick={() => setActiveFilter(category.toLowerCase())}
+                onClick={() => setActiveFilter(categoria.id)}
               >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
+                {categoria.nombre_categoria.charAt(0).toUpperCase() +
+                  categoria.nombre_categoria.slice(1)}
               </button>
             ))}
           </div>
         </div>
+
         <div className="card-container">
-          {filteredProducts.map((producto) => (
-            <Card producto={producto} />
+          {visibleProducts.map((producto) => (
+            <Card
+              key={producto.id}
+              producto={producto}
+              onAddToCartAnimation={onAddToCartAnimation}
+            />
           ))}
         </div>
+
+        {visibleCount < filteredProducts.length && (
+          <div className="ver-mas-container">
+            <button
+              className="ver-mas-btn"
+              onClick={() => setVisibleCount((prev) => prev + 8)}
+            >
+              Ver más
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

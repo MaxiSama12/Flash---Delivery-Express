@@ -7,17 +7,17 @@ import SectionRegister from "../components/ui/SectionRegister";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
-const HomePage = () => {
+const HomePage = ({ onAddToCartAnimation }) => {
   return (
-        <div>
-          <Navbar/>
-          <HeroHomePage />
-          <CatalogoHomePage />
-          <CommerceCarousel />
-          <InfoHomePage />
-          <SectionRegister />
-          <Footer/>
-      </div>
+    <div>
+      <Navbar />
+      <HeroHomePage />
+      <CatalogoHomePage onAddToCartAnimation={onAddToCartAnimation} />
+      <CommerceCarousel />
+      <InfoHomePage />
+      <SectionRegister />
+      <Footer />
+    </div>
   );
 };
 

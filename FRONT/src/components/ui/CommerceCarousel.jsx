@@ -32,7 +32,7 @@ const TopRatedStoresCarousel = () => {
   }, []);
 
   return (
-    <section id="top-rated-stores" className="position-relative py-4">
+    <section id="top-rated-stores" className="position-relative">
       <div className="container mt-5">
         <p className="primary-subheading">Top-10</p>
         <div className="section-principal-category">

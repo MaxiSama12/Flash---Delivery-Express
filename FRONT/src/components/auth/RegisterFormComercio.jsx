@@ -10,10 +10,11 @@ const RegisterFormComercio = () => {
     nombre: "",
     direccion: "",
     telefono: "",
-    descripcion: "",
     activo: true,
     id_usuario: "",
     id_rubro: "",
+    url_image: "",
+    rating:""
   });
 
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const RegisterFormComercio = () => {
       await axios.post(COMERCIOS, formData);
       alert(`!Comercio Registrado!, ahora vamos a iniciar sesión`);
       console.log(formData);
-      navigate(LOGIN)
+      navigate(LOGIN);
     } catch (error) {
       console.log("Ocurrió un error registrando al cliente: ", error);
     }
@@ -80,16 +81,28 @@ const RegisterFormComercio = () => {
             className="registro-input"
           />
         </label>
+        <br />
         <label>
-          Descripción:
+          URL de la imagen:
           <input
             type="text"
-            name="descripcion"
-            value={formData.descripcion}
+            name="url_image"
+            value={formData.url_image}
             onChange={handleChange}
             className="registro-input"
           />
         </label>
+        <label>
+          Rating:
+          <input
+            type="text"
+            name="rating"
+            value={formData.rating}
+            onChange={handleChange}
+            className="registro-input"
+          />
+        </label>
+
         <br />
         <label>Rubro:</label>
         <br />
@@ -102,7 +115,7 @@ const RegisterFormComercio = () => {
           <option value="">Seleccione un rubro</option>
           {rubros.map((rubro) => (
             <option key={rubro.id} value={rubro.id}>
-              {rubro.nombre}
+              {rubro.nombre_rubro}
             </option>
           ))}
         </select>
@@ -111,8 +124,7 @@ const RegisterFormComercio = () => {
         <button type="submit" className="registro-button">
           Registrar comercio
         </button>
-        <div className="text-center my-2">
-        </div>
+        <div className="text-center my-2"></div>
       </form>
     </div>
   );
