@@ -61,6 +61,7 @@ const ProductosComercioPage = () => {
     if (!categoriaSeleccionada) {
       setFilteredProductos(productos);
     } else {
+      console.log("categoriaseleccionada",categoriaSeleccionada)
       setFilteredProductos(
         productos.filter((p) => p.id_categoria === categoriaSeleccionada)
       );
@@ -108,11 +109,11 @@ const ProductosComercioPage = () => {
           </li>
           {categorias.map((cat) => (
             <li
-              key={cat.id_categoria}
+              key={cat.id}
               className={
-                categoriaSeleccionada === cat.id_categoria ? "active" : ""
+                categoriaSeleccionada === cat.id ? "active" : ""
               }
-              onClick={() => setCategoriaSeleccionada(cat.id_categoria)}
+              onClick={() => setCategoriaSeleccionada(cat.id)}
             >
               {cat.nombre_categoria}
             </li>

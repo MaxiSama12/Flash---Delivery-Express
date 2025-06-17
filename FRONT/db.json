@@ -191,7 +191,7 @@
       "activo": true,
       "id_admin": "2",
       "id_rubro": "1",
-      "url_imagen": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://i.blogs.es/988895/istock_000056360048_small/1366_2000.jpg"
     },
     {
       "id": "3",
@@ -203,7 +203,7 @@
       "activo": true,
       "id_admin": "2",
       "id_rubro": "2",
-      "url_imagen": "https://images.unsplash.com/photo-1588776814546-ec7e8c1b1b1b?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://images.rappi.com.ar/marketplace/store_type_1626975357300.jpg"
     },
     {
       "id": "4",
@@ -215,7 +215,7 @@
       "activo": true,
       "id_admin": "2",
       "id_rubro": "3",
-      "url_imagen": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://recursos-we-us-east-1.s3.amazonaws.com/Weyop/Libreria%20San%20Pablo/Contenidos/2024-09-24%2012%3A49%3A51/2.Logotipo-Libreria-San-Pablo-RGB-3570x847px-Digital.png"
     },
     {
       "id": "5",
@@ -227,18 +227,7 @@
       "activo": true,
       "id_admin": "2",
       "id_rubro": "1",
-      "url_imagen": "https://images.unsplash.com/photo-1548365328-8b849e6c7b8b?auto=format&fit=crop&w=400&q=80"
-    },
-    {
-      "id": "2f50",
-      "nombre": "Mostaza",
-      "direccion": "mostaza 123",
-      "telefono": "123425341",
-      "activo": true,
-      "id_usuario": "",
-      "id_rubro": "1",
-      "url_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPUPuEjfpPoD_l48bGboU0qbV4Nomd2ucEnA&s",
-      "rating": "5"
+      "url_imagen": "https://www.tucumanturismo.gob.ar/public/img/pizzada%20bar%20ok_b9nt3x6v_12-08-2024.png"
     }
   ],
   "rubros": [
@@ -345,7 +334,7 @@
       "disponible": true,
       "id_comercio": "1",
       "id_categoria": "4",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://hiperlibertad.vtexassets.com/arquivos/ids/221053/FIDEOS-MATARAZZO-TALLAR-N-N-5-X-500-GR-1-47792.jpg?v=638463837939970000"
     },
     {
       "id": "4",
@@ -356,7 +345,7 @@
       "disponible": true,
       "id_comercio": "5",
       "id_categoria": "3",
-      "url_imagen": "https://images.unsplash.com/photo-1588776814546-ec7e8c1b1b1b?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://tafirol.com/hubfs/Tafirol-1.png"
     },
     {
       "id": "5",
@@ -367,7 +356,7 @@
       "disponible": true,
       "id_comercio": "4",
       "id_categoria": "2",
-      "url_imagen": "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "6",
@@ -378,7 +367,7 @@
       "disponible": true,
       "id_comercio": "2",
       "id_categoria": "8",
-      "url_imagen": "https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "7",
@@ -389,7 +378,7 @@
       "disponible": true,
       "id_comercio": "1",
       "id_categoria": "1",
-      "url_imagen": "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "8",
@@ -399,7 +388,8 @@
       "rating": 4.8,
       "disponible": true,
       "id_comercio": "2",
-      "id_categoria": "5"
+      "id_categoria": "5",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "9",
@@ -410,7 +400,7 @@
       "disponible": true,
       "id_comercio": "5",
       "id_categoria": "6",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "10",
@@ -421,7 +411,7 @@
       "disponible": true,
       "id_comercio": "2",
       "id_categoria": "8",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "11",
@@ -432,7 +422,7 @@
       "disponible": true,
       "id_comercio": "3",
       "id_categoria": "3",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "12",
@@ -443,7 +433,7 @@
       "disponible": true,
       "id_comercio": "5",
       "id_categoria": "8",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "13",
@@ -454,7 +444,7 @@
       "disponible": true,
       "id_comercio": "5",
       "id_categoria": "2",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "14",
@@ -465,7 +455,7 @@
       "disponible": true,
       "id_comercio": "2",
       "id_categoria": "1",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "15",
@@ -476,7 +466,7 @@
       "disponible": true,
       "id_comercio": "2",
       "id_categoria": "2",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "16",
@@ -487,7 +477,7 @@
       "disponible": true,
       "id_comercio": "5",
       "id_categoria": "7",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "17",
@@ -498,7 +488,7 @@
       "disponible": true,
       "id_comercio": "2",
       "id_categoria": "2",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "18",
@@ -509,7 +499,7 @@
       "disponible": true,
       "id_comercio": "1",
       "id_categoria": "5",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "19",
@@ -520,7 +510,7 @@
       "disponible": true,
       "id_comercio": "2",
       "id_categoria": "2",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "20",
@@ -531,7 +521,7 @@
       "disponible": true,
       "id_comercio": "5",
       "id_categoria": "3",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     }
   ]
 }

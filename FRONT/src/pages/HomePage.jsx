@@ -6,12 +6,12 @@ import InfoHomePage from "../components/ui/InfoHomePage";
 import SectionRegister from "../components/ui/SectionRegister";
 import Footer from "../components/layout/Footer";
 
-const HomePage = () => {
+const HomePage = ({ onAddToCartAnimation }) => {
   return (
     <div>
       <Navbar />
       <HeroHomePage />
-      <CatalogoHomePage />
+      <CatalogoHomePage onAddToCartAnimation={onAddToCartAnimation} />
       <CommerceCarousel />
       <InfoHomePage />
       <SectionRegister />
