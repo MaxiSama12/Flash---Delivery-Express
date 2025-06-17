@@ -5,7 +5,7 @@ import "../../styles/home.css";
 import Card from "./Card";
 import { PRODUCTOS, CATEGORIAS } from "../../endpoints/endpoints";
 
-const CatalogoHomePage = () => {
+const CatalogoHomePage = ({ onAddToCartAnimation }) => {
   const [activeFilter, setActiveFilter] = useState("0");
   const [productos, setProductos] = useState([]);
   const [categorias, setCategorias] = useState([]);
@@ -63,7 +63,9 @@ const CatalogoHomePage = () => {
             {categorias.map((categoria) => (
               <button
                 key={categoria.id}
-                className={`category ${activeFilter === categoria.id ? "active" : ""}`}
+                className={`category ${
+                  activeFilter === categoria.id ? "active" : ""
+                }`}
                 onClick={() => setActiveFilter(categoria.id)}
               >
                 {categoria.nombre_categoria.charAt(0).toUpperCase() +
@@ -75,7 +77,11 @@ const CatalogoHomePage = () => {
 
         <div className="card-container">
           {visibleProducts.map((producto) => (
-            <Card key={producto.id} producto={producto} />
+            <Card
+              key={producto.id}
+              producto={producto}
+              onAddToCartAnimation={onAddToCartAnimation}
+            />
           ))}
         </div>
 
