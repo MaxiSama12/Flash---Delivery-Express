@@ -1,62 +1,79 @@
-import { Container, Row, Col, Card, Button, ListGroup, Badge } from 'react-bootstrap';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  ListGroup,
+  Badge,
+} from 'react-bootstrap';
 import axios from 'axios';
+import { useEffect } from 'react';
+
+
 
 export default function RepartidorDashboard() {
+
+
+  
   const [stats, setStats] = useState({
-    totalDeliveries: 4,
-    todayDeliveries: 2,
-    totalEarnings: 20,
-    activeRoutes: 1,
+    totalDeliveries: 0,
+    todayDeliveries: 0,
+    totalEarnings: 0,
+    activeRoutes: 0,
   });
 
   const [availableOrders, setAvailableOrders] = useState([]);
 
-useEffect(() => {
+  useEffect(() => {
   const fetchPedidos = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/pedidos');
-      const completados = res.data.filter(p => p.status === 'completado');
-      setAvailableOrders(completados);
-    } catch (error) {
-      console.error('Error al cargar pedidos:', error);
+      const res = await axios.get('http://localhost:3000/pedidos?status=completado');
+      setAvailableOrders(res.data);
+    } catch (err) {
+      console.error('Error cargando pedidos', err);
     }
   };
 
   fetchPedidos();
 }, []);
 
-  const [myRoutes, setMyRoutes] = useState([
-    {
-      id: 101,
-      pickupAddress: 'Calle 321',
-      deliveryAddress: 'Avenida 654',
-      estimatedTime: 30,
-      status: 'asignada',
-    },
-  ]);
+  const [myRoutes, setMyRoutes] = useState([]);
 
   const aceptarPedido = (pedido) => {
-    const nuevosPedidos = availableOrders.filter((o) => o.id !== pedido.id);
-    setAvailableOrders(nuevosPedidos);
+    setAvailableOrders((prev) => prev.filter((o) => o.id !== pedido.id));
 
     const nuevaRuta = {
-      id: Math.floor(Math.random() * 1000) + 200, 
+      id: Math.floor(Math.random() * 1000) + 200,
       pickupAddress: pedido.comercioAddress,
       deliveryAddress: pedido.deliveryAddress,
-      estimatedTime: 30, 
+      estimatedTime: 30,
       status: 'asignada',
-      total: pedido.total, 
+      total: pedido.total,
     };
 
-    const nuevasRutas = [...myRoutes, nuevaRuta];
-    setMyRoutes(nuevasRutas);
+    setMyRoutes((prevRoutes) => [...prevRoutes, nuevaRuta]);
 
     setStats((prev) => ({
-      totalDeliveries: prev.totalDeliveries + 1,
-      todayDeliveries: prev.todayDeliveries + 1, 
+      ...prev,
       totalEarnings: prev.totalEarnings + pedido.total,
       activeRoutes: prev.activeRoutes + 1,
+    }));
+  };
+
+  const marcarEntregado = (rutaId) => {
+    setMyRoutes((prevRoutes) =>
+      prevRoutes.map((route) =>
+        route.id === rutaId ? { ...route, status: 'entregado' } : route
+      )
+    );
+
+    setStats((prev) => ({
+      ...prev,
+      totalDeliveries: prev.totalDeliveries + 1,
+      todayDeliveries: prev.todayDeliveries + 1,
+      activeRoutes: prev.activeRoutes > 0 ? prev.activeRoutes - 1 : 0,
     }));
   };
 
@@ -66,7 +83,7 @@ useEffect(() => {
 
       {/* Estadísticas */}
       <Row className="mb-4">
-        <Col>
+        <Col md={3}>
           <Card className="text-center">
             <Card.Body>
               <Card.Title>Total Entregas</Card.Title>
@@ -76,7 +93,7 @@ useEffect(() => {
             </Card.Body>
           </Card>
         </Col>
-        <Col>
+        <Col md={3}>
           <Card className="text-center">
             <Card.Body>
               <Card.Title>Hoy</Card.Title>
@@ -86,7 +103,7 @@ useEffect(() => {
             </Card.Body>
           </Card>
         </Col>
-        <Col>
+        <Col md={3}>
           <Card className="text-center">
             <Card.Body>
               <Card.Title>Ganancias</Card.Title>
@@ -96,7 +113,7 @@ useEffect(() => {
             </Card.Body>
           </Card>
         </Col>
-        <Col>
+        <Col md={3}>
           <Card className="text-center">
             <Card.Body>
               <Card.Title>Rutas Activas</Card.Title>
@@ -146,8 +163,18 @@ useEffect(() => {
               <br />
               Desde: {route.pickupAddress} - Hasta: {route.deliveryAddress}
               <br />
-              Estado: <Badge bg="secondary">{route.status}</Badge> - Tiempo estimado:{' '}
-              {route.estimatedTime} minutos
+              Estado: <Badge bg={route.status === 'entregado' ? 'success' : 'secondary'}>{route.status}</Badge> - Tiempo estimado: {route.estimatedTime} minutos
+              {route.status !== 'entregado' && (
+                <div className="mt-2">
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    onClick={() => marcarEntregado(route.id)}
+                  >
+                    Marcar como Entregado
+                  </Button>
+                </div>
+              )}
             </ListGroup.Item>
           ))}
         </ListGroup>
