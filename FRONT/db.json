@@ -1,4 +1,93 @@
 {
+  "clientes": [
+    {
+      "id": "1",
+      "nombre": "John Doe",
+      "email": "john@doe.com",
+      "telefono": "3819212354",
+      "direccion": "avenida siempre viva 123",
+      "password": "cliente123",
+      "rol": "cliente"
+    },
+    {
+      "_comentario": "metimos otro objeto con rol de vendedor en el array de clientes para probar la navegacion condicional desde el login",
+      "id": "2",
+      "nombre": "Jane Smith",
+      "email": "jane@smith.com",
+      "telefono": "3526721283",
+      "password": "vendedor123",
+      "rol": "vendedor"
+    },
+    {
+      "id": "0c9a",
+      "nombre": "Esteban",
+      "email": "maxi@gmail.com",
+      "telefono": "3814563422",
+      "direccion": "pasaje 1234",
+      "password": "Maxisama123",
+      "rol": "cliente"
+    },
+    {
+      "id": "ba35",
+      "nombre": "Carlos",
+      "telefono": "048389473",
+      "email": "carlos@gmail.com",
+      "vehiculo": "Bicicleta",
+      "activo": true,
+      "password": "Carlos123",
+      "rol": "repartidor"
+    },
+    {
+      "id": "9801",
+      "nombre": "Pablo",
+      "email": "pablo@gmail.com",
+      "password": "Pablo123",
+      "telefono": "785328393",
+      "rol": "vendedor"
+    },
+    {
+      "id": "2865",
+      "nombre": "Juancito",
+      "email": "juan@gmail.com",
+      "telefono": "18923817",
+      "direccion": "calle juan 1233",
+      "password": "CLiente123",
+      "rol": "cliente"
+    },
+    {
+      "id": "d253",
+      "nombre": "Esteban",
+      "email": "masisama92@gmail.com",
+      "password": "vendedor123",
+      "telefono": "781156796586",
+      "rol": "vendedor"
+    },
+    {
+      "id": "65f0",
+      "nombre": "Jorge",
+      "email": "jorge@vendedor",
+      "password": "Vendedor123",
+      "telefono": "381764857",
+      "rol": "vendedor"
+    },
+    {
+      "id": "0763",
+      "nombre": "Esteban",
+      "email": "maxisama12@gmail.com",
+      "telefono": "36753473",
+      "direccion": "bazan de laguna 4299",
+      "password": "cliente123",
+      "rol": "cliente"
+    },
+    {
+      "id": "4272",
+      "nombre": "Esteban vendedor",
+      "email": "vendedor@gmail.com",
+      "password": "vendedor123",
+      "telefono": "3814563422",
+      "rol": "vendedor"
+    }
+  ],
   "pedidos": [
     {
       "id": "1",
@@ -139,6 +228,17 @@
       "id_admin": "2",
       "id_rubro": "1",
       "url_imagen": "https://images.unsplash.com/photo-1548365328-8b849e6c7b8b?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "2f50",
+      "nombre": "Mostaza",
+      "direccion": "mostaza 123",
+      "telefono": "123425341",
+      "activo": true,
+      "id_usuario": "",
+      "id_rubro": "1",
+      "url_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPUPuEjfpPoD_l48bGboU0qbV4Nomd2ucEnA&s",
+      "rating": "5"
     }
   ],
   "rubros": [
