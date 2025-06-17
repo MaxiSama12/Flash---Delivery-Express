@@ -16,19 +16,19 @@
       "id": "3",
       "cliente": "Luis",
       "total": 2000,
-      "status": "pendiente"
+      "status": "completado"
     },
     {
       "id": "4",
       "cliente": "Carlos",
       "total": 800,
-      "status": "pendiente"
+      "status": "completado"
     },
     {
       "id": "5",
       "cliente": "Marta",
       "total": 2200,
-      "status": "pendiente"
+      "status": "completado"
     },
     {
       "id": "6",
@@ -237,15 +237,15 @@
       "url_imagen": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80"
     },
     {
-      "id": "3",
       "nombre": "Fideos Matarazzo x 500g",
       "descripcion": "Descripción de Fideos Matarazzo x 500g",
-      "precio": 2782,
+      "precio": 2700,
       "rating": 3.6,
       "disponible": true,
       "id_comercio": "1",
       "id_categoria": "4",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+      "id": "3"
     },
     {
       "id": "4",
@@ -270,26 +270,26 @@
       "url_imagen": "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80"
     },
     {
-      "id": "6",
       "nombre": "Producto Genérico 6",
       "descripcion": "Descripción de Producto Genérico 6",
-      "precio": 949,
+      "precio": 9490,
       "rating": 4.2,
       "disponible": true,
       "id_comercio": "2",
       "id_categoria": "8",
-      "url_imagen": "https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=400&q=80",
+      "id": "6"
     },
     {
-      "id": "7",
       "nombre": "Producto Genérico 7",
       "descripcion": "Descripción de Producto Genérico 7",
-      "precio": 1439,
+      "precio": 1400,
       "rating": 4.3,
       "disponible": true,
       "id_comercio": "1",
-      "id_categoria": "1",
-      "url_imagen": "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80"
+      "id_categoria": "6",
+      "url_imagen": "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
+      "id": "7"
     },
     {
       "id": "8",
@@ -401,15 +401,15 @@
       "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
     },
     {
-      "id": "18",
       "nombre": "Producto Genérico 18",
       "descripcion": "Descripción de Producto Genérico 18",
-      "precio": 2315,
+      "precio": 2500,
       "rating": 4.7,
       "disponible": true,
       "id_comercio": "1",
       "id_categoria": "5",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+      "id": "18"
     },
     {
       "id": "19",
@@ -423,15 +423,15 @@
       "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
     },
     {
-      "id": "20",
       "nombre": "Producto Genérico 20",
       "descripcion": "Descripción de Producto Genérico 20",
-      "precio": 2618,
+      "precio": 2800,
       "rating": 3.2,
       "disponible": true,
       "id_comercio": "5",
       "id_categoria": "3",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+      "id": "20"
     }
   ]
 }

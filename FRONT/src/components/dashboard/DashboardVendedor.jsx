@@ -30,11 +30,15 @@ const VendedorDashboard = () => {
     totalEarnings: 0,
   });
 
+  // Estado para categorías (nuevo)
+  const [categorias, setCategorias] = useState([]);
+
   const [nuevoProducto, setNuevoProducto] = useState({
     nombre: "",
     descripcion: "",
     precio: "",
     url_imagen: "",
+    id_categoria: "", // agregado para categoría
   });
 
   const [productoEditar, setProductoEditar] = useState({
@@ -43,6 +47,7 @@ const VendedorDashboard = () => {
     descripcion: "",
     precio: "",
     url_imagen: "",
+    id_categoria: "", // agregado para categoría
   });
 
   // Función para calcular estadísticas
@@ -71,6 +76,10 @@ const VendedorDashboard = () => {
 
         const pedidosRes = await axios.get("http://localhost:3000/pedidos");
         setPedidos(pedidosRes.data);
+
+        // Cargar categorías desde db.json
+        const categoriasRes = await axios.get("http://localhost:3000/categorias");
+        setCategorias(categoriasRes.data);
 
         calcularStats(pedidosRes.data);
       } catch (error) {
@@ -107,14 +116,15 @@ const VendedorDashboard = () => {
   // Agregar producto
   const agregarProducto = async (e) => {
     e.preventDefault();
-    const { nombre, descripcion, precio, url_imagen } = nuevoProducto;
+    const { nombre, descripcion, precio, url_imagen, id_categoria } = nuevoProducto;
 
     if (
       !nombre.trim() ||
       !descripcion.trim() ||
       isNaN(precio) ||
       Number(precio) <= 0 ||
-      !url_imagen.trim()
+      !url_imagen.trim() ||
+      !id_categoria // validar categoría
     ) {
       alert("Por favor, complete todos los campos correctamente");
       return;
@@ -129,13 +139,13 @@ const VendedorDashboard = () => {
         rating: 0,
         disponible: true,
         id_comercio: id,
-        id_categoria: "1",
+        id_categoria, // incluir categoría
         url_imagen: url_imagen.trim(),
       };
 
       const res = await axios.post("http://localhost:3000/productos", nuevo);
       setProductos((prev) => [...prev, res.data]);
-      setNuevoProducto({ nombre: "", descripcion: "", precio: "", url_imagen: "" });
+      setNuevoProducto({ nombre: "", descripcion: "", precio: "", url_imagen: "", id_categoria: "" });
       setModalAgregarEditar(null);
     } catch (error) {
       console.error("Error al agregar producto:", error);
@@ -148,14 +158,15 @@ const VendedorDashboard = () => {
   // Guardar producto editado
   const guardarProductoEditado = async (e) => {
     e.preventDefault();
-    const { id: prodId, nombre, descripcion, precio, url_imagen } = productoEditar;
+    const { id: prodId, nombre, descripcion, precio, url_imagen, id_categoria } = productoEditar;
 
     if (
       !nombre.trim() ||
       !descripcion.trim() ||
       isNaN(precio) ||
       Number(precio) <= 0 ||
-      !url_imagen.trim()
+      !url_imagen.trim() ||
+      !id_categoria // validar categoría
     ) {
       alert("Por favor, complete todos los campos correctamente");
       return;
@@ -170,7 +181,7 @@ const VendedorDashboard = () => {
         rating: productoEditar.rating || 0,
         disponible: productoEditar.disponible !== false,
         id_comercio: id,
-        id_categoria: productoEditar.id_categoria || "1",
+        id_categoria, // incluir categoría
         url_imagen: url_imagen.trim(),
       };
 
@@ -323,18 +334,26 @@ const VendedorDashboard = () => {
                       <Card.Title>{producto.nombre}</Card.Title>
                       <Card.Text>{producto.descripcion}</Card.Text>
                       <Card.Text>Precio: ${producto.precio}</Card.Text>
-                      <Card.Text>Rating: {producto.rating}</Card.Text>
+                      <Card.Text>Rating: {producto.rating || 0}</Card.Text>
+                      {/* Mostrar categoría nombre */}
+                     <Card.Text>
+  Categoría:{" "}
+  {
+    categorias.find((cat) => cat.id === producto.id_categoria)
+      ?.nombre_categoria || "Sin categoría"
+  }
+</Card.Text>
                       <div className="d-flex justify-content-between">
                         <Button
-                          variant="outline-primary"
                           size="sm"
+                          variant="warning"
                           onClick={() => abrirEditarProducto(producto)}
                         >
                           Editar
                         </Button>
                         <Button
-                          variant="outline-danger"
                           size="sm"
+                          variant="danger"
                           onClick={() => eliminarProducto(producto.id)}
                         >
                           Eliminar
@@ -347,35 +366,27 @@ const VendedorDashboard = () => {
             </Row>
           )}
         </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="secondary"
-            onClick={() => {
-              setModalGestionProductos(false);
-              setModalAgregarEditar(null);
-            }}
-          >
-            Cerrar
-          </Button>
-        </Modal.Footer>
       </Modal>
 
       {/* Modal Agregar/Editar Producto */}
       <Modal
-        show={modalAgregarEditar !== null}
+        show={modalAgregarEditar === "agregar" || modalAgregarEditar === "editar"}
         onHide={() => setModalAgregarEditar(null)}
-        centered
       >
+        <Modal.Header closeButton>
+          <Modal.Title>
+            {modalAgregarEditar === "agregar"
+              ? "Agregar Producto"
+              : "Editar Producto"}
+          </Modal.Title>
+        </Modal.Header>
         <Form
           onSubmit={
-            modalAgregarEditar === "agregar" ? agregarProducto : guardarProductoEditado
+            modalAgregarEditar === "agregar"
+              ? agregarProducto
+              : guardarProductoEditado
           }
         >
-          <Modal.Header closeButton>
-            <Modal.Title>
-              {modalAgregarEditar === "agregar" ? "Agregar Producto" : "Editar Producto"}
-            </Modal.Title>
-          </Modal.Header>
           <Modal.Body>
             <Form.Group className="mb-3">
               <Form.Label>Nombre</Form.Label>
@@ -383,7 +394,9 @@ const VendedorDashboard = () => {
                 type="text"
                 name="nombre"
                 value={
-                  modalAgregarEditar === "agregar" ? nuevoProducto.nombre : productoEditar.nombre
+                  modalAgregarEditar === "agregar"
+                    ? nuevoProducto.nombre
+                    : productoEditar.nombre
                 }
                 onChange={
                   modalAgregarEditar === "agregar"
@@ -398,8 +411,8 @@ const VendedorDashboard = () => {
               <Form.Label>Descripción</Form.Label>
               <Form.Control
                 as="textarea"
-                name="descripcion"
                 rows={3}
+                name="descripcion"
                 value={
                   modalAgregarEditar === "agregar"
                     ? nuevoProducto.descripcion
@@ -419,8 +432,12 @@ const VendedorDashboard = () => {
               <Form.Control
                 type="number"
                 name="precio"
+                min="0"
+                step="0.01"
                 value={
-                  modalAgregarEditar === "agregar" ? nuevoProducto.precio : productoEditar.precio
+                  modalAgregarEditar === "agregar"
+                    ? nuevoProducto.precio
+                    : productoEditar.precio
                 }
                 onChange={
                   modalAgregarEditar === "agregar"
@@ -428,12 +445,11 @@ const VendedorDashboard = () => {
                     : handleEditarProductoChange
                 }
                 required
-                min="1"
               />
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>URL de la imagen</Form.Label>
+              <Form.Label>URL Imagen</Form.Label>
               <Form.Control
                 type="text"
                 name="url_imagen"
@@ -450,6 +466,32 @@ const VendedorDashboard = () => {
                 required
               />
             </Form.Group>
+
+            {/* Select Categoría */}
+            <Form.Group className="mb-3">
+              <Form.Label>Categoría</Form.Label>
+              <Form.Select
+                name="id_categoria"
+                value={
+                  modalAgregarEditar === "agregar"
+                    ? nuevoProducto.id_categoria
+                    : productoEditar.id_categoria
+                }
+                onChange={
+                  modalAgregarEditar === "agregar"
+                    ? handleNuevoProductoChange
+                    : handleEditarProductoChange
+                }
+                required
+              >
+                <option value="">Seleccione una categoría</option>
+               {categorias.map((cat) => (
+  <option key={cat.id} value={cat.id}>
+    {cat.nombre_categoria}
+  </option>
+))}
+              </Form.Select>
+            </Form.Group>
           </Modal.Body>
           <Modal.Footer>
             <Button
@@ -459,7 +501,7 @@ const VendedorDashboard = () => {
             >
               Cancelar
             </Button>
-            <Button variant="primary" type="submit" disabled={loading}>
+            <Button variant="success" type="submit" disabled={loading}>
               {modalAgregarEditar === "agregar" ? "Agregar" : "Guardar"}
             </Button>
           </Modal.Footer>
@@ -467,40 +509,61 @@ const VendedorDashboard = () => {
       </Modal>
 
       {/* Modal Pedidos */}
-      <Modal show={modalPedidos} onHide={() => setModalPedidos(false)} size="lg" centered>
+      <Modal
+        show={modalPedidos}
+        onHide={() => setModalPedidos(false)}
+        size="lg"
+        scrollable
+      >
         <Modal.Header closeButton>
           <Modal.Title>Pedidos</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {pedidos.length === 0 ? (
-            <p>No hay pedidos disponibles.</p>
+            <p>No hay pedidos aún.</p>
           ) : (
             <Table striped bordered hover responsive>
               <thead>
                 <tr>
-                  <th>ID Pedido</th>
                   <th>Cliente</th>
+                  <th>Producto</th>
+                  <th>Cantidad</th>
                   <th>Total</th>
                   <th>Estado</th>
-                  <th>Acción</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
                 {pedidos.map((pedido) => (
                   <tr key={pedido.id}>
-                    <td>{pedido.id}</td>
                     <td>{pedido.cliente}</td>
+                    <td>{pedido.producto}</td>
+                    <td>{pedido.cantidad}</td>
                     <td>${pedido.total}</td>
-                    <td>{pedido.status}</td>
                     <td>
-                      <Button
-                        size="sm"
-                        variant={pedido.status === "pendiente" ? "warning" : "success"}
-                        disabled={pedido.status === "completado" || loading}
-                        onClick={() => cambiarEstadoPedido(pedido.id, pedido.status)}
+                      <Badge
+                        bg={
+                          pedido.status === "completado"
+                            ? "success"
+                            : "warning"
+                        }
                       >
-                        {pedido.status === "pendiente" ? "Marcar completado" : "Completado"}
-                      </Button>
+                        {pedido.status}
+                      </Badge>
+                    </td>
+                    <td>
+                      {pedido.status === "pendiente" && (
+                        <Button
+                          size="sm"
+                          variant="success"
+                          onClick={() =>
+                            cambiarEstadoPedido(pedido.id, pedido.status)
+                          }
+                          disabled={loading}
+                        >
+                          Marcar como completado
+                        </Button>
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -508,11 +571,6 @@ const VendedorDashboard = () => {
             </Table>
           )}
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setModalPedidos(false)}>
-            Cerrar
-          </Button>
-        </Modal.Footer>
       </Modal>
     </Container>
   );
