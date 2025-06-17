@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, } from "react";
 import {
   FaUserCircle,
   FaBox,
@@ -6,15 +6,35 @@ import {
   FaHome,
   FaMapMarkerAlt,
   FaShoppingCart,
+  FaSignInAlt,
 } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 import logo from "../../assets/logo.png";
 import "../../styles/navbar.css";
 import { NavLink } from "react-router-dom";
+import { useAuthStore } from "../../store/authStore";
+import { Link, useNavigate } from "react-router-dom";
+
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
   const dropdownRef = useRef();
+
+  //desktop
+
+  const { usuario, logout } = useAuthStore();
+  const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleMenu = () => setShowMenu(!showMenu);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+  //////
+
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -68,6 +88,13 @@ const Navbar = () => {
                       <button className="btn">Comercios</button>
                     </NavLink>
 
+                    {usuario && (
+                    <button className="btn btn-light w-50 mx-1" onClick={handleLogout}>
+                    <FiLogOut size={22} />
+                    Cerrar sesión
+                    </button>
+                    )}
+
       </div>
 
     </nav>
@@ -82,31 +109,28 @@ const Navbar = () => {
         zIndex: 1000,
       }}
     >
-                  <NavLink
-                    to="/carrito"
-                    className={({ isActive }) =>
-                      `text-white d-flex flex-column align-items-center nav-item-hover ${
-                    isActive ? "fw-bold" : ""
-                        }`
-                      }
-                    >
-                      <FaShoppingCart size={22} />
-                      <small>Carrito</small>
-                    </NavLink>
+                  {!usuario ? (
+                      <>
+                      <p className="text-white d-flex flex-column align-items-center nav-item-hover"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => navigate("/login")}
+                      >
+                      <FaSignInAlt size={22} />
+                      Iniciar sesion
+                    </p>
 
-                  <NavLink
-                    to="/mi-perfil"
-                    className={({ isActive }) =>
-                      `text-white d-flex flex-column align-items-center nav-item-hover ${
-                    isActive ? "fw-bold" : ""
-                        }`
-                      }
-                    >
-                      <FaUserCircle size={22} />
-                      <small>Perfil</small>
-                    </NavLink>
 
-                  <NavLink
+                    </>
+                    ) : (
+
+                    <Link to="/carrito" className="text-white d-flex flex-column align-items-center nav-item-hover">
+                    <FaShoppingCart size={22} />
+                    <small>Carrito</small>
+                    </Link>
+
+                    )}
+
+                    <NavLink
                     to="/"
                     className={({ isActive }) =>
                       `text-white d-flex flex-column align-items-center nav-item-hover ${
@@ -118,19 +142,30 @@ const Navbar = () => {
                       <small>Inicio</small>
                     </NavLink>
 
-
-
-                    <NavLink
-                    to="/mis-pedidos"
+                  {usuario && (
+                  <NavLink
+                    to="/mi-perfil"
                     className={({ isActive }) =>
                       `text-white d-flex flex-column align-items-center nav-item-hover ${
                     isActive ? "fw-bold" : ""
                         }`
                       }
                     >
-                      <FaBox size={22} />
-                      <small>Pedidos</small>
+                      <FaUserCircle size={22} />
+
+                      <span >
+                      {usuario ? usuario.nombre : "Mi Perfil"}
+                      </span>
                     </NavLink>
+                    )}
+
+                    {usuario &&(
+                    <Link className="text-white d-flex flex-column align-items-center nav-item-hover" to="/mis-pedidos">
+                    <FaBox size={22} />
+                    <small>Mis Pedidos</small>
+                    </Link>
+                    )}
+
 
     </div>
   </>
@@ -181,47 +216,33 @@ const Navbar = () => {
             </div>
 
             {/* Íconos y Dropdown */}
-            <div className="d-none d-lg-flex align-items-center gap-3">
+            <div className="position-relative">
+        <div
+          onClick={toggleMenu}
+          className="d-flex align-items-center gap-2"
+          style={{ cursor: "pointer" }}
+        >
+            {usuario && (
+            <Link to="/carrito" className="position-relative nav-item-hover d-flex align-items-center gap-1">
+            <FaShoppingCart size={22} />
+            </Link>
+          )}
+            <Link to="/mi-perfil" className="nav-item-hover d-flex align-items-center gap-1">
+            <FaUserCircle size={22} />
+            <span >
+                {usuario ? usuario.nombre : "Mi Perfil"}
+            </span>
+            </Link>
 
-              <NavLink
-                    to="/carrito"
-                    className={({ isActive }) =>
-                      `nav-item-hover d-flex align-items-center gap-1 ${
-                    isActive ? "fw-bold" : ""
-                        }`
-                      }
-                    >
-                      <FaShoppingCart size={22} />
-                    </NavLink>
+          <FaChevronDown className="nav-item-hover d-flex align-items-center gap-1"/>
+        </div>
 
-
-                  <NavLink
-                    to="/mi-perfil"
-                    className={({ isActive }) =>
-                      `nav-item-hover d-flex align-items-center gap-1 ${
-                    isActive ? "fw-bold" : ""
-                        }`
-                      }
-                    >
-                      <FaUserCircle size={22} />
-                      <small>Mi Perfil</small>
-                    </NavLink>
-
-              <div className="position-relative" ref={dropdownRef}>
-                <button
-                  className="btn text-white d-flex align-items-center gap-2"
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                  style={{ background: "transparent", border: "none" }}
-                >
-                  <FaChevronDown />
-                </button>
-                {dropdownOpen && (
-                  <div
-                    className="position-absolute"
-                    style={{
+        {showMenu && (
+          <div className="position-absolute"
+          style={{
                       top: "200%",
                       right: 0,
-                      backgroundColor: "#56649C",
+                      backgroundColor: "white",
                       borderRadius: "12px",
                       padding: "0.5rem 1rem",
                       marginTop: "0.5rem",
@@ -229,51 +250,42 @@ const Navbar = () => {
                       minWidth: "200px",
                       zIndex: 999,
                     }}
-                  >
+          >
+            {!usuario ? (
+              <>
+                <p
+                  className="dropdown-item mb-1"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/login")}
+                >
+                  Iniciar sesión
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="dropdown-item text-muted mb-3">
+                  Hola, {usuario.nombre}
+                </p>
 
-                    <NavLink
-                    to="/"
-                    className={({ isActive }) =>
-                      `nav-item-hover text-white d-flex align-items-center gap-2 mb-3 ${
-                    isActive ? "fw-bold" : ""
-                        }`
-                      }
-                    >
-                      <FaHome size={22} />
-                      <small>Inicio</small>
-                    </NavLink>
+                    <Link className="nav-item-hover dropdown-item text-muted d-flex align-items-center gap-2 mb-3" to="/mis-pedidos">
+                    <FaBox size={22} />
+                    <small>Mis Pedidos</small>
+                    </Link>
 
+                    <Link className="nav-item-hover dropdown-item text-muted d-flex align-items-center gap-2 mb-3" to="/mis-direcciones">
+                    <FaMapMarkerAlt size={22} />
+                    <small>Mis Direcciones</small>
+                    </Link>
 
+                    <button className="btn btn-outline-danger btn-sm w-100 mb-3" onClick={handleLogout}>
+                    Cerrar sesión
+                    </button>
 
-                    <NavLink
-                    to="/mis-pedidos"
-                    className={({ isActive }) =>
-                      `nav-item-hover text-white d-flex align-items-center gap-2 mb-3 ${
-                    isActive ? "fw-bold" : ""
-                        }`
-                      }
-                    >
-                      <FaBox size={22} />
-                      <small>Mis Pedidos</small>
-                    </NavLink>
-
-
-                    <NavLink
-                    to="/mis-direcciones"
-                    className={({ isActive }) =>
-                      `nav-item-hover text-white d-flex align-items-center gap-2 mb-3 ${
-                    isActive ? "fw-bold" : ""
-                        }`
-                      }
-                    >
-                      <FaMapMarkerAlt size={22} />
-                      <small>Mis Direcciones</small>
-                    </NavLink>
-
-                  </div>
-                )}
-              </div>
-            </div>
+              </>
+            )}
+          </div>
+        )}
+      </div>
           </div>
         </nav>
       )}

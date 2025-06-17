@@ -1,11 +1,13 @@
 import { DASHBOARDREPARTIDOR,  DASHBOARDVENDEDOR,  HOME,  REGISTERCLIENTE,REGISTERREPARTIDOR,  REGISTERVENDEDOR,} from "../../router/route";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { CLIENTES } from "../../endpoints/endpoints"; 
+import { CLIENTES } from "../../endpoints/endpoints";
 import "../../styles/LoginForm.css";
 import axios from "axios";
+import { useAuthStore } from "../../store/authStore";
 
 const LoginForm = () => {
+  const { login } = useAuthStore();
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState("");
   const [formData, setFormData] = useState({
@@ -28,6 +30,7 @@ const LoginForm = () => {
       if (userFound) {
         if (userFound.password === formData.password) {
           console.log("el usuario encontrado fue: ", userFound);
+          login(userFound);
           alert(
             `Inicio de sesión exitoso, bienvenido ${userFound.nombre}`
           );
