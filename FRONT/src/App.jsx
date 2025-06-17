@@ -31,6 +31,8 @@ import ComercioPage from "./pages/ComercioPage";
 import NotFound from "./pages/NotFound";
 import Cart from "./components/ui/Cart";
 import { useState } from "react";
+import MisDirecciones from "./pages/MisDirecciones/MisDirecciones";
+import LoginForm from "./components/auth/LoginForm";
 
 function App() {
   const [isBouncing, setIsBouncing] = useState(false);
@@ -63,6 +65,8 @@ function App() {
           path={REGISTERREPARTIDOR}
           element={<RegisterRepartidorPages />}
         />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/mis-direcciones" element={<MisDirecciones />} />
         <Route path={DASHBOARDREPARTIDOR} element={<DashboardRepartidor />} />
         <Route path="*" element={<NotFound />} />
         <Route path={REGISTERVENDEDOR} element={<RegisterVendedorPages />} />

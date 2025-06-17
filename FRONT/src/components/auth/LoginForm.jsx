@@ -1,12 +1,14 @@
 import { DASHBOARDREPARTIDOR,  DASHBOARDVENDEDOR,  HOME,  REGISTERCLIENTE,REGISTERREPARTIDOR,  REGISTERVENDEDOR,} from "../../router/route";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { CLIENTES } from "../../endpoints/endpoints"; 
+import { CLIENTES } from "../../endpoints/endpoints";
 import "../../styles/LoginForm.css";
 import axios from "axios";
 import {useLogin} from '../../context/useLogin.js'
+import { useAuthStore } from "../../store/authStore";
 
 const LoginForm = () => {
+  const { login } = useAuthStore();
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState("");
   const [formData, setFormData] = useState({
@@ -34,6 +36,7 @@ const LoginForm = () => {
           setId(userFound.id)
           setNombre(userFound.nombre)
           setRol(userFound.rol)
+          login(userFound);
           alert(
             `Inicio de sesión exitoso, bienvenido ${userFound.nombre}`
           );

@@ -24,3 +24,7 @@
 .nav-item-hover:hover::after {
   opacity: 1;
 }
+
+.navbar{
+  justify-content: space-around !important;
+}
