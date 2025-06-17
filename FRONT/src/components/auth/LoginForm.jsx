@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { CLIENTES } from "../../endpoints/endpoints"; 
 import "../../styles/LoginForm.css";
 import axios from "axios";
+import {useLogin} from '../../context/useLogin.js'
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -16,6 +17,8 @@ const LoginForm = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  //Zustand para guardar los datos del usuario.
+  const {setId, setNombre, setRol} = useLogin();
 
   const handleSubmit = async (e) => {
     try {
@@ -28,6 +31,9 @@ const LoginForm = () => {
       if (userFound) {
         if (userFound.password === formData.password) {
           console.log("el usuario encontrado fue: ", userFound);
+          setId(userFound.id)
+          setNombre(userFound.nombre)
+          setRol(userFound.rol)
           alert(
             `Inicio de sesión exitoso, bienvenido ${userFound.nombre}`
           );

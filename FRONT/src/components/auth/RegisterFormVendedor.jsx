@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/RegisterForm.css";
 import { Link, useNavigate } from "react-router-dom";
-import { VENDEDORES } from "../../endpoints/endpoints";
+import { CLIENTES, VENDEDORES } from "../../endpoints/endpoints";
 import axios from "axios";
 import { LOGIN, REGISTERCOMERCIO } from "../../router/route";
 
@@ -22,7 +22,7 @@ const RegisterFormVendedor = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      await axios.post(VENDEDORES, formData);
+      await axios.post(CLIENTES, formData);
       alert(`!Vendedor Registrado!, Bienvenido ${formData.nombre}`);
       console.log(formData);
       navigate(REGISTERCOMERCIO);

@@ -14,6 +14,7 @@ const RegisterFormComercio = () => {
     id_usuario: "",
     id_rubro: "",
     url_image: "",
+    rating:""
   });
 
   const navigate = useNavigate();
@@ -85,8 +86,18 @@ const RegisterFormComercio = () => {
           URL de la imagen:
           <input
             type="text"
-            name="descripcion"
+            name="url_image"
             value={formData.url_image}
+            onChange={handleChange}
+            className="registro-input"
+          />
+        </label>
+        <label>
+          Rating:
+          <input
+            type="text"
+            name="rating"
+            value={formData.rating}
             onChange={handleChange}
             className="registro-input"
           />
@@ -104,7 +115,7 @@ const RegisterFormComercio = () => {
           <option value="">Seleccione un rubro</option>
           {rubros.map((rubro) => (
             <option key={rubro.id} value={rubro.id}>
-              {rubro.nombre}
+              {rubro.nombre_rubro}
             </option>
           ))}
         </select>
