@@ -105,19 +105,19 @@
       "id": "3",
       "cliente": "Luis",
       "total": 2000,
-      "status": "completado"
+      "status": "pendiente"
     },
     {
       "id": "4",
       "cliente": "Carlos",
       "total": 800,
-      "status": "completado"
+      "status": "pendiente"
     },
     {
       "id": "5",
       "cliente": "Marta",
       "total": 2200,
-      "status": "completado"
+      "status": "pendiente"
     },
     {
       "id": "6",
@@ -299,6 +299,21 @@
           "cantidad": 1
         }
       ]
+    },
+    {
+      "id": "10e4",
+      "fecha_pedido": "2025-06-18T17:42:07.763Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "1",
+      "productos": [
+        {
+          "id_producto": "3",
+          "cantidad": 1
+        }
+      ]
     }
   ],
   "pedido_producto": [
@@ -313,6 +328,12 @@
       "id_pedido": "ab54",
       "id_producto": "11",
       "cantidad": 1
+    },
+    {
+      "id": "1413",
+      "id_pedido": "10e4",
+      "id_producto": "3",
+      "cantidad": 1
     }
   ],
   "pagos": [
@@ -322,6 +343,13 @@
       "monto": 3488,
       "fecha_pago": "2025-06-18T15:06:37.435Z",
       "id_pedido": "ab54"
+    },
+    {
+      "id": "2751",
+      "metodo": "efectivo",
+      "monto": 2782,
+      "fecha_pago": "2025-06-18T17:42:07.859Z",
+      "id_pedido": "10e4"
     }
   ],
   "comercios": [
@@ -487,9 +515,10 @@
       "url_imagen": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80"
     },
     {
+      "id": "3",
       "nombre": "Fideos Matarazzo x 500g",
       "descripcion": "Descripción de Fideos Matarazzo x 500g",
-      "precio": 2700,
+      "precio": 2782,
       "rating": 3.6,
       "disponible": true,
       "id_comercio": "1",
@@ -519,9 +548,10 @@
       "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
+      "id": "6",
       "nombre": "Producto Genérico 6",
       "descripcion": "Descripción de Producto Genérico 6",
-      "precio": 9490,
+      "precio": 949,
       "rating": 4.2,
       "disponible": true,
       "id_comercio": "2",
@@ -529,9 +559,10 @@
       "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
+      "id": "7",
       "nombre": "Producto Genérico 7",
       "descripcion": "Descripción de Producto Genérico 7",
-      "precio": 1400,
+      "precio": 1439,
       "rating": 4.3,
       "disponible": true,
       "id_comercio": "1",
@@ -649,9 +680,10 @@
       "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
+      "id": "18",
       "nombre": "Producto Genérico 18",
       "descripcion": "Descripción de Producto Genérico 18",
-      "precio": 2500,
+      "precio": 2315,
       "rating": 4.7,
       "disponible": true,
       "id_comercio": "1",
@@ -670,9 +702,10 @@
       "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
+      "id": "20",
       "nombre": "Producto Genérico 20",
       "descripcion": "Descripción de Producto Genérico 20",
-      "precio": 2800,
+      "precio": 2618,
       "rating": 3.2,
       "disponible": true,
       "id_comercio": "5",

@@ -1,6 +1,9 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
 import "../../styles/home.css";
 import Card from "./Card";
-import { useState } from "react";
+import { PRODUCTOS, CATEGORIAS } from "../../endpoints/endpoints";
 
 const CatalogoHomePage = ({ onAddToCartAnimation }) => {
   const [activeFilter, setActiveFilter] = useState("0");
@@ -44,9 +47,11 @@ const CatalogoHomePage = ({ onAddToCartAnimation }) => {
   }, [activeFilter]);
 
   const filteredProducts =
-    activeFilter === "todos"
+    activeFilter === "0"
       ? productos
-      : productos.filter((producto) => producto.category === activeFilter);
+      : productos.filter((producto) => producto.id_categoria === activeFilter);
+
+  const visibleProducts = filteredProducts.slice(0, visibleCount);
 
   return (
     <div className="cat-section-container">
@@ -55,7 +60,7 @@ const CatalogoHomePage = ({ onAddToCartAnimation }) => {
         <div className="section-principal-category">
           <h1 className="primary-heading">Menú de Productos</h1>
           <div className="filter-category">
-            {["todos", "comida", "librería", "supermercado"].map((category) => (
+            {categorias.map((categoria) => (
               <button
                 key={categoria.id}
                 className={`category ${
@@ -63,11 +68,13 @@ const CatalogoHomePage = ({ onAddToCartAnimation }) => {
                 }`}
                 onClick={() => setActiveFilter(categoria.id)}
               >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
+                {categoria.nombre_categoria.charAt(0).toUpperCase() +
+                  categoria.nombre_categoria.slice(1)}
               </button>
             ))}
           </div>
         </div>
+
         <div className="card-container">
           {visibleProducts.map((producto) => (
             <Card
@@ -77,6 +84,17 @@ const CatalogoHomePage = ({ onAddToCartAnimation }) => {
             />
           ))}
         </div>
+
+        {visibleCount < filteredProducts.length && (
+          <div className="ver-mas-container">
+            <button
+              className="ver-mas-btn"
+              onClick={() => setVisibleCount((prev) => prev + 8)}
+            >
+              Ver más
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

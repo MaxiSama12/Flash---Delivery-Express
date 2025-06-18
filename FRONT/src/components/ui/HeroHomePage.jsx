@@ -18,6 +18,7 @@ const HeroHomePage = () => {
         <div className="home-text-section">
           <h1 className="primary-heading">
             Tu Comida Favorita, Más Cerca Que Nunca
+            <span className=" mt-3 en-flash">EN FLASH</span>
           </h1>
           <p className="primary-text">
             Tu delivery de confianza para todo: comidas, bebidas, farmacia, y lo que se te ocurra. Rápido, fácil y cuando lo necesitás.
