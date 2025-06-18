@@ -3,18 +3,27 @@ import { useCartStore } from "../../context/useCartStore";
 import { AiFillStar } from "react-icons/ai";
 import "../../styles/card.css";
 import "../../styles/home.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Card = ({ producto, onAddToCartAnimation }) => {
   const addToCart = useCartStore((state) => state.addToCart);
   const cart = useCartStore((state) => state.cart);
-
   const isInCart = cart.some((item) => item.id === producto.id);
 
-  const handleAddToCart = () => {
-    if (!isInCart) {
-      addToCart(producto);
-      toast.success("Producto agregado al carrito");
-      onAddToCartAnimation();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isInsideComercioPage = location.pathname.startsWith("/comercios/");
+
+  const handleAction = () => {
+    if (isInsideComercioPage) {
+      if (!isInCart) {
+        addToCart(producto);
+        toast.success("Producto agregado al carrito");
+        onAddToCartAnimation();
+      }
+    } else {
+      navigate(`/comercios/${producto.id_comercio}`);
     }
   };
 
@@ -25,10 +34,14 @@ const Card = ({ producto, onAddToCartAnimation }) => {
         <div className="image-overlay">
           <button
             className="buy-button"
-            onClick={handleAddToCart}
-            disabled={isInCart}
+            onClick={handleAction}
+            disabled={isInsideComercioPage && isInCart}
           >
-            {isInCart ? "Agregado" : "Comprar"}
+            {isInsideComercioPage
+              ? isInCart
+                ? "Agregado"
+                : "Comprar"
+              : "Ver comercio"}
           </button>
         </div>
         <div className="rating">
@@ -45,6 +58,5 @@ const Card = ({ producto, onAddToCartAnimation }) => {
     </div>
   );
 };
-
 
 export default Card;

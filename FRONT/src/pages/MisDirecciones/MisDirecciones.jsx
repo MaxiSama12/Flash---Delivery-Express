@@ -14,36 +14,39 @@ export default function MisDirecciones() {
   };
 
   return (
-    <div className="d-flex flex-column min-vh-100">
-      <Navbar/>
-    <div className="container flex-fill" style={{ paddingTop: "100px" }}>
-      <h2 className="text-center my-4">Mis direcciones</h2>
+    <>
+      <Navbar />
+      <div className="d-flex flex-column min-vh-100">
+        <div className="container flex-fill" style={{ paddingTop: "100px" }}>
+          <h2 className="text-center my-4">Mis direcciones</h2>
 
-      <div className="mb-4">
-        {direcciones.map((dir, index) => (
-          <div key={index} className="card p-3 mb-2">
-            <strong>{dir.etiqueta}</strong>
-            <p>{dir.direccion}</p>
+          <div className="mb-4">
+            {direcciones.map((dir, index) => (
+              <div key={index} className="card p-3 mb-2">
+                <strong>{dir.etiqueta}</strong>
+                <p>{dir.direccion}</p>
+              </div>
+            ))}
           </div>
-        ))}
+
+          <div className="text-center">
+            <button
+              className="btn btn-danger"
+              onClick={() => setMostrarModal(true)}
+            >
+              Agregar dirección
+            </button>
+          </div>
+
+          {mostrarModal && (
+            <ModalAgregarDireccion
+              cerrarModal={() => setMostrarModal(false)}
+              onAgregar={agregarDireccion}
+            />
+          )}
+        </div>
       </div>
-
-      <div className="text-center">
-
-      <button className="btn btn-danger" onClick={() => setMostrarModal(true)}>
-        Agregar dirección
-      </button>
-
-      </div>
-
-      {mostrarModal && (
-        <ModalAgregarDireccion
-          cerrarModal={() => setMostrarModal(false)}
-          onAgregar={agregarDireccion}
-        />
-      )}
-    </div>
-    <Footer/>
-    </div>
+      <Footer />
+    </>
   );
 }

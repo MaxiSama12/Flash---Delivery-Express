@@ -4,8 +4,11 @@ import { Button } from "react-bootstrap";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { BsCash } from "react-icons/bs";
 import { useCartStore } from "../../context/useCartStore";
+import { useLogin } from "../../context/useLogin";
 import { IoRemoveSharp } from "react-icons/io5";
 import { IoAdd } from "react-icons/io5";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const CartItem = ({ product }) => {
   const addToCart = useCartStore((state) => state.addToCart);
@@ -57,6 +60,56 @@ const Cart = ({ isBouncing }) => {
   const clearCart = useCartStore((state) => state.clearCart);
   const total = useCartStore((state) => state.total)();
   const itemsCount = useCartStore((state) => state.itemsCount)();
+  const idCliente = useLogin((state) => state.id);
+  const direccionCliente = useLogin((state) => state.direccion);
+
+  const handleCheckout = async () => {
+    if (!idCliente) {
+      toast.warn("Debes iniciar sesión para realizar una compra");
+      return;
+    }
+    const pedidoPayload = {
+      fecha_pedido: new Date().toISOString(),
+      estado: "pendiente",
+      direccion_entrega: direccionCliente || "No existe dirección",
+      id_cliente: idCliente,
+      id_repartidor: null,
+      id_comercio: cart[0]?.id_comercio,
+      productos: cart.map((item) => ({
+        id_producto: item.id,
+        cantidad: item.cantidad,
+      })),
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/pedidos",
+        pedidoPayload
+      );
+      const id_pedido = response.data.id;
+
+      for (const item of cart) {
+        await axios.post("http://localhost:3000/pedido_producto", {
+          id_pedido,
+          id_producto: item.id,
+          cantidad: item.cantidad,
+        });
+      }
+
+      await axios.post("http://localhost:3000/pagos", {
+        metodo: "efectivo",
+        monto: total,
+        fecha_pago: new Date().toISOString(),
+        id_pedido,
+      });
+
+      toast.success("Pedido creado con éxito");
+      clearCart();
+    } catch (err) {
+      console.error("Error al crear pedido:", err);
+      toast.error("No se pudo completar el pedido");
+    }
+  };
 
   return (
     <div>
@@ -77,9 +130,7 @@ const Cart = ({ isBouncing }) => {
             <Button
               variant="success"
               className="d-flex align-items-center justify-content-center gap-2"
-              onClick={() => {
-                console.log("contenido del carrito", cart);
-              }}
+              onClick={handleCheckout}
             >
               <BsCash />
               Pagar

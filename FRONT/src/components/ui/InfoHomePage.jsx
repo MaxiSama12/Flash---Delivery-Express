@@ -2,8 +2,10 @@ import AboutBackground from "../../Assets/homePage/about-background.png";
 import AboutBackgroundImage from "../../Assets/homePage/about-background-image.png";
 import { BsFillPlayCircleFill } from "react-icons/bs";
 import "../../styles/home.css";
+import { useNavigate } from "react-router-dom";
 
 const InfoHomePage = () => {
+  const navigate = useNavigate();
   return (
     <div className="about-section-container">
       <div className="about-background-image-container">
@@ -24,8 +26,8 @@ const InfoHomePage = () => {
           Hacés el pedido y nosotros nos encargamos del resto.
         </p>
         <div className="about-buttons-container">
-          <button className="secondary-button">Saber Más</button>
-          <button className="watch-video-button">
+          <button className="secondary-button" onClick={() => navigate("/error")}>Saber Más</button>
+          <button className="watch-video-button" onClick={() => navigate("/error")}>
             <BsFillPlayCircleFill /> Ver Video
           </button>
         </div>
