@@ -58,9 +58,8 @@ function App() {
           }
         />
         <Route path={LOGIN} element={<LoginPages />} />
-        <Route path={LISTACOMERCIO} element={<ListaComerciosPage />} />
         <Route path={REGISTERCLIENTE} element={<RegisterClientePages />} />
-        {console.log("hola mundo")}
+
         <Route
           path={REGISTERREPARTIDOR}
           element={<RegisterRepartidorPages />}
@@ -71,8 +70,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path={REGISTERVENDEDOR} element={<RegisterVendedorPages />} />
         <Route path={REGISTERCOMERCIO} element={<RegisterComercioPages />} />
-        <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor />} />
-        <Route path={`${COMERCIO}/:id`} element={<ComercioPage />} />
+        <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor />} /> 
       </Routes>
     </BrowserRouter>
   );

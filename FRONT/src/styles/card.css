@@ -1,11 +1,5 @@
 .card {
   width: 250px;
-  max-width: 269px;
-  min-height: 400px;
-  max-height: 400px;
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 250px;
   border: 1px solid #ddd;
   border-radius: 12px;
   overflow: hidden;
@@ -15,7 +9,6 @@
 
 .card-image {
   position: relative;
-  min-height: 200px;
   height: 200px;
   overflow: hidden;
   background-color: #fff;
@@ -48,10 +41,12 @@
 }
 
 .card-content {
-  display: flex;
+  
+    display: flex;
+  gap: 15px;
+  flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  flex: 1;
   padding: 12px;
   gap: 15px;
 }
@@ -73,7 +68,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  justify-content: center;
+  justify-content: start;
   /* padding: 16px; */
 }
 
@@ -82,7 +77,8 @@
   justify-content: space-between;
   align-self: end;
   font-weight: 500;
-  margin-top: auto;
+    margin-top: auto; 
+
 }
 
 .price {

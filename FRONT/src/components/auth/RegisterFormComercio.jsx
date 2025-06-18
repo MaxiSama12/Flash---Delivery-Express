@@ -10,6 +10,7 @@ const RegisterFormComercio = () => {
     nombre: "",
     direccion: "",
     telefono: "",
+    descripcion: "",
     activo: true,
     id_usuario: "",
     id_rubro: "",
@@ -42,7 +43,7 @@ const RegisterFormComercio = () => {
       await axios.post(COMERCIOS, formData);
       alert(`!Comercio Registrado!, ahora vamos a iniciar sesión`);
       console.log(formData);
-      navigate(LOGIN);
+      navigate(LOGIN)
     } catch (error) {
       console.log("Ocurrió un error registrando al cliente: ", error);
     }
@@ -85,9 +86,8 @@ const RegisterFormComercio = () => {
             required
           />
         </label>
-        <br />
         <label>
-          URL de la imagen:
+          Descripción:
           <input
             type="text"
             name="url_image"
@@ -143,7 +143,8 @@ const RegisterFormComercio = () => {
         <button type="submit" className="registro-button">
           Registrar comercio
         </button>
-        <div className="text-center my-2"></div>
+        <div className="text-center my-2">
+        </div>
       </form>
     </div>
   );

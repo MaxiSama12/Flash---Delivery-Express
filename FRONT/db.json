@@ -105,19 +105,19 @@
       "id": "3",
       "cliente": "Luis",
       "total": 2000,
-      "status": "pendiente"
+      "status": "completado"
     },
     {
       "id": "4",
       "cliente": "Carlos",
       "total": 800,
-      "status": "pendiente"
+      "status": "completado"
     },
     {
       "id": "5",
       "cliente": "Marta",
       "total": 2200,
-      "status": "pendiente"
+      "status": "completado"
     },
     {
       "id": "6",
@@ -487,10 +487,9 @@
       "url_imagen": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80"
     },
     {
-      "id": "3",
       "nombre": "Fideos Matarazzo x 500g",
       "descripcion": "Descripción de Fideos Matarazzo x 500g",
-      "precio": 2782,
+      "precio": 2700,
       "rating": 3.6,
       "disponible": true,
       "id_comercio": "1",
@@ -520,10 +519,9 @@
       "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
-      "id": "6",
       "nombre": "Producto Genérico 6",
       "descripcion": "Descripción de Producto Genérico 6",
-      "precio": 949,
+      "precio": 9490,
       "rating": 4.2,
       "disponible": true,
       "id_comercio": "2",
@@ -531,10 +529,9 @@
       "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
-      "id": "7",
       "nombre": "Producto Genérico 7",
       "descripcion": "Descripción de Producto Genérico 7",
-      "precio": 1439,
+      "precio": 1400,
       "rating": 4.3,
       "disponible": true,
       "id_comercio": "1",
@@ -652,10 +649,9 @@
       "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
-      "id": "18",
       "nombre": "Producto Genérico 18",
       "descripcion": "Descripción de Producto Genérico 18",
-      "precio": 2315,
+      "precio": 2500,
       "rating": 4.7,
       "disponible": true,
       "id_comercio": "1",
@@ -674,10 +670,9 @@
       "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
-      "id": "20",
       "nombre": "Producto Genérico 20",
       "descripcion": "Descripción de Producto Genérico 20",
-      "precio": 2618,
+      "precio": 2800,
       "rating": 3.2,
       "disponible": true,
       "id_comercio": "5",
