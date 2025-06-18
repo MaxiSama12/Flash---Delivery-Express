@@ -1,4 +1,93 @@
 {
+  "clientes": [
+    {
+      "id": "1",
+      "nombre": "John Doe",
+      "email": "john@doe.com",
+      "telefono": "3819212354",
+      "direccion": "avenida siempre viva 123",
+      "password": "cliente123",
+      "rol": "cliente"
+    },
+    {
+      "_comentario": "metimos otro objeto con rol de vendedor en el array de clientes para probar la navegacion condicional desde el login",
+      "id": "2",
+      "nombre": "Jane Smith",
+      "email": "jane@smith.com",
+      "telefono": "3526721283",
+      "password": "vendedor123",
+      "rol": "vendedor"
+    },
+    {
+      "id": "0c9a",
+      "nombre": "Esteban",
+      "email": "maxi@gmail.com",
+      "telefono": "3814563422",
+      "direccion": "pasaje 1234",
+      "password": "Maxisama123",
+      "rol": "cliente"
+    },
+    {
+      "id": "ba35",
+      "nombre": "Carlos",
+      "telefono": "048389473",
+      "email": "carlos@gmail.com",
+      "vehiculo": "Bicicleta",
+      "activo": true,
+      "password": "Carlos123",
+      "rol": "repartidor"
+    },
+    {
+      "id": "9801",
+      "nombre": "Pablo",
+      "email": "pablo@gmail.com",
+      "password": "Pablo123",
+      "telefono": "785328393",
+      "rol": "vendedor"
+    },
+    {
+      "id": "2865",
+      "nombre": "Juancito",
+      "email": "juan@gmail.com",
+      "telefono": "18923817",
+      "direccion": "calle juan 1233",
+      "password": "CLiente123",
+      "rol": "cliente"
+    },
+    {
+      "id": "d253",
+      "nombre": "Esteban",
+      "email": "masisama92@gmail.com",
+      "password": "vendedor123",
+      "telefono": "781156796586",
+      "rol": "vendedor"
+    },
+    {
+      "id": "65f0",
+      "nombre": "Jorge",
+      "email": "jorge@vendedor",
+      "password": "Vendedor123",
+      "telefono": "381764857",
+      "rol": "vendedor"
+    },
+    {
+      "id": "0763",
+      "nombre": "Esteban",
+      "email": "maxisama12@gmail.com",
+      "telefono": "36753473",
+      "direccion": "bazan de laguna 4299",
+      "password": "cliente123",
+      "rol": "cliente"
+    },
+    {
+      "id": "4272",
+      "nombre": "Esteban vendedor",
+      "email": "vendedor@gmail.com",
+      "password": "vendedor123",
+      "telefono": "3814563422",
+      "rol": "vendedor"
+    }
+  ],
   "pedidos": [
     {
       "id": "1",
@@ -77,6 +166,162 @@
       "cliente": "Felipe",
       "total": 1800,
       "status": "pendiente"
+    },
+    {
+      "id": "d9f4",
+      "fecha_pedido": "2025-06-18T14:54:57.035Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "1",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "5",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "b1a2",
+      "fecha_pedido": "2025-06-18T14:55:04.123Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "3",
+      "productos": [
+        {
+          "id_producto": "2",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "11",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "cbd8",
+      "fecha_pedido": "2025-06-18T14:55:11.512Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "1",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "5",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "e46e",
+      "fecha_pedido": "2025-06-18T14:56:05.950Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "3",
+      "productos": [
+        {
+          "id_producto": "2",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "11",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "4b08",
+      "fecha_pedido": "2025-06-18T14:59:03.909Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "3",
+      "productos": [
+        {
+          "id_producto": "2",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "11",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "0c1d",
+      "fecha_pedido": "2025-06-18T14:59:16.248Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "1",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "5",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "ab54",
+      "fecha_pedido": "2025-06-18T15:06:37.408Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "3",
+      "productos": [
+        {
+          "id_producto": "2",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "11",
+          "cantidad": 1
+        }
+      ]
+    }
+  ],
+  "pedido_producto": [
+    {
+      "id": "0db2",
+      "id_pedido": "ab54",
+      "id_producto": "2",
+      "cantidad": 1
+    },
+    {
+      "id": "2845",
+      "id_pedido": "ab54",
+      "id_producto": "11",
+      "cantidad": 1
+    }
+  ],
+  "pagos": [
+    {
+      "id": "c380",
+      "metodo": "efectivo",
+      "monto": 3488,
+      "fecha_pago": "2025-06-18T15:06:37.435Z",
+      "id_pedido": "ab54"
     }
   ],
   "comercios": [
@@ -86,8 +331,9 @@
       "direccion": "Calle Ejemplo 1",
       "telefono": "3800000001",
       "descripcion": "Descripción de Supermercado Vea",
-      "rating": 4.1,
+      "rating": 4,
       "activo": true,
+      "time": "20 - 40 min",
       "id_admin": "1",
       "id_rubro": "7",
       "url_imagen": "https://www.webretail.com.ar/wp-content/uploads/2023/04/Vea-Cencosud.jpg"
@@ -100,9 +346,10 @@
       "descripcion": "Descripción de Mc Donalds",
       "rating": 4.2,
       "activo": true,
+      "time": "15 - 35 min",
       "id_admin": "2",
       "id_rubro": "1",
-      "url_imagen": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://i.blogs.es/988895/istock_000056360048_small/1366_2000.jpg"
     },
     {
       "id": "3",
@@ -112,9 +359,10 @@
       "descripcion": "Descripción de Farmacia del Pueblo",
       "rating": 4.3,
       "activo": true,
+      "time": "10 - 20 min",
       "id_admin": "2",
       "id_rubro": "2",
-      "url_imagen": "https://images.unsplash.com/photo-1588776814546-ec7e8c1b1b1b?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://images.rappi.com.ar/marketplace/store_type_1626975357300.jpg"
     },
     {
       "id": "4",
@@ -124,9 +372,10 @@
       "descripcion": "Descripción de Libreria San Pablo",
       "rating": 4.5,
       "activo": true,
+      "time": "20 - 40 min",
       "id_admin": "2",
       "id_rubro": "3",
-      "url_imagen": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://recursos-we-us-east-1.s3.amazonaws.com/Weyop/Libreria%20San%20Pablo/Contenidos/2024-09-24%2012%3A49%3A51/2.Logotipo-Libreria-San-Pablo-RGB-3570x847px-Digital.png"
     },
     {
       "id": "5",
@@ -136,9 +385,10 @@
       "descripcion": "Descripción de La Pizzada",
       "rating": 3.6,
       "activo": true,
+      "time": "15 - 30 min",
       "id_admin": "2",
       "id_rubro": "1",
-      "url_imagen": "https://images.unsplash.com/photo-1548365328-8b849e6c7b8b?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://www.tucumanturismo.gob.ar/public/img/pizzada%20bar%20ok_b9nt3x6v_12-08-2024.png"
     }
   ],
   "rubros": [
@@ -244,8 +494,7 @@
       "disponible": true,
       "id_comercio": "1",
       "id_categoria": "4",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
-      "id": "3"
+      "url_imagen": "https://hiperlibertad.vtexassets.com/arquivos/ids/221053/FIDEOS-MATARAZZO-TALLAR-N-N-5-X-500-GR-1-47792.jpg?v=638463837939970000"
     },
     {
       "id": "4",
@@ -256,7 +505,7 @@
       "disponible": true,
       "id_comercio": "5",
       "id_categoria": "3",
-      "url_imagen": "https://images.unsplash.com/photo-1588776814546-ec7e8c1b1b1b?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://tafirol.com/hubfs/Tafirol-1.png"
     },
     {
       "id": "5",
@@ -267,7 +516,7 @@
       "disponible": true,
       "id_comercio": "4",
       "id_categoria": "2",
-      "url_imagen": "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "nombre": "Producto Genérico 6",
@@ -277,8 +526,7 @@
       "disponible": true,
       "id_comercio": "2",
       "id_categoria": "8",
-      "url_imagen": "https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=400&q=80",
-      "id": "6"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "nombre": "Producto Genérico 7",
@@ -287,9 +535,8 @@
       "rating": 4.3,
       "disponible": true,
       "id_comercio": "1",
-      "id_categoria": "6",
-      "url_imagen": "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
-      "id": "7"
+      "id_categoria": "1",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "8",
@@ -299,7 +546,8 @@
       "rating": 4.8,
       "disponible": true,
       "id_comercio": "2",
-      "id_categoria": "5"
+      "id_categoria": "5",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "9",
@@ -310,7 +558,7 @@
       "disponible": true,
       "id_comercio": "5",
       "id_categoria": "6",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "10",
@@ -321,7 +569,7 @@
       "disponible": true,
       "id_comercio": "2",
       "id_categoria": "8",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "11",
@@ -332,7 +580,7 @@
       "disponible": true,
       "id_comercio": "3",
       "id_categoria": "3",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "12",
@@ -343,7 +591,7 @@
       "disponible": true,
       "id_comercio": "5",
       "id_categoria": "8",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "13",
@@ -354,7 +602,7 @@
       "disponible": true,
       "id_comercio": "5",
       "id_categoria": "2",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "14",
@@ -365,7 +613,7 @@
       "disponible": true,
       "id_comercio": "2",
       "id_categoria": "1",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "15",
@@ -376,7 +624,7 @@
       "disponible": true,
       "id_comercio": "2",
       "id_categoria": "2",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "16",
@@ -387,7 +635,7 @@
       "disponible": true,
       "id_comercio": "5",
       "id_categoria": "7",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "17",
@@ -398,7 +646,7 @@
       "disponible": true,
       "id_comercio": "2",
       "id_categoria": "2",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "nombre": "Producto Genérico 18",
@@ -408,8 +656,7 @@
       "disponible": true,
       "id_comercio": "1",
       "id_categoria": "5",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
-      "id": "18"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "id": "19",
@@ -420,7 +667,7 @@
       "disponible": true,
       "id_comercio": "2",
       "id_categoria": "2",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
       "nombre": "Producto Genérico 20",
@@ -430,8 +677,7 @@
       "disponible": true,
       "id_comercio": "5",
       "id_categoria": "3",
-      "url_imagen": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
-      "id": "20"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     }
   ]
 }

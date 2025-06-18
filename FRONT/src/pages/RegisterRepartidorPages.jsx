@@ -1,12 +1,15 @@
-import React from 'react'
-import RegisterFormRepartidor from '../components/auth/RegisterFormRepartidor'
+import RegisterFormRepartidor from "../components/auth/RegisterFormRepartidor";
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
 
 const RegisterRepartidorPages = () => {
   return (
-    <div>
-    <RegisterFormRepartidor/>
-    </div>
-  )
-}
+    <>
+      <Navbar />
+      <RegisterFormRepartidor />
+      <Footer />
+    </>
+  );
+};
 
-export default RegisterRepartidorPages
+export default RegisterRepartidorPages;

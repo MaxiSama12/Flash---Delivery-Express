@@ -3,9 +3,11 @@ import BannerBackground from "../../Assets/homePage/home-banner-background.png";
 import BannerImage from "../../Assets/homePage/home-banner-image.png";
 import { FiArrowRight } from "react-icons/fi";
 import "../../styles/home.css"
-import Navbar from "../layout/Navbar";
+import { useNavigate } from "react-router-dom"
 
 const HeroHomePage = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="home-container">
       {/* <Navbar /> */}
@@ -20,8 +22,8 @@ const HeroHomePage = () => {
           <p className="primary-text">
             Tu delivery de confianza para todo: comidas, bebidas, farmacia, y lo que se te ocurra. Rápido, fácil y cuando lo necesitás.
           </p>
-          <button className="secondary-button">
-            Pedí ahora! <FiArrowRight />{" "}
+          <button className="secondary-button" onClick={() => navigate("/comercios")}>
+            Pedí ahora! <FiArrowRight />
           </button>
         </div>
         <div className="home-image-section">

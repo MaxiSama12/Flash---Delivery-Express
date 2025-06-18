@@ -14,6 +14,9 @@ const RegisterFormComercio = () => {
     activo: true,
     id_usuario: "",
     id_rubro: "",
+    url_image: "",
+    rating:"",
+    time:""
   });
 
   const navigate = useNavigate();
@@ -47,7 +50,7 @@ const RegisterFormComercio = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <form className="registro-form" onSubmit={handleSubmit}>
         <h2 className="registro-title">Registre aquí su comercio</h2>
         <label>
@@ -58,6 +61,7 @@ const RegisterFormComercio = () => {
             value={formData.nombre}
             onChange={handleChange}
             className="registro-input"
+            required
           />
         </label>
         <label>
@@ -68,6 +72,7 @@ const RegisterFormComercio = () => {
             value={formData.direccion}
             onChange={handleChange}
             className="registro-input"
+            required
           />
         </label>
         <label>
@@ -78,18 +83,45 @@ const RegisterFormComercio = () => {
             value={formData.telefono}
             onChange={handleChange}
             className="registro-input"
+            required
           />
         </label>
         <label>
           Descripción:
           <input
             type="text"
-            name="descripcion"
-            value={formData.descripcion}
+            name="url_image"
+            value={formData.url_image}
+            onChange={handleChange}
+            className="registro-input"
+            required
+          />
+        </label>
+        <label>
+          Rating:
+          <input
+            type="text"
+            name="rating"
+            value={formData.rating}
+            onChange={handleChange}
+            className="registro-input"
+            required
+          />
+        </label>
+        <label>
+          Tiempo de demora en despachar pedidos:
+          <input
+            type="text"
+            name="time"
+            value={formData.time}
+            placeholder="Por ejemplo: '20 - 40 min'"
             onChange={handleChange}
             className="registro-input"
           />
         </label>
+
+
+
         <br />
         <label>Rubro:</label>
         <br />
@@ -102,7 +134,7 @@ const RegisterFormComercio = () => {
           <option value="">Seleccione un rubro</option>
           {rubros.map((rubro) => (
             <option key={rubro.id} value={rubro.id}>
-              {rubro.nombre}
+              {rubro.nombre_rubro}
             </option>
           ))}
         </select>

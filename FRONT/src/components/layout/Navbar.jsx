@@ -2,37 +2,43 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   FaUserCircle,
   FaBox,
-  FaSearch,
   FaChevronDown,
   FaHome,
   FaMapMarkerAlt,
+  FaShoppingCart,
+  FaSignInAlt,
 } from "react-icons/fa";
-import logo from "../../assets/logo.png";
-import "../../styles/navbar.css"
+import { FiLogOut } from "react-icons/fi";
+import logo from "../../assets/image.png";
+import "../../styles/navbar.css";
+import { NavLink } from "react-router-dom";
+import { useAuthStore } from "../../store/authStore";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const [showSearchDesktop, setShowSearchDesktop] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
-
-  const desktopSearchRef = useRef();
   const dropdownRef = useRef();
+  const toggleRef = useRef(); // 👈 nueva referencia
 
-  // Detecta clics afuera para cerrar menús
+  const { usuario, logout } = useAuthStore();
+  const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleMenu = () => setShowMenu(!showMenu);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (
-        desktopSearchRef.current &&
-        !desktopSearchRef.current.contains(e.target) &&
-        !e.target.closest(".search-toggle-desktop")
-      ) {
-        setShowSearchDesktop(false);
-      }
-
-      if (
         dropdownRef.current &&
         !dropdownRef.current.contains(e.target) &&
-        !e.target.closest(".dropdown-toggle")
+        toggleRef.current &&
+        !toggleRef.current.contains(e.target)
       ) {
         setDropdownOpen(false);
       }
@@ -42,7 +48,6 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Detecta redimensionamiento de pantalla
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 992);
@@ -55,167 +60,193 @@ const Navbar = () => {
   return (
     <>
       {isMobile ? (
-        <>
-          {/* 📱 NAVBAR MOBILE SUPERIOR */}
-          <nav
-            className="navbar fixed-top"
-            style={{
-              backgroundColor: "#56649C",
-              padding: "0.5rem 1rem",
-              boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-              zIndex: 1000,
-            }}
-          >
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Buscar..."
-              style={{ width: "100%" }}
-            />
-          </nav>
-
-          {/* 📱 BARRA INFERIOR FIJA */}
-          <div
-            className="fixed-bottom d-flex justify-content-around align-items-center"
-            style={{
-              backgroundColor: "#56649C",
-              padding: "0.5rem 0",
-              boxShadow: "0 -2px 5px rgba(0,0,0,0.2)",
-              zIndex: 1000,
-            }}
-          >
-            <a
-              href="#"
-              className="text-white d-flex flex-column align-items-center nav-item-hover"
-              style={{ textDecoration: "none" }}
-            >
-              <FaUserCircle size={22} />
-              <small>Perfil</small>
-            </a>
-            <a
-              href="#"
-              className="text-white d-flex flex-column align-items-center nav-item-hover"
-              style={{ textDecoration: "none" }}
-            >
-              <FaBox size={22} />
-              <small>Pedidos</small>
-            </a>
-
-            <a
-              href="#"
-              className="text-white d-flex flex-column align-items-center nav-item-hover"
-              style={{ textDecoration: "none" }}
-            >
-            <FaHome size={22} />
-            <small>Inicio</small>
-            </a>
-
-          </div>
-        </>
-      ) : (
-        // 🖥️ NAVBAR DESKTOP
-        <nav
-          className="navbar fixed-top"
+        <div
+          className="position-fixed fixed-top d-flex justify-content-around align-items-center"
           style={{
-            backgroundColor: "#56649C",
-            padding: 0,
+            backgroundColor: "#f6f6f6",
+            padding: "1rem 0",
+            boxShadow: "0 -2px 5px rgba(0,0,0,0.2)",
+            zIndex: 1000,
+            position: "relative",
+          }}
+        >
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `mobile-nav-item d-flex flex-column align-items-center link-comercio ${
+                isActive ? "active fw-bold" : ""
+              }`
+            }
+          >
+            <FaHome size={22} />
+            <span>Inicio</span>
+          </NavLink>
+
+          <NavLink
+            to="/comercios"
+            className={({ isActive }) =>
+              `mobile-nav-item d-flex flex-column align-items-center link-comercio ${isActive ? "active fw-bold" : ""}`
+            }
+          >
+            <FaMapMarkerAlt size={22} />
+            <span>Comercios</span>
+          </NavLink>
+
+          {usuario ? (
+            <div className="position-relative">
+              <div
+                className="mobile-nav-item d-flex flex-column align-items-center"
+                style={{ cursor: "pointer" }}
+                onClick={() => setDropdownOpen((prev) => !prev)}
+                ref={toggleRef} // 👈 referencia aplicada
+              >
+                <FaUserCircle size={22} />
+                <span>{usuario.nombre}</span>
+              </div>
+
+              {dropdownOpen && (
+                <div ref={dropdownRef} className="mobile-dropdown">
+                  <Link
+                    to="/mis-pedidos"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    <FaBox size={18} />
+                    Mis Pedidos
+                  </Link>
+
+                  <Link
+                    to="/mis-direcciones"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    <FaMapMarkerAlt size={18} />
+                    Mis Direcciones
+                  </Link>
+
+                  <button onClick={handleLogout}>
+                    <FiLogOut size={18} />
+                    Cerrar sesión
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div
+              className="mobile-nav-item d-flex flex-column align-items-center"
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate("/login")}
+            >
+              <FaSignInAlt size={22} />
+              <span>Ingresar</span>
+            </div>
+          )}
+        </div>
+      ) : (
+        <nav
+          className="navbar fixed-top d-flex flex-column"
+          style={{
+            backgroundColor: "#f6f6f6",
+            padding: 10,
             zIndex: 1000,
             boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
           }}
         >
-          <div className="container-fluid d-flex justify-content-between align-items-center">
-            {/* Logo */}
-            <a
-              className="navbar-brand text-white d-flex align-items-center"
-              href="#"
+          <div className="container-fluid d-flex justify-content-around align-items-center">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `navbar-brand mx-0 text-dark d-flex align-items-center ${
+                  isActive
+                    ? "navbar-brand text-dark d-flex align-items-center"
+                    : ""
+                }`
+              }
             >
-              <img
-                src={logo}
-                alt="Logo"
-                style={{ height: "70px", marginRight: "10px" }}
-              />
-            </a>
+              <img src={logo} alt="Logo" style={{ height: "40px" }} />
+            </NavLink>
 
-            {/* Menú desktop */}
-            <div className="d-none d-lg-flex align-items-center gap-3">
-              <div ref={desktopSearchRef}>
-                {showSearchDesktop && (
-                  <input
-                    type="text"
-                    className="form-control nav-item-hover"
-                    placeholder="Buscar..."
-                    style={{ maxWidth: "200px" }}
-                  />
-                )}
-              </div>
-              <a href="#" className="nav-item-hover search-toggle-desktop">
-                <FaSearch
-                  color="white"
-                  style={{ cursor: "pointer" }}
-                  onClick={() =>
-                    setShowSearchDesktop(!showSearchDesktop)
-                  }
-                />
-              </a>
-
-              <a
-                href="#"
-                className="nav-item-hover d-flex align-items-center gap-1"
+            <div className="d-flex gap-3">
+              <NavLink
+                to="/comercios"
+                className={({ isActive }) =>
+                  `${isActive ? "active fw-bold link-comercio" : "link-comercio"}`
+                }
               >
-                <FaUserCircle size={24} />
-                Mi Perfil
-              </a>
+                Comercios
+              </NavLink>
+            </div>
 
-              {/* Dropdown */}
-              <div className="position-relative" ref={dropdownRef}>
-                <button
-                  className="btn text-white d-flex align-items-center gap-2"
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                  style={{ background: "transparent", border: "none" }}
+            <div className="position-relative">
+              <div
+                onClick={toggleMenu}
+                className="d-flex align-items-center gap-2"
+                style={{ cursor: "pointer" }}
+              >
+                <Link
+                  to="/mi-perfil"
+                  className="nav-item-hover d-flex align-items-center gap-1"
                 >
-                  <FaChevronDown />
-                </button>
-                {dropdownOpen && (
-                  <div
-                    className="position-absolute"
-                    style={{
-                      top: "200%",
-                      right: 0,
-                      backgroundColor: "#56649C",
-                      borderRadius: "12px",
-                      padding: "0.5rem 1rem",
-                      marginTop: "0.5rem",
-                      boxShadow: "0 8px 16px rgba(0,0,0,0.2)",
-                      minWidth: "200px",
-                      zIndex: 999,
-                    }}
-                  >
-                    <a
-                      href="#"
-                      className="nav-item-hover text-white d-flex align-items-center gap-2 mb-3"
-                    >
-                      <FaBox /> Mis Pedidos
-                    </a>
+                  <FaUserCircle size={22} />
+                  <span>{usuario ? usuario.nombre : "Mi Perfil"}</span>
+                </Link>
 
-
-                    <a
-                      href="#"
-                      className="nav-item-hover text-white d-flex align-items-center gap-2 mb-3"
-                    >
-                      <FaHome size={22} />
-                      <small>Inicio</small>
-                    </a>
-
-                    <a
-                      href="#"
-                      className="nav-item-hover text-white d-flex align-items-center gap-2 mb-3"
-                    >
-                      <FaMapMarkerAlt size={22} />
-                      <small>Mis Direcciones</small>
-                    </a>
-                  </div>
-                )}
+                <FaChevronDown className="nav-item-hover d-flex align-items-center gap-1" />
               </div>
+
+              {showMenu && (
+                <div
+                  className="position-absolute"
+                  style={{
+                    top: "110%",
+                    right: 0,
+                    backgroundColor: "white",
+                    borderRadius: "12px",
+                    padding: "0.5rem 1rem",
+                    marginTop: "0.2rem",
+                    boxShadow: "0 8px 16px rgba(0,0,0,0.2)",
+                    minWidth: "200px",
+                    zIndex: 999,
+                  }}
+                >
+                  {!usuario ? (
+                    <p
+                      className="dropdown-item mb-1"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => navigate("/login")}
+                    >
+                      Iniciar sesión
+                    </p>
+                  ) : (
+                    <>
+                      <p className="dropdown-item text-muted mb-3">
+                        Hola, {usuario.nombre}
+                      </p>
+
+                      <Link
+                        className="nav-item-hover dropdown-item text-muted d-flex align-items-center gap-2 mb-3"
+                        to="/mis-pedidos"
+                      >
+                        <FaBox size={22} />
+                        <small>Mis Pedidos</small>
+                      </Link>
+
+                      <Link
+                        className="nav-item-hover dropdown-item text-muted d-flex align-items-center gap-2 mb-3"
+                        to="/mis-direcciones"
+                      >
+                        <FaMapMarkerAlt size={22} />
+                        <small>Mis Direcciones</small>
+                      </Link>
+
+                      <button
+                        className="btn btn-outline-danger btn-sm w-100 mb-3"
+                        onClick={handleLogout}
+                      >
+                        Cerrar sesión
+                      </button>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </nav>

@@ -24,9 +24,12 @@ const SectionRegister = () => {
               que ya trabajan con Flash.
             </p>
             <div className="d-grid mx-2">
-                <Link to="/register-restaurant" className="btn btn-outline-success btn-lg mb-2">
-                    Regístrate ya!
-                </Link>
+              <Link
+                to="/register-vendedor"
+                className="btn btn-outline-success btn-lg mb-2"
+              >
+                Regístrate ya!
+              </Link>
             </div>
           </div>
           <div className="service-card">
@@ -41,9 +44,12 @@ const SectionRegister = () => {
               inmediata sin salir de tu tienda.
             </p>
             <div className="d-grid mx-2">
-                <Link to="/register-restaurant" className="btn btn-outline-success btn-lg mb-2">
-                    Regístrate ya!
-                </Link>
+              <Link
+                to="/register-vendedor"
+                className="btn btn-outline-success btn-lg mb-2"
+              >
+                Regístrate ya!
+              </Link>
             </div>
           </div>
           <div className="service-card">
@@ -58,9 +64,12 @@ const SectionRegister = () => {
               tarifas y beneficios.
             </p>
             <div className="d-grid mx-2">
-                <Link to="/register-restaurant" className="btn btn-outline-success btn-lg mb-2">
-                    ¡Regístrate ahora!
-                </Link>
+              <Link
+                to="/register-repartidor"
+                className="btn btn-outline-success btn-lg mb-2"
+              >
+                ¡Regístrate ahora!
+              </Link>
             </div>
           </div>
         </div>
