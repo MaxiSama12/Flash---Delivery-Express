@@ -1,10 +1,16 @@
 import { create } from "zustand";
+import { toast } from "react-toastify";
 
 export const useCartStore = create((set, get) => ({
   cart: [],
 
   addToCart: (producto) => {
     const cart = get().cart;
+
+    if (cart.length > 0 && cart[0].id_comercio !== producto.id_comercio) {
+      toast.error("Solo puedes agregar productos del mismo comercio.");
+      return;
+    }
     const existing = cart.find((item) => item.id === producto.id);
     if (existing) {
       const updatedCart = cart.map((item) =>
@@ -36,6 +42,6 @@ export const useCartStore = create((set, get) => ({
 
   total: () =>
     get().cart.reduce((acc, item) => acc + item.precio * item.cantidad, 0),
-  
+
   itemsCount: () => get().cart.reduce((acc, item) => acc + item.cantidad, 0),
 }));

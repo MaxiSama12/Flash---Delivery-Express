@@ -48,7 +48,7 @@ const RegisterFormComercio = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <form className="registro-form" onSubmit={handleSubmit}>
         <h2 className="registro-title">Registre aquí su comercio</h2>
         <label>
@@ -59,6 +59,7 @@ const RegisterFormComercio = () => {
             value={formData.nombre}
             onChange={handleChange}
             className="registro-input"
+            required
           />
         </label>
         <label>
@@ -69,6 +70,7 @@ const RegisterFormComercio = () => {
             value={formData.direccion}
             onChange={handleChange}
             className="registro-input"
+            required
           />
         </label>
         <label>
@@ -79,6 +81,7 @@ const RegisterFormComercio = () => {
             value={formData.telefono}
             onChange={handleChange}
             className="registro-input"
+            required
           />
         </label>
         <br />
@@ -90,6 +93,7 @@ const RegisterFormComercio = () => {
             value={formData.url_image}
             onChange={handleChange}
             className="registro-input"
+            required
           />
         </label>
         <label>
@@ -100,6 +104,7 @@ const RegisterFormComercio = () => {
             value={formData.rating}
             onChange={handleChange}
             className="registro-input"
+            required
           />
         </label>
 

@@ -86,6 +86,15 @@
       "password": "vendedor123",
       "telefono": "3814563422",
       "rol": "vendedor"
+    },
+    {
+      "id": "8b05",
+      "nombre": "Franco",
+      "email": "frandg47@gmail.com",
+      "telefono": "03815880371",
+      "direccion": "Mejico 2948",
+      "password": "",
+      "rol": "cliente"
     }
   ],
   "pedidos": [
@@ -166,6 +175,124 @@
       "cliente": "Felipe",
       "total": 1800,
       "status": "pendiente"
+    },
+    {
+      "id": "22b4",
+      "fecha_pedido": "2025-06-18T02:15:49.206Z",
+      "estado": "pendiente",
+      "direccion_entrega": "Calle falsa 123",
+      "id_cliente": 1,
+      "id_repartidor": null,
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "5",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "7d40",
+      "fecha_pedido": "2025-06-18T02:17:01.221Z",
+      "estado": "pendiente",
+      "direccion_entrega": "Calle falsa 123",
+      "id_cliente": 1,
+      "id_repartidor": null,
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "1",
+          "cantidad": 4
+        },
+        {
+          "id_producto": "7",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "14",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "f03b",
+      "fecha_pedido": "2025-06-18T03:05:48.372Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "1",
+      "productos": [
+        {
+          "id_producto": "3",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "18",
+          "cantidad": 1
+        }
+      ]
+    }
+  ],
+  "pedido_producto": [
+    {
+      "id": "cce1",
+      "id_pedido": "22b4",
+      "id_producto": "5",
+      "cantidad": 1
+    },
+    {
+      "id": "6c47",
+      "id_pedido": "7d40",
+      "id_producto": "1",
+      "cantidad": 4
+    },
+    {
+      "id": "7b97",
+      "id_pedido": "7d40",
+      "id_producto": "7",
+      "cantidad": 1
+    },
+    {
+      "id": "d578",
+      "id_pedido": "7d40",
+      "id_producto": "14",
+      "cantidad": 1
+    },
+    {
+      "id": "dcb3",
+      "id_pedido": "f03b",
+      "id_producto": "3",
+      "cantidad": 1
+    },
+    {
+      "id": "b541",
+      "id_pedido": "f03b",
+      "id_producto": "18",
+      "cantidad": 1
+    }
+  ],
+  "pagos": [
+    {
+      "id": "0f56",
+      "metodo": "efectivo",
+      "monto": 1122,
+      "fecha_pago": "2025-06-18T02:15:49.415Z",
+      "id_pedido": "22b4"
+    },
+    {
+      "id": "078c",
+      "metodo": "efectivo",
+      "monto": 9082,
+      "fecha_pago": "2025-06-18T02:17:01.277Z",
+      "id_pedido": "7d40"
+    },
+    {
+      "id": "403e",
+      "metodo": "efectivo",
+      "monto": 5097,
+      "fecha_pago": "2025-06-18T03:05:48.561Z",
+      "id_pedido": "f03b"
     }
   ],
   "comercios": [
