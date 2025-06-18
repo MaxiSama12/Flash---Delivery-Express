@@ -1,10 +1,17 @@
-import { DASHBOARDREPARTIDOR,  DASHBOARDVENDEDOR,  HOME,  REGISTERCLIENTE,REGISTERREPARTIDOR,  REGISTERVENDEDOR,} from "../../router/route";
+import {
+  DASHBOARDREPARTIDOR,
+  DASHBOARDVENDEDOR,
+  HOME,
+  REGISTERCLIENTE,
+  REGISTERREPARTIDOR,
+  REGISTERVENDEDOR,
+} from "../../router/route";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CLIENTES } from "../../endpoints/endpoints";
 import "../../styles/LoginForm.css";
 import axios from "axios";
-import {useLogin} from '../../context/useLogin.js'
+import { useLogin } from "../../context/useLogin.js";
 import { useAuthStore } from "../../store/authStore";
 
 const LoginForm = () => {
@@ -20,7 +27,7 @@ const LoginForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   //Zustand para guardar los datos del usuario.
-  const {setId, setNombre, setRol} = useLogin();
+  const { setId, setNombre, setRol } = useLogin();
 
   const handleSubmit = async (e) => {
     try {
@@ -33,18 +40,16 @@ const LoginForm = () => {
       if (userFound) {
         if (userFound.password === formData.password) {
           console.log("el usuario encontrado fue: ", userFound);
-          setId(userFound.id)
-          setNombre(userFound.nombre)
-          setRol(userFound.rol)
+          setId(userFound.id);
+          setNombre(userFound.nombre);
+          setRol(userFound.rol);
           login(userFound);
-          alert(
-            `Inicio de sesión exitoso, bienvenido ${userFound.nombre}`
-          );
+          alert(`Inicio de sesión exitoso, bienvenido ${userFound.nombre}`);
           if (userFound.rol === "cliente") {
             navigate(HOME);
           } else if (userFound.rol === "vendedor") {
             navigate(DASHBOARDVENDEDOR);
-          } else if(userFound.rol === "repartidor") {
+          } else if (userFound.rol === "repartidor") {
             navigate(DASHBOARDREPARTIDOR);
           }
         } else {
@@ -59,50 +64,55 @@ const LoginForm = () => {
   };
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
-      <h2 className="login-title">
-        <b>Iniciar Sesión</b>
-      </h2>
+    <div className="container p-5 d-flex justify-content-center mt-5">
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h2 className="login-title">
+          <b>Iniciar Sesión</b>
+        </h2>
 
-      <label>
-        Correo electrónico:
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          className="login-input"
-          required
-        />
-        {formData.email}
-      </label>
+        <label>
+          Correo electrónico:
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="login-input"
+            required
+          />
+          {/* {formData.email} */}
+        </label>
 
-      <label>
-        Contraseña:
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          className="login-input"
-          required
-        />
-        {formData.password}
-      </label>
-      <button type="submit" className="login-button">
-        Ingresar
-      </button>
-      <p className="text-center">
-        <b>{loginError}</b>
-      </p>
+        <label>
+          Contraseña:
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            className="login-input"
+            required
+          />
+          {/* {formData.password} */}
+        </label>
+        <button type="submit" className="login-button mb-3">
+          Ingresar
+        </button>
+        {
+          loginError ? (<p className="p-1 text-center alert alert-danger">
+          {loginError}
+        </p>) : ""
+        }
+        
 
-      <div className="login-links">
-        <p>¿No tienes una cuenta?</p>
-        <Link to={REGISTERCLIENTE}>Registrate como Cliente</Link>
-        <Link to={REGISTERVENDEDOR}>Registrate como Vendedor</Link>
-        <Link to={REGISTERREPARTIDOR}>Registrate como Repartidor</Link>
-      </div>
-    </form>
+        <div className="login-links">
+          <p>¿No tienes una cuenta?</p>
+          <Link to={REGISTERCLIENTE}>Registrate como Cliente</Link>
+          <Link to={REGISTERVENDEDOR}>Registrate como Vendedor</Link>
+          <Link to={REGISTERREPARTIDOR}>Registrate como Repartidor</Link>
+        </div>
+      </form>
+    </div>
   );
 };
 

@@ -1,12 +1,14 @@
-import React from 'react'
-import RegisterFormComercio from '../components/auth/RegisterFormComercio'
+import React from "react";
+import RegisterFormComercio from "../components/auth/RegisterFormComercio";
 
 const RegisterComercioPages = () => {
   return (
-    <div>
-        <RegisterFormComercio/>
-    </div>
-  )
-}
+    <>
+      <Navbar />
+      <RegisterFormComercio />
+      <Footer />
+    </>
+  );
+};
 
-export default RegisterComercioPages
+export default RegisterComercioPages;

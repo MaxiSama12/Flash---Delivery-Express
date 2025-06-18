@@ -30,7 +30,7 @@
 
 .link-comercio {
   text-decoration: none;
-  color: #4c4c4c;
+  color: #3b3b3b;
   font-weight: bold;
   transition: all 0.2s ease-in-out;
   position: relative;
@@ -39,7 +39,7 @@
 
 .link-comercio:hover {
   transform: scale(1.05);
-  color: #2c2c2c;
+  color: #2a2a2a;
 }
 
 .link-comercio::after {
@@ -54,6 +54,71 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.link-comercio:hover::after {
+.link-comercio:hover::after,
+.link-comercio.active::after {
   opacity: 1;
 }
+
+.link-comercio.active {
+  color: #2c2c2c;
+}
+
+
+/* Ítems de la barra inferior */
+.mobile-nav-item {
+  color: #530553ad;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  width: 60px;
+}
+
+.mobile-nav-item:hover {
+  transform: scale(1.05);
+  color: #3b3b3b;
+}
+
+.mobile-nav-item span {
+  font-size: 13px;
+}
+
+/* Dropdown submenu (mis pedidos, direcciones, logout) */
+.mobile-dropdown {
+  position: absolute;
+  top: 130%;
+  /* bottom: 100%; */
+  right: 0;
+  transform: translateY(-10px);
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  min-width: 200px;
+  z-index: 9999;
+}
+
+
+.mobile-dropdown a,
+.mobile-dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.mobile-dropdown a:hover,
+.mobile-dropdown button:hover {
+  color: #000;
+}
+
+
+

@@ -86,6 +86,15 @@
       "password": "vendedor123",
       "telefono": "3814563422",
       "rol": "vendedor"
+    },
+    {
+      "id": "8b05",
+      "nombre": "Franco",
+      "email": "frandg47@gmail.com",
+      "telefono": "03815880371",
+      "direccion": "Mejico 2948",
+      "password": "",
+      "rol": "cliente"
     }
   ],
   "pedidos": [

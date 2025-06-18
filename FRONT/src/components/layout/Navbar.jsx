@@ -19,8 +19,7 @@ const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
   const dropdownRef = useRef();
-
-  //desktop
+  const toggleRef = useRef(); // 👈 nueva referencia
 
   const { usuario, logout } = useAuthStore();
   const [showMenu, setShowMenu] = useState(false);
@@ -32,14 +31,14 @@ const Navbar = () => {
     logout();
     navigate("/");
   };
-  //////
 
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (
         dropdownRef.current &&
         !dropdownRef.current.contains(e.target) &&
-        !e.target.closest(".dropdown-toggle")
+        toggleRef.current &&
+        !toggleRef.current.contains(e.target)
       ) {
         setDropdownOpen(false);
       }
@@ -61,111 +60,87 @@ const Navbar = () => {
   return (
     <>
       {isMobile ? (
-        <>
-          {/* 📱 NAVBAR MOBILE SUPERIOR CON CATEGORÍAS Y COMERCIOS */}
-          <nav
-            className="navbar fixed-top d-flex flex-column"
-            style={{
-              backgroundColor: "#f6f6f6",
-              padding: "0.5rem 1rem",
-              boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-              zIndex: 1000,
-            }}
+        <div
+          className="position-fixed fixed-top d-flex justify-content-around align-items-center"
+          style={{
+            backgroundColor: "#f6f6f6",
+            padding: "1rem 0",
+            boxShadow: "0 -2px 5px rgba(0,0,0,0.2)",
+            zIndex: 1000,
+            position: "relative",
+          }}
+        >
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `mobile-nav-item d-flex flex-column align-items-center link-comercio ${
+                isActive ? "active fw-bold" : ""
+              }`
+            }
           >
-            {/* Botones arriba */}
-            <div className="w-100 d-flex justify-content-around mb-2">
-              <NavLink
-                to="/comercios"
-                className={({ isActive }) =>
-                  `btn btn-light w-50 mx-1${isActive ? "fw-bold" : ""}`
-                }
-              >
-                <button className="btn">Comercios</button>
-              </NavLink>
+            <FaHome size={22} />
+            <span>Inicio</span>
+          </NavLink>
 
-              {usuario && (
-                <button
-                  className="btn btn-light w-50 mx-1"
-                  onClick={handleLogout}
-                >
-                  <FiLogOut size={22} />
-                  Cerrar sesión
-                </button>
-              )}
-            </div>
-          </nav>
-
-          {/* 📱 BARRA INFERIOR FIJA */}
-          <div
-            className="fixed-bottom d-flex justify-content-around align-items-center"
-            style={{
-              backgroundColor: "#56649C",
-              padding: "0.5rem 0",
-              boxShadow: "0 -2px 5px rgba(0,0,0,0.2)",
-              zIndex: 1000,
-            }}
+          <NavLink
+            to="/comercios"
+            className={({ isActive }) =>
+              `mobile-nav-item d-flex flex-column align-items-center link-comercio ${isActive ? "active fw-bold" : ""}`
+            }
           >
-            {!usuario ? (
-              <>
-                <p
-                  className="text-white d-flex flex-column align-items-center nav-item-hover"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => navigate("/login")}
-                >
-                  <FaSignInAlt size={22} />
-                  Iniciar sesion
-                </p>
-              </>
-            ) : (
-              <Link
-                to="/carrito"
-                className="text-white d-flex flex-column align-items-center nav-item-hover"
-              >
-                <FaShoppingCart size={22} />
-                <small>Carrito</small>
-              </Link>
-            )}
+            <FaMapMarkerAlt size={22} />
+            <span>Comercios</span>
+          </NavLink>
 
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                `text-white d-flex flex-column align-items-center nav-item-hover ${
-                  isActive ? "fw-bold" : ""
-                }`
-              }
-            >
-              <FaHome size={22} />
-              <small>Inicio</small>
-            </NavLink>
-
-            {usuario && (
-              <NavLink
-                to="/mi-perfil"
-                className={({ isActive }) =>
-                  `text-white d-flex flex-column align-items-center nav-item-hover ${
-                    isActive ? "fw-bold" : ""
-                  }`
-                }
+          {usuario ? (
+            <div className="position-relative">
+              <div
+                className="mobile-nav-item d-flex flex-column align-items-center"
+                style={{ cursor: "pointer" }}
+                onClick={() => setDropdownOpen((prev) => !prev)}
+                ref={toggleRef} // 👈 referencia aplicada
               >
                 <FaUserCircle size={22} />
+                <span>{usuario.nombre}</span>
+              </div>
 
-                <span>{usuario ? usuario.nombre : "Mi Perfil"}</span>
-              </NavLink>
-            )}
+              {dropdownOpen && (
+                <div ref={dropdownRef} className="mobile-dropdown">
+                  <Link
+                    to="/mis-pedidos"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    <FaBox size={18} />
+                    Mis Pedidos
+                  </Link>
 
-            {usuario && (
-              <Link
-                className="text-white d-flex flex-column align-items-center nav-item-hover"
-                to="/mis-pedidos"
-              >
-                <FaBox size={22} />
-                <small>Mis Pedidos</small>
-              </Link>
-            )}
-          </div>
-        </>
+                  <Link
+                    to="/mis-direcciones"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    <FaMapMarkerAlt size={18} />
+                    Mis Direcciones
+                  </Link>
+
+                  <button onClick={handleLogout}>
+                    <FiLogOut size={18} />
+                    Cerrar sesión
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div
+              className="mobile-nav-item d-flex flex-column align-items-center"
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate("/login")}
+            >
+              <FaSignInAlt size={22} />
+              <span>Ingresar</span>
+            </div>
+          )}
+        </div>
       ) : (
-        // 🖥️ NAVBAR DESKTOP ...
         <nav
           className="navbar fixed-top d-flex flex-column"
           style={{
@@ -176,49 +151,36 @@ const Navbar = () => {
           }}
         >
           <div className="container-fluid d-flex justify-content-around align-items-center">
-            {/* Logo */}
             <NavLink
               to="/"
               className={({ isActive }) =>
-                `navbar-brand text-dark d-flex align-items-center ${
+                `navbar-brand mx-0 text-dark d-flex align-items-center ${
                   isActive
                     ? "navbar-brand text-dark d-flex align-items-center"
                     : ""
                 }`
               }
             >
-              <img
-                src={logo}
-                alt="Logo"
-                style={{ height: "40px"  }}
-              />
+              <img src={logo} alt="Logo" style={{ height: "40px" }} />
             </NavLink>
 
-            {/* Centro con Categorías y Comercios */}
             <div className="d-flex gap-3">
               <NavLink
                 to="/comercios"
-                className={({ isActive }) => `${isActive ? "fw-bold link-comercio" : "link-comercio"}`}
+                className={({ isActive }) =>
+                  `${isActive ? "active fw-bold link-comercio" : "link-comercio"}`
+                }
               >
                 Comercios
               </NavLink>
             </div>
 
-            {/* Íconos y Dropdown */}
             <div className="position-relative">
               <div
                 onClick={toggleMenu}
                 className="d-flex align-items-center gap-2"
                 style={{ cursor: "pointer" }}
               >
-                {usuario && (
-                  <Link
-                    to="/carrito"
-                    className="position-relative nav-item-hover d-flex align-items-center gap-1"
-                  >
-                    <FaShoppingCart size={22} />
-                  </Link>
-                )}
                 <Link
                   to="/mi-perfil"
                   className="nav-item-hover d-flex align-items-center gap-1"
@@ -246,15 +208,13 @@ const Navbar = () => {
                   }}
                 >
                   {!usuario ? (
-                    <>
-                      <p
-                        className="dropdown-item mb-1"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => navigate("/login")}
-                      >
-                        Iniciar sesión
-                      </p>
-                    </>
+                    <p
+                      className="dropdown-item mb-1"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => navigate("/login")}
+                    >
+                      Iniciar sesión
+                    </p>
                   ) : (
                     <>
                       <p className="dropdown-item text-muted mb-3">
