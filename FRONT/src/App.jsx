@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  BrowserRouter,
-} from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import LoginPages from "./pages/LoginPages";
 import RegisterClientePages from "./pages/RegisterClientePages";
 import RegisterVendedorPages from "./pages/RegisterVendedorPages";
@@ -36,10 +31,12 @@ import LoginForm from "./components/auth/LoginForm";
 
 function App() {
   const [isBouncing, setIsBouncing] = useState(false);
+  const location = useLocation();
+  const ocultarCart = /vendedor/.test(location.pathname);
 
   return (
-    <BrowserRouter>
-      <Cart isBouncing={isBouncing} />
+    <>
+      {!ocultarCart && <Cart isBouncing={isBouncing} />}
       <ToastContainer />
       <Routes>
         <Route path="/vendedor/:id" element={<DashboardVendedor />} />
@@ -60,7 +57,6 @@ function App() {
         <Route path={LOGIN} element={<LoginPages />} />
         <Route path={LISTACOMERCIO} element={<ListaComerciosPage />} />
         <Route path={REGISTERCLIENTE} element={<RegisterClientePages />} />
-        {console.log("hola mundo")}
         <Route
           path={REGISTERREPARTIDOR}
           element={<RegisterRepartidorPages />}
@@ -74,7 +70,7 @@ function App() {
         <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor />} />
         <Route path={`${COMERCIO}/:id`} element={<ComercioPage />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 export default App;
