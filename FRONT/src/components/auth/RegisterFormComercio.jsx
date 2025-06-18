@@ -14,7 +14,8 @@ const RegisterFormComercio = () => {
     id_usuario: "",
     id_rubro: "",
     url_image: "",
-    rating:""
+    rating:"",
+    time:""
   });
 
   const navigate = useNavigate();
@@ -107,6 +108,19 @@ const RegisterFormComercio = () => {
             required
           />
         </label>
+        <label>
+          Tiempo de demora en despachar pedidos:
+          <input
+            type="text"
+            name="time"
+            value={formData.time}
+            placeholder="Por ejemplo: '20 - 40 min'"
+            onChange={handleChange}
+            className="registro-input"
+          />
+        </label>
+
+
 
         <br />
         <label>Rubro:</label>

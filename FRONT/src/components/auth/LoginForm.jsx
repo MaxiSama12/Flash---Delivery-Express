@@ -64,7 +64,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="container p-5 d-flex justify-content-center mt-5">
+    <div className="container cont-form p-5 d-flex justify-content-center mt-5">
       <form className="login-form" onSubmit={handleSubmit}>
         <h2 className="login-title">
           <b>Iniciar Sesión</b>

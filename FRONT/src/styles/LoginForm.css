@@ -1,7 +1,12 @@
+.cont-form {
+  min-height: 48rem;
+}
+
 
 .login-form {
   max-width: 350px;
   /* margin: 160px auto; */
+  height: 30rem;
   padding: 20px;
   border-radius: 4px;
   background-color: #fff;
