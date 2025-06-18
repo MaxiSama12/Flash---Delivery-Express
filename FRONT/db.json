@@ -175,8 +175,9 @@
       "direccion": "Calle Ejemplo 1",
       "telefono": "3800000001",
       "descripcion": "Descripción de Supermercado Vea",
-      "rating": 4.1,
-      "activo": true,
+      "rating": 4.0,
+      "activo": true,      
+      "time": "20 - 40 min",
       "id_admin": "1",
       "id_rubro": "7",
       "url_imagen": "https://www.webretail.com.ar/wp-content/uploads/2023/04/Vea-Cencosud.jpg"
@@ -189,6 +190,7 @@
       "descripcion": "Descripción de Mc Donalds",
       "rating": 4.2,
       "activo": true,
+      "time": "15 - 35 min",
       "id_admin": "2",
       "id_rubro": "1",
       "url_imagen": "https://i.blogs.es/988895/istock_000056360048_small/1366_2000.jpg"
@@ -201,6 +203,7 @@
       "descripcion": "Descripción de Farmacia del Pueblo",
       "rating": 4.3,
       "activo": true,
+      "time": "10 - 20 min",
       "id_admin": "2",
       "id_rubro": "2",
       "url_imagen": "https://images.rappi.com.ar/marketplace/store_type_1626975357300.jpg"
@@ -213,6 +216,7 @@
       "descripcion": "Descripción de Libreria San Pablo",
       "rating": 4.5,
       "activo": true,
+      "time": "20 - 40 min",
       "id_admin": "2",
       "id_rubro": "3",
       "url_imagen": "https://recursos-we-us-east-1.s3.amazonaws.com/Weyop/Libreria%20San%20Pablo/Contenidos/2024-09-24%2012%3A49%3A51/2.Logotipo-Libreria-San-Pablo-RGB-3570x847px-Digital.png"
@@ -225,6 +229,7 @@
       "descripcion": "Descripción de La Pizzada",
       "rating": 3.6,
       "activo": true,
+      "time": "15 - 30 min",
       "id_admin": "2",
       "id_rubro": "1",
       "url_imagen": "https://www.tucumanturismo.gob.ar/public/img/pizzada%20bar%20ok_b9nt3x6v_12-08-2024.png"
