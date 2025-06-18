@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { BsCash } from "react-icons/bs";
 import { useCartStore } from "../../context/useCartStore";
+import { useLogin } from "../../context/useLogin";
 import { IoRemoveSharp } from "react-icons/io5";
 import { IoAdd } from "react-icons/io5";
 import axios from "axios";
@@ -59,13 +60,19 @@ const Cart = ({ isBouncing }) => {
   const clearCart = useCartStore((state) => state.clearCart);
   const total = useCartStore((state) => state.total)();
   const itemsCount = useCartStore((state) => state.itemsCount)();
+  const idCliente = useLogin((state) => state.id);
+  const direccionCliente = useLogin((state) => state.direccion);
 
   const handleCheckout = async () => {
+    if (!idCliente) {
+      toast.warn("Debes iniciar sesión para realizar una compra");
+      return;
+    }
     const pedidoPayload = {
       fecha_pedido: new Date().toISOString(),
       estado: "pendiente",
-      direccion_entrega: "Calle falsa 123", 
-      id_cliente: 1, 
+      direccion_entrega: direccionCliente || "No existe dirección",
+      id_cliente: idCliente,
       id_repartidor: null,
       id_comercio: cart[0]?.id_comercio,
       productos: cart.map((item) => ({
