@@ -12,10 +12,9 @@ import "./index.css";
 import {
   HOME,
   LOGIN,
-  REGISTERCLIENTE,
-  REGISTERVENDEDOR,
+  REGISTERCLIENTE, 
   REGISTERREPARTIDOR,
-  DASHBOARDVENDEDOR,
+  DASHBOARDCOMERCIO,
   DASHBOARDREPARTIDOR,
   REGISTERCOMERCIO,
   COMERCIO,
@@ -33,6 +32,7 @@ import Cart from "./components/ui/Cart";
 import { useState } from "react";
 import MisDirecciones from "./pages/MisDirecciones/MisDirecciones";
 import LoginForm from "./components/auth/LoginForm";
+import ProtectedRoutes from "./components/utils/ProtectedRoutes";
 
 function App() {
   const [isBouncing, setIsBouncing] = useState(false);
@@ -69,9 +69,15 @@ function App() {
         <Route path="/mis-direcciones" element={<MisDirecciones />} />
         <Route path={DASHBOARDREPARTIDOR} element={<DashboardRepartidor />} />
         <Route path="*" element={<NotFound />} />
-        <Route path={REGISTERVENDEDOR} element={<RegisterVendedorPages />} />
         <Route path={REGISTERCOMERCIO} element={<RegisterComercioPages />} />
-        <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor />} />
+        <Route
+          path={DASHBOARDCOMERCIO}
+          element={
+            <ProtectedRoutes>
+              <DashboardVendedor />
+            </ProtectedRoutes>
+          }
+        />
         <Route path={`${COMERCIO}/:id`} element={<ComercioPage />} />
       </Routes>
     </BrowserRouter>
