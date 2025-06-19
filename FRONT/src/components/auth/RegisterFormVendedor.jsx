@@ -5,6 +5,7 @@ import { CLIENTES, VENDEDORES } from "../../endpoints/endpoints";
 import axios from "axios";
 import { LOGIN, REGISTERCOMERCIO } from "../../router/route";
 
+
 const RegisterFormVendedor = () => {
   const [formData, setFormData] = useState({
     nombre: "",

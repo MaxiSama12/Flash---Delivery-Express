@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { COMERCIOS, RUBROS } from "../../endpoints/endpoints";
 import axios from "axios";
 import { LOGIN } from "../../router/route";
@@ -7,15 +7,18 @@ import { LOGIN } from "../../router/route";
 const RegisterFormComercio = () => {
   const [rubros, setRubros] = useState([]);
   const [formData, setFormData] = useState({
-    nombre: "",
+    nombre_comercio: "",
     direccion: "",
     telefono: "",
     activo: true,
-    id_usuario: "",
+    url_imagen: "",
+    rating: "",
+    time: "",
     id_rubro: "",
-    url_image: "",
-    rating:"",
-    time:""
+    nombre_usuario:"",
+    email:"",
+    password:"",
+    rol:"comercio" // Fijo
   });
 
   const navigate = useNavigate();
@@ -56,8 +59,8 @@ const RegisterFormComercio = () => {
           Nombre del Comercio:
           <input
             type="text"
-            name="nombre"
-            value={formData.nombre}
+            name="nombre_comercio"
+            value={formData.nombre_comercio}
             onChange={handleChange}
             className="registro-input"
             required
@@ -91,7 +94,7 @@ const RegisterFormComercio = () => {
           <input
             type="text"
             name="url_image"
-            value={formData.url_image}
+            value={formData.url_imagen}
             onChange={handleChange}
             className="registro-input"
             required
@@ -120,8 +123,6 @@ const RegisterFormComercio = () => {
           />
         </label>
 
-
-
         <br />
         <label>Rubro:</label>
         <br />
@@ -140,10 +141,54 @@ const RegisterFormComercio = () => {
         </select>
         <br />
         <br />
+
+
+        <h4>Registre los datos del Administrador:</h4>
+        <label>
+          Nombre completo:
+          <input
+            type="text"
+            name="nombre_usuario"
+            value={formData.nombre_usuario}
+            onChange={handleChange}
+            className="registro-input"
+            required
+          />
+        </label>
+
+          <label>
+          Correo electrónico:
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="registro-input"
+            required
+          />
+        </label>
+
+         <label>
+          Contraseña:
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            className="registro-input"
+            required
+          />
+        </label>
+
         <button type="submit" className="registro-button">
           Registrar comercio
         </button>
         <div className="text-center my-2"></div>
+           <div className="text-center my-2">
+          <p>
+            Ya tienes una cuenta?,<Link to={LOGIN}>inicia sesión aquí</Link>
+          </p>
+        </div>
       </form>
     </div>
   );
