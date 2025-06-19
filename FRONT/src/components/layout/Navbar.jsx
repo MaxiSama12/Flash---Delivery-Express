@@ -101,7 +101,7 @@ const Navbar = () => {
                 ref={toggleRef} // 👈 referencia aplicada
               >
                 <FaUserCircle size={22} />
-                <span>{usuario.nombre}</span>
+                <span>{usuario.nombre_usuario}</span>
               </div>
 
               {dropdownOpen && (
@@ -186,7 +186,7 @@ const Navbar = () => {
                   className="nav-item-hover d-flex align-items-center gap-1"
                 >
                   <FaUserCircle size={22} />
-                  <span>{usuario ? usuario.nombre : "Mi Perfil"}</span>
+                  <span>{usuario ? usuario.nombre_usuario : "Mi Perfil"}</span>
                 </Link>
 
                 <FaChevronDown className="nav-item-hover d-flex align-items-center gap-1" />
@@ -218,7 +218,7 @@ const Navbar = () => {
                   ) : (
                     <>
                       <p className="dropdown-item text-muted mb-3">
-                        Hola, {usuario.nombre}
+                        Hola, {usuario.nombre_usuario}
                       </p>
 
                       <Link
