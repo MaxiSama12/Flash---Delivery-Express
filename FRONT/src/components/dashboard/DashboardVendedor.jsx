@@ -19,7 +19,7 @@ const VendedorDashboard = () => {
   const [productos, setProductos] = useState([]);
   const [pedidoProductos, setPedidoProductos] = useState([]);
   const [modalGestionProductos, setModalGestionProductos] = useState(false);
-  const [modalAgregarEditar, setModalAgregarEditar] = useState(null); // 'agregar' | 'editar' | null
+  const [modalAgregarEditar, setModalAgregarEditar] = useState(null);
   const [modalPedidos, setModalPedidos] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -30,7 +30,6 @@ const VendedorDashboard = () => {
     totalEarnings: 0,
   });
 
-  // Estado para categorías
   const [categorias, setCategorias] = useState([]);
 
   const [nuevoProducto, setNuevoProducto] = useState({
@@ -50,23 +49,12 @@ const VendedorDashboard = () => {
     id_categoria: "",
   });
 
-
-
-
-
-
-  // Función para calcular estadísticas con pedido_producto
   const calcularStats = (listaPedidoProductos) => {
-    // Suponiendo que cada pedido_producto tiene un estado status, total y cantidad
     const totalOrders = listaPedidoProductos.length;
-    const pendingOrders = listaPedidoProductos.filter(
-      (p) => p.status === "pendiente"
-    ).length;
-    const completedOrders = listaPedidoProductos.filter(
-      (p) => p.status === "completado"
-    ).length;
+    const pendingOrders = listaPedidoProductos.filter(p => p.status === "pendiente").length;
+    const completedOrders = listaPedidoProductos.filter(p => p.status === "completado").length;
     const totalEarnings = listaPedidoProductos
-      .filter((p) => p.status === "completado")
+      .filter(p => p.status === "completado")
       .reduce((sum, p) => sum + p.total, 0);
 
     setStats({ totalOrders, pendingOrders, completedOrders, totalEarnings });
@@ -80,18 +68,14 @@ const VendedorDashboard = () => {
 
         const productosRes = await axios.get("http://localhost:3000/productos");
         const productosFiltrados = productosRes.data.filter(
-          (prod) => String(prod.id_comercio) === String(id)
+          prod => String(prod.id_comercio) === String(id)
         );
         setProductos(productosFiltrados);
 
-        const pedidoProductoRes = await axios.get(
-          "http://localhost:3000/pedido_producto"
-        );
+        const pedidoProductoRes = await axios.get("http://localhost:3000/pedido_producto");
         setPedidoProductos(pedidoProductoRes.data);
 
-        const categoriasRes = await axios.get(
-          "http://localhost:3000/categorias"
-        );
+        const categoriasRes = await axios.get("http://localhost:3000/categorias");
         setCategorias(categoriasRes.data);
 
         calcularStats(pedidoProductoRes.data);
@@ -106,14 +90,10 @@ const VendedorDashboard = () => {
     }
   }, [id]);
 
-
-
-  // Actualizar estadísticas cuando cambian pedidoProductos
   useEffect(() => {
     calcularStats(pedidoProductos);
   }, [pedidoProductos]);
 
-  // Formularios para productos siguen igual
   const handleNuevoProductoChange = (e) => {
     const { name, value } = e.target;
     setNuevoProducto((prev) => ({ ...prev, [name]: value }));
@@ -129,20 +109,11 @@ const VendedorDashboard = () => {
     setModalAgregarEditar("editar");
   };
 
-  // Agregar producto (sin cambios)
   const agregarProducto = async (e) => {
     e.preventDefault();
-    const { nombre, descripcion, precio, url_imagen, id_categoria } =
-      nuevoProducto;
+    const { nombre, descripcion, precio, url_imagen, id_categoria } = nuevoProducto;
 
-    if (
-      !nombre.trim() ||
-      !descripcion.trim() ||
-      isNaN(precio) ||
-      Number(precio) <= 0 ||
-      !url_imagen.trim() ||
-      !id_categoria
-    ) {
+    if (!nombre.trim() || !descripcion.trim() || isNaN(precio) || Number(precio) <= 0 || !url_imagen.trim() || !id_categoria) {
       alert("Por favor, complete todos los campos correctamente");
       return;
     }
@@ -160,7 +131,6 @@ const VendedorDashboard = () => {
         url_imagen: url_imagen.trim(),
       };
 
-    
       const res = await axios.post("http://localhost:3000/productos", nuevo);
       setProductos((prev) => [...prev, res.data]);
       setNuevoProducto({
@@ -179,26 +149,11 @@ const VendedorDashboard = () => {
     }
   };
 
-  // Guardar producto editado (sin cambios)
   const guardarProductoEditado = async (e) => {
     e.preventDefault();
-    const {
-      id: prodId,
-      nombre,
-      descripcion,
-      precio,
-      url_imagen,
-      id_categoria,
-    } = productoEditar;
+    const { id: prodId, nombre, descripcion, precio, url_imagen, id_categoria } = productoEditar;
 
-    if (
-      !nombre.trim() ||
-      !descripcion.trim() ||
-      isNaN(precio) ||
-      Number(precio) <= 0 ||
-      !url_imagen.trim() ||
-      !id_categoria
-    ) {
+    if (!nombre.trim() || !descripcion.trim() || isNaN(precio) || Number(precio) <= 0 || !url_imagen.trim() || !id_categoria) {
       alert("Por favor, complete todos los campos correctamente");
       return;
     }
@@ -216,10 +171,7 @@ const VendedorDashboard = () => {
         url_imagen: url_imagen.trim(),
       };
 
-      await axios.put(
-        `http://localhost:3000/productos/${prodId}`,
-        productoActualizado
-      );
+      await axios.put(`http://localhost:3000/productos/${prodId}`, productoActualizado);
       setProductos((prev) =>
         prev.map((prod) =>
           prod.id === prodId ? { ...prod, ...productoActualizado } : prod
@@ -234,10 +186,8 @@ const VendedorDashboard = () => {
     }
   };
 
-  // Eliminar producto (sin cambios)
   const eliminarProducto = async (prodId) => {
-    if (!window.confirm("¿Estás seguro que deseas eliminar este producto?"))
-      return;
+    if (!window.confirm("¿Estás seguro que deseas eliminar este producto?")) return;
 
     try {
       await axios.delete(`http://localhost:3000/productos/${prodId}`);
@@ -248,31 +198,29 @@ const VendedorDashboard = () => {
     }
   };
 
-  // Cambiar estado de pedido_producto de pendiente a completado
   const cambiarEstadoPedido = async (pedidoProductoId, estadoActual) => {
-    if (estadoActual === "completado") return;
+  if (estadoActual === "completado") return; // No hace nada si ya está completado
 
-    try {
-      setLoading(true);
-      await axios.patch(
-        `http://localhost:3000/pedido_producto/${pedidoProductoId}`,
-        { status: "completado" }
-      );
+  try {
+    setLoading(true);
+    await axios.patch(`http://localhost:3000/pedido_producto/${pedidoProductoId}`, {
+      status: "completado",
+    });
 
-      setPedidoProductos((prev) =>
-        prev.map((pedido) =>
-          pedido.id === pedidoProductoId
-            ? { ...pedido, status: "completado" }
-            : pedido
-        )
-      );
-    } catch (error) {
-      console.error("Error al cambiar estado del pedido:", error);
-      alert("No se pudo cambiar el estado del pedido.");
-    } finally {
-      setLoading(false);
-    }
-  };
+    setPedidoProductos((prev) =>
+      prev.map((pedido) =>
+        pedido.id === pedidoProductoId
+          ? { ...pedido, status: "completado" }
+          : pedido
+      )
+    );
+  } catch (error) {
+    console.error("Error al cambiar estado del pedido:", error);
+    alert("No se pudo cambiar el estado del pedido.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   if (!comercio) {
     return <div className="text-center py-5">Cargando comercio...</div>;
@@ -282,7 +230,7 @@ const VendedorDashboard = () => {
     <Container className="py-4">
       <h2 className="mb-4 text-success">Panel de {comercio.nombre}</h2>
 
-      {/* Estadísticas */}
+       {/* Estadísticas */}
       <Row className="mb-4">
         <Col md={3}>
           <Card className="text-center">
@@ -336,7 +284,31 @@ const VendedorDashboard = () => {
         </Col>
       </Row>
 
-      {/* Botones para abrir modales */}
+      {/* Nueva fila de estadísticas: Total Categorías y Total Productos */}
+      <Row className="mb-4">
+        <Col md={3}>
+          <Card className="text-center">
+            <Card.Body>
+              <Card.Title>Total Categorías</Card.Title>
+              <h4>
+                <Badge bg="secondary">{categorias.length}</Badge>
+              </h4>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={3}>
+          <Card className="text-center">
+            <Card.Body>
+              <Card.Title>Total Productos</Card.Title>
+              <h4>
+                <Badge bg="dark">{productos.length}</Badge>
+              </h4>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+
+      {/* Botones para gestión de productos y pedidos */}
       <Row className="mb-4">
         <Col>
           <Button
@@ -351,84 +323,86 @@ const VendedorDashboard = () => {
         </Col>
       </Row>
 
-      {/* Modal Gestion Productos */}
+      {/* Modal Gestionar Productos */}
       <Modal
         show={modalGestionProductos}
-        onHide={() => {
-          setModalGestionProductos(false);
-          setModalAgregarEditar(null);
-        }}
+        onHide={() => setModalGestionProductos(false)}
         size="lg"
+        centered
       >
         <Modal.Header closeButton>
           <Modal.Title>Gestión de Productos</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Button
-            variant="success"
+            variant="primary"
             className="mb-3"
             onClick={() => setModalAgregarEditar("agregar")}
           >
             Agregar Producto
           </Button>
 
-          {productos.length === 0 ? (
-            <p>No hay productos aún para este comercio.</p>
-          ) : (
-            <Row>
-              {productos.map((producto) => (
-                <Col md={6} lg={4} key={producto.id} className="mb-3">
-                  <Card className="h-100 shadow-sm">
-                    <Card.Img
-                      variant="top"
-                      src={
-                        producto.url_imagen || "https://via.placeholder.com/150"
-                      }
-                      alt={`Imagen de ${producto.nombre}`}
-                      style={{ height: "150px", objectFit: "cover" }}
-                    />
-                    <Card.Body>
-                      <Card.Title>{producto.nombre}</Card.Title>
-                      <Card.Text>{producto.descripcion}</Card.Text>
-                      <Card.Text>Precio: ${producto.precio}</Card.Text>
-                      <Card.Text>Rating: {producto.rating || 0}</Card.Text>
-                      <Card.Text>
-                        Categoría:{" "}
-                        {categorias.find(
-                          (cat) => cat.id === producto.id_categoria
-                        )?.nombre_categoria || "Sin categoría"}
-                      </Card.Text>
-                      <div className="d-flex justify-content-between">
-                        <Button
-                          size="sm"
-                          variant="warning"
-                          onClick={() => abrirEditarProducto(producto)}
-                        >
-                          Editar
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="danger"
-                          onClick={() => eliminarProducto(producto.id)}
-                        >
-                          Eliminar
-                        </Button>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          )}
+          <Table striped bordered hover responsive>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+                <th>Imagen</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {productos.map((prod) => {
+                const categoria = categorias.find(
+                  (cat) => cat.id === prod.id_categoria
+                );
+                return (
+                  <tr key={prod.id}>
+                    <td>{prod.nombre}</td>
+                    <td>{prod.descripcion}</td>
+                    <td>${prod.precio.toFixed(2)}</td>
+                    <td>{categoria ? categoria.nombre : "N/A"}</td>
+                    <td>
+                      {prod.url_imagen && (
+                        <img
+                          src={prod.url_imagen}
+                          alt={prod.nombre}
+                          style={{ width: "50px", height: "50px" }}
+                        />
+                      )}
+                    </td>
+                    <td>
+                      <Button
+                        variant="warning"
+                        size="sm"
+                        onClick={() => abrirEditarProducto(prod)}
+                        className="me-2"
+                      >
+                        Editar
+                      </Button>
+                      <Button
+                        variant="danger"
+                        size="sm"
+                        onClick={() => eliminarProducto(prod.id)}
+                      >
+                        Eliminar
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
         </Modal.Body>
       </Modal>
 
-      {/* Modal Agregar/Editar Producto */}
+      {/* Modal Agregar / Editar Producto */}
       <Modal
-        show={
-          modalAgregarEditar === "agregar" || modalAgregarEditar === "editar"
-        }
+        show={modalAgregarEditar !== null}
         onHide={() => setModalAgregarEditar(null)}
+        centered
       >
         <Modal.Header closeButton>
           <Modal.Title>
@@ -437,15 +411,15 @@ const VendedorDashboard = () => {
               : "Editar Producto"}
           </Modal.Title>
         </Modal.Header>
-        <Form
-          onSubmit={
-            modalAgregarEditar === "agregar"
-              ? agregarProducto
-              : guardarProductoEditado
-          }
-        >
-          <Modal.Body>
-            <Form.Group className="mb-3">
+        <Modal.Body>
+          <Form
+            onSubmit={
+              modalAgregarEditar === "agregar"
+                ? agregarProducto
+                : guardarProductoEditado
+            }
+          >
+            <Form.Group className="mb-3" controlId="nombre">
               <Form.Label>Nombre</Form.Label>
               <Form.Control
                 type="text"
@@ -464,7 +438,7 @@ const VendedorDashboard = () => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" controlId="descripcion">
               <Form.Label>Descripción</Form.Label>
               <Form.Control
                 as="textarea"
@@ -484,13 +458,13 @@ const VendedorDashboard = () => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" controlId="precio">
               <Form.Label>Precio</Form.Label>
               <Form.Control
                 type="number"
-                name="precio"
                 min="0"
                 step="0.01"
+                name="precio"
                 value={
                   modalAgregarEditar === "agregar"
                     ? nuevoProducto.precio
@@ -505,10 +479,10 @@ const VendedorDashboard = () => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" controlId="url_imagen">
               <Form.Label>URL Imagen</Form.Label>
               <Form.Control
-                type="text"
+                type="url"
                 name="url_imagen"
                 value={
                   modalAgregarEditar === "agregar"
@@ -548,19 +522,21 @@ const VendedorDashboard = () => {
                 ))}
               </Form.Select>
             </Form.Group>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="secondary"
-              onClick={() => setModalAgregarEditar(null)}
-            >
-              Cancelar
-            </Button>
-            <Button variant="primary" type="submit" disabled={loading}>
-              {loading ? "Guardando..." : "Guardar"}
-            </Button>
-          </Modal.Footer>
-        </Form>
+
+            <div className="d-flex justify-content-end">
+              <Button
+                variant="secondary"
+                onClick={() => setModalAgregarEditar(null)}
+                className="me-2"
+              >
+                Cancelar
+              </Button>
+              <Button variant="primary" type="submit" disabled={loading}>
+                {loading ? "Guardando..." : "Guardar"}
+              </Button>
+            </div>
+          </Form>
+        </Modal.Body>
       </Modal>
 
       {/* Modal Pedidos */}
@@ -568,108 +544,62 @@ const VendedorDashboard = () => {
         show={modalPedidos}
         onHide={() => setModalPedidos(false)}
         size="lg"
-        scrollable
+        centered
       >
         <Modal.Header closeButton>
           <Modal.Title>Pedidos</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {pedidoProductos.length === 0 ? (
-            <p>No hay pedidos aún.</p>
+            <p>No hay pedidos.</p>
           ) : (
-            pedidoProductos
-              .reduce((acc, pedido) => {
-                const existing = acc.find(
-                  (p) => p.id_pedido === pedido.id_pedido
-                );
-                if (existing) {
-                  existing.items.push(pedido);
-                } else {
-                  acc.push({
-                    id_pedido: pedido.id_pedido,
-                    comprador: pedido.nombre_comprador || "N/A",
-                    status: pedido.status,
-                    total: pedido.total_pedido,
-                    items: [pedido],
-                  });
+          <Table striped bordered hover responsive>
+  <thead>
+    <tr>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Precio Unitario</th>
+      <th>Total Pedido</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {pedidoProductos.map((pedido) => {
+      const prod = productos.find((p) => p.id === pedido.id_producto);
+      const precioUnitario = prod?.precio || 0;
+      const totalPedido = precioUnitario * pedido.cantidad;
+      const esPendiente = pedido.status === "pendiente";
+
+      return (
+        <tr key={pedido.id}>
+          <td>{prod ? prod.nombre : "N/A"}</td>
+          <td>{pedido.cantidad}</td>
+          <td>${precioUnitario.toFixed(2)}</td>
+          <td>${totalPedido.toFixed(2)}</td>
+          <td>
+            <Badge bg={esPendiente ? "warning" : "success"}>
+              {esPendiente ? "Pendiente" : "Listo"}
+            </Badge>
+          </td>
+          <td>
+            {esPendiente && (
+              <Button
+                variant="success"
+                size="sm"
+                onClick={() =>
+                  cambiarEstadoPedido(pedido.id, pedido.status)
                 }
-                return acc;
-              }, [])
-              .map((pedidoGroup) => (
-                <Card key={pedidoGroup.id_pedido} className="mb-3">
-                  <Card.Header className="d-flex justify-content-between align-items-center">
-                    <div>
-                      <strong>Pedido #{pedidoGroup.id_pedido}</strong> -{" "}
-                      <span>Comprador: {pedidoGroup.comprador}</span>
-                    </div>
-                    <Badge
-                      bg={
-                        pedidoGroup.status === "pendiente"
-                          ? "warning"
-                          : "success"
-                      }
-                    >
-                      {pedidoGroup.status}
-                    </Badge>
-                  </Card.Header>
-                  <Card.Body>
-                    <Table bordered size="sm" className="mb-3">
-                      <thead>
-                        <tr>
-                          <th>Producto</th>
-                          <th>Cantidad</th>
-                          <th>Total</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {pedidoGroup.items.map((item) => {
-                          const prod = productos.find(
-                            (p) => p.id === item.id_producto
-                          );
-                          const totalCalculado =
-                            (prod?.precio || 0) * item.cantidad;
-                          return (
-                            <tr key={item.id}>
-                              <td>{prod?.nombre || "Producto eliminado"}</td>
-                              <td>{item.cantidad}</td>
-                              <td>${totalCalculado.toFixed(2)}</td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </Table>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <strong>
-                          Total Compra: $
-                          {pedidoGroup.items
-                            .reduce((sum, item) => {
-                              const prod = productos.find(
-                                (p) => p.id === item.id_producto
-                              );
-                              return sum + (prod?.precio || 0) * item.cantidad;
-                            }, 0)
-                            .toFixed(2)}
-                        </strong>
-                      </div>
-                      {pedidoGroup.status === "pendiente" && (
-                        <Button
-                          variant="success"
-                          onClick={() => {
-                            const ids = pedidoGroup.items.map((p) => p.id);
-                            ids.forEach((id) =>
-                              cambiarEstadoPedido(id, "pendiente")
-                            );
-                          }}
-                          disabled={loading}
-                        >
-                          Listo
-                        </Button>
-                      )}
-                    </div>
-                  </Card.Body>
-                </Card>
-              ))
+              >
+                Listo
+              </Button>
+            )}
+          </td>
+        </tr>
+      );
+    })}
+  </tbody>
+</Table>
           )}
         </Modal.Body>
       </Modal>

@@ -314,26 +314,120 @@
           "cantidad": 1
         }
       ]
+    },
+    {
+      "id": "d7c0",
+      "fecha_pedido": "2025-06-19T20:24:36.393Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "1",
+      "productos": [
+        {
+          "id_producto": "3",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "7a42",
+      "fecha_pedido": "2025-06-19T20:25:50.685Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "2",
+      "productos": [
+        {
+          "id_producto": "1d01",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "b23a",
+      "fecha_pedido": "2025-06-19T20:27:28.381Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "2",
+      "productos": [
+        {
+          "id_producto": "1d01",
+          "cantidad": 4
+        }
+      ]
+    },
+    {
+      "id": "d173",
+      "fecha_pedido": "2025-06-19T20:29:27.257Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "2",
+      "productos": [
+        {
+          "id_producto": "1d01",
+          "cantidad": 3
+        }
+      ]
+    },
+    {
+      "id": "a65e",
+      "fecha_pedido": "2025-06-19T20:38:31.648Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "2",
+      "productos": [
+        {
+          "id_producto": "1d01",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "19",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "1ade",
+      "fecha_pedido": "2025-06-19T20:39:37.944Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "2",
+      "productos": [
+        {
+          "id_producto": "1d01",
+          "cantidad": 4
+        },
+        {
+          "id_producto": "19",
+          "cantidad": 2
+        }
+      ]
     }
   ],
   "pedido_producto": [
     {
-      "id": "0db2",
-      "id_pedido": "ab54",
-      "id_producto": "2",
-      "cantidad": 1
+      "id": "c1de",
+      "id_pedido": "1ade",
+      "id_producto": "1d01",
+      "cantidad": 4,
+      "status": "completado"
     },
     {
-      "id": "2845",
-      "id_pedido": "ab54",
-      "id_producto": "11",
-      "cantidad": 1
-    },
-    {
-      "id": "1413",
-      "id_pedido": "10e4",
-      "id_producto": "3",
-      "cantidad": 1
+      "id": "c016",
+      "id_pedido": "1ade",
+      "id_producto": "19",
+      "cantidad": 2,
+      "status": "completado"
     }
   ],
   "pagos": [
@@ -350,6 +444,48 @@
       "monto": 2782,
       "fecha_pago": "2025-06-18T17:42:07.859Z",
       "id_pedido": "10e4"
+    },
+    {
+      "id": "6dee",
+      "metodo": "efectivo",
+      "monto": 2782,
+      "fecha_pago": "2025-06-19T20:24:36.468Z",
+      "id_pedido": "d7c0"
+    },
+    {
+      "id": "2bdc",
+      "metodo": "efectivo",
+      "monto": 2500,
+      "fecha_pago": "2025-06-19T20:25:50.789Z",
+      "id_pedido": "7a42"
+    },
+    {
+      "id": "0aa3",
+      "metodo": "efectivo",
+      "monto": 10000,
+      "fecha_pago": "2025-06-19T20:27:28.436Z",
+      "id_pedido": "b23a"
+    },
+    {
+      "id": "e25b",
+      "metodo": "efectivo",
+      "monto": 7500,
+      "fecha_pago": "2025-06-19T20:29:27.299Z",
+      "id_pedido": "d173"
+    },
+    {
+      "id": "33b3",
+      "metodo": "efectivo",
+      "monto": 4608,
+      "fecha_pago": "2025-06-19T20:38:31.738Z",
+      "id_pedido": "a65e"
+    },
+    {
+      "id": "5f96",
+      "metodo": "efectivo",
+      "monto": 14216,
+      "fecha_pago": "2025-06-19T20:39:38.004Z",
+      "id_pedido": "1ade"
     }
   ],
   "comercios": [
@@ -713,7 +849,6 @@
       "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
-      "id": "1d01",
       "nombre": "coca cola",
       "descripcion": "coca cola 0",
       "precio": 2500,
@@ -721,7 +856,8 @@
       "disponible": true,
       "id_comercio": "2",
       "id_categoria": "6",
-      "url_imagen": "https://www.coca-cola.com/content/dam/onexp/mx/es/brands/coca-cola/coca-cola-original/Product-Information-Section-Coca-Cola-Original.jpg"
+      "url_imagen": "https://www.coca-cola.com/content/dam/onexp/mx/es/brands/coca-cola/coca-cola-original/Product-Information-Section-Coca-Cola-Original.jpg",
+      "id": "1d01"
     }
   ]
 }
