@@ -1,10 +1,10 @@
 import {
   DASHBOARDREPARTIDOR,
-  DASHBOARDVENDEDOR,
+  DASHBOARDCOMERCIO,
   HOME,
   REGISTERCLIENTE,
-  REGISTERREPARTIDOR,
-  REGISTERVENDEDOR,
+  REGISTERCOMERCIO,
+  REGISTERREPARTIDOR, 
 } from "../../router/route";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -41,14 +41,20 @@ const LoginForm = () => {
         if (userFound.password === formData.password) {
           console.log("el usuario encontrado fue: ", userFound);
           setId(userFound.id);
-          setNombre(userFound.nombre);
+          setNombre(userFound.nombre_usuario);
           setRol(userFound.rol);
           login(userFound);
-          alert(`Inicio de sesión exitoso, bienvenido ${userFound.nombre}`);
+          console.log(userFound);
+          alert(
+            `Inicio de sesión exitoso, bienvenido ${userFound.nombre_usuario}`
+          );
           if (userFound.rol === "cliente") {
             navigate(HOME);
-          } else if (userFound.rol === "vendedor") {
-            navigate(DASHBOARDVENDEDOR);
+          } else if (userFound.rol === "comercio") {
+            alert(
+              `Inicio de sesión exitoso, bienvenido ${userFound.nombre_usuario} dueño de ${userFound.nombre_comercio}`
+            );
+            navigate(`${DASHBOARDCOMERCIO}/${userFound.id}`);
           } else if (userFound.rol === "repartidor") {
             navigate(DASHBOARDREPARTIDOR);
           }
@@ -63,7 +69,6 @@ const LoginForm = () => {
     }
   };
 
-  
   return (
     <div className="container cont-form p-5 d-flex justify-content-center mt-5">
       <form className="login-form" onSubmit={handleSubmit}>
@@ -99,17 +104,16 @@ const LoginForm = () => {
         <button type="submit" className="login-button mb-3">
           Ingresar
         </button>
-        {
-          loginError ? (<p className="p-1 text-center alert alert-danger">
-          {loginError}
-        </p>) : ""
-        }
-        
+        {loginError ? (
+          <p className="p-1 text-center alert alert-danger">{loginError}</p>
+        ) : (
+          ""
+        )}
 
         <div className="login-links">
           <p>¿No tienes una cuenta?</p>
           <Link to={REGISTERCLIENTE}>Registrate como Cliente</Link>
-          <Link to={REGISTERVENDEDOR}>Registrate como Vendedor</Link>
+          <Link to={REGISTERCOMERCIO}>Registrate tu Comercio</Link>
           <Link to={REGISTERREPARTIDOR}>Registrate como Repartidor</Link>
         </div>
       </form>
