@@ -48,7 +48,7 @@ const LoginForm = () => {
           if (userFound.rol === "cliente") {
             navigate(HOME);
           } else if (userFound.rol === "vendedor") {
-            navigate(DASHBOARDVENDEDOR);
+            navigate(DASHBOARDVENDEDOR.replace(':id', userFound.id));
           } else if (userFound.rol === "repartidor") {
             navigate(DASHBOARDREPARTIDOR);
           }

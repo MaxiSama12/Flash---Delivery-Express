@@ -711,6 +711,17 @@
       "id_comercio": "5",
       "id_categoria": "3",
       "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+    },
+    {
+      "id": "1d01",
+      "nombre": "coca cola",
+      "descripcion": "coca cola 0",
+      "precio": 2500,
+      "rating": 0,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "6",
+      "url_imagen": "https://www.coca-cola.com/content/dam/onexp/mx/es/brands/coca-cola/coca-cola-original/Product-Information-Section-Coca-Cola-Original.jpg"
     }
   ]
 }
