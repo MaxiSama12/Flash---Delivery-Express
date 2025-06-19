@@ -1,0 +1,91 @@
+.perfil-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background-color: #343C58;
+  min-height: 100vh;
+  margin-top: 100px;
+}
+
+.perfil-card {
+  background-color: #56649C;
+  padding: 2rem;
+  border-radius: 1rem;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 500px;
+  font-family: 'Segoe UI', sans-serif;
+  height: 100vh;
+}
+
+.perfil-titulo {
+  color: #CA98C7;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.cargando {
+  text-align: center;
+  color: #CA98C7;
+  font-weight: bold;
+  padding: 2rem;
+}
+
+/*----------------------------------------*/
+
+.modal-body label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  color: #343C58;
+}
+
+.modal-body input {
+  width: 100%;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 0.7rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #343C58;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.modal-body input:focus {
+  border-color: #9C5698;
+  box-shadow: 0 0 0 2px rgba(156, 86, 152, 0.2);
+}
+
+.modal-content {
+  border-radius: 1rem;
+}
+
+.perfil-card {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.perfil-info p {
+  margin-bottom: 0.8rem;
+  color: #343C58;
+}
+
+/*------------------------*/
+.bloque-perfil {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 0.75rem 1rem;
+  border-radius: 0.8rem;
+  color: #343C58;
+  font-size: 1rem;
+}
+
+

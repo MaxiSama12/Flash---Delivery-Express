@@ -120,5 +120,11 @@
   color: #000;
 }
 
+.chevron-rotate {
+  transition: transform 0.3s ease;
+}
 
+.chevron-rotate.open {
+  transform: rotate(180deg);
+}
 

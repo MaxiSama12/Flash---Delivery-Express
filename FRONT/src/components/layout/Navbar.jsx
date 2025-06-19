@@ -174,23 +174,40 @@ const Navbar = () => {
                 Comercios
               </NavLink>
             </div>
-
-            <div className="position-relative">
+<div className="position-relative">
               <div
-                onClick={toggleMenu}
                 className="d-flex align-items-center gap-2"
                 style={{ cursor: "pointer" }}
               >
-                <Link
-                  to="/mi-perfil"
-                  className="nav-item-hover d-flex align-items-center gap-1"
-                >
-                  <FaUserCircle size={22} />
-                  <span>{usuario ? usuario.nombre : "Mi Perfil"}</span>
-                </Link>
 
-                <FaChevronDown className="nav-item-hover d-flex align-items-center gap-1" />
-              </div>
+                {!usuario ? (
+                  <div
+                    className="nav-item-hover d-flex align-items-center gap-1"
+                    onClick={toggleMenu}
+                  >
+                  <FaUserCircle size={22} />
+                  <span>Mi Perfil</span>
+                  <FaChevronDown className={`nav-item-hover chevron-rotate ${showMenu ? "open" : ""}`}/>
+                  </div>
+                ) : (
+                  <>
+                  <Link
+                    to="/mi-perfil"
+                    className="nav-item-hover d-flex align-items-center gap-1"
+                  >
+                  <FaUserCircle size={22} />
+                  <span>{usuario.nombre}</span>
+                  </Link>
+
+                  <FaChevronDown
+                    className={`nav-item-hover chevron-rotate ${showMenu ? "open" : ""}`}
+                    style={{ cursor: "pointer" }}
+                    onClick={toggleMenu}
+                  />
+
+                  </>
+                )}
+                </div>
 
               {showMenu && (
                 <div

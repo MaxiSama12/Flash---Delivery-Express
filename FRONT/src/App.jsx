@@ -33,6 +33,7 @@ import Cart from "./components/ui/Cart";
 import { useState } from "react";
 import MisDirecciones from "./pages/MisDirecciones/MisDirecciones";
 import LoginForm from "./components/auth/LoginForm";
+import MiPerfil from "./pages/MiPerfil/MiPerfil";
 
 function App() {
   const [isBouncing, setIsBouncing] = useState(false);
@@ -65,6 +66,7 @@ function App() {
           path={REGISTERREPARTIDOR}
           element={<RegisterRepartidorPages />}
         />
+        <Route path="/mi-perfil" element={<MiPerfil/>}/>
         <Route path="/login" element={<LoginForm />} />
         <Route path="/mis-direcciones" element={<MisDirecciones />} />
         <Route path={DASHBOARDREPARTIDOR} element={<DashboardRepartidor />} />
