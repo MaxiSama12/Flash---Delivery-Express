@@ -7,7 +7,7 @@ import { LOGIN } from "../../router/route";
 
 const RegisterFormRepartidor = () => {
   const [formData, setFormData] = useState({
-    nombre: "",
+    nombre_usuario: "",
     telefono: "",
     email: "",
     vehiculo: "",
@@ -25,7 +25,7 @@ const RegisterFormRepartidor = () => {
     try {
       e.preventDefault();
       await axios.post(CLIENTES, formData);
-      alert(`!Repartidor Registrado!, Bienvenido ${formData.nombre}`);
+      alert(`!Repartidor Registrado!, Bienvenido ${formData.nombre_usuario}`);
       console.log(formData);
       navigate(LOGIN);
     } catch (error) {
@@ -42,8 +42,8 @@ const RegisterFormRepartidor = () => {
           Nombre completo:
           <input
             type="text"
-            name="nombre"
-            value={formData.nombre}
+            name="nombre_usuario"
+            value={formData.nombre_usuario}
             onChange={handleChange}
             className="registro-input"
             required
