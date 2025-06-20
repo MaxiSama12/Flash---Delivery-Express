@@ -12,4 +12,5 @@ export const DASHBOARDREPARTIDOR = '/dashboard-repartidor'
 
 export const COMERCIO = '/comercios'
 export const REGISTERCOMERCIO = '/register-vendedor-comercio'
-export const DASHBOARDCOMERCIO = '/dashboard-vendedor'
+
+export const DASHBOARDVENDEDOR = "/dashboard-vendedor/:id";

@@ -26,7 +26,7 @@ import Cart from "./components/ui/Cart";
 import { useState } from "react";
 import MisDirecciones from "./pages/MisDirecciones/MisDirecciones";
 import LoginForm from "./components/auth/LoginForm";
-import ProtectedRoutes from "./components/utils/ProtectedRoutes";
+
 
 function App() {
   const [isBouncing, setIsBouncing] = useState(false);
@@ -38,7 +38,7 @@ function App() {
       {!ocultarCart && <Cart isBouncing={isBouncing} />}
       <ToastContainer />
       <Routes>
-        <Route path="/vendedor/:id" element={<DashboardVendedor />} />
+        <Route path="/dashboard-vendedor/:id" element={<DashboardVendedor />} />
 
         <Route path="/repartidor" element={<DashboardRepartidor />} />
 
@@ -65,7 +65,7 @@ function App() {
         <Route path={DASHBOARDREPARTIDOR} element={<DashboardRepartidor />} />
         <Route path="*" element={<NotFound />} />
         <Route path={REGISTERCOMERCIO} element={<RegisterComercioPages />} />
-        <Route path={DASHBOARDCOMERCIO} element={<DashboardVendedor />} />
+        {/* <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor />} /> */}
         <Route path={`${COMERCIO}/:id`} element={<ComercioPage />} />
       </Routes>
     </>
