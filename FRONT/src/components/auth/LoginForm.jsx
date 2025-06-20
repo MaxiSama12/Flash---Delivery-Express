@@ -4,7 +4,7 @@ import {
   HOME,
   REGISTERCLIENTE,
   REGISTERCOMERCIO,
-  REGISTERREPARTIDOR, 
+  REGISTERREPARTIDOR,
 } from "../../router/route";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -13,20 +13,21 @@ import "../../styles/LoginForm.css";
 import axios from "axios";
 import { useLogin } from "../../context/useLogin.js";
 import { useAuthStore } from "../../store/authStore";
+import Swal from "sweetalert2"; // ✅ Importación de SweetAlert2
 
 const LoginForm = () => {
-  const { login } = useAuthStore();
+  const { login, } = useAuthStore();
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
+    password: "", 
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  //Zustand para guardar los datos del usuario.
+
   const { setId, setNombre, setRol } = useLogin();
 
   const handleSubmit = async (e) => {
@@ -35,37 +36,49 @@ const LoginForm = () => {
       const res = await axios.get(CLIENTES);
       const users = res.data;
 
-      //en este codigo se verifica el mail y la contraseña ingresadas y devuelve un error personalizado si no se encuentra el mail o la contraseña
       const userFound = users.find((user) => user.email === formData.email);
       if (userFound) {
         if (userFound.password === formData.password) {
-          console.log("el usuario encontrado fue: ", userFound);
           setId(userFound.id);
           setNombre(userFound.nombre_usuario);
           setRol(userFound.rol);
           login(userFound);
-          console.log(userFound);
-          alert(
-            `Inicio de sesión exitoso, bienvenido ${userFound.nombre_usuario}`
-          );
+
           if (userFound.rol === "cliente") {
+            Swal.fire(
+              "¡Bienvenido!",
+              `Inicio de sesión exitoso, bienvenido ${userFound.nombre_usuario}`,
+              "success"
+            );
             navigate(HOME);
           } else if (userFound.rol === "comercio") {
-            alert(
-              `Inicio de sesión exitoso, bienvenido ${userFound.nombre_usuario} dueño de ${userFound.nombre_comercio}`
+            Swal.fire(
+              "¡Bienvenido!",
+              `Inicio de sesión exitoso, bienvenido ${userFound.nombre_usuario}, dueño de ${userFound.nombre_comercio}`,
+              "success"
             );
             navigate(`${DASHBOARDCOMERCIO}/${userFound.id}`);
           } else if (userFound.rol === "repartidor") {
+            Swal.fire(
+              "¡Bienvenido!",
+              `Inicio de sesión exitoso, bienvenido ${userFound.nombre_usuario}`,
+              "success"
+            );
             navigate(DASHBOARDREPARTIDOR);
           }
         } else {
-          setLoginError("la contraseña es incorrecta");
+          setLoginError("La contraseña es incorrecta");
         }
       } else {
-        setLoginError("la contraseña es incorrecta");
+        setLoginError("El correo ingresado no existe");
       }
     } catch (error) {
       console.log("error trayendo los usuarios:", error);
+      Swal.fire(
+        "Error",
+        "Hubo un problema al conectarse con el servidor",
+        "error"
+      );
     }
   };
 
@@ -86,7 +99,6 @@ const LoginForm = () => {
             className="login-input"
             required
           />
-          {/* {formData.email} */}
         </label>
 
         <label>
@@ -99,15 +111,12 @@ const LoginForm = () => {
             className="login-input"
             required
           />
-          {/* {formData.password} */}
         </label>
         <button type="submit" className="login-button mb-3">
           Ingresar
         </button>
-        {loginError ? (
+        {loginError && (
           <p className="p-1 text-center alert alert-danger">{loginError}</p>
-        ) : (
-          ""
         )}
 
         <div className="login-links">

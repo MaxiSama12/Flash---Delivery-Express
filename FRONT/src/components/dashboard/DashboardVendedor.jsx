@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import {
   Container,
   Row,
@@ -10,8 +10,8 @@ import {
   Badge,
   Modal,
   Form,
-} from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+} from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
 export default function VendedorDashboard() {
   const [stats, setStats] = useState({
@@ -27,35 +27,36 @@ export default function VendedorDashboard() {
   const [modalActivo, setModalActivo] = useState(null);
 
   const [nuevoProducto, setNuevoProducto] = useState({
-    nombre: '',
-    precio: '',
-    stock: '',
+    nombre: "",
+    precio: "",
+    stock: "",
   });
 
   const [productoEditar, setProductoEditar] = useState({
     id: null,
-    nombre: '',
-    precio: '',
-    stock: '',
+    nombre: "",
+    precio: "",
+    stock: "",
   });
 
-  const {id} = useParams(); 
+  const { id } = useParams();
 
   useEffect(() => {
     const cargarDatos = async () => {
       try {
-        const resPedidos = await axios.get('http://localhost:3000/pedidos');
-        const resProductos = await axios.get('http://localhost:3000/productos');
-const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio === id);
+        const resPedidos = await axios.get("http://localhost:3000/pedidos");
+        const resProductos = await axios.get("http://localhost:3000/productos");
+        const resProductosfilter = resProductos.data.filter(
+          (prod) => prod.id_comercio === id
+        );
         setRecentOrders(resPedidos.data);
         setProductos(resProductosfilter);
 
         actualizarStats(resPedidos.data);
         console.log("respuesta de productos", resProductos);
-        console.log("filtrado", resProductosfilter)
-
+        console.log("filtrado", resProductosfilter);
       } catch (error) {
-        console.error('Error cargando datos:', error);
+        console.error("Error cargando datos:", error);
       }
     };
 
@@ -64,10 +65,10 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
 
   const actualizarStats = (pedidos) => {
     const total = pedidos.length;
-    const pendientes = pedidos.filter((p) => p.status === 'pendiente').length;
-    const completados = pedidos.filter((p) => p.status === 'completado').length;
+    const pendientes = pedidos.filter((p) => p.status === "pendiente").length;
+    const completados = pedidos.filter((p) => p.status === "completado").length;
     const ganancias = pedidos
-      .filter((p) => p.status === 'completado')
+      .filter((p) => p.status === "completado")
       .reduce((suma, p) => suma + p.total, 0);
 
     setStats({
@@ -81,17 +82,17 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
   const marcarComoCompletado = async (id) => {
     try {
       await axios.patch(`http://localhost:3001/pedidos/${id}`, {
-        status: 'completado',
+        status: "completado",
       });
 
       const pedidosActualizados = recentOrders.map((pedido) =>
-        pedido.id === id ? { ...pedido, status: 'completado' } : pedido
+        pedido.id === id ? { ...pedido, status: "completado" } : pedido
       );
 
       setRecentOrders(pedidosActualizados);
       actualizarStats(pedidosActualizados);
     } catch (error) {
-      console.error('Error al actualizar pedido:', error);
+      console.error("Error al actualizar pedido:", error);
     }
   };
 
@@ -107,7 +108,7 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
       !nuevoProducto.precio.toString().trim() ||
       !nuevoProducto.stock.toString().trim()
     ) {
-      alert('Por favor, complete todos los campos');
+      alert("Por favor, complete todos los campos");
       return;
     }
 
@@ -117,12 +118,12 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
         precio: Number(nuevoProducto.precio),
         stock: Number(nuevoProducto.stock),
       };
-      const res = await axios.post('http://localhost:3001/productos', nuevo);
+      const res = await axios.post("http://localhost:3001/productos", nuevo);
       setProductos((prev) => [...prev, res.data]);
-      setNuevoProducto({ nombre: '', precio: '', stock: '' });
+      setNuevoProducto({ nombre: "", precio: "", stock: "" });
       setModalActivo(null);
     } catch (error) {
-      console.error('Error agregando producto:', error);
+      console.error("Error agregando producto:", error);
     }
   };
 
@@ -133,7 +134,7 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
       precio: producto.precio.toString(),
       //stock: producto.stock.toString(),
     });
-    setModalActivo('editarProducto');
+    setModalActivo("editarProducto");
   };
 
   const handleEditarProductoChange = (e) => {
@@ -149,7 +150,7 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
       !productoEditar.precio.toString().trim() ||
       !productoEditar.stock.toString().trim()
     ) {
-      alert('Por favor, complete todos los campos');
+      alert("Por favor, complete todos los campos");
       return;
     }
 
@@ -159,7 +160,10 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
         precio: Number(productoEditar.precio),
         stock: Number(productoEditar.stock),
       };
-      await axios.put(`http://localhost:3001/productos/${productoEditar.id}`, actualizado);
+      await axios.put(
+        `http://localhost:3001/productos/${productoEditar.id}`,
+        actualizado
+      );
 
       setProductos((prev) =>
         prev.map((prod) =>
@@ -167,9 +171,9 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
         )
       );
       setModalActivo(null);
-      setProductoEditar({ id: null, nombre: '', precio: '', stock: '' });
+      setProductoEditar({ id: null, nombre: "", precio: "", stock: "" });
     } catch (error) {
-      console.error('Error editando producto:', error);
+      console.error("Error editando producto:", error);
     }
   };
 
@@ -178,7 +182,7 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
       await axios.delete(`http://localhost:3001/productos/${id}`);
       setProductos(productos.filter((prod) => prod.id !== id));
     } catch (error) {
-      console.error('Error eliminando producto:', error);
+      console.error("Error eliminando producto:", error);
     }
   };
 
@@ -237,7 +241,7 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
           <Button
             variant="primary"
             className="w-100"
-            onClick={() => setModalActivo('agregar')}
+            onClick={() => setModalActivo("agregar")}
           >
             Agregar producto
           </Button>
@@ -246,7 +250,7 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
           <Button
             variant="secondary"
             className="w-100"
-            onClick={() => setModalActivo('verPedidos')}
+            onClick={() => setModalActivo("verPedidos")}
           >
             Ver pedidos
           </Button>
@@ -255,7 +259,7 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
           <Button
             variant="warning"
             className="w-100"
-            onClick={() => setModalActivo('gestionarProductos')}
+            onClick={() => setModalActivo("gestionarProductos")}
           >
             Gestionar productos
           </Button>
@@ -263,7 +267,10 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
       </Row>
 
       {/* Modal Agregar Producto */}
-      <Modal show={modalActivo === 'agregar'} onHide={() => setModalActivo(null)}>
+      <Modal
+        show={modalActivo === "agregar"}
+        onHide={() => setModalActivo(null)}
+      >
         <Form onSubmit={agregarProducto}>
           <Modal.Header closeButton>
             <Modal.Title>Agregar Producto</Modal.Title>
@@ -316,7 +323,11 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
       </Modal>
 
       {/* Modal Ver Pedidos */}
-      <Modal show={modalActivo === 'verPedidos'} onHide={() => setModalActivo(null)} size="lg">
+      <Modal
+        show={modalActivo === "verPedidos"}
+        onHide={() => setModalActivo(null)}
+        size="lg"
+      >
         <Modal.Header closeButton>
           <Modal.Title>Todos los Pedidos</Modal.Title>
         </Modal.Header>
@@ -329,14 +340,17 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
                 <ListGroup.Item key={order.id}>
                   <div className="d-flex justify-content-between align-items-center">
                     <div>
-                      <strong>Pedido #{order.id}</strong> - Cliente: {order.cliente}
+                      <strong>Pedido #{order.id}</strong> - Cliente:{" "}
+                      {order.cliente}
                       <br />
-                      Total: ${order.total} - Estado:{' '}
-                      <Badge bg={order.status === 'pendiente' ? 'danger' : 'success'}>
+                      Total: ${order.total} - Estado:{" "}
+                      <Badge
+                        bg={order.status === "pendiente" ? "danger" : "success"}
+                      >
                         {order.status}
                       </Badge>
                     </div>
-                    {order.status === 'pendiente' && (
+                    {order.status === "pendiente" && (
                       <Button
                         variant="outline-success"
                         size="sm"
@@ -359,7 +373,11 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
       </Modal>
 
       {/* Modal Gestionar Productos */}
-      <Modal show={modalActivo === 'gestionarProductos'} onHide={() => setModalActivo(null)} size="lg">
+      <Modal
+        show={modalActivo === "gestionarProductos"}
+        onHide={() => setModalActivo(null)}
+        size="lg"
+      >
         <Modal.Header closeButton>
           <Modal.Title>Gestionar Productos</Modal.Title>
         </Modal.Header>
@@ -374,7 +392,8 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
                   className="d-flex justify-content-between align-items-center"
                 >
                   <div>
-                    <strong>{prod.nombre}</strong> - Precio: ${prod.precio} - Stock: {prod.stock}
+                    <strong>{prod.nombre}</strong> - Precio: ${prod.precio} -
+                    Stock: {prod.stock}
                   </div>
                   <div>
                     <Button
@@ -385,7 +404,11 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
                     >
                       Editar
                     </Button>
-                    <Button variant="danger" size="sm" onClick={() => eliminarProducto(prod.id)}>
+                    <Button
+                      variant="danger"
+                      size="sm"
+                      onClick={() => eliminarProducto(prod.id)}
+                    >
                       Eliminar
                     </Button>
                   </div>
@@ -402,7 +425,10 @@ const resProductosfilter = resProductos.data.filter((prod) => prod.id_comercio =
       </Modal>
 
       {/* Modal Editar Producto */}
-      <Modal show={modalActivo === 'editarProducto'} onHide={() => setModalActivo(null)}>
+      <Modal
+        show={modalActivo === "editarProducto"}
+        onHide={() => setModalActivo(null)}
+      >
         <Form onSubmit={guardarProductoEditado}>
           <Modal.Header closeButton>
             <Modal.Title>Editar Producto</Modal.Title>
