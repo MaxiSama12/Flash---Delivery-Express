@@ -270,7 +270,7 @@
     {
       "id": "b23a",
       "fecha_pedido": "2025-06-19T20:27:28.381Z",
-      "estado": "pendiente",
+      "estado": "completado",
       "direccion_entrega": "No existe dirección",
       "id_cliente": "1",
       "id_repartidor": null,

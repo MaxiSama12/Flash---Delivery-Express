@@ -246,17 +246,14 @@ const VendedorDashboard = () => {
 
     try {
       setLoading(true);
-      await axios.patch(
-        `http://localhost:3000/pedido_producto/${pedidoProductoId}`,
-        {
-          status: "completado",
-        }
-      );
+      await axios.patch(`http://localhost:3000/pedidos/${pedidoProductoId}`, {
+  estado: "completado",
+});
 
       setPedidoProductos((prev) =>
         prev.map((pedido) =>
           pedido.id === pedidoProductoId
-            ? { ...pedido, status: "completado" }
+            ? { ...pedido, estado: "completado" }
             : pedido
         )
       );
