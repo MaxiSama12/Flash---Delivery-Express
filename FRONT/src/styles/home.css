@@ -43,11 +43,11 @@ body {
 }
 
 .home-banner-container {
-  margin-top: 2.5rem !important;
+  margin-top: 3.5rem !important;
   position: relative;
   display: flex;
   padding-top: 3rem;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   width: 85vw;
   max-width: 1900px;
   margin: 0rem auto;
@@ -64,15 +64,18 @@ body {
 }
 
 .home-image-section {
-  max-width: 500px;
+  max-width: 450px;
   flex: 1;
+  align-self: center;
+  display: flex;
+  justify-content: center;
 }
 
 .home-text-section {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: flex-start;
 }
 
