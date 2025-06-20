@@ -170,10 +170,10 @@
     {
       "id": "d9f4",
       "fecha_pedido": "2025-06-18T14:54:57.035Z",
-      "estado": "pendiente",
+      "estado": "en reparto",
       "direccion_entrega": "No existe dirección",
       "id_cliente": "1",
-      "id_repartidor": null,
+      "id_repartidor": "ba35",
       "id_comercio": "4",
       "productos": [
         {
@@ -303,10 +303,10 @@
     {
       "id": "10e4",
       "fecha_pedido": "2025-06-18T17:42:07.763Z",
-      "estado": "pendiente",
+      "estado": "en reparto",
       "direccion_entrega": "No existe dirección",
       "id_cliente": "1",
-      "id_repartidor": null,
+      "id_repartidor": "ba35",
       "id_comercio": "1",
       "productos": [
         {

@@ -1,63 +1,83 @@
-import { Container, Row, Col, Card, Button, ListGroup, Badge } from 'react-bootstrap';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { Container, Row, Col, Card, Button, ListGroup, Badge } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function RepartidorDashboard() {
   const [stats, setStats] = useState({
-    totalDeliveries: 4,
-    todayDeliveries: 2,
-    totalEarnings: 20,
-    activeRoutes: 1,
+    totalDeliveries: 0,
+    todayDeliveries: 0,
+    totalEarnings: 0,
+    activeRoutes: 0,
   });
 
   const [availableOrders, setAvailableOrders] = useState([]);
+  const [myRoutes, setMyRoutes] = useState([]);
 
-useEffect(() => {
-  const fetchPedidos = async () => {
-    try {
-      const res = await axios.get('http://localhost:3000/pedidos');
-      const completados = res.data.filter(p => p.status === 'completado');
-      setAvailableOrders(completados);
-    } catch (error) {
-      console.error('Error al cargar pedidos:', error);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [pedidosRes, comerciosRes, clientesRes] = await Promise.all([
+          axios.get("http://localhost:3000/pedidos"),
+          axios.get("http://localhost:3000/comercios"),
+          axios.get("http://localhost:3000/clientes"),
+        ]);
 
-  fetchPedidos();
-}, []);
+        const completados = pedidosRes.data.filter(p => p.estado === "completado");
 
-  const [myRoutes, setMyRoutes] = useState([
-    {
-      id: 101,
-      pickupAddress: 'Calle 321',
-      deliveryAddress: 'Avenida 654',
-      estimatedTime: 30,
-      status: 'asignada',
-    },
-  ]);
+        const pedidosConDatos = completados.map(pedido => {
+          const comercio = comerciosRes.data.find(c => c.id === pedido.id_comercio);
+          const cliente = clientesRes.data.find(c => c.id === pedido.id_cliente);
+          return {
+            ...pedido,
+            comercioNombre: comercio?.nombre || "Comercio desconocido",
+            comercioDireccion: comercio?.direccion || "Sin dirección",
+            clienteNombre: cliente?.nombre || "Cliente desconocido",
+          };
+        });
 
-  const aceptarPedido = (pedido) => {
-    const nuevosPedidos = availableOrders.filter((o) => o.id !== pedido.id);
-    setAvailableOrders(nuevosPedidos);
-
-    const nuevaRuta = {
-      id: Math.floor(Math.random() * 1000) + 200, 
-      pickupAddress: pedido.comercioAddress,
-      deliveryAddress: pedido.deliveryAddress,
-      estimatedTime: 30, 
-      status: 'asignada',
-      total: pedido.total, 
+        setAvailableOrders(pedidosConDatos);
+      } catch (error) {
+        console.error("Error al cargar datos:", error);
+      }
     };
 
-    const nuevasRutas = [...myRoutes, nuevaRuta];
-    setMyRoutes(nuevasRutas);
+    fetchData();
+  }, []);
 
-    setStats((prev) => ({
-      totalDeliveries: prev.totalDeliveries + 1,
-      todayDeliveries: prev.todayDeliveries + 1, 
-      totalEarnings: prev.totalEarnings + pedido.total,
-      activeRoutes: prev.activeRoutes + 1,
-    }));
+  const aceptarPedido = async (pedido) => {
+    try {
+      // Simulación: asignar al repartidor y cambiar estado a "en reparto"
+      await axios.patch(`http://localhost:3000/pedidos/${pedido.id}`, {
+        estado: "en reparto",
+        id_repartidor: "ba35", // este ID lo podés reemplazar con el del repartidor logueado
+      });
+
+      // Agregar a "Mis Rutas"
+      const nuevaRuta = {
+        id: pedido.id,
+        pickupAddress: pedido.comercioDireccion,
+        deliveryAddress: pedido.direccion_entrega,
+        estimatedTime: 30,
+        status: "en reparto",
+        cliente: pedido.clienteNombre,
+        comercio: pedido.comercioNombre,
+      };
+
+      setMyRoutes(prev => [...prev, nuevaRuta]);
+
+      // Actualizar estadísticas
+      setStats(prev => ({
+        ...prev,
+        totalDeliveries: prev.totalDeliveries + 1,
+        todayDeliveries: prev.todayDeliveries + 1,
+        activeRoutes: prev.activeRoutes + 1,
+      }));
+
+      // Sacarlo de disponibles
+      setAvailableOrders(prev => prev.filter(p => p.id !== pedido.id));
+    } catch (error) {
+      console.error("Error al aceptar pedido:", error);
+    }
   };
 
   return (
@@ -116,10 +136,10 @@ useEffect(() => {
         <ListGroup>
           {availableOrders.map((order) => (
             <ListGroup.Item key={order.id}>
-              <strong>Pedido #{order.id}</strong> - ${order.total}
-              <br />
-              Recoger en: {order.comercioAddress} <br />
-              Entregar en: {order.deliveryAddress}
+              <strong>Pedido #{order.id}</strong> <br />
+              Cliente: {order.clienteNombre} <br />
+              Comercio: {order.comercioNombre} - {order.comercioDireccion} <br />
+              Entregar en: {order.direccion_entrega}
               <div className="mt-2">
                 <Button
                   variant="success"
@@ -142,12 +162,11 @@ useEffect(() => {
         <ListGroup>
           {myRoutes.map((route) => (
             <ListGroup.Item key={route.id}>
-              <strong>Ruta #{route.id}</strong>
-              <br />
-              Desde: {route.pickupAddress} - Hasta: {route.deliveryAddress}
-              <br />
-              Estado: <Badge bg="secondary">{route.status}</Badge> - Tiempo estimado:{' '}
-              {route.estimatedTime} minutos
+              <strong>Ruta #{route.id}</strong> <br />
+              Cliente: {route.cliente} <br />
+              Comercio: {route.comercio} <br />
+              Desde: {route.pickupAddress} - Hasta: {route.deliveryAddress} <br />
+              Estado: <Badge bg="secondary">{route.status}</Badge> - Tiempo estimado: {route.estimatedTime} minutos
             </ListGroup.Item>
           ))}
         </ListGroup>
