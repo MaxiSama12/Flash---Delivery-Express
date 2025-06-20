@@ -8,7 +8,6 @@ import {
   LOGIN,
   REGISTERCLIENTE,
   REGISTERREPARTIDOR,
-  DASHBOARDCOMERCIO,
   DASHBOARDREPARTIDOR,
   REGISTERCOMERCIO,
   COMERCIO,
@@ -38,6 +37,7 @@ function App() {
       {!ocultarCart && <Cart isBouncing={isBouncing} />}
       <ToastContainer />
       <Routes>
+
         <Route path="/dashboard-vendedor/:id" element={<DashboardVendedor />} />
 
         <Route path="/repartidor" element={<DashboardRepartidor />} />

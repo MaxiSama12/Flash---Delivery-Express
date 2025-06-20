@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Swal from "sweetalert2"; // ✅ Importado SweetAlert2
 import { useParams } from "react-router-dom";
 import {
   Button,
@@ -15,7 +16,7 @@ import {
 
 const VendedorDashboard = () => {
   const { id } = useParams();
-  const [comercio, setComercio] = useState(null);
+  const [comercio, setComercio] = useState({});
   const [productos, setProductos] = useState([]);
   const [pedidoProductos, setPedidoProductos] = useState([]);
   const [modalGestionProductos, setModalGestionProductos] = useState(false);
@@ -68,7 +69,7 @@ const VendedorDashboard = () => {
     const obtenerDatos = async () => {
       try {
         const comercioRes = await axios.get(
-          `http://localhost:3000/clientes/${id}`
+          `http://localhost:3000/comercios/${id}`
         );
         setComercio(comercioRes.data);
 
@@ -87,7 +88,7 @@ const VendedorDashboard = () => {
             (ped) => String(ped.id_comercio) === String(id)
           )
         );
-        console.log("pedido traido", pedidoProductoRes);
+
         const categoriasRes = await axios.get(
           "http://localhost:3000/categorias"
         );
@@ -96,7 +97,11 @@ const VendedorDashboard = () => {
         calcularStats(pedidoProductoRes.data);
       } catch (error) {
         console.error("Error al obtener datos:", error);
-        alert("Error al cargar los datos. Intente nuevamente.");
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Error al cargar los datos. Intente nuevamente.",
+        });
       }
     };
 
@@ -137,7 +142,11 @@ const VendedorDashboard = () => {
       !url_imagen.trim() ||
       !id_categoria
     ) {
-      alert("Por favor, complete todos los campos correctamente");
+      Swal.fire({
+        icon: "warning",
+        title: "Campos inválidos",
+        text: "Por favor, complete todos los campos correctamente",
+      });
       return;
     }
 
@@ -164,9 +173,19 @@ const VendedorDashboard = () => {
         id_categoria: "",
       });
       setModalAgregarEditar(null);
+      Swal.fire({
+        icon: "success",
+        title: "Producto agregado",
+        timer: 1500,
+        showConfirmButton: false,
+      });
     } catch (error) {
       console.error("Error al agregar producto:", error);
-      alert("Error al agregar producto.");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Error al agregar producto.",
+      });
     } finally {
       setLoading(false);
     }
@@ -183,8 +202,6 @@ const VendedorDashboard = () => {
       id_categoria,
     } = productoEditar;
 
-    console.log("productoeditar", productoEditar);
-
     if (
       !nombre.trim() ||
       !descripcion.trim() ||
@@ -193,7 +210,11 @@ const VendedorDashboard = () => {
       !url_imagen.trim() ||
       !id_categoria
     ) {
-      alert("Por favor, complete todos los campos correctamente");
+      Swal.fire({
+        icon: "warning",
+        title: "Campos inválidos",
+        text: "Por favor, complete todos los campos correctamente",
+      });
       return;
     }
 
@@ -209,7 +230,7 @@ const VendedorDashboard = () => {
         id_categoria,
         url_imagen: url_imagen.trim(),
       };
-      console.log("id produceto", prodId);
+
       await axios.put(
         `http://localhost:3000/productos/${prodId}`,
         productoActualizado
@@ -220,29 +241,59 @@ const VendedorDashboard = () => {
         )
       );
       setModalAgregarEditar(null);
+      Swal.fire({
+        icon: "success",
+        title: "Producto actualizado",
+        timer: 1500,
+        showConfirmButton: false,
+      });
     } catch (error) {
       console.error("Error al guardar producto editado:", error);
-      alert("Error al editar producto.");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Error al editar producto.",
+      });
     } finally {
       setLoading(false);
     }
   };
 
   const eliminarProducto = async (prodId) => {
-    if (!window.confirm("¿Estás seguro que deseas eliminar este producto?"))
-      return;
+    const result = await Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (!result.isConfirmed) return;
 
     try {
       await axios.delete(`http://localhost:3000/productos/${prodId}`);
       setProductos((prev) => prev.filter((prod) => prod.id !== prodId));
+      Swal.fire({
+        icon: "success",
+        title: "Producto eliminado",
+        timer: 1200,
+        showConfirmButton: false,
+      });
     } catch (error) {
       console.error("Error al eliminar producto:", error);
-      alert("Error al eliminar producto.");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Error al eliminar producto.",
+      });
     }
   };
 
   const cambiarEstadoPedido = async (pedidoProductoId, estadoActual) => {
-    if (estadoActual === "completado") return; // No hace nada si ya está completado
+    if (estadoActual === "completado") return;
 
     try {
       setLoading(true);
@@ -260,18 +311,25 @@ const VendedorDashboard = () => {
             : pedido
         )
       );
+      Swal.fire({
+        icon: "success",
+        title: "Pedido marcado como completado",
+        timer: 1200,
+        showConfirmButton: false,
+      });
     } catch (error) {
       console.error("Error al cambiar estado del pedido:", error);
-      alert("No se pudo cambiar el estado del pedido.");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "No se pudo cambiar el estado del pedido.",
+      });
     } finally {
       setLoading(false);
     }
   };
-
-  if (!comercio) {
-    return <div className="text-center py-5">Cargando comercio...</div>;
-  }
-
+  console.log(comercio)
+  
   return (
     <Container className="py-4">
       <h2 className="mb-4 text-success">Panel de {comercio.nombre}</h2>

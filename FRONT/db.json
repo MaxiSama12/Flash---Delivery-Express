@@ -547,15 +547,15 @@
   ],
   "productos": [
     {
-      "id": "1",
       "nombre": "Hamburguesa Argenta",
-      "descripcion": "Descripción de Hamburguesa Argenta",
+      "descripcion": "Descripción de Hamburguesa Argenta.",
       "precio": 1199,
       "rating": 4.4,
       "disponible": true,
       "id_comercio": "4",
       "id_categoria": "1",
-      "url_imagen": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=400&q=80",
+      "id": "1"
     },
     {
       "id": "2",

@@ -1,6 +1,5 @@
 import {
-  DASHBOARDREPARTIDOR,
-  DASHBOARDCOMERCIO,
+  DASHBOARDREPARTIDOR, 
   HOME,
   REGISTERCLIENTE,
   REGISTERCOMERCIO,
@@ -57,7 +56,7 @@ const LoginForm = () => {
               `Inicio de sesión exitoso, bienvenido ${userFound.nombre_usuario}, dueño de ${userFound.nombre_comercio}`,
               "success"
             );
-            navigate(`${DASHBOARDCOMERCIO}/${userFound.id}`);
+            navigate(`/dashboard-vendedor/${userFound.id}`);
           } else if (userFound.rol === "repartidor") {
             Swal.fire(
               "¡Bienvenido!",
