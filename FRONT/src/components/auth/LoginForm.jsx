@@ -63,7 +63,7 @@ const LoginForm = () => {
     }
   };
 
-  
+
   return (
     <div className="container cont-form p-5 d-flex justify-content-center mt-5">
       <form className="login-form" onSubmit={handleSubmit}>
@@ -104,7 +104,7 @@ const LoginForm = () => {
           {loginError}
         </p>) : ""
         }
-        
+
 
         <div className="login-links">
           <p>¿No tienes una cuenta?</p>
