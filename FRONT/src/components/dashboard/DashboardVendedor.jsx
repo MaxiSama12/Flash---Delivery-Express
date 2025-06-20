@@ -83,7 +83,9 @@ const VendedorDashboard = () => {
         );
 
         setPedidoProductos(
-          pedidoProductoRes.data.filter((ped) => String(ped.id_comercio) === String(id))
+          pedidoProductoRes.data.filter(
+            (ped) => String(ped.id_comercio) === String(id)
+          )
         );
         console.log("pedido traido", pedidoProductoRes);
         const categoriasRes = await axios.get(
@@ -314,11 +316,18 @@ const VendedorDashboard = () => {
                 <Badge bg="info">
                   $
                   {pedidoProductos
+                    .filter((pedido) => pedido.estado === "completado")
                     .reduce((total, pedido) => {
-                      const prod = productos.find(
-                        (p) => p.id === pedido.id_producto
+                      return (
+                        total +
+                        pedido.productos.reduce((acc, producto) => {
+                          const prod = productos.find(
+                            (p) => String(p.id) === String(producto.id_producto)
+                          );
+                          const precioUnitario = prod?.precio || 0;
+                          return acc + precioUnitario * producto.cantidad;
+                        }, 0)
                       );
-                      return total + (prod?.precio || 0) * pedido.cantidad;
                     }, 0)
                     .toFixed(2)}
                 </Badge>
@@ -613,13 +622,18 @@ const VendedorDashboard = () => {
                   </Card.Header>
 
                   <Card.Body>
-                    <Table striped bordered hover responsive style={{ width: "400px" }}>
+                    <Table
+                      striped
+                      bordered
+                      hover
+                      responsive
+                      style={{ width: "400px" }}
+                    >
                       <thead>
                         <tr>
                           <th>Producto</th>
                           <th>Cantidad</th>
                           <th>Precio Unitario</th>
-                          <th>Total</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -628,8 +642,6 @@ const VendedorDashboard = () => {
                             (p) => String(p.id) === String(producto.id_producto)
                           );
                           const precioUnitario = prod?.precio || 0;
-                          const total = precioUnitario * producto.cantidad;
-
                           return (
                             <tr
                               key={`${pedido.id}-${producto.id_producto}-${index}`}
@@ -637,12 +649,31 @@ const VendedorDashboard = () => {
                               <td>{prod ? prod.nombre : "N/A"}</td>
                               <td>{producto.cantidad}</td>
                               <td>${precioUnitario.toFixed(2)}</td>
-                              <td>${total.toFixed(2)}</td>
                             </tr>
                           );
                         })}
                       </tbody>
                     </Table>
+
+                    {/* Mostrar total debajo de la tabla */}
+                    <div
+                      style={{
+                        textAlign: "right",
+                        fontWeight: "bold",
+                        marginTop: "10px",
+                      }}
+                    >
+                      Total: $
+                      {pedido.productos
+                        .reduce((acc, producto) => {
+                          const prod = productos.find(
+                            (p) => String(p.id) === String(producto.id_producto)
+                          );
+                          const precioUnitario = prod?.precio || 0;
+                          return acc + precioUnitario * producto.cantidad;
+                        }, 0)
+                        .toFixed(2)}
+                    </div>
                   </Card.Body>
                 </Card>
               );
