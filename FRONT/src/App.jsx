@@ -1,13 +1,12 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import LoginPages from "./pages/LoginPages";
 import RegisterClientePages from "./pages/RegisterClientePages";
-import RegisterVendedorPages from "./pages/RegisterVendedorPages";
 import RegisterRepartidorPages from "./pages/RegisterRepartidorPages";
 import "./index.css";
 import {
   HOME,
   LOGIN,
-  REGISTERCLIENTE, 
+  REGISTERCLIENTE,
   REGISTERREPARTIDOR,
   DASHBOARDCOMERCIO,
   DASHBOARDREPARTIDOR,
@@ -66,14 +65,7 @@ function App() {
         <Route path={DASHBOARDREPARTIDOR} element={<DashboardRepartidor />} />
         <Route path="*" element={<NotFound />} />
         <Route path={REGISTERCOMERCIO} element={<RegisterComercioPages />} />
-        <Route
-          path={DASHBOARDCOMERCIO}
-          element={
-            <ProtectedRoutes>
-              <DashboardVendedor />
-            </ProtectedRoutes>
-          }
-        />
+        <Route path={DASHBOARDCOMERCIO} element={<DashboardVendedor />} />
         <Route path={`${COMERCIO}/:id`} element={<ComercioPage />} />
       </Routes>
     </>
