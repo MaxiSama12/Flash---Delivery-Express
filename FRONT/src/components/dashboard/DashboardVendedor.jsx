@@ -51,10 +51,14 @@ const VendedorDashboard = () => {
 
   const calcularStats = (listaPedidoProductos) => {
     const totalOrders = listaPedidoProductos.length;
-    const pendingOrders = listaPedidoProductos.filter(p => p.status === "pendiente").length;
-    const completedOrders = listaPedidoProductos.filter(p => p.status === "completado").length;
+    const pendingOrders = listaPedidoProductos.filter(
+      (p) => p.status === "pendiente"
+    ).length;
+    const completedOrders = listaPedidoProductos.filter(
+      (p) => p.status === "completado"
+    ).length;
     const totalEarnings = listaPedidoProductos
-      .filter(p => p.status === "completado")
+      .filter((p) => p.status === "completado")
       .reduce((sum, p) => sum + p.total, 0);
 
     setStats({ totalOrders, pendingOrders, completedOrders, totalEarnings });
@@ -63,19 +67,28 @@ const VendedorDashboard = () => {
   useEffect(() => {
     const obtenerDatos = async () => {
       try {
-        const comercioRes = await axios.get(`http://localhost:3000/clientes/${id}`);
+        const comercioRes = await axios.get(
+          `http://localhost:3000/clientes/${id}`
+        );
         setComercio(comercioRes.data);
 
         const productosRes = await axios.get("http://localhost:3000/productos");
         const productosFiltrados = productosRes.data.filter(
-          prod => String(prod.id_comercio) === String(id)
+          (prod) => String(prod.id_comercio) === String(id)
         );
         setProductos(productosFiltrados);
 
-        const pedidoProductoRes = await axios.get("http://localhost:3000/pedido_producto");
-        setPedidoProductos(pedidoProductoRes.data);
+        const pedidoProductoRes = await axios.get(
+          "http://localhost:3000/pedidos"
+        );
 
-        const categoriasRes = await axios.get("http://localhost:3000/categorias");
+        setPedidoProductos(
+          pedidoProductoRes.data.filter((ped) => ped.id_comercio === id)
+        );
+        console.log("pedido traido", pedidoProductoRes);
+        const categoriasRes = await axios.get(
+          "http://localhost:3000/categorias"
+        );
         setCategorias(categoriasRes.data);
 
         calcularStats(pedidoProductoRes.data);
@@ -111,9 +124,17 @@ const VendedorDashboard = () => {
 
   const agregarProducto = async (e) => {
     e.preventDefault();
-    const { nombre, descripcion, precio, url_imagen, id_categoria } = nuevoProducto;
+    const { nombre, descripcion, precio, url_imagen, id_categoria } =
+      nuevoProducto;
 
-    if (!nombre.trim() || !descripcion.trim() || isNaN(precio) || Number(precio) <= 0 || !url_imagen.trim() || !id_categoria) {
+    if (
+      !nombre.trim() ||
+      !descripcion.trim() ||
+      isNaN(precio) ||
+      Number(precio) <= 0 ||
+      !url_imagen.trim() ||
+      !id_categoria
+    ) {
       alert("Por favor, complete todos los campos correctamente");
       return;
     }
@@ -151,9 +172,25 @@ const VendedorDashboard = () => {
 
   const guardarProductoEditado = async (e) => {
     e.preventDefault();
-    const { id: prodId, nombre, descripcion, precio, url_imagen, id_categoria } = productoEditar;
+    const {
+      id: prodId,
+      nombre,
+      descripcion,
+      precio,
+      url_imagen,
+      id_categoria,
+    } = productoEditar;
 
-    if (!nombre.trim() || !descripcion.trim() || isNaN(precio) || Number(precio) <= 0 || !url_imagen.trim() || !id_categoria) {
+    console.log("productoeditar", productoEditar);
+
+    if (
+      !nombre.trim() ||
+      !descripcion.trim() ||
+      isNaN(precio) ||
+      Number(precio) <= 0 ||
+      !url_imagen.trim() ||
+      !id_categoria
+    ) {
       alert("Por favor, complete todos los campos correctamente");
       return;
     }
@@ -170,8 +207,11 @@ const VendedorDashboard = () => {
         id_categoria,
         url_imagen: url_imagen.trim(),
       };
-
-      await axios.put(`http://localhost:3000/productos/${prodId}`, productoActualizado);
+      console.log("id produceto", prodId);
+      await axios.put(
+        `http://localhost:3000/productos/${prodId}`,
+        productoActualizado
+      );
       setProductos((prev) =>
         prev.map((prod) =>
           prod.id === prodId ? { ...prod, ...productoActualizado } : prod
@@ -187,7 +227,8 @@ const VendedorDashboard = () => {
   };
 
   const eliminarProducto = async (prodId) => {
-    if (!window.confirm("¿Estás seguro que deseas eliminar este producto?")) return;
+    if (!window.confirm("¿Estás seguro que deseas eliminar este producto?"))
+      return;
 
     try {
       await axios.delete(`http://localhost:3000/productos/${prodId}`);
@@ -199,28 +240,31 @@ const VendedorDashboard = () => {
   };
 
   const cambiarEstadoPedido = async (pedidoProductoId, estadoActual) => {
-  if (estadoActual === "completado") return; // No hace nada si ya está completado
+    if (estadoActual === "completado") return; // No hace nada si ya está completado
 
-  try {
-    setLoading(true);
-    await axios.patch(`http://localhost:3000/pedido_producto/${pedidoProductoId}`, {
-      status: "completado",
-    });
+    try {
+      setLoading(true);
+      await axios.patch(
+        `http://localhost:3000/pedido_producto/${pedidoProductoId}`,
+        {
+          status: "completado",
+        }
+      );
 
-    setPedidoProductos((prev) =>
-      prev.map((pedido) =>
-        pedido.id === pedidoProductoId
-          ? { ...pedido, status: "completado" }
-          : pedido
-      )
-    );
-  } catch (error) {
-    console.error("Error al cambiar estado del pedido:", error);
-    alert("No se pudo cambiar el estado del pedido.");
-  } finally {
-    setLoading(false);
-  }
-};
+      setPedidoProductos((prev) =>
+        prev.map((pedido) =>
+          pedido.id === pedidoProductoId
+            ? { ...pedido, status: "completado" }
+            : pedido
+        )
+      );
+    } catch (error) {
+      console.error("Error al cambiar estado del pedido:", error);
+      alert("No se pudo cambiar el estado del pedido.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (!comercio) {
     return <div className="text-center py-5">Cargando comercio...</div>;
@@ -230,7 +274,7 @@ const VendedorDashboard = () => {
     <Container className="py-4">
       <h2 className="mb-4 text-success">Panel de {comercio.nombre}</h2>
 
-       {/* Estadísticas */}
+      {/* Estadísticas */}
       <Row className="mb-4">
         <Col md={3}>
           <Card className="text-center">
@@ -553,53 +597,66 @@ const VendedorDashboard = () => {
           {pedidoProductos.length === 0 ? (
             <p>No hay pedidos.</p>
           ) : (
-          <Table striped bordered hover responsive>
-  <thead>
-    <tr>
-      <th>Producto</th>
-      <th>Cantidad</th>
-      <th>Precio Unitario</th>
-      <th>Total Pedido</th>
-      <th>Estado</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    {pedidoProductos.map((pedido) => {
-      const prod = productos.find((p) => p.id === pedido.id_producto);
-      const precioUnitario = prod?.precio || 0;
-      const totalPedido = precioUnitario * pedido.cantidad;
-      const esPendiente = pedido.status === "pendiente";
+            pedidoProductos.map((pedido) => {
+              const esPendiente = pedido.estado === "pendiente";
 
-      return (
-        <tr key={pedido.id}>
-          <td>{prod ? prod.nombre : "N/A"}</td>
-          <td>{pedido.cantidad}</td>
-          <td>${precioUnitario.toFixed(2)}</td>
-          <td>${totalPedido.toFixed(2)}</td>
-          <td>
-            <Badge bg={esPendiente ? "warning" : "success"}>
-              {esPendiente ? "Pendiente" : "Listo"}
-            </Badge>
-          </td>
-          <td>
-            {esPendiente && (
-              <Button
-                variant="success"
-                size="sm"
-                onClick={() =>
-                  cambiarEstadoPedido(pedido.id, pedido.status)
-                }
-              >
-                Listo
-              </Button>
-            )}
-          </td>
-        </tr>
-      );
-    })}
-  </tbody>
-</Table>
+              return (
+                <Card key={pedido.id} className="mb-4">
+                  <Card.Header className="d-flex justify-content-between align-items-center">
+                    <div>
+                      <strong>Pedido #{pedido.id}</strong> -{" "}
+                      <Badge bg={esPendiente ? "warning" : "success"}>
+                        {esPendiente ? "Pendiente" : "Listo"}
+                      </Badge>
+                    </div>
+                    {esPendiente && (
+                      <Button
+                        variant="success"
+                        size="sm"
+                        onClick={() =>
+                          cambiarEstadoPedido(pedido.id, pedido.estado)
+                        }
+                      >
+                        Marcar como Listo
+                      </Button>
+                    )}
+                  </Card.Header>
+
+                  <Card.Body>
+                    <Table striped bordered hover responsive>
+                      <thead>
+                        <tr>
+                          <th>Producto</th>
+                          <th>Cantidad</th>
+                          <th>Precio Unitario</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {pedido.productos.map((producto, index) => {
+                          const prod = productos.find(
+                            (p) => String(p.id) === String(producto.id_producto)
+                          );
+                          const precioUnitario = prod?.precio || 0;
+                          const total = precioUnitario * producto.cantidad;
+
+                          return (
+                            <tr
+                              key={`${pedido.id}-${producto.id_producto}-${index}`}
+                            >
+                              <td>{prod ? prod.nombre : "N/A"}</td>
+                              <td>{producto.cantidad}</td>
+                              <td>${precioUnitario.toFixed(2)}</td>
+                              <td>${total.toFixed(2)}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </Table>
+                  </Card.Body>
+                </Card>
+              );
+            })
           )}
         </Modal.Body>
       </Modal>
