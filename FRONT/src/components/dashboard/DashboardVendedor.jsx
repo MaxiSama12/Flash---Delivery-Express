@@ -333,16 +333,6 @@ const VendedorDashboard = () => {
         <Col md={3}>
           <Card className="text-center">
             <Card.Body>
-              <Card.Title>Total Categorías</Card.Title>
-              <h4>
-                <Badge bg="secondary">{categorias.length}</Badge>
-              </h4>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={3}>
-          <Card className="text-center">
-            <Card.Body>
               <Card.Title>Total Productos</Card.Title>
               <h4>
                 <Badge bg="dark">{productos.length}</Badge>
