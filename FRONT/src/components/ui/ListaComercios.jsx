@@ -44,7 +44,7 @@ const ListaComerciosPage = () => {
             />
           </div>
           <div className="info">
-            <p className="h4 my-2">{comercio.nombre}</p>
+            <p className="h4 my-2">{comercio.nombre_comercio}</p>
             <p>
               {comercio.direccion} <br /> <span>{comercio.telefono}</span>
               <p style={{ color: comercio.activo ? "green" : "red" }}>
