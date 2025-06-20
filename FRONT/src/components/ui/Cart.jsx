@@ -93,6 +93,7 @@ const Cart = ({ isBouncing }) => {
           id_pedido,
           id_producto: item.id,
           cantidad: item.cantidad,
+          status: "pendiente", // <--- aseguramos estado inicial
         });
       }
 
