@@ -10,7 +10,7 @@ const RegisterFormCliente = () => {
     email: "",
     telefono: "",
     direccion: "",
-    password: "",
+    pass_cliente: "",
     rol: "cliente",
   });
   const navigate = useNavigate();
@@ -88,8 +88,8 @@ const RegisterFormCliente = () => {
           Contraseña:
           <input
             type="password"
-            name="password"
-            value={formData.password}
+            name="pass_cliente"
+            value={formData.pass_cliente}
             onChange={handleChange}
             className="registro-input"
             required
