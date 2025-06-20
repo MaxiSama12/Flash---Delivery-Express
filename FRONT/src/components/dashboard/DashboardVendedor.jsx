@@ -52,13 +52,13 @@ const VendedorDashboard = () => {
   const calcularStats = (listaPedidoProductos) => {
     const totalOrders = listaPedidoProductos.length;
     const pendingOrders = listaPedidoProductos.filter(
-      (p) => p.status === "pendiente"
+      (p) => p.estado === "pendiente"
     ).length;
     const completedOrders = listaPedidoProductos.filter(
-      (p) => p.status === "completado"
+      (p) => p.estado === "completado"
     ).length;
     const totalEarnings = listaPedidoProductos
-      .filter((p) => p.status === "completado")
+      .filter((p) => p.estado === "completado")
       .reduce((sum, p) => sum + p.total, 0);
 
     setStats({ totalOrders, pendingOrders, completedOrders, totalEarnings });
@@ -83,7 +83,7 @@ const VendedorDashboard = () => {
         );
 
         setPedidoProductos(
-          pedidoProductoRes.data.filter((ped) => ped.id_comercio === id)
+          pedidoProductoRes.data.filter((ped) => String(ped.id_comercio) === String(id))
         );
         console.log("pedido traido", pedidoProductoRes);
         const categoriasRes = await axios.get(
@@ -613,7 +613,7 @@ const VendedorDashboard = () => {
                   </Card.Header>
 
                   <Card.Body>
-                    <Table striped bordered hover responsive>
+                    <Table striped bordered hover responsive style={{ width: "400px" }}>
                       <thead>
                         <tr>
                           <th>Producto</th>

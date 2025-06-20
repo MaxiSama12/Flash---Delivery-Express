@@ -92,7 +92,7 @@
     {
       "id": "d9f4",
       "fecha_pedido": "2025-06-18T14:54:57.035Z",
-      "estado": "pendiente",
+      "estado": "completado",
       "direccion_entrega": "No existe dirección",
       "id_cliente": "1",
       "id_repartidor": null,
@@ -255,7 +255,7 @@
     {
       "id": "7a42",
       "fecha_pedido": "2025-06-19T20:25:50.685Z",
-      "estado": "pendiente",
+      "estado": "completado",
       "direccion_entrega": "No existe dirección",
       "id_cliente": "1",
       "id_repartidor": null,
@@ -606,15 +606,15 @@
       "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
     },
     {
-      "id": "6",
       "nombre": "Producto Genérico 6",
       "descripcion": "Descripción de Producto Genérico 6",
-      "precio": 949,
+      "precio": 9490,
       "rating": 4.2,
       "disponible": true,
       "id_comercio": "2",
       "id_categoria": "8",
-      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
+      "id": "6"
     },
     {
       "id": "7",
