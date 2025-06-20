@@ -60,6 +60,40 @@
       "email": "google@gmail.com",
       "password": "comercio123",
       "rol": "comercio"
+    },
+    {
+      "id": "83df",
+      "nombre_usuario": "Esteban",
+      "email": "cliente@gmail.com",
+      "telefono": "371638389",
+      "direccion": "Av. Soldati 458",
+      "password": "cliente123",
+      "rol": "cliente"
+    },
+    {
+      "id": "1abe",
+      "nombre_comercio": "Los tuercas",
+      "direccion": "Av Roca 212",
+      "telefono": "97473334",
+      "activo": true,
+      "url_imagen": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/69/a8/12/don-pepe.jpg?w=900&h=500&s=1",
+      "rating": "4",
+      "time": "25 - 45 min",
+      "id_rubro": "1",
+      "nombre_usuario": "Don Pepe",
+      "email": "pepe@gmail.com",
+      "password": "donpepe",
+      "rol": "comercio"
+    },
+    {
+      "id": "b3e9",
+      "nombre_usuario": "repartidor",
+      "telefono": "34673489",
+      "email": "repartidor@gmail.com",
+      "vehiculo": "Patineta",
+      "activo": true,
+      "password": "repartidor",
+      "rol": "repartidor"
     }
   ],
   "pedidos": [
@@ -288,6 +322,157 @@
           "cantidad": 1
         }
       ]
+    },
+    {
+      "id": "22cd",
+      "fecha_pedido": "2025-06-20T16:28:12.312Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "1",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "5",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "e186",
+      "fecha_pedido": "2025-06-20T16:47:48.878Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "1",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "14ba",
+      "fecha_pedido": "2025-06-20T16:47:56.095Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "1",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "0eb9",
+      "fecha_pedido": "2025-06-20T16:48:36.404Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "1",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "5",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "af61",
+      "fecha_pedido": "2025-06-20T17:29:32.872Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "1",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "b9b5",
+      "fecha_pedido": "2025-06-20T17:31:28.658Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "1",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "5",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "0113",
+      "fecha_pedido": "2025-06-20T18:00:34.381Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "0c9a",
+      "id_repartidor": null,
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "1",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "1b52",
+      "fecha_pedido": "2025-06-20T18:14:24.177Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "0c9a",
+      "id_repartidor": null,
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "1",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "08d2",
+      "fecha_pedido": "2025-06-20T18:20:14.505Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "1",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "5",
+          "cantidad": 1
+        }
+      ]
     }
   ],
   "pedido_producto": [
@@ -308,6 +493,84 @@
       "id_pedido": "10e4",
       "id_producto": "3",
       "cantidad": 1
+    },
+    {
+      "id": "9b4e",
+      "id_pedido": "22cd",
+      "id_producto": "1",
+      "cantidad": 1
+    },
+    {
+      "id": "0455",
+      "id_pedido": "22cd",
+      "id_producto": "5",
+      "cantidad": 1
+    },
+    {
+      "id": "86cd",
+      "id_pedido": "e186",
+      "id_producto": "1",
+      "cantidad": 1
+    },
+    {
+      "id": "7c4d",
+      "id_pedido": "14ba",
+      "id_producto": "1",
+      "cantidad": 1
+    },
+    {
+      "id": "b8f0",
+      "id_pedido": "0eb9",
+      "id_producto": "1",
+      "cantidad": 1
+    },
+    {
+      "id": "0af3",
+      "id_pedido": "0eb9",
+      "id_producto": "5",
+      "cantidad": 1
+    },
+    {
+      "id": "828b",
+      "id_pedido": "af61",
+      "id_producto": "1",
+      "cantidad": 1
+    },
+    {
+      "id": "9a6a",
+      "id_pedido": "b9b5",
+      "id_producto": "1",
+      "cantidad": 1
+    },
+    {
+      "id": "72fe",
+      "id_pedido": "b9b5",
+      "id_producto": "5",
+      "cantidad": 1
+    },
+    {
+      "id": "3a72",
+      "id_pedido": "0113",
+      "id_producto": "1",
+      "cantidad": 1
+    },
+    {
+      "id": "ad6c",
+      "id_pedido": "1b52",
+      "id_producto": "1",
+      "cantidad": 1
+    },
+    {
+      "id": "78bd",
+      "id_pedido": "08d2",
+      "id_producto": "1",
+      "cantidad": 1
+    },
+    {
+      "id": "efae",
+      "id_pedido": "08d2",
+      "id_producto": "5",
+      "cantidad": 1
     }
   ],
   "pagos": [
@@ -324,6 +587,69 @@
       "monto": 2782,
       "fecha_pago": "2025-06-18T17:42:07.859Z",
       "id_pedido": "10e4"
+    },
+    {
+      "id": "87c2",
+      "metodo": "efectivo",
+      "monto": 2321,
+      "fecha_pago": "2025-06-20T16:28:12.352Z",
+      "id_pedido": "22cd"
+    },
+    {
+      "id": "878c",
+      "metodo": "efectivo",
+      "monto": 1199,
+      "fecha_pago": "2025-06-20T16:47:48.896Z",
+      "id_pedido": "e186"
+    },
+    {
+      "id": "c1ab",
+      "metodo": "efectivo",
+      "monto": 1199,
+      "fecha_pago": "2025-06-20T16:47:56.137Z",
+      "id_pedido": "14ba"
+    },
+    {
+      "id": "08b9",
+      "metodo": "efectivo",
+      "monto": 2321,
+      "fecha_pago": "2025-06-20T16:48:36.428Z",
+      "id_pedido": "0eb9"
+    },
+    {
+      "id": "745c",
+      "metodo": "efectivo",
+      "monto": 1199,
+      "fecha_pago": "2025-06-20T17:29:32.889Z",
+      "id_pedido": "af61"
+    },
+    {
+      "id": "688e",
+      "metodo": "efectivo",
+      "monto": 2321,
+      "fecha_pago": "2025-06-20T17:31:28.685Z",
+      "id_pedido": "b9b5"
+    },
+    {
+      "id": "4dd6",
+      "metodo": "efectivo",
+      "monto": 1199,
+      "fecha_pago": "2025-06-20T18:00:34.400Z",
+      "id_pedido": "0113"
+    },
+    {
+      "id": "244e",
+      "metodo": "efectivo",
+      "monto": 1199,
+      "fecha_pago": "2025-06-20T18:14:24.193Z",
+      "id_pedido": "1b52"
+    },
+    {
+      "id": "e8bd",
+      "metodo": "efectivo",
+      "monto": 2321,
+      "fecha_pago": "2025-06-20T18:20:14.527Z",
+      "id_pedido": "08d2"
     }
   ],
   "comercios": [
@@ -405,6 +731,21 @@
       "nombre_admin": "CEO Esteban",
       "email": "google@gmail.com",
       "password": "comercio123"
+    },
+    {
+      "id": "1abe",
+      "nombre_comercio": "Los tuercas",
+      "direccion": "Av Roca 212",
+      "telefono": "97473334",
+      "activo": true,
+      "url_imagen": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/69/a8/12/don-pepe.jpg?w=900&h=500&s=1",
+      "rating": "4",
+      "time": "25 - 45 min",
+      "id_rubro": "1",
+      "nombre_usuario": "Don Pepe",
+      "email": "pepe@gmail.com",
+      "password": "donpepe",
+      "rol": "comercio"
     }
   ],
   "rubros": [
