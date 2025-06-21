@@ -2,7 +2,7 @@
   "clientes": [
     {
       "id": "1",
-      "nombre": "John Doe",
+      "nombre_usuario": "John Doe",
       "email": "john@doe.com",
       "telefono": "3819212354",
       "direccion": "avenida siempre viva 123",
@@ -10,17 +10,8 @@
       "rol": "cliente"
     },
     {
-      "_comentario": "metimos otro objeto con rol de vendedor en el array de clientes para probar la navegacion condicional desde el login",
-      "id": "2",
-      "nombre": "Jane Smith",
-      "email": "jane@smith.com",
-      "telefono": "3526721283",
-      "password": "vendedor123",
-      "rol": "vendedor"
-    },
-    {
       "id": "0c9a",
-      "nombre": "Esteban",
+      "nombre_usuario": "Esteban",
       "email": "maxi@gmail.com",
       "telefono": "3814563422",
       "direccion": "pasaje 1234",
@@ -29,7 +20,7 @@
     },
     {
       "id": "ba35",
-      "nombre": "Carlos",
+      "nombre_usuario": "Carlos",
       "telefono": "048389473",
       "email": "carlos@gmail.com",
       "vehiculo": "Bicicleta",
@@ -38,16 +29,8 @@
       "rol": "repartidor"
     },
     {
-      "id": "9801",
-      "nombre": "Pablo",
-      "email": "pablo@gmail.com",
-      "password": "Pablo123",
-      "telefono": "785328393",
-      "rol": "vendedor"
-    },
-    {
       "id": "2865",
-      "nombre": "Juancito",
+      "nombre_usuario": "Juancito",
       "email": "juan@gmail.com",
       "telefono": "18923817",
       "direccion": "calle juan 1233",
@@ -55,24 +38,8 @@
       "rol": "cliente"
     },
     {
-      "id": "d253",
-      "nombre": "Esteban",
-      "email": "masisama92@gmail.com",
-      "password": "vendedor123",
-      "telefono": "781156796586",
-      "rol": "vendedor"
-    },
-    {
-      "id": "65f0",
-      "nombre": "Jorge",
-      "email": "jorge@vendedor",
-      "password": "Vendedor123",
-      "telefono": "381764857",
-      "rol": "vendedor"
-    },
-    {
       "id": "0763",
-      "nombre": "Esteban",
+      "nombre_usuario": "Esteban",
       "email": "maxisama12@gmail.com",
       "telefono": "36753473",
       "direccion": "bazan de laguna 4299",
@@ -86,6 +53,21 @@
       "password": "vendedor123",
       "telefono": "3814563422",
       "rol": "vendedor"
+    },
+    {
+      "id": "9164",
+      "nombre_comercio": "Google",
+      "direccion": "google 123",
+      "telefono": "4824671",
+      "activo": true,
+      "url_imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_Homepage.svg/1200px-Google_Homepage.svg.png",
+      "rating": "4.1",
+      "time": "10 - 20 min",
+      "id_rubro": "4",
+      "nombre_usuario": "CEO Esteban",
+      "email": "google@gmail.com",
+      "rol": "comercio",
+      "password": "comercio123"
     }
   ],
   "pedidos": [
@@ -413,7 +395,7 @@
   "comercios": [
     {
       "id": "1",
-      "nombre": "Supermercado Vea",
+      "nombre_comercio": "Supermercado Vea",
       "direccion": "Calle Ejemplo 1",
       "telefono": "3800000001",
       "descripcion": "Descripción de Supermercado Vea",
@@ -426,7 +408,7 @@
     },
     {
       "id": "2",
-      "nombre": "Mc Donalds",
+      "nombre_comercio": "Mc Donalds",
       "direccion": "Calle Ejemplo 2",
       "telefono": "3800000002",
       "descripcion": "Descripción de Mc Donalds",
@@ -439,42 +421,72 @@
     },
     {
       "id": "3",
-      "nombre": "Farmacia del Pueblo",
+      "nombre_comercio": "Farmacia del Pueblo",
       "direccion": "Calle Ejemplo 3",
       "telefono": "3800000003",
       "descripcion": "Descripción de Farmacia del Pueblo",
       "rating": 4.3,
       "activo": true,
       "time": "10 - 20 min",
-      "id_admin": "2",
+      "id_admin": "3",
       "id_rubro": "2",
       "url_imagen": "https://images.rappi.com.ar/marketplace/store_type_1626975357300.jpg"
     },
     {
       "id": "4",
-      "nombre": "Libreria San Pablo",
+      "nombre_comercio": "Libreria San Pablo",
       "direccion": "Calle Ejemplo 4",
       "telefono": "3800000004",
       "descripcion": "Descripción de Libreria San Pablo",
       "rating": 4.5,
       "activo": true,
       "time": "20 - 40 min",
-      "id_admin": "2",
+      "id_admin": "4",
       "id_rubro": "3",
       "url_imagen": "https://recursos-we-us-east-1.s3.amazonaws.com/Weyop/Libreria%20San%20Pablo/Contenidos/2024-09-24%2012%3A49%3A51/2.Logotipo-Libreria-San-Pablo-RGB-3570x847px-Digital.png"
     },
     {
       "id": "5",
-      "nombre": "La Pizzada",
+      "nombre_comercio": "La Pizzada",
       "direccion": "Calle Ejemplo 5",
       "telefono": "3800000005",
       "descripcion": "Descripción de La Pizzada",
       "rating": 3.6,
       "activo": true,
       "time": "15 - 30 min",
-      "id_admin": "2",
+      "id_admin": "5",
       "id_rubro": "1",
       "url_imagen": "https://www.tucumanturismo.gob.ar/public/img/pizzada%20bar%20ok_b9nt3x6v_12-08-2024.png"
+    },
+    {
+      "id": "9164",
+      "nombre_comercio": "Google",
+      "direccion": "google 123",
+      "telefono": "4824671",
+      "activo": true,
+      "url_imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_Homepage.svg/1200px-Google_Homepage.svg.png",
+      "rating": "4.1",
+      "time": "10 - 20 min",
+      "id_rubro": "4",
+      "rol": "vendedor",
+      "nombre_admin": "CEO Esteban",
+      "email": "google@gmail.com",
+      "password": "comercio123"
+    },
+    {
+      "id": "1abe",
+      "nombre_comercio": "Los tuercas",
+      "direccion": "Av Roca 212",
+      "telefono": "97473334",
+      "activo": true,
+      "url_imagen": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/69/a8/12/don-pepe.jpg?w=900&h=500&s=1",
+      "rating": "4",
+      "time": "25 - 45 min",
+      "id_rubro": "1",
+      "nombre_usuario": "Don Pepe",
+      "email": "pepe@gmail.com",
+      "password": "donpepe",
+      "rol": "comercio"
     }
   ],
   "rubros": [
@@ -551,15 +563,15 @@
   ],
   "productos": [
     {
-      "id": "1",
       "nombre": "Hamburguesa Argenta",
-      "descripcion": "Descripción de Hamburguesa Argenta",
+      "descripcion": "Descripción de Hamburguesa Argenta.",
       "precio": 1199,
       "rating": 4.4,
       "disponible": true,
       "id_comercio": "4",
       "id_categoria": "1",
-      "url_imagen": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=400&q=80"
+      "url_imagen": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=400&q=80",
+      "id": "1"
     },
     {
       "id": "2",

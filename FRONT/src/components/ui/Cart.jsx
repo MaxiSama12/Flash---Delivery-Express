@@ -9,6 +9,7 @@ import { IoRemoveSharp } from "react-icons/io5";
 import { IoAdd } from "react-icons/io5";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useAuthStore } from "../../store/authStore";
 
 const CartItem = ({ product }) => {
   const addToCart = useCartStore((state) => state.addToCart);
@@ -60,7 +61,16 @@ const Cart = ({ isBouncing }) => {
   const clearCart = useCartStore((state) => state.clearCart);
   const total = useCartStore((state) => state.total)();
   const itemsCount = useCartStore((state) => state.itemsCount)();
-  const idCliente = useLogin((state) => state.id);
+  let idCliente = 0
+  const {usuario} = useAuthStore()
+  if(usuario){
+    const { state } = JSON.parse(localStorage.getItem("auth-storage"));
+    
+    if(state.usuario.id) idCliente = state.usuario.id
+    console.log(state);
+  }
+
+
   const direccionCliente = useLogin((state) => state.direccion);
 
   const handleCheckout = async () => {

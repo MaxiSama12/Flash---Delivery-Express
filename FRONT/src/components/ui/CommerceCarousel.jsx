@@ -60,7 +60,8 @@ const TopRatedStoresCarousel = () => {
                   className="store-image"
                 />
                 <div className="rating-badge">
-                  <FaStar className="me-1  star" /> {comercio.rating.toFixed(1)}
+                  <FaStar className="me-1  star" />{ Number(comercio.rating).toFixed(1) }
+
                 </div>
               </div>
             </SwiperSlide>
