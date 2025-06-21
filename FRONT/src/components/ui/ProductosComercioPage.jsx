@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import Swal from "sweetalert2";
 import { FiFilter } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import Card from "./Card";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-
-import { PRODUCTOS, CATEGORIAS } from "../../endpoints/endpoints";
-
+import { axiosInstance } from "../../router/axiosInstance";
 import "../../styles/comercio.css";
 
 const ProductosComercioPage = () => {
@@ -24,10 +21,9 @@ const ProductosComercioPage = () => {
 
   const getProductos = async () => {
     try {
-      const res = await axios.get(`${PRODUCTOS}`);
-      const prods = res.data.filter((producto) => producto.id_comercio == id);
-      setProductos(prods);
-      setFilteredProductos(prods);
+      const {data} = await axiosInstance.get(`productos/${id}`);
+      setProductos(data.productos);
+      setFilteredProductos(data.productos);
       setLoading(false);
     } catch (error) {
       Swal.fire({
@@ -40,9 +36,9 @@ const ProductosComercioPage = () => {
 
   const getCategorias = async () => {
     try {
-      const res = await axios.get(`${CATEGORIAS}`);
-      setCategorias(res.data);
-      console.log("Categorías cargadas:", res.data);
+      const {data} = await axiosInstance.get("categorias");
+      setCategorias([{ id_categoria: "0", nombre: "Todos" }, ...data.categorias]);
+      console.log("Categorías cargadas:", data.categorias);
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -109,13 +105,13 @@ const ProductosComercioPage = () => {
           </li>
           {categorias.map((cat) => (
             <li
-              key={cat.id}
+              key={cat.id_categoria}
               className={
-                categoriaSeleccionada === cat.id ? "active" : ""
+                categoriaSeleccionada === cat.id_categoria ? "active" : ""
               }
-              onClick={() => setCategoriaSeleccionada(cat.id)}
+              onClick={() => setCategoriaSeleccionada(cat.id_categoria)}
             >
-              {cat.nombre_categoria}
+              {cat.nombre.charAt(0).toUpperCase() + cat.nombre.slice(1).toLowerCase()}
             </li>
           ))}
         </ul>

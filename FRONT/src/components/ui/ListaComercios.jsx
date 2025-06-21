@@ -58,7 +58,7 @@ const ListaComerciosPage = () => {
             </p>
           </div>
           <span style={{ color: "goldenrod", fontSize: "1rem" }}>
-            ★{comercio.rating}
+            ★{comercio.rating ? comercio.rating : "sin calificacion"}
           </span>
         </Link>
       ))}
