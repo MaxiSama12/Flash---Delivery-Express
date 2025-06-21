@@ -15,7 +15,7 @@ import { useAuthStore } from "../../store/authStore";
 import Swal from "sweetalert2"; // ✅ Importación de SweetAlert2
 
 const LoginForm = () => {
-  const { login, } = useAuthStore();
+  const { login, usuario } = useAuthStore();
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState("");
   const [formData, setFormData] = useState({
@@ -27,50 +27,38 @@ const LoginForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const { setId, setNombre, setRol } = useLogin();
 
   const handleSubmit = async (e) => {
+    e.preventDefault()
     try {
-      e.preventDefault();
-      const res = await axios.get(CLIENTES);
-      const users = res.data;
-
-      const userFound = users.find((user) => user.email === formData.email);
-      if (userFound) {
-        if (userFound.password === formData.password) {
-          setId(userFound.id);
-          setNombre(userFound.nombre_usuario);
-          setRol(userFound.rol);
-          login(userFound);
-
-          if (userFound.rol === "cliente") {
+      const {data} = await axios.post("http://localhost:3030/login", formData)
+      console.log(data)
+      login(data.user)
+      console.log(usuario)
+      if (data.user.rol === "cliente") {
             Swal.fire(
               "¡Bienvenido!",
-              `Inicio de sesión exitoso, bienvenido ${userFound.nombre_usuario}`,
+              `Inicio de sesión exitoso, bienvenido ${data.user.nombre}`,
               "success"
             );
             navigate(HOME);
-          } else if (userFound.rol === "comercio") {
+          } else if (data.user.rol === "comercio") {
             Swal.fire(
               "¡Bienvenido!",
-              `Inicio de sesión exitoso, bienvenido ${userFound.nombre_usuario}, dueño de ${userFound.nombre_comercio}`,
+              `Inicio de sesión exitoso, bienvenido ${data.user.nombre_admin}, dueño de ${data.user.nombre_comercio}`,
               "success"
             );
-            navigate(`/dashboard-vendedor/${userFound.id}`);
-          } else if (userFound.rol === "repartidor") {
+            navigate(`/dashboard-vendedor/${data.user.id_comercio}`);
+          } else if (data.user.rol === "repartidor") {
             Swal.fire(
               "¡Bienvenido!",
-              `Inicio de sesión exitoso, bienvenido ${userFound.nombre_usuario}`,
+              `Inicio de sesión exitoso, bienvenido ${data.user.nombre}`,
               "success"
             );
             navigate(DASHBOARDREPARTIDOR);
           }
-        } else {
-          setLoginError("La contraseña es incorrecta");
-        }
-      } else {
-        setLoginError("El correo ingresado no existe");
-      }
+
+      
     } catch (error) {
       console.log("error trayendo los usuarios:", error);
       Swal.fire(

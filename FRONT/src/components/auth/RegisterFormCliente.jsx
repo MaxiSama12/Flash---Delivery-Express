@@ -8,11 +8,11 @@ import Swal from "sweetalert2"; // ✅ Importación de SweetAlert2
 
 const RegisterFormCliente = () => {
   const [formData, setFormData] = useState({
-    nombre_usuario: "",
+    nombre: "",
     email: "",
     telefono: "",
     direccion: "",
-    password: "",
+    pass_cliente: "",
     rol: "cliente",
   });
   const navigate = useNavigate();
@@ -24,7 +24,8 @@ const RegisterFormCliente = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      await axios.post(CLIENTES, formData);
+      console.log(formData)
+      await axios.post("http://localhost:3030/registro-cliente", formData);
       Swal.fire(
         "¡Registro Exitoso!",
         `Cliente registrado correctamente. Bienvenido, ${formData.nombre}!`,
@@ -36,7 +37,7 @@ const RegisterFormCliente = () => {
       console.log("Ocurrió un error registrando al cliente: ", error);
       Swal.fire(
         "Error",
-        "No se pudo completar el registro. Intenta nuevamente.",
+         error.response.data.mensaje,
         "error"
       );
     }
@@ -51,8 +52,8 @@ const RegisterFormCliente = () => {
           Nombre completo:
           <input
             type="text"
-            name="nombre_usuario"
-            value={formData.nombre_usuario}
+            name="nombre"
+            value={formData.nombre}
             onChange={handleChange}
             className="registro-input"
             required
@@ -99,8 +100,8 @@ const RegisterFormCliente = () => {
           Contraseña:
           <input
             type="password"
-            name="password"
-            value={formData.password}
+            name="pass_cliente"
+            value={formData.pass_cliente}
             onChange={handleChange}
             className="registro-input"
             required

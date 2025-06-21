@@ -67,7 +67,7 @@ const Cart = ({ isBouncing }) => {
     const { state } = JSON.parse(localStorage.getItem("auth-storage"));
     
     if(state.usuario.id) idCliente = state.usuario.id
-    console.log(state);
+
   }
 
 

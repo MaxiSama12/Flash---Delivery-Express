@@ -8,12 +8,12 @@ import Swal from "sweetalert2"; // ✅ Importación de SweetAlert2
 
 const RegisterFormRepartidor = () => {
   const [formData, setFormData] = useState({
-    nombre_usuario: "",
+    nombre: "",
     telefono: "",
     email: "",
     vehiculo: "",
     activo: true,
-    password: "",
+    pass_repartidor: "",
     rol: "repartidor",
   });
 
@@ -29,7 +29,7 @@ const RegisterFormRepartidor = () => {
       await axios.post(CLIENTES, formData);
       Swal.fire(
         "¡Repartidor Registrado!",
-        `Bienvenido, ${formData.nombre_usuario}!`,
+        `Bienvenido, ${formData.nombre}!`,
         "success"
       );
       console.log(formData);
@@ -53,8 +53,8 @@ const RegisterFormRepartidor = () => {
           Nombre completo:
           <input
             type="text"
-            name="nombre_usuario"
-            value={formData.nombre_usuario}
+            name="nombre"
+            value={formData.nombre }
             onChange={handleChange}
             className="registro-input"
             required

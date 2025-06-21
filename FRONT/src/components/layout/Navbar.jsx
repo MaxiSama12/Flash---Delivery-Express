@@ -51,6 +51,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 992);
+      console.log("usuario en Nav",usuario)
     };
 
     window.addEventListener("resize", handleResize);
@@ -101,7 +102,7 @@ const Navbar = () => {
                 ref={toggleRef} // 👈 referencia aplicada
               >
                 <FaUserCircle size={22} />
-                <span>{usuario.nombre_usuario}</span>
+                <span>{usuario.nombre}</span>
               </div>
 
               {dropdownOpen && (
@@ -186,7 +187,7 @@ const Navbar = () => {
                   className="nav-item-hover d-flex align-items-center gap-1"
                 >
                   <FaUserCircle size={22} />
-                  <span>{usuario ? usuario.nombre_usuario : "Mi Perfil"}</span>
+                  <span>{usuario ? usuario.nombre : "texto totalmente"}</span>
                 </Link>
 
                 <FaChevronDown className="nav-item-hover d-flex align-items-center gap-1" />
@@ -218,7 +219,7 @@ const Navbar = () => {
                   ) : (
                     <>
                       <p className="dropdown-item text-muted mb-3">
-                        Hola, {usuario.nombre_usuario}
+                        Hola, {usuario.nombre}
                       </p>
 
                       <Link
