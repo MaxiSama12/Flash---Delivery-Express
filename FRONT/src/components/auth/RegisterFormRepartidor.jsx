@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { LOGIN } from "../../router/route";
 import Swal from "sweetalert2"; // ✅ Importación de SweetAlert2
+import { axiosInstance } from "../../router/axiosInstance";
 
 const RegisterFormRepartidor = () => {
   const [formData, setFormData] = useState({
@@ -26,21 +27,17 @@ const RegisterFormRepartidor = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      await axios.post(CLIENTES, formData);
+      await axiosInstance.post("registro-repartidor", formData);
       Swal.fire(
         "¡Repartidor Registrado!",
-        `Bienvenido, ${formData.nombre}!`,
+        `Ahora debes iniciar sesión!`,
         "success"
       );
       console.log(formData);
       navigate(LOGIN);
     } catch (error) {
-      console.log("Ocurrió un error registrando al cliente: ", error);
-      Swal.fire(
-        "Error",
-        "Hubo un problema al registrar el repartidor. Intenta nuevamente.",
-        "error"
-      );
+      console.log("Ocurrió un error registrando al repartidor: ", error.response.data.mensaje);
+      Swal.fire("Error", error.response.data.mensaje);
     }
   };
 
@@ -54,7 +51,7 @@ const RegisterFormRepartidor = () => {
           <input
             type="text"
             name="nombre"
-            value={formData.nombre }
+            value={formData.nombre}
             onChange={handleChange}
             className="registro-input"
             required
@@ -101,8 +98,8 @@ const RegisterFormRepartidor = () => {
           Contraseña:
           <input
             type="password"
-            name="password"
-            value={formData.password}
+            name="pass_repartidor"
+            value={formData.pass_repartidor}
             onChange={handleChange}
             className="registro-input"
             required

@@ -26,7 +26,6 @@ import { useState } from "react";
 import MisDirecciones from "./pages/MisDirecciones/MisDirecciones";
 import LoginForm from "./components/auth/LoginForm";
 
-
 function App() {
   const [isBouncing, setIsBouncing] = useState(false);
   const location = useLocation();
@@ -37,7 +36,6 @@ function App() {
       {!ocultarCart && <Cart isBouncing={isBouncing} />}
       <ToastContainer />
       <Routes>
-
         <Route path="/dashboard-vendedor/:id" element={<DashboardVendedor />} />
 
         <Route path="/repartidor" element={<DashboardRepartidor />} />
@@ -62,7 +60,7 @@ function App() {
         />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/mis-direcciones" element={<MisDirecciones />} />
-        <Route path={DASHBOARDREPARTIDOR} element={<DashboardRepartidor />} />
+        <Route path="/dashboard-repartidor/:id" element={<DashboardRepartidor />} />
         <Route path="*" element={<NotFound />} />
         <Route path={REGISTERCOMERCIO} element={<RegisterComercioPages />} />
         {/* <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor />} /> */}
