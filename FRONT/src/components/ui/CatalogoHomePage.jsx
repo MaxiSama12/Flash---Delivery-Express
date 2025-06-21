@@ -1,20 +1,33 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { axiosInstance } from "../../router/axiosInstance";
 import Swal from "sweetalert2";
 import "../../styles/home.css";
 import Card from "./Card";
-import { PRODUCTOS, CATEGORIAS } from "../../endpoints/endpoints";
 
 const CatalogoHomePage = ({ onAddToCartAnimation }) => {
   const [activeFilter, setActiveFilter] = useState("0");
   const [productos, setProductos] = useState([]);
   const [categorias, setCategorias] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(8);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const limit = 8;
 
-  const getProductos = async () => {
+  const getProductos = async (pageToLoad = 1) => {
     try {
-      const res = await axios.get(`${PRODUCTOS}`);
-      setProductos(res.data);
+      const { data } = await axiosInstance.get(
+        `/productos?page=${pageToLoad}&limit=${limit}`
+      );
+      if (pageToLoad === 1) {
+        setProductos(data.productos);
+      } else {
+        setProductos((prev) => [...prev, ...data.productos]);
+      }
+
+      if (data.productos.length < limit) {
+        setHasMore(false);
+      } else {
+        setHasMore(true);
+      }
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -26,8 +39,8 @@ const CatalogoHomePage = ({ onAddToCartAnimation }) => {
 
   const getCategorias = async () => {
     try {
-      const res = await axios.get(`${CATEGORIAS}`);
-      setCategorias(res.data);
+      const { data } = await axiosInstance.get("/categorias");
+      setCategorias([{ id_categoria: "0", nombre: "Todos" }, ...data.categorias]);
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -42,16 +55,16 @@ const CatalogoHomePage = ({ onAddToCartAnimation }) => {
     getCategorias();
   }, []);
 
-  useEffect(() => {
-    setVisibleCount(8);
-  }, [activeFilter]);
+  const handleVerMas = () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+    getProductos(nextPage);
+  };
 
   const filteredProducts =
     activeFilter === "0"
       ? productos
       : productos.filter((producto) => producto.id_categoria === activeFilter);
-
-  const visibleProducts = filteredProducts.slice(0, visibleCount);
 
   return (
     <div className="cat-section-container">
@@ -62,35 +75,36 @@ const CatalogoHomePage = ({ onAddToCartAnimation }) => {
           <div className="filter-category">
             {categorias.map((categoria) => (
               <button
-                key={categoria.id}
+                key={categoria.id_categoria}
                 className={`category ${
-                  activeFilter === categoria.id ? "active" : ""
+                  activeFilter === categoria.id_categoria ? "active" : ""
                 }`}
-                onClick={() => setActiveFilter(categoria.id)}
+                onClick={() => setActiveFilter(categoria.id_categoria)}
               >
-                {categoria.nombre_categoria.charAt(0).toUpperCase() +
-                  categoria.nombre_categoria.slice(1)}
+                {categoria.nombre.charAt(0).toUpperCase() +
+                  categoria.nombre.slice(1)}
               </button>
             ))}
           </div>
         </div>
 
         <div className="card-container">
-          {visibleProducts.map((producto) => (
-            <Card
-              key={producto.id}
-              producto={producto}
-              onAddToCartAnimation={onAddToCartAnimation}
-            />
-          ))}
+          {filteredProducts.length !== 0 ? (
+            filteredProducts.map((producto) => (
+              <Card
+                key={producto.id}
+                producto={producto}
+                onAddToCartAnimation={onAddToCartAnimation}
+              />
+            ))
+          ) : (
+            <p className="w-100 text-center alert alert-danger">No existen productos</p>
+          )}
         </div>
 
-        {visibleCount < filteredProducts.length && (
+        {hasMore && filteredProducts.length >= page * limit && (
           <div className="ver-mas-container">
-            <button
-              className="ver-mas-btn"
-              onClick={() => setVisibleCount((prev) => prev + 8)}
-            >
+            <button className="ver-mas-btn" onClick={handleVerMas}>
               Ver más
             </button>
           </div>
