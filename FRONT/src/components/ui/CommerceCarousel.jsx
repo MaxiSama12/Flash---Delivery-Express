@@ -6,7 +6,6 @@ import "swiper/css/pagination";
 import { FaStar } from "react-icons/fa";
 import "../../styles/carousel.css";
 import { useState, useEffect } from "react";
-// import axios from "axios";
 import Swal from "sweetalert2";
 import { axiosInstance } from "../../router/axiosInstance";
 import { Link } from "react-router-dom";
