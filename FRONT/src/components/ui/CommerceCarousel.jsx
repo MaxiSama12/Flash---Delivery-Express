@@ -1,23 +1,24 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { FaStar } from "react-icons/fa";
 import "../../styles/carousel.css";
 import { useState, useEffect } from "react";
-import { COMERCIOS } from "../../endpoints/endpoints";
-import axios from "axios";
+// import axios from "axios";
 import Swal from "sweetalert2";
+import { axiosInstance } from "../../router/axiosInstance";
+import { Link } from "react-router-dom";
 
 const TopRatedStoresCarousel = () => {
   const [comercios, setComercios] = useState([]);
 
   const getComercios = async () => {
     try {
-      const res = await axios.get(`${COMERCIOS}`);
-      setComercios(res.data);
-      console.log("Comercios cargados:", res.data);
+      const { data } = await axiosInstance.get("/comercios");
+      setComercios(data.comercios);
+      console.log("Comercios cargados:", data.comercios);
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -53,17 +54,19 @@ const TopRatedStoresCarousel = () => {
         >
           {comercios.map((comercio, index) => (
             <SwiperSlide key={index}>
-              <div className="store-card mt-5">
-                <img
-                  src={comercio.url_imagen}
-                  alt={comercio.nombre}
-                  className="store-image"
-                />
-                <div className="rating-badge">
-                  <FaStar className="me-1  star" />{ Number(comercio.rating).toFixed(1) }
-
+              <Link className="link-carousel" to={`/comercio/${comercio.id_comercio}`}>
+                <div className="store-card mt-5">
+                  <img
+                    src={comercio.url_imagen}
+                    alt={comercio.nombre_comercio}
+                    className="store-image"
+                  />
+                  <div className="rating-badge">
+                    <FaStar className="me-1  star" />
+                    {Number(comercio.rating).toFixed(1)}
+                  </div>
                 </div>
-              </div>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
