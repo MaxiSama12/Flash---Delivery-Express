@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+//import axios from "axios";
+import { axiosInstance } from "../../router/axiosInstance";
 import Swal from "sweetalert2";
 import "../../styles/home.css";
 import Card from "./Card";
@@ -13,7 +14,7 @@ const CatalogoHomePage = ({ onAddToCartAnimation }) => {
 
   const getProductos = async () => {
     try {
-      const res = await axios.get(`${PRODUCTOS}`);
+      const res = await axiosInstance.get();
       setProductos(res.data);
     } catch (error) {
       Swal.fire({
@@ -26,8 +27,9 @@ const CatalogoHomePage = ({ onAddToCartAnimation }) => {
 
   const getCategorias = async () => {
     try {
-      const res = await axios.get(`${CATEGORIAS}`);
-      setCategorias(res.data);
+      const {data} = await axiosInstance.get("/categorias");
+      setCategorias(data.categorias);
+      console.log(data.categorias);
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -68,8 +70,8 @@ const CatalogoHomePage = ({ onAddToCartAnimation }) => {
                 }`}
                 onClick={() => setActiveFilter(categoria.id)}
               >
-                {categoria.nombre_categoria.charAt(0).toUpperCase() +
-                  categoria.nombre_categoria.slice(1)}
+                {categoria.nombre.charAt(0).toUpperCase() +
+                  categoria.nombre.slice(1)}
               </button>
             ))}
           </div>
