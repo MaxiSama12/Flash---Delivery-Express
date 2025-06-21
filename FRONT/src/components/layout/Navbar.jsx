@@ -51,6 +51,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 992);
+      console.log("usuario en Nav",usuario)
     };
 
     window.addEventListener("resize", handleResize);
@@ -186,7 +187,7 @@ const Navbar = () => {
                   className="nav-item-hover d-flex align-items-center gap-1"
                 >
                   <FaUserCircle size={22} />
-                  <span>{usuario ? usuario.nombre : "Mi Perfil"}</span>
+                  <span>{usuario ? usuario.nombre : "texto totalmente"}</span>
                 </Link>
 
                 <FaChevronDown className="nav-item-hover d-flex align-items-center gap-1" />

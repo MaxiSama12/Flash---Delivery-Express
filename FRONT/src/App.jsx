@@ -1,16 +1,13 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import LoginPages from "./pages/LoginPages";
 import RegisterClientePages from "./pages/RegisterClientePages";
-import RegisterVendedorPages from "./pages/RegisterVendedorPages";
 import RegisterRepartidorPages from "./pages/RegisterRepartidorPages";
 import "./index.css";
 import {
   HOME,
   LOGIN,
   REGISTERCLIENTE,
-  REGISTERVENDEDOR,
   REGISTERREPARTIDOR,
-  DASHBOARDVENDEDOR,
   DASHBOARDREPARTIDOR,
   REGISTERCOMERCIO,
   COMERCIO,
@@ -40,6 +37,7 @@ function App() {
       {!ocultarCart && <Cart isBouncing={isBouncing} />}
       <ToastContainer />
       <Routes>
+
         <Route path="/dashboard-vendedor/:id" element={<DashboardVendedor />} />
 
         <Route path="/repartidor" element={<DashboardRepartidor />} />
@@ -66,7 +64,6 @@ function App() {
         <Route path="/mis-direcciones" element={<MisDirecciones />} />
         <Route path={DASHBOARDREPARTIDOR} element={<DashboardRepartidor />} />
         <Route path="*" element={<NotFound />} />
-        <Route path={REGISTERVENDEDOR} element={<RegisterVendedorPages />} />
         <Route path={REGISTERCOMERCIO} element={<RegisterComercioPages />} />
         {/* <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor />} /> */}
         <Route path={`${COMERCIO}/:id`} element={<ComercioPage />} />

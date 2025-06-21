@@ -4,13 +4,15 @@ import "../../styles/RegisterForm.css";
 import { CLIENTES } from "../../endpoints/endpoints";
 import { LOGIN } from "../../router/route";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2"; // ✅ Importación de SweetAlert2
+
 const RegisterFormCliente = () => {
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
     telefono: "",
     direccion: "",
-    password: "",
+    pass_cliente: "",
     rol: "cliente",
   });
   const navigate = useNavigate();
@@ -22,12 +24,22 @@ const RegisterFormCliente = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      await axios.post(CLIENTES, formData);
-      alert(`Cliente Registrado!, Bienvenido ${formData.nombre}`);
+      console.log(formData)
+      await axios.post("http://localhost:3030/registro-cliente", formData);
+      Swal.fire(
+        "¡Registro Exitoso!",
+        `Cliente registrado correctamente. Bienvenido, ${formData.nombre}!`,
+        "success"
+      );
       console.log(formData);
       navigate(LOGIN);
     } catch (error) {
       console.log("Ocurrió un error registrando al cliente: ", error);
+      Swal.fire(
+        "Error",
+         error.response.data.mensaje,
+        "error"
+      );
     }
   };
 
@@ -88,25 +100,28 @@ const RegisterFormCliente = () => {
           Contraseña:
           <input
             type="password"
-            name="password"
-            value={formData.password}
+            name="pass_cliente"
+            value={formData.pass_cliente}
             onChange={handleChange}
             className="registro-input"
             required
           />
         </label>
+
         <br />
         <br />
         <button type="submit" className="registro-button">
           Registrarse
         </button>
+
         <div className="text-center my-2">
           <p>
-            Ya tienes una cuenta?,<Link to={LOGIN}>inicia sesión aquí</Link>
+            ¿Ya tienes una cuenta? <Link to={LOGIN}>Inicia sesión aquí</Link>
           </p>
         </div>
       </form>
     </div>
   );
 };
+
 export default RegisterFormCliente;
