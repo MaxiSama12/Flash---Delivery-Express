@@ -14,7 +14,7 @@ const ListaComerciosPage = () => {
     try {
       const { data } = await axiosInstance.get("/comercios");
       setComercios(data.comercios);
-      console.log(data.comercios);
+      console.log(data);
     } catch (error) {
       console.error("Error al obtener los restaurantes:", error);
     }

@@ -53,7 +53,7 @@ const TopRatedStoresCarousel = () => {
         >
           {comercios.map((comercio, index) => (
             <SwiperSlide key={index}>
-              <Link className="link-carousel" to={`/comercio/${comercio.id_comercio}`}>
+              <Link className="link-carousel" to={`/comercios/${comercio.id_comercio}`}>
                 <div className="store-card mt-5">
                   <img
                     src={comercio.url_imagen}

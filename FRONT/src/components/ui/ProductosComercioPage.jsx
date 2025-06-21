@@ -37,7 +37,7 @@ const ProductosComercioPage = () => {
   const getCategorias = async () => {
     try {
       const {data} = await axiosInstance.get("categorias");
-      setCategorias([{ id_categoria: "0", nombre: "Todos" }, ...data.categorias]);
+      setCategorias(data.categorias);
       console.log("Categorías cargadas:", data.categorias);
     } catch (error) {
       Swal.fire({
