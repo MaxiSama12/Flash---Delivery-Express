@@ -10,15 +10,17 @@ const CatalogoHomePage = ({ onAddToCartAnimation }) => {
   const [categorias, setCategorias] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const limit = 1;
+  const limit = 8;
 
   const getProductos = async (pageToLoad = 1) => {
     try {
-      const { data } = await axiosInstance.get(`/productos?page=${pageToLoad}&limit=${limit}`);
+      const { data } = await axiosInstance.get(
+        `/productos?page=${pageToLoad}&limit=${limit}`
+      );
       if (pageToLoad === 1) {
         setProductos(data.productos);
       } else {
-        setProductos(prev => [...prev, ...data.productos]);
+        setProductos((prev) => [...prev, ...data.productos]);
       }
 
       if (data.productos.length < limit) {
@@ -38,7 +40,7 @@ const CatalogoHomePage = ({ onAddToCartAnimation }) => {
   const getCategorias = async () => {
     try {
       const { data } = await axiosInstance.get("/categorias");
-      setCategorias(data.categorias);
+      setCategorias([{ id_categoria: "0", nombre: "Todos" }, ...data.categorias]);
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -49,7 +51,7 @@ const CatalogoHomePage = ({ onAddToCartAnimation }) => {
   };
 
   useEffect(() => {
-    getProductos(); 
+    getProductos();
     getCategorias();
   }, []);
 
@@ -87,13 +89,17 @@ const CatalogoHomePage = ({ onAddToCartAnimation }) => {
         </div>
 
         <div className="card-container">
-          {filteredProducts.map((producto) => (
-            <Card
-              key={producto.id}
-              producto={producto}
-              onAddToCartAnimation={onAddToCartAnimation}
-            />
-          ))}
+          {filteredProducts.length !== 0 ? (
+            filteredProducts.map((producto) => (
+              <Card
+                key={producto.id}
+                producto={producto}
+                onAddToCartAnimation={onAddToCartAnimation}
+              />
+            ))
+          ) : (
+            <p className="w-100 text-center alert alert-danger">No existen productos</p>
+          )}
         </div>
 
         {hasMore && filteredProducts.length >= page * limit && (
