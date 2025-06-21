@@ -53,6 +53,21 @@
       "password": "vendedor123",
       "telefono": "3814563422",
       "rol": "vendedor"
+    },
+    {
+      "id": "9164",
+      "nombre_comercio": "Google",
+      "direccion": "google 123",
+      "telefono": "4824671",
+      "activo": true,
+      "url_imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_Homepage.svg/1200px-Google_Homepage.svg.png",
+      "rating": "4.1",
+      "time": "10 - 20 min",
+      "id_rubro": "4",
+      "nombre_usuario": "CEO Esteban",
+      "email": "google@gmail.com",
+      "rol": "comercio",
+      "password": "comercio123"
     }
   ],
   "pedidos": [
@@ -380,7 +395,7 @@
   "comercios": [
     {
       "id": "1",
-      "nombre": "Supermercado Vea",
+      "nombre_comercio": "Supermercado Vea",
       "direccion": "Calle Ejemplo 1",
       "telefono": "3800000001",
       "descripcion": "Descripción de Supermercado Vea",
@@ -393,7 +408,7 @@
     },
     {
       "id": "2",
-      "nombre": "Mc Donalds",
+      "nombre_comercio": "Mc Donalds",
       "direccion": "Calle Ejemplo 2",
       "telefono": "3800000002",
       "descripcion": "Descripción de Mc Donalds",
@@ -406,7 +421,7 @@
     },
     {
       "id": "3",
-      "nombre": "Farmacia del Pueblo",
+      "nombre_comercio": "Farmacia del Pueblo",
       "direccion": "Calle Ejemplo 3",
       "telefono": "3800000003",
       "descripcion": "Descripción de Farmacia del Pueblo",
@@ -419,7 +434,7 @@
     },
     {
       "id": "4",
-      "nombre": "Libreria San Pablo",
+      "nombre_comercio": "Libreria San Pablo",
       "direccion": "Calle Ejemplo 4",
       "telefono": "3800000004",
       "descripcion": "Descripción de Libreria San Pablo",
@@ -432,7 +447,7 @@
     },
     {
       "id": "5",
-      "nombre": "La Pizzada",
+      "nombre_comercio": "La Pizzada",
       "direccion": "Calle Ejemplo 5",
       "telefono": "3800000005",
       "descripcion": "Descripción de La Pizzada",
@@ -453,6 +468,7 @@
       "rating": "4.1",
       "time": "10 - 20 min",
       "id_rubro": "4",
+      "rol": "vendedor",
       "nombre_admin": "CEO Esteban",
       "email": "google@gmail.com",
       "password": "comercio123"
