@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Swal from "sweetalert2"; // ✅ Importado SweetAlert2
+import Swal from "sweetalert2"; 
 import { useParams } from "react-router-dom";
 import {
   Button,
@@ -68,9 +68,7 @@ const VendedorDashboard = () => {
   useEffect(() => {
     const obtenerDatos = async () => {
       try {
-        const comercioRes = await axios.get(
-          `http://localhost:3000/comercios/${id}`
-        );
+        const comercioRes = await axios.get(`http://localhost:3000/comercios/${id}`);
         setComercio(comercioRes.data);
 
         const productosRes = await axios.get("http://localhost:3000/productos");
