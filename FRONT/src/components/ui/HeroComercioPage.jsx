@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import Swal from "sweetalert2";
 import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import { AiFillStar } from "react-icons/ai";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { COMERCIOS } from "../../endpoints/endpoints";
-
 import "../../styles/comercio.css";
+import { axiosInstance } from "../../router/axiosInstance";
 
 const HeroComercioPage = () => {
   const { id } = useParams();
@@ -17,8 +15,10 @@ const HeroComercioPage = () => {
 
   const getComercio = async () => {
     try {
-      const res = await axios.get(`${COMERCIOS}/${id}`);
-      setComercio(res.data);
+      console.log("id en hero comercio", id);
+      const { data } = await axiosInstance.get(`comercio/${id}`);
+      console.log("data en hero", data);
+      setComercio(data.comercio[0]);
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -46,7 +46,7 @@ const HeroComercioPage = () => {
           <Skeleton height={40} width="60%" />
         ) : (
           <>
-            <h3>{comercio?.nombre}</h3>
+            <h3>{comercio?.nombre_comercio}</h3>
             <div className="comercio-info">
               <span className="comercio-info-item">
                 <FaMapMarkerAlt /> {comercio?.direccion}

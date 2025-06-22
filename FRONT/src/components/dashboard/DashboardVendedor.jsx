@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Swal from "sweetalert2"; 
+import { useState, useEffect } from "react";
+// import axios from "axios";
+import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import {
   Button,
@@ -13,6 +13,7 @@ import {
   Table,
   Badge,
 } from "react-bootstrap";
+import { axiosInstance } from "../../router/axiosInstance";
 
 const VendedorDashboard = () => {
   const { id } = useParams();
@@ -68,29 +69,32 @@ const VendedorDashboard = () => {
   useEffect(() => {
     const obtenerDatos = async () => {
       try {
-        const comercioRes = await axios.get(`http://localhost:3000/comercios/${id}`);
-        setComercio(comercioRes.data);
+        const resComercio = await axiosInstance.get(`/comercio/${id}`);
+        setComercio(resComercio.data.comercio[0]);
+        console.log("comercio en dashboard", resComercio.data.comercio[0]);
 
-        const productosRes = await axios.get("http://localhost:3000/productos");
-        const productosFiltrados = productosRes.data.filter(
-          (prod) => String(prod.id_comercio) === String(id)
-        );
-        setProductos(productosFiltrados);
+        const resProductos = await axiosInstance.get(`/productos/${id}`);
+        // const productosFiltrados = productosRes.data.filter(
+        //   (prod) => String(prod.id_comercio) === String(id)
+        // );
+        setProductos(resProductos.data.productos);
+        console.log("productos en comercio", resProductos.data.productos);
 
-        const pedidoProductoRes = await axios.get(
-          "http://localhost:3000/pedidos"
-        );
-
-        setPedidoProductos(
-          pedidoProductoRes.data.filter(
-            (ped) => String(ped.id_comercio) === String(id)
-          )
+        const pedidoProductoRes = await axiosInstance.get(
+          `/pedidos-comercio/${id}`
         );
 
-        const categoriasRes = await axios.get(
-          "http://localhost:3000/categorias"
+        // setPedidoProductos(
+        //   pedidoProductoRes.data.filter(
+        //     (ped) => String(ped.id_comercio) === String(id)
+        //   )
+        // );
+
+        const categoriasRes = await axiosInstance.get(
+          "/categorias"
         );
-        setCategorias(categoriasRes.data);
+        console.log("categiruas eb dashboard", categoriasRes);
+        setCategorias(categoriasRes.data.categorias);
 
         calcularStats(pedidoProductoRes.data);
       } catch (error) {
@@ -131,7 +135,7 @@ const VendedorDashboard = () => {
     e.preventDefault();
     const { nombre, descripcion, precio, url_imagen, id_categoria } =
       nuevoProducto;
-
+    console.log("producto a agregar", nuevoProducto);
     if (
       !nombre.trim() ||
       !descripcion.trim() ||
@@ -160,8 +164,8 @@ const VendedorDashboard = () => {
         id_categoria,
         url_imagen: url_imagen.trim(),
       };
-
-      const res = await axios.post("http://localhost:3000/productos", nuevo);
+      console.log("nuevo producto antes de axios", nuevo);
+      const res = await axiosInstance.post("/crear/producto", nuevo);
       setProductos((prev) => [...prev, res.data]);
       setNuevoProducto({
         nombre: "",
@@ -229,8 +233,8 @@ const VendedorDashboard = () => {
         url_imagen: url_imagen.trim(),
       };
 
-      await axios.put(
-        `http://localhost:3000/productos/${prodId}`,
+      await axiosInstance.put(
+        `/producto/${prodId}/editar`,
         productoActualizado
       );
       setProductos((prev) =>
@@ -272,7 +276,7 @@ const VendedorDashboard = () => {
     if (!result.isConfirmed) return;
 
     try {
-      await axios.delete(`http://localhost:3000/productos/${prodId}`);
+      await axiosInstance.delete(`/producto/${prodId}/eliminar`);
       setProductos((prev) => prev.filter((prod) => prod.id !== prodId));
       Swal.fire({
         icon: "success",
@@ -290,47 +294,44 @@ const VendedorDashboard = () => {
     }
   };
 
-  const cambiarEstadoPedido = async (pedidoProductoId, estadoActual) => {
-    if (estadoActual === "completado") return;
+  // const cambiarEstadoPedido = async (pedidoProductoId, estadoActual) => {
+  //   if (estadoActual === "completado") return;
 
-    try {
-      setLoading(true);
-      await axios.patch(
-        `http://localhost:3000/pedidos/${pedidoProductoId}`,
-        {
-          estado: "completado",
-        }
-      );
+  //   try {
+  //     setLoading(true);
+  //     await axios.patch(`http://localhost:3000/pedidos/${pedidoProductoId}`, {
+  //       estado: "completado",
+  //     });
 
-      setPedidoProductos((prev) =>
-        prev.map((pedido) =>
-          pedido.id === pedidoProductoId
-            ? { ...pedido, estado: "completado" }
-            : pedido
-        )
-      );
-      Swal.fire({
-        icon: "success",
-        title: "Pedido marcado como completado",
-        timer: 1200,
-        showConfirmButton: false,
-      });
-    } catch (error) {
-      console.error("Error al cambiar estado del pedido:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "No se pudo cambiar el estado del pedido.",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-  console.log(comercio)
-  
+  //     setPedidoProductos((prev) =>
+  //       prev.map((pedido) =>
+  //         pedido.id === pedidoProductoId
+  //           ? { ...pedido, estado: "completado" }
+  //           : pedido
+  //       )
+  //     );
+  //     Swal.fire({
+  //       icon: "success",
+  //       title: "Pedido marcado como completado",
+  //       timer: 1200,
+  //       showConfirmButton: false,
+  //     });
+  //   } catch (error) {
+  //     console.error("Error al cambiar estado del pedido:", error);
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Error",
+  //       text: "No se pudo cambiar el estado del pedido.",
+  //     });
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+  console.log("comercio",comercio);
+
   return (
     <Container className="py-4">
-      <h2 className="mb-4 text-success">Panel de {comercio.nombre}</h2>
+      <h2 className="mb-4 text-success">Panel de {comercio.nombre_comercio} | {comercio.nombre_admin}</h2>
 
       {/* Estadísticas */}
       <Row className="mb-4">
@@ -455,7 +456,7 @@ const VendedorDashboard = () => {
             <tbody>
               {productos.map((prod) => {
                 const categoria = categorias.find(
-                  (cat) => cat.id === prod.id_categoria
+                  (cat) => cat.id_categoria === prod.id_categoria
                 );
                 return (
                   <tr key={prod.id}>
@@ -615,8 +616,8 @@ const VendedorDashboard = () => {
               >
                 <option value="">Seleccione una categoría</option>
                 {categorias.map((cat) => (
-                  <option key={cat.id} value={cat.id}>
-                    {cat.nombre_categoria}
+                  <option key={cat.id_categoria} value={cat.id_categoria}>
+                    {cat.nombre}
                   </option>
                 ))}
               </Form.Select>
@@ -669,7 +670,7 @@ const VendedorDashboard = () => {
                         variant="success"
                         size="sm"
                         onClick={() =>
-                          cambiarEstadoPedido(pedido.id, pedido.estado)
+                          console.log(pedido.id, pedido.estado)
                         }
                       >
                         Marcar como Listo

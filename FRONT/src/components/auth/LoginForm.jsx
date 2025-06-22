@@ -7,12 +7,11 @@ import {
 } from "../../router/route";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { CLIENTES } from "../../endpoints/endpoints";
 import "../../styles/LoginForm.css";
-import axios from "axios";
 import { useLogin } from "../../context/useLogin.js";
 import { useAuthStore } from "../../store/authStore";
 import Swal from "sweetalert2"; // ✅ Importación de SweetAlert2
+import { axiosInstance } from "../../router/axiosInstance.js";
 
 const LoginForm = () => {
   const { login, usuario } = useAuthStore();
@@ -31,7 +30,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const {data} = await axios.post("http://localhost:3030/login", formData)
+      const {data} = await axiosInstance.post("login", formData)
       console.log(data)
       login(data.user)
       console.log(usuario)
@@ -48,6 +47,7 @@ const LoginForm = () => {
               `Inicio de sesión exitoso, bienvenido ${data.user.nombre_admin}, dueño de ${data.user.nombre_comercio}`,
               "success"
             );
+            console.log(data.user)
             navigate(`/dashboard-vendedor/${data.user.id_comercio}`);
           } else if (data.user.rol === "repartidor") {
             Swal.fire(
@@ -55,7 +55,7 @@ const LoginForm = () => {
               `Inicio de sesión exitoso, bienvenido ${data.user.nombre}`,
               "success"
             );
-            navigate(DASHBOARDREPARTIDOR);
+            navigate(`/dashboard-repartidor/${data.user.id_repartidor}`);
           }
 
       
