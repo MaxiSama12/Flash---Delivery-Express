@@ -5,6 +5,7 @@ import { CLIENTES } from "../../endpoints/endpoints";
 import { LOGIN } from "../../router/route";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2"; // ✅ Importación de SweetAlert2
+import { axiosInstance } from "../../router/axiosInstance";
 
 const RegisterFormCliente = () => {
   const [formData, setFormData] = useState({
@@ -24,8 +25,7 @@ const RegisterFormCliente = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      console.log(formData)
-      await axios.post("http://localhost:3030/registro-cliente", formData);
+      await axiosInstance.post("registro-cliente", formData);
       Swal.fire(
         "¡Registro Exitoso!",
         `Cliente registrado correctamente. Bienvenido, ${formData.nombre}!`,

@@ -187,7 +187,7 @@ const Navbar = () => {
                   className="nav-item-hover d-flex align-items-center gap-1"
                 >
                   <FaUserCircle size={22} />
-                  <span>{usuario ? usuario.nombre : "texto totalmente"}</span>
+                  <span>{usuario ? usuario.nombre : "Mi perfil"}</span>
                 </Link>
 
                 <FaChevronDown className="nav-item-hover d-flex align-items-center gap-1" />

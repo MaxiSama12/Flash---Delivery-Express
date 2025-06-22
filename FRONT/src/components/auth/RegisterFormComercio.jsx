@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { COMERCIOS, RUBROS } from "../../endpoints/endpoints";
-import axios from "axios";
 import { LOGIN } from "../../router/route";
-import Swal from "sweetalert2"; // ✅ Importación de SweetAlert2
+import Swal from "sweetalert2";
+import { axiosInstance } from "../../router/axiosInstance";
 
 const RegisterFormComercio = () => {
   const [rubros, setRubros] = useState([]);
@@ -14,11 +13,11 @@ const RegisterFormComercio = () => {
     activo: true,
     url_imagen: "",
     rating: "",
-    time: "",
+    demora_promedio: "",
     id_rubro: "",
-    nombre_usuario: "",
-    email: "",
-    password: "",
+    nombre_admin: "",
+    email_admin: "",
+    pass_admin: "",
     rol: "comercio",
   });
 
@@ -26,8 +25,9 @@ const RegisterFormComercio = () => {
 
   const getRubros = async () => {
     try {
-      const res = await axios.get(RUBROS);
-      setRubros(res.data);
+      const res = await axiosInstance.get("rubros");
+      console.log(res.data.rubro)
+      setRubros(res.data.rubro);
     } catch (error) {
       console.log("Error trayendo los rubros: ", error);
       Swal.fire("Error", "No se pudieron cargar los rubros", "error");
@@ -45,7 +45,7 @@ const RegisterFormComercio = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      await axios.post(COMERCIOS, formData);
+      await axiosInstance.post("registrar/comercio", formData);
       Swal.fire(
         "¡Comercio Registrado!",
         "Ahora vamos a iniciar sesión.",
@@ -57,7 +57,7 @@ const RegisterFormComercio = () => {
       console.log("Ocurrió un error registrando el comercio: ", error);
       Swal.fire(
         "Error",
-        "Hubo un problema al registrar el comercio. Intenta nuevamente.",
+        error.response.data.mensaje,
         "error"
       );
     }
@@ -132,8 +132,8 @@ const RegisterFormComercio = () => {
           Tiempo de demora en despachar pedidos:
           <input
             type="text"
-            name="time"
-            value={formData.time}
+            name="demora_promedio"
+            value={formData.demora_promedio}
             placeholder="Por ejemplo: '20 - 40 min'"
             onChange={handleChange}
             className="registro-input"
@@ -149,11 +149,13 @@ const RegisterFormComercio = () => {
         >
           <option value="">Seleccione un rubro</option>
           {rubros.map((rubro) => (
-            <option key={rubro.id} value={rubro.id}>
+            <option key={rubro.id_rubro} value={rubro.id_rubro}>
               {rubro.nombre_rubro}
             </option>
           ))}
         </select>
+        <br />
+        <br />
 
         <h4>Registre los datos del Administrador:</h4>
 
@@ -161,8 +163,8 @@ const RegisterFormComercio = () => {
           Nombre completo:
           <input
             type="text"
-            name="nombre_usuario"
-            value={formData.nombre_usuario}
+            name="nombre_admin"
+            value={formData.nombre_admin}
             onChange={handleChange}
             className="registro-input"
             required
@@ -173,8 +175,8 @@ const RegisterFormComercio = () => {
           Correo electrónico:
           <input
             type="email"
-            name="email"
-            value={formData.email}
+            name="email_admin"
+            value={formData.email_admin}
             onChange={handleChange}
             className="registro-input"
             required
@@ -185,8 +187,8 @@ const RegisterFormComercio = () => {
           Contraseña:
           <input
             type="password"
-            name="password"
-            value={formData.password}
+            name="pass_admin"
+            value={formData.pass_admin}
             onChange={handleChange}
             className="registro-input"
             required
