@@ -49,7 +49,7 @@ const ListaComerciosPage = () => {
           <div className="info">
             <p className="h4 my-2">{comercio.nombre_comercio}</p>
             <p>
-              <FaStopwatch />{comercio.demora_promedio ? (" " +comercio.demora_promedio) : " no tiene" } 
+              <FaStopwatch />{comercio.demora_promedio ? (" " +comercio.demora_promedio + " min") : " no tiene" } 
               <br /> 
               <span><FaBriefcase />{" " + comercio.nombre_rubro}</span>
               <p style={{ color: comercio.activo ? "green" : "red" }}>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import { AiFillStar } from "react-icons/ai";
@@ -10,28 +10,31 @@ import { axiosInstance } from "../../router/axiosInstance";
 
 const HeroComercioPage = () => {
   const { id } = useParams();
-  const [comercio, setComercio] = useState(null);
+  const [comercio, setComercio] = useState({});
   const [loading, setLoading] = useState(true);
-
-  const getComercio = async () => {
-    try {
-      console.log("id en hero comercio", id);
-      const { data } = await axiosInstance.get(`comercio/${id}`);
-      console.log("data en hero", data);
-      setComercio(data.comercio[0]);
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Error al cargar el comercio",
-        text: error.response?.data?.mensaje || "Error desconocido",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  const location = useLocation();
+  const mostrarEstadoComercio = location.pathname.startsWith("/comercios/");
 
   useEffect(() => {
-    getComercio();
+    const getComercio = async () => {
+      try {
+        console.log("id en hero comercio", id);
+        const { data } = await axiosInstance.get(`comercio/${id}`);
+        console.log("data en hero", data);
+        setComercio(data.comercio[0]);
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Error al cargar el comercio",
+          text: error.response?.data?.mensaje || "Error desconocido",
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (id) {
+      getComercio();
+    }
   }, [id]);
 
   return (
@@ -55,6 +58,11 @@ const HeroComercioPage = () => {
               <span className="comercio-info-item">
                 <FaPhoneAlt /> {comercio?.telefono}
               </span>
+              {mostrarEstadoComercio && (
+                <p className={comercio.activo ? `badge text-bg-success text-wrap` : `badge text-bg-danger text-wrap`} style={{ width: "4rem", marginTop: "10px" }}>
+                  {comercio.activo ? "Abierto" : "Cerrado"}
+                </p>
+              )}
 
               <span className="comercio-info-item-rating">
                 <AiFillStar /> {comercio?.rating}
