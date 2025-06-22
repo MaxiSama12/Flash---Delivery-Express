@@ -71,7 +71,7 @@ const VendedorDashboard = () => {
     try {
       setLoading(true);
       await axiosInstance.put(`/pedido/${id_pedido}/editar`, {
-        estado: "completado",
+        nuevo_estado: "completado",
       });
       const pedidoProductoRes = await axiosInstance.get(
         `/pedidos-comercio/${id}`
@@ -723,21 +723,21 @@ const VendedorDashboard = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {/* {pedido.productos.map((producto, index) => {
-                          const prod = productos.find(
-                            (p) => String(p.id) === String(producto.id_producto)
-                          );
-                          const precioUnitario = prod?.precio || 0;
+                        {pedido.productos.map((producto, index) => {
+                          // const prod = productos.find(
+                          //   (p) => String(p.id) === String(producto.id_producto)
+                          // );
+                          // const precioUnitario = prod?.precio || 0;
                           return (
                             <tr
                               key={`${pedido.id}-${producto.id_producto}-${index}`}
                             >
-                              <td>{prod ? prod.nombre : "N/A"}</td>
-                              <td>{producto.cantidad}</td>
-                              <td>${precioUnitario.toFixed(2)}</td>
+                              <td>{producto.nombre || "N/A"}</td>
+                              <td>{producto.cantidad || "N/A"}</td>
+                              <td>${producto.precio || 0}</td>
                             </tr>
                           );
-                        })} */}
+                        })}
                       </tbody>
                     </Table>
 
@@ -750,15 +750,15 @@ const VendedorDashboard = () => {
                       }}
                     >
                       Total: $
-                      {/* {pedido.productos
+                      {pedido.productos
                         .reduce((acc, producto) => {
-                          const prod = productos.find(
-                            (p) => String(p.id) === String(producto.id_producto)
-                          );
-                          const precioUnitario = prod?.precio || 0;
-                          return acc + precioUnitario * producto.cantidad;
+                          // const prod = productos.find(
+                          //   (p) => String(p.id) === String(producto.id_producto)
+                          // );
+                          // const precioUnitario = prod?.precio || 0;
+                          return acc + producto.precio * producto.cantidad;
                         }, 0)
-                        .toFixed(2)} */}
+                        .toFixed(2)}
                     </div>
                   </Card.Body>
                 </Card>
