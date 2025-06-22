@@ -59,11 +59,43 @@ const VendedorDashboard = () => {
     const completedOrders = listaPedidoProductos.filter(
       (p) => p.estado === "completado"
     ).length;
-    const totalEarnings = listaPedidoProductos
-      .filter((p) => p.estado === "completado")
-      .reduce((sum, p) => sum + p.total, 0);
+    const totalEarnings =
+      listaPedidoProductos
+        .filter((p) => p.estado === "completado")
+        .reduce((sum, p) => sum + p.total, 0) || 0;
 
     setStats({ totalOrders, pendingOrders, completedOrders, totalEarnings });
+  };
+
+  const updateEstadoPedido = async (id_pedido) => {
+    try {
+      setLoading(true);
+      await axiosInstance.put(`/pedido/${id_pedido}/editar`, {
+        estado: "completado",
+      });
+      const pedidoProductoRes = await axiosInstance.get(
+        `/pedidos-comercio/${id}`
+      );
+
+      setPedidoProductos(pedidoProductoRes.data.pedidos);
+
+      Swal.fire({
+        icon: "success",
+        title: "Pedido actualizado",
+        text: "El estado del pedido ha sido actualizado correctamente.",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+    } catch (error) {
+      console.error("Error al actualizar el estado del pedido:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "No se pudo actualizar el estado del pedido.",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -78,25 +110,20 @@ const VendedorDashboard = () => {
         //   (prod) => String(prod.id_comercio) === String(id)
         // );
         setProductos(resProductos.data.productos);
-        console.log("productos en comercio", resProductos.data.productos);
+        console.log("productos en comercio", resProductos.data.productos); // -------------------------------------
 
         const pedidoProductoRes = await axiosInstance.get(
           `/pedidos-comercio/${id}`
         );
 
-        // setPedidoProductos(
-        //   pedidoProductoRes.data.filter(
-        //     (ped) => String(ped.id_comercio) === String(id)
-        //   )
-        // );
+        setPedidoProductos(pedidoProductoRes.data.pedidos);
+        console.log("pedidos en dashboard", pedidoProductoRes.data.pedidos); //---------------------------------------------------
 
-        const categoriasRes = await axiosInstance.get(
-          "/categorias"
-        );
+        const categoriasRes = await axiosInstance.get("/categorias");
         console.log("categiruas eb dashboard", categoriasRes);
         setCategorias(categoriasRes.data.categorias);
 
-        calcularStats(pedidoProductoRes.data);
+        calcularStats(pedidoProductoRes.data.pedidos); //---------------------------------------------------
       } catch (error) {
         console.error("Error al obtener datos:", error);
         Swal.fire({
@@ -164,7 +191,7 @@ const VendedorDashboard = () => {
         id_categoria,
         url_imagen: url_imagen.trim(),
       };
-      console.log("nuevo producto antes de axios", nuevo);
+      console.log("nuevo producto antes de axios", nuevo); //----------------------------------------------
       const res = await axiosInstance.post("/crear/producto", nuevo);
       setProductos((prev) => [...prev, res.data]);
       setNuevoProducto({
@@ -327,11 +354,12 @@ const VendedorDashboard = () => {
   //     setLoading(false);
   //   }
   // };
-  console.log("comercio",comercio);
 
   return (
     <Container className="py-4">
-      <h2 className="mb-4 text-success">Panel de {comercio.nombre_comercio} | {comercio.nombre_admin}</h2>
+      <h2 className="mb-4 text-success">
+        Panel de {comercio.nombre_comercio} | {comercio.nombre_admin}
+      </h2>
 
       {/* Estadísticas */}
       <Row className="mb-4">
@@ -462,7 +490,10 @@ const VendedorDashboard = () => {
                   <tr key={prod.id}>
                     <td>{prod.nombre}</td>
                     <td>{prod.descripcion}</td>
-                    <td>${prod.precio.toFixed(2)}</td>
+                    <p>
+                      Precio:{" "}
+                      {prod?.precio ? Number(prod.precio).toFixed(2) : "0.00"}
+                    </p>
                     <td>{categoria ? categoria.nombre : "N/A"}</td>
                     <td>
                       {prod.url_imagen && (
@@ -657,10 +688,10 @@ const VendedorDashboard = () => {
               const esPendiente = pedido.estado === "pendiente";
 
               return (
-                <Card key={pedido.id} className="mb-4">
+                <Card key={pedido.id_pedido} className="mb-4">
                   <Card.Header className="d-flex justify-content-between align-items-center">
                     <div>
-                      <strong>Pedido #{pedido.id}</strong> -{" "}
+                      <strong>Pedido #{pedido.id_pedido}</strong> -{" "}
                       <Badge bg={esPendiente ? "warning" : "success"}>
                         {esPendiente ? "Pendiente" : "Listo"}
                       </Badge>
@@ -669,9 +700,7 @@ const VendedorDashboard = () => {
                       <Button
                         variant="success"
                         size="sm"
-                        onClick={() =>
-                          console.log(pedido.id, pedido.estado)
-                        }
+                        onClick={() => updateEstadoPedido(pedido.id_pedido)}
                       >
                         Marcar como Listo
                       </Button>
@@ -694,7 +723,7 @@ const VendedorDashboard = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {pedido.productos.map((producto, index) => {
+                        {/* {pedido.productos.map((producto, index) => {
                           const prod = productos.find(
                             (p) => String(p.id) === String(producto.id_producto)
                           );
@@ -708,7 +737,7 @@ const VendedorDashboard = () => {
                               <td>${precioUnitario.toFixed(2)}</td>
                             </tr>
                           );
-                        })}
+                        })} */}
                       </tbody>
                     </Table>
 
@@ -721,7 +750,7 @@ const VendedorDashboard = () => {
                       }}
                     >
                       Total: $
-                      {pedido.productos
+                      {/* {pedido.productos
                         .reduce((acc, producto) => {
                           const prod = productos.find(
                             (p) => String(p.id) === String(producto.id_producto)
@@ -729,7 +758,7 @@ const VendedorDashboard = () => {
                           const precioUnitario = prod?.precio || 0;
                           return acc + precioUnitario * producto.cantidad;
                         }, 0)
-                        .toFixed(2)}
+                        .toFixed(2)} */}
                     </div>
                   </Card.Body>
                 </Card>
