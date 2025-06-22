@@ -25,6 +25,7 @@ import Cart from "./components/ui/Cart";
 import { useState } from "react";
 import MisDirecciones from "./pages/MisDirecciones/MisDirecciones";
 import LoginForm from "./components/auth/LoginForm";
+import ProtectedRoutes from "./components/utils/ProtectedRoutes";
 
 function App() {
   const [isBouncing, setIsBouncing] = useState(false);
@@ -36,19 +37,28 @@ function App() {
       {!ocultarCart && <Cart isBouncing={isBouncing} />}
       <ToastContainer />
       <Routes>
-        <Route path="/dashboard-vendedor/:id" element={<DashboardVendedor />} />
+        <Route
+          path="/dashboard-vendedor/:id"
+          element={
+            <ProtectedRoutes allowedRoles={["comercio"]}>
+              <DashboardVendedor />
+            </ProtectedRoutes>
+          }
+        />
 
-        <Route path="/repartidor" element={<DashboardRepartidor />} />
+        {/* <Route path="/repartidor" element={<DashboardRepartidor />} /> */}
 
         <Route
           path={HOME}
           element={
-            <HomePage
-              onAddToCartAnimation={() => {
-                setIsBouncing(true);
-                setTimeout(() => setIsBouncing(false), 400);
-              }}
-            />
+            <ProtectedRoutes allowedRoles={["cliente"]}>
+              <HomePage
+                onAddToCartAnimation={() => {
+                  setIsBouncing(true);
+                  setTimeout(() => setIsBouncing(false), 400);
+                }}
+              />
+            </ProtectedRoutes>
           }
         />
         <Route path={LOGIN} element={<LoginPages />} />
@@ -60,7 +70,14 @@ function App() {
         />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/mis-direcciones" element={<MisDirecciones />} />
-        <Route path="/dashboard-repartidor/:id" element={<DashboardRepartidor />} />
+        <Route
+          path="/dashboard-repartidor/:id"
+          element={
+            <ProtectedRoutes allowedRoles={["repartidor"]}>
+              <DashboardRepartidor />
+            </ProtectedRoutes>
+          }
+        />
         <Route path="*" element={<NotFound />} />
         <Route path={REGISTERCOMERCIO} element={<RegisterComercioPages />} />
         {/* <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor />} /> */}
