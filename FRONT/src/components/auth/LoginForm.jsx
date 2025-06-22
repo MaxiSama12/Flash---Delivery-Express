@@ -7,9 +7,7 @@ import {
 } from "../../router/route";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { CLIENTES } from "../../endpoints/endpoints";
 import "../../styles/LoginForm.css";
-import axios from "axios";
 import { useLogin } from "../../context/useLogin.js";
 import { useAuthStore } from "../../store/authStore";
 import Swal from "sweetalert2"; // ✅ Importación de SweetAlert2
