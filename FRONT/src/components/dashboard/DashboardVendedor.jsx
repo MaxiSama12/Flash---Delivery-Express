@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-// import axios from "axios";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import {
@@ -66,6 +65,7 @@ const VendedorDashboard = () => {
         .reduce((sum, p) => sum + p.total, 0) || 0;
 
     setStats({ totalOrders, pendingOrders, completedOrders, totalEarnings });
+    console.log(stats);
   };
 
   const updateEstadoPedido = async (id_pedido) => {
@@ -128,9 +128,6 @@ const VendedorDashboard = () => {
       console.log("comercio en dashboard", resComercio.data.comercio[0]);
 
       const resProductos = await axiosInstance.get(`/productos/${id}`);
-      // const productosFiltrados = productosRes.data.filter(
-      //   (prod) => String(prod.id_comercio) === String(id)
-      // );
       setProductos(resProductos.data.productos);
       console.log("productos en comercio", resProductos.data.productos); // -------------------------------------
 
@@ -341,52 +338,15 @@ const VendedorDashboard = () => {
     }
   };
 
-  // const cambiarEstadoPedido = async (pedidoProductoId, estadoActual) => {
-  //   if (estadoActual === "completado") return;
-
-  //   try {
-  //     setLoading(true);
-  //     await axios.patch(`http://localhost:3000/pedidos/${pedidoProductoId}`, {
-  //       estado: "completado",
-  //     });
-
-  //     setPedidoProductos((prev) =>
-  //       prev.map((pedido) =>
-  //         pedido.id === pedidoProductoId
-  //           ? { ...pedido, estado: "completado" }
-  //           : pedido
-  //       )
-  //     );
-  //     Swal.fire({
-  //       icon: "success",
-  //       title: "Pedido marcado como completado",
-  //       timer: 1200,
-  //       showConfirmButton: false,
-  //     });
-  //   } catch (error) {
-  //     console.error("Error al cambiar estado del pedido:", error);
-  //     Swal.fire({
-  //       icon: "error",
-  //       title: "Error",
-  //       text: "No se pudo cambiar el estado del pedido.",
-  //     });
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   return (
     <>
       <HeroComercioPage />
       <Container className="py-4">
-        <h2 className="fs-1 mb-4 bg-warning badge">
-          Panel de {comercio.nombre_comercio}
-        </h2>
-        <br />
-        <h2 className="fs-2 mb-1 bg-success badge">
-          Bienvenido/a {comercio.nombre_admin}
-        </h2>
-        <p className="fs-5" style={{ color: comercio.activo ? "green" : "red" }}>
+        <h2 className="fs-1 mb-1 ">Bienvenido/a {comercio.nombre_admin}</h2>
+        <p
+          className="fs-5"
+          style={{ color: comercio.activo ? "green" : "red" }}
+        >
           {comercio.activo ? "Abierto" : "Cerrado"}{" "}
         </p>
         {/* Estadísticas */}
@@ -417,13 +377,16 @@ const VendedorDashboard = () => {
                     total +
                     p.productos.reduce((acc, prod) => {
                       const pInfo = productos.find(
-                        (pp) => String(pp.id) === String(prod.id_producto)
+                        (pp) => pp.id_producto === prod.id_producto
                       );
                       return acc + (pInfo?.precio || 0) * prod.cantidad;
                     }, 0)
                   );
                 }, 0)
-                .toFixed(2)}`,
+                .toLocaleString("es-AR", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}`,
             },
             {
               title: "Total Productos",
@@ -432,15 +395,16 @@ const VendedorDashboard = () => {
             },
           ].map((item, idx) => (
             <Col md={4} key={idx} className="mb-3">
-              <Card className="text-center p-2" style={{ minHeight: "120px" }}>
+              <Card
+                className={`text-center p-2 bg-${item.variant}`}
+                style={{ minHeight: "120px" }}
+              >
                 <Card.Body className="p-2">
-                  <Card.Title className="mb-1" style={{ fontSize: "0.9rem" }}>
+                  <Card.Title className="mb-1 fs-5 fw-bold text-light">
                     {item.title}
                   </Card.Title>
-                  <h6>
-                    <Badge bg={item.variant} style={{ fontSize: "0.85rem" }}>
-                      {item.value}
-                    </Badge>
+                  <h6 className="fs-4">
+                    <Badge bg={item.variant}>{item.value}</Badge>
                   </h6>
                 </Card.Body>
               </Card>
@@ -517,11 +481,11 @@ const VendedorDashboard = () => {
                     <tr key={prod.id_producto}>
                       <td>{prod.nombre}</td>
                       <td>{prod.descripcion}</td>
-                      <p>
+                      <td>
                         {prod?.precio
                           ? "$" + Number(prod.precio).toFixed(2)
                           : "0.00"}
-                      </p>
+                      </td>
                       <td>{categoria ? categoria.nombre : "N/A"}</td>
                       <td>
                         {prod.url_imagen && (
@@ -537,7 +501,7 @@ const VendedorDashboard = () => {
                           variant="warning"
                           size="sm"
                           onClick={() => abrirEditarProducto(prod)}
-                          className="me-2"
+                          className="me-2 mb-1"
                         >
                           Editar
                         </Button>
@@ -752,10 +716,6 @@ const VendedorDashboard = () => {
                         </thead>
                         <tbody>
                           {pedido.productos.map((producto, index) => {
-                            // const prod = productos.find(
-                            //   (p) => String(p.id) === String(producto.id_producto)
-                            // );
-                            // const precioUnitario = prod?.precio || 0;
                             return (
                               <tr
                                 key={`${pedido.id}-${producto.id_producto}-${index}`}
@@ -780,10 +740,6 @@ const VendedorDashboard = () => {
                         Total: $
                         {pedido.productos
                           .reduce((acc, producto) => {
-                            // const prod = productos.find(
-                            //   (p) => String(p.id) === String(producto.id_producto)
-                            // );
-                            // const precioUnitario = prod?.precio || 0;
                             return acc + producto.precio * producto.cantidad;
                           }, 0)
                           .toFixed(2)}
