@@ -4,12 +4,11 @@ import { Button } from "react-bootstrap";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { BsCash } from "react-icons/bs";
 import { useCartStore } from "../../context/useCartStore";
-import { useLogin } from "../../context/useLogin";
 import { IoRemoveSharp } from "react-icons/io5";
 import { IoAdd } from "react-icons/io5";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { useAuthStore } from "../../store/authStore";
+import { axiosInstance } from "../../router/axiosInstance";
 
 const CartItem = ({ product }) => {
   const addToCart = useCartStore((state) => state.addToCart);
@@ -61,59 +60,28 @@ const Cart = ({ isBouncing }) => {
   const clearCart = useCartStore((state) => state.clearCart);
   const total = useCartStore((state) => state.total)();
   const itemsCount = useCartStore((state) => state.itemsCount)();
-  let idCliente = 0
-  const {usuario} = useAuthStore()
-  if(usuario){
-    const { state } = JSON.parse(localStorage.getItem("auth-storage"));
-    
-    if(state.usuario.id) idCliente = state.usuario.id
-
-  }
-
-
-  const direccionCliente = useLogin((state) => state.direccion);
+  const user = useAuthStore((state) => state.usuario);
 
   const handleCheckout = async () => {
-    if (!idCliente) {
+    if (!user) {
       toast.warn("Debes iniciar sesión para realizar una compra");
       return;
     }
     const pedidoPayload = {
       fecha_pedido: new Date().toISOString(),
       estado: "pendiente",
-      direccion_entrega: direccionCliente || "No existe dirección",
-      id_cliente: idCliente,
+      direccion_entrega: user.direccion || "No existe dirección",
+      id_cliente: user.id_cliente,
       id_repartidor: null,
       id_comercio: cart[0]?.id_comercio,
       productos: cart.map((item) => ({
-        id_producto: item.id,
+        id_producto: item.id_producto,
         cantidad: item.cantidad,
       })),
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/pedidos",
-        pedidoPayload
-      );
-      const id_pedido = response.data.id;
-
-      for (const item of cart) {
-        await axios.post("http://localhost:3000/pedido_producto", {
-          id_pedido,
-          id_producto: item.id,
-          cantidad: item.cantidad,
-          status: "pendiente", // <--- aseguramos estado inicial
-        });
-      }
-
-      await axios.post("http://localhost:3000/pagos", {
-        metodo: "efectivo",
-        monto: total,
-        fecha_pago: new Date().toISOString(),
-        id_pedido,
-      });
-
+      await axiosInstance.post("/crear/pedido", pedidoPayload);
       toast.success("Pedido creado con éxito");
       clearCart();
     } catch (err) {
@@ -128,6 +96,7 @@ const Cart = ({ isBouncing }) => {
 
       <aside className="cart">
         <h4>Carrito</h4>
+
         <ul>
           {cart.length === 0 && <p>Tu carrito está vacío</p>}
           {cart.map((product) => (
