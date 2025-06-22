@@ -51,14 +51,12 @@ function App() {
         <Route
           path={HOME}
           element={
-            <ProtectedRoutes allowedRoles={["cliente"]}>
               <HomePage
                 onAddToCartAnimation={() => {
                   setIsBouncing(true);
                   setTimeout(() => setIsBouncing(false), 400);
                 }}
               />
-            </ProtectedRoutes>
           }
         />
         <Route path={LOGIN} element={<LoginPages />} />
