@@ -192,8 +192,9 @@ const VendedorDashboard = () => {
         url_imagen: url_imagen.trim(),
       };
       console.log("nuevo producto antes de axios", nuevo); //----------------------------------------------
-      const res = await axiosInstance.post("/crear/producto", nuevo);
-      setProductos((prev) => [...prev, res.data]);
+      await axiosInstance.post("/crear/producto", nuevo);
+      const { data } = await axiosInstance.get(`/productos/${id}`);
+      setProductos(data.productos);
       setNuevoProducto({
         nombre: "",
         descripcion: "",
@@ -223,7 +224,7 @@ const VendedorDashboard = () => {
   const guardarProductoEditado = async (e) => {
     e.preventDefault();
     const {
-      id: prodId,
+      id_producto,
       nombre,
       descripcion,
       precio,
@@ -261,14 +262,11 @@ const VendedorDashboard = () => {
       };
 
       await axiosInstance.put(
-        `/producto/${prodId}/editar`,
+        `/producto/${id_producto}/editar`,
         productoActualizado
       );
-      setProductos((prev) =>
-        prev.map((prod) =>
-          prod.id === prodId ? { ...prod, ...productoActualizado } : prod
-        )
-      );
+      const { data } = await axiosInstance.get(`/productos/${id}`);
+      setProductos(data.productos);
       setModalAgregarEditar(null);
       Swal.fire({
         icon: "success",
@@ -303,8 +301,10 @@ const VendedorDashboard = () => {
     if (!result.isConfirmed) return;
 
     try {
-      await axiosInstance.delete(`/producto/${prodId}/eliminar`);
-      setProductos((prev) => prev.filter((prod) => prod.id !== prodId));
+      const res = await axiosInstance.delete(`/producto/${prodId}/eliminar`);
+      console.log("respuesta al eliminar", res);
+      const { data } = await axiosInstance.get(`/productos/${id}`);
+      setProductos(data.productos);
       Swal.fire({
         icon: "success",
         title: "Producto eliminado",
@@ -487,7 +487,7 @@ const VendedorDashboard = () => {
                   (cat) => cat.id_categoria === prod.id_categoria
                 );
                 return (
-                  <tr key={prod.id}>
+                  <tr key={prod.id_producto}>
                     <td>{prod.nombre}</td>
                     <td>{prod.descripcion}</td>
                     <p>
@@ -516,7 +516,7 @@ const VendedorDashboard = () => {
                       <Button
                         variant="danger"
                         size="sm"
-                        onClick={() => eliminarProducto(prod.id)}
+                        onClick={() => eliminarProducto(prod.id_producto)}
                       >
                         Eliminar
                       </Button>
