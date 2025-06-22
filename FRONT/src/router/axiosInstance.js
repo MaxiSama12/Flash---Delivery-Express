@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const puerto = 3000;
+const puerto = 8080;
 
 export const axiosInstance = axios.create({
-    baseURL: `http://localhost:${puerto}/`
+    baseURL: `http://localhost:${puerto}`
 })
