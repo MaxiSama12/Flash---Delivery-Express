@@ -25,6 +25,7 @@ import Cart from "./components/ui/Cart";
 import { useState } from "react";
 import MisDirecciones from "./pages/MisDirecciones/MisDirecciones";
 import LoginForm from "./components/auth/LoginForm";
+import ProtectedRoutes from "./components/utils/ProtectedRoutes";
 
 function App() {
   const [isBouncing, setIsBouncing] = useState(false);
@@ -36,35 +37,110 @@ function App() {
       {!ocultarCart && <Cart isBouncing={isBouncing} />}
       <ToastContainer />
       <Routes>
-        <Route path="/dashboard-vendedor/:id" element={<DashboardVendedor />} />
+        {/* DASHBOARD VENDEDOR */}
+        <Route
+          path="/dashboard-vendedor/:id"
+          element={
+            <ProtectedRoutes allowedRoles={["comercio"]}>
+              <DashboardVendedor />
+            </ProtectedRoutes>
+          }
+        />
 
-        <Route path="/repartidor" element={<DashboardRepartidor />} />
+        {/* <Route path="/repartidor" element={<DashboardRepartidor />} /> */}
 
+        {/* HOME */}
         <Route
           path={HOME}
           element={
-            <HomePage
-              onAddToCartAnimation={() => {
-                setIsBouncing(true);
-                setTimeout(() => setIsBouncing(false), 400);
-              }}
-            />
+            <ProtectedRoutes allowedRoles={["cliente", "anonimo"]}>
+              <HomePage
+                onAddToCartAnimation={() => {
+                  setIsBouncing(true);
+                  setTimeout(() => setIsBouncing(false), 400);
+                }}
+              />
+            </ProtectedRoutes>
           }
         />
-        <Route path={LOGIN} element={<LoginPages />} />
-        <Route path={LISTACOMERCIO} element={<ListaComerciosPage />} />
-        <Route path={REGISTERCLIENTE} element={<RegisterClientePages />} />
+
+        {/* LOGIN */}
+        <Route
+          path={LOGIN}
+          element={
+            <ProtectedRoutes allowedRoles={["anonimo"]}>
+              <LoginPages />
+            </ProtectedRoutes>
+          }
+        />
+
+        {/* LISTA COMERCIO */}
+        <Route
+          path={LISTACOMERCIO}
+          element={
+            <ProtectedRoutes allowedRoles={["anonimo", "cliente"]}>
+              <ListaComerciosPage />
+            </ProtectedRoutes>
+          }
+        />
+
+        {/* REGISTRO CLIENTES */}
+        <Route
+          path={REGISTERCLIENTE}
+          element={
+            <ProtectedRoutes allowedRoles={["anonimo"]}>
+              <RegisterClientePages />
+            </ProtectedRoutes>
+          }
+        />
+
+        {/* REGISTRO REPARTIDOR */}
         <Route
           path={REGISTERREPARTIDOR}
-          element={<RegisterRepartidorPages />}
+          element={
+            <ProtectedRoutes allowedRoles={["anonimo"]}>
+              <RegisterRepartidorPages />
+            </ProtectedRoutes>
+          }
         />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/mis-direcciones" element={<MisDirecciones />} />
-        <Route path="/dashboard-repartidor/:id" element={<DashboardRepartidor />} />
+
+        {/* MIS DIRECCIONES */}
+        <Route
+          path="/mis-direcciones"
+          element={
+            <ProtectedRoutes allowedRoles={["cliente"]}>
+              <MisDirecciones />
+            </ProtectedRoutes>
+          }
+        />
+
+        {/* DASHBOARD REPARTIDOR */}
+        <Route
+          path="/dashboard-repartidor/:id"
+          element={
+            <ProtectedRoutes allowedRoles={["repartidor"]}>
+              <DashboardRepartidor />
+            </ProtectedRoutes>
+          }
+        />
+
+        {/* ERROR 404 */}
         <Route path="*" element={<NotFound />} />
-        <Route path={REGISTERCOMERCIO} element={<RegisterComercioPages />} />
-        {/* <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor />} /> */}
-        <Route path={`${COMERCIO}/:id`} element={<ComercioPage />} />
+        <Route path={REGISTERCOMERCIO} element={
+          <ProtectedRoutes allowedRoles={["anonimo"]}>
+          <RegisterComercioPages />
+          </ProtectedRoutes>
+          } />
+
+        {/* COMERCIO POR ID */}
+        <Route
+          path={`${COMERCIO}/:id`}
+          element={
+            <ProtectedRoutes allowedRoles={["anonimo", "cliente"]}>
+              <ComercioPage />
+            </ProtectedRoutes>
+          }
+        />
       </Routes>
     </>
   );

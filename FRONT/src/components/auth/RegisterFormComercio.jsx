@@ -26,8 +26,8 @@ const RegisterFormComercio = () => {
   const getRubros = async () => {
     try {
       const res = await axiosInstance.get("rubros");
-      console.log(res.data.rubro)
-      setRubros(res.data.rubro);
+      console.log(res.data.rubros)
+      setRubros(res.data.rubros);
     } catch (error) {
       console.log("Error trayendo los rubros: ", error);
       Swal.fire("Error", "No se pudieron cargar los rubros", "error");
