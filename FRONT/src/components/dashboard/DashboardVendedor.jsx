@@ -437,7 +437,7 @@ const VendedorDashboard = () => {
               {comercio.activo ? "Cerrar comercio" : "Abrir comercio"}
             </Button>
             <Button variant="danger" onClick={() => console.log("hoal")}>
-              Salir Sesión
+              Cerrar Sesión
             </Button>
           </Col>
         </Row>
@@ -672,7 +672,8 @@ const VendedorDashboard = () => {
           <Modal.Header closeButton>
             <Modal.Title>Pedidos</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+
+          <Modal.Body className="p-3 w-100">
             {pedidoProductos.length === 0 ? (
               <p>No hay pedidos.</p>
             ) : (
@@ -680,8 +681,8 @@ const VendedorDashboard = () => {
                 const esPendiente = pedido.estado === "pendiente";
 
                 return (
-                  <Card key={pedido.id_pedido} className="mb-4">
-                    <Card.Header className="d-flex justify-content-between align-items-center">
+                  <div key={pedido.id_pedido} className="border p-3 mb-4 w-100">
+                    <Card.Header className="d-flex justify-content-between align-items-center mb-1">
                       <div>
                         <strong>Pedido #{pedido.id_pedido}</strong> -{" "}
                         <Badge bg={esPendiente ? "warning" : "success"}>
@@ -700,13 +701,7 @@ const VendedorDashboard = () => {
                     </Card.Header>
 
                     <Card.Body>
-                      <Table
-                        striped
-                        bordered
-                        hover
-                        responsive
-                        style={{ width: "400px" }}
-                      >
+                      <Table striped bordered hover responsive>
                         <thead>
                           <tr>
                             <th>Producto</th>
@@ -715,37 +710,30 @@ const VendedorDashboard = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {pedido.productos.map((producto, index) => {
-                            return (
-                              <tr
-                                key={`${pedido.id}-${producto.id_producto}-${index}`}
-                              >
-                                <td>{producto.nombre || "N/A"}</td>
-                                <td>{producto.cantidad || "N/A"}</td>
-                                <td>${producto.precio || 0}</td>
-                              </tr>
-                            );
-                          })}
+                          {pedido.productos.map((producto, index) => (
+                            <tr
+                              key={`${pedido.id}-${producto.id_producto}-${index}`}
+                            >
+                              <td>{producto.nombre || "N/A"}</td>
+                              <td>{producto.cantidad || "N/A"}</td>
+                              <td>${producto.precio || 0}</td>
+                            </tr>
+                          ))}
                         </tbody>
                       </Table>
 
-                      {/* Mostrar total debajo de la tabla */}
-                      <div
-                        style={{
-                          textAlign: "right",
-                          fontWeight: "bold",
-                          marginTop: "10px",
-                        }}
-                      >
+                      <div className="text-end fw-bold mt-3">
                         Total: $
                         {pedido.productos
-                          .reduce((acc, producto) => {
-                            return acc + producto.precio * producto.cantidad;
-                          }, 0)
+                          .reduce(
+                            (acc, producto) =>
+                              acc + producto.precio * producto.cantidad,
+                            0
+                          )
                           .toFixed(2)}
                       </div>
                     </Card.Body>
-                  </Card>
+                  </div>
                 );
               })
             )}
