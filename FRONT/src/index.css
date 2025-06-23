@@ -4,3 +4,65 @@
   box-sizing: border-box;
   font-family: "Reem Kufi", sans-serif !important;
 }
+
+.ping-container {
+  position: relative;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.ping-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  opacity: 0.75;
+}
+
+/* Colores y animación */
+.ping-green {
+  background-color: #34d399; /* verde */
+}
+
+.ping-green::before {
+  background-color: #34d399;
+}
+
+.ping-yellow {
+  background-color: #facc15; /* amarillo */
+}
+
+.ping-yellow::before {
+  background-color: #facc15;
+}
+
+.ping-red {
+  background-color: #f87171; /* rojo */
+}
+
+.ping-red::before {
+  background-color: #f87171;
+}
+
+.ping-orange {
+  background-color: #fb923c; /* naranja */
+}
+
+.ping-orange::before {
+  background-color: #fb923c;
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
