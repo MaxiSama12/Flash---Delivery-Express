@@ -21,10 +21,25 @@ Este repositorio contiene el frontend de una plataforma multirubro tipo PedidosY
 ## 📦 Instalación del proyecto
 
 ```bash
-git clone https://github.com/usuario/repositorio-frontend.git
-cd repositorio-frontend
+BASE DE DATOS
+Crear la base de datos con el archivo query.sql
+
+FRONT
+git clone https://github.com/MaxiSama12/Flash---Delivery-Express
+cd Flash---Delivery-Express
+cd FRONT
 npm install
 npm run dev
+
+BACK
+1_  git clone https://github.com/MaxiSama12/Flash---Delivery-Express---Back.git  BACK
+2_  cd BACK (En la raiz del proyecto crear el archivo .env con los datos de la base de datos como en el ejemplo del archivo .env.example)  
+3_  install npm
+4_  npm install -g nodemon
+5_  Si se conecto con exito saldra este msj en la consola de VS Code:
+           mi servidor está funcionando en el puerto 8080
+             Conexión a la base de datos MySQL exitosa!
+
 ```
 ## 📁 Estructura del proyecto
 ```bash
