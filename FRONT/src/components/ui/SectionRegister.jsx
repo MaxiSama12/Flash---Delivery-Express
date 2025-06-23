@@ -7,7 +7,7 @@ const SectionRegister = () => {
     <section className="services-section">
       <div className="container">
         <div className="title-container">
-          <h1 className="title-register text-center">
+          <h1 className="title-register ">
             Únete a <span className="highlight">Flash</span>
           </h1>
         </div>

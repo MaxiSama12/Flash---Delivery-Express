@@ -14,7 +14,7 @@ export default function MisPedidos() {
   useEffect(() => {
     const fetchPedidos = async () => {
       if (!usuario) return;
-      console.log("usuario id", usuario);
+     
       try {
         const { data } = await axiosInstance.get(
           `/pedidos-cliente/${usuario.id_cliente}`
@@ -68,7 +68,7 @@ export default function MisPedidos() {
                 <p>No hay pedidos disponibles</p>
               ) : (
                 <ListGroup >
-                  <h2 className="text-center mb-4">Tus Pedidos</h2>
+                  <h2 className="tus-pedidos-title  tus-pedidos my-4 text-center ">Tus Pedidos</h2>
                   {pedidos.map((order) => (
                     <ListGroup.Item key={order.id_pedido} className="mis-pedidos">
                       <div >
