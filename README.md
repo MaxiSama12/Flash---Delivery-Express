@@ -142,43 +142,43 @@ FRONT
  
 La plataforma Flash Delivery Express organiza sus vistas y funcionalidades a través de un sistema de enrutamiento declarativo utilizando React Router DOM. Cada ruta está diseñada para guiar al usuario a la sección apropiada de la aplicación, y la mayoría de ellas están protegidas para asegurar que solo los usuarios con el rol adecuado puedan acceder.
 
-/login
+- Login
 
 Propósito: Este es el punto de entrada universal para la autenticación de todos los usuarios. Permite a clientes, comercios y repartidores iniciar sesión con sus credenciales.
 Acceso: Es una ruta pública, accesible para cualquier persona que intente iniciar sesión en la aplicación.
 Funcionamiento: Envía las credenciales al backend y, tras una autenticación exitosa, almacena el token y el rol del usuario en el estado global (Zustand) antes de redirigirlo a su área correspondiente.
 
-/registro-cliente
+- Registro-cliente
 
 Propósito: Formulario dedicado para que los nuevos usuarios se registren como clientes en la plataforma.
 Acceso: Público.
 Funcionamiento: Captura los datos del nuevo cliente y los envía al backend para la creación de la cuenta.
 
-/registro-comercio
+- Registro-comercio
 
 Propósito: Formulario para que los negocios puedan registrarse y crear una cuenta de comercio dentro de la plataforma.
 Acceso: Público.
 Funcionamiento: Recopila la información necesaria del comercio y la envía al backend para su registro.
 
-/registro-repartidor
+- Registro-repartidor
 
 Propósito: Formulario diseñado para que los individuos se registren y puedan operar como repartidores para el servicio.
 Acceso: Público.
 Funcionamiento: Obtiene los datos del futuro repartidor y los gestiona para su alta en el sistema.
 
-/ (Ruta Raíz / Home)
+- (Ruta Raíz / Home)
 
 Propósito: Después de la autenticación, esta es el área principal para el cliente. Aquí pueden explorar comercios, visualizar productos, aplicar filtros y gestionar su experiencia de compra.
 Acceso: Protegido. Principalmente diseñada para clientes. Otros roles (comercio, repartidor) pueden acceder a esta ruta pero la aplicación puede redirigirlos automáticamente a su respectivo dashboard o mostrar una vista genérica si no es su área principal.
 Manejo de roles: El componente ProtectedRoutes asegura que solo los usuarios autenticados puedan acceder.
 
-/dashboard-comercio/:id
+- Dashboard-comercio/:id
 
 Propósito: Este es el panel de control exclusivo para los comercios. Desde aquí, pueden gestionar su catálogo de productos, visualizar y procesar pedidos entrantes, actualizar el estado de los pedidos y acceder a estadísticas de su negocio. El parámetro :id en la URL representa el identificador único del comercio autenticado.
 Acceso: Protegido. Exclusivamente accesible para usuarios con el rol comercio.
 Manejo de roles: La ruta está envuelta por ProtectedRoutes que verifica explícitamente el rol del usuario.
 
-/dashboard-repartidor/:id
+- Dashboard-repartidor/:id
 
 Propósito: Es el panel de control dedicado a los repartidores. Les permite ver los pedidos disponibles para entrega, aceptar asignaciones, gestionar sus entregas activas, y actualizar el estado de los pedidos en tiempo real. El parámetro :id representa el identificador único del repartidor autenticado.
 Acceso: Protegido. Exclusivamente accesible para usuarios con el rol repartidor.
@@ -191,7 +191,7 @@ Manejo de roles: Similar a las rutas de comercio, ProtectedRoutes garantiza que 
 
  El frontend de Flash Delivery Express implementa un conjunto de funcionalidades clave para permitir una interacción fluida y completa para cada tipo de usuario.
 
-Registro e Inicio de Sesión por Rol
+- Registro e Inicio de Sesión por Rol
 
 Descripción: La aplicación soporta un sistema de autenticación unificado que permite a usuarios registrarse e iniciar sesión con roles específicos: cliente, comercio o repartidor.
 Implementación:
@@ -201,7 +201,7 @@ Tras una autenticación exitosa, el backend devuelve un token de autenticación 
 Esta información se almacena de forma segura en el estado global (Zustand), permitiendo que la aplicación se adapte al rol del usuario.
 Las notificaciones de éxito o error (usando react-toastify) guían al usuario durante el proceso.
 
-Visualización de Productos por Comercio
+- Visualización de Productos por Comercio
 
 Descripción: Los clientes pueden explorar un catálogo de productos, organizados por diferentes comercios, y aplicar filtros de búsqueda.
 Implementación:
@@ -209,7 +209,7 @@ En la página principal (/), se realizan llamadas a la API (ej., GET /api/comerc
 Los productos se muestran utilizando componentes reutilizables como ProductCard.jsx, que encapsulan la lógica y la UI de un solo producto.
 Se pueden implementar filtros y barras de búsqueda para mejorar la experiencia del usuario (por ejemplo, por categoría de producto, nombre del comercio).
 
-Carrito de Compras
+- Carrito de Compras
 
 Descripción: Permite a los clientes seleccionar y acumular productos de diferentes comercios antes de realizar un pedido final. El carrito mantiene un registro de las cantidades y calcula el subtotal.
 Implementación:
@@ -217,7 +217,7 @@ Se gestiona mediante un store de Zustand dedicado al carrito (store/cartStore.js
 Los usuarios pueden añadir, eliminar y ajustar la cantidad de productos en el carrito.
 La interfaz del carrito muestra un resumen claro de los ítems seleccionados y el total a pagar.
 
-Creación de Pedidos
+- Creación de Pedidos
 
 Descripción: Una vez que el cliente ha finalizado su selección en el carrito, puede proceder a convertir su carrito en un pedido formal, especificando la dirección de entrega y otros detalles necesarios.
 Implementación:
@@ -225,7 +225,7 @@ Se recopila la información del carrito (productos, cantidades, ID del comercio/
 Se realiza una petición POST al backend (ej., POST /api/pedidos/crear) para registrar el nuevo pedido en la base de datos.
 Las alertas de confirmación (SweetAlert2) o notificaciones (react-toastify) informan al usuario sobre el éxito o fracaso del pedido.
 
-Seguimiento del Estado del Pedido
+- Seguimiento del Estado del Pedido
 
 Descripción: Permite a los clientes, comercios y repartidores monitorear el progreso de los pedidos a través de diferentes estados (ej., pendiente, preparando, en camino, entregado, cancelado).
 Implementación:
@@ -233,7 +233,7 @@ Clientes: Acceden a una sección "Mis Pedidos" (ej., GET /api/pedidos-cliente/:i
 Comercios: Desde su dashboard, acceden a los pedidos pendientes de su negocio (ej., GET /api/pedidos-comercio/:id_comercio) y pueden actualizarlos a preparando o listo para recoger (vía PUT /api/pedidos/:id/actualizar-estado).
 Repartidores: Pueden ver pedidos disponibles (ej., GET /api/pedidos-disponibles), aceptar un pedido y actualizar su estado a en camino o entregado (vía PUT /api/pedidos/:id/actualizar-estado).
 
-Confirmación de Entrega por Repartidor
+- Confirmación de Entrega por Repartidor
 
 Descripción: Es el paso final en el ciclo de vida de un pedido, donde el repartidor verifica y confirma que el pedido ha sido entregado exitosamente al cliente.
 Implementación:
@@ -247,9 +247,9 @@ Esto dispara una solicitud PUT al backend (ej., PUT /api/pedidos/:id_pedido/entr
 
 Este proyecto fue desarrollado colaborativamente por el siguiente equipo:
 
-Giacobbe Franco,
-Samaniego Esteban,
-Timo Gabriel, 
-Morales Juan,
-Ponce Micaela,
-Ruiz Pablo
+- Giacobbe Franco
+- Samaniego Esteban
+- Timo Gabriel 
+- Morales Juan
+- Ponce Micaela
+- Ruiz Pablo
