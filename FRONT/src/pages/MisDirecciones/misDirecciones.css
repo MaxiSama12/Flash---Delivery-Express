@@ -1,0 +1,18 @@
+.card {
+  border-radius: 12px;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 20px  #56649C;
+}
+
+/* .btn-danger {
+  background-color: #9C5698;
+  border: none;
+  font-weight: bold;
+}
+
+.btn-danger:hover {
+  background-color: #CA98C7;
+} */

@@ -1,0 +1,798 @@
+{
+  "clientes": [
+    {
+      "id": "1",
+      "nombre_usuario": "John Doe",
+      "email": "john@doe.com",
+      "telefono": "3819212354",
+      "direccion": "avenida siempre viva 123",
+      "password": "cliente123",
+      "rol": "cliente",
+      "direcciones": []
+    },
+    {
+      "id": "0c9a",
+      "nombre_usuario": "Esteban",
+      "email": "maxi@gmail.com",
+      "telefono": "3814563422",
+      "direccion": "pasaje 1234",
+      "password": "Maxisama123",
+      "rol": "cliente"
+    },
+    {
+      "id": "ba35",
+      "nombre_usuario": "Carlos",
+      "telefono": "048389473",
+      "email": "carlos@gmail.com",
+      "vehiculo": "Bicicleta",
+      "activo": true,
+      "password": "Carlos123",
+      "rol": "repartidor"
+    },
+    {
+      "id": "2865",
+      "nombre_usuario": "Juancito",
+      "email": "juan@gmail.com",
+      "telefono": "18923817",
+      "direccion": "calle juan 1233",
+      "password": "CLiente123",
+      "rol": "cliente"
+    },
+    {
+      "id": "0763",
+      "nombre_usuario": "Esteban",
+      "email": "maxisama12@gmail.com",
+      "telefono": "36753473",
+      "direccion": "bazan de laguna 4299",
+      "password": "cliente123",
+      "rol": "cliente"
+    },
+    {
+      "id": "4272",
+      "nombre": "Esteban vendedor",
+      "email": "vendedor@gmail.com",
+      "password": "vendedor123",
+      "telefono": "3814563422",
+      "rol": "vendedor"
+    },
+    {
+      "id": "9164",
+      "nombre_comercio": "Google",
+      "direccion": "google 123",
+      "telefono": "4824671",
+      "activo": true,
+      "url_imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_Homepage.svg/1200px-Google_Homepage.svg.png",
+      "rating": "4.1",
+      "time": "10 - 20 min",
+      "id_rubro": "4",
+      "nombre_usuario": "CEO Esteban",
+      "email": "google@gmail.com",
+      "rol": "comercio",
+      "password": "comercio123"
+    }
+  ],
+  "pedidos": [
+    {
+      "id": "d9f4",
+      "fecha_pedido": "2025-06-18T14:54:57.035Z",
+      "estado": "completado",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": "ba35",
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "1",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "5",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "b1a2",
+      "fecha_pedido": "2025-06-18T14:55:04.123Z",
+      "estado": "en reparto",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": "ba35",
+      "id_comercio": "3",
+      "productos": [
+        {
+          "id_producto": "2",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "11",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "cbd8",
+      "fecha_pedido": "2025-06-18T14:55:11.512Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "1",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "5",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "e46e",
+      "fecha_pedido": "2025-06-18T14:56:05.950Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "3",
+      "productos": [
+        {
+          "id_producto": "2",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "11",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "4b08",
+      "fecha_pedido": "2025-06-18T14:59:03.909Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "3",
+      "productos": [
+        {
+          "id_producto": "2",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "11",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "0c1d",
+      "fecha_pedido": "2025-06-18T14:59:16.248Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "4",
+      "productos": [
+        {
+          "id_producto": "1",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "5",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "ab54",
+      "fecha_pedido": "2025-06-18T15:06:37.408Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "3",
+      "productos": [
+        {
+          "id_producto": "2",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "11",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "10e4",
+      "fecha_pedido": "2025-06-18T17:42:07.763Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "1",
+      "productos": [
+        {
+          "id_producto": "3",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "d7c0",
+      "fecha_pedido": "2025-06-19T20:24:36.393Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "1",
+      "productos": [
+        {
+          "id_producto": "3",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "7a42",
+      "fecha_pedido": "2025-06-19T20:25:50.685Z",
+      "estado": "completado",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "2",
+      "productos": [
+        {
+          "id_producto": "1d01",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "b23a",
+      "fecha_pedido": "2025-06-19T20:27:28.381Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "2",
+      "productos": [
+        {
+          "id_producto": "1d01",
+          "cantidad": 4
+        }
+      ]
+    },
+    {
+      "id": "d173",
+      "fecha_pedido": "2025-06-19T20:29:27.257Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "2",
+      "productos": [
+        {
+          "id_producto": "1d01",
+          "cantidad": 3
+        }
+      ]
+    },
+    {
+      "id": "a65e",
+      "fecha_pedido": "2025-06-19T20:38:31.648Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "2",
+      "productos": [
+        {
+          "id_producto": "1d01",
+          "cantidad": 1
+        },
+        {
+          "id_producto": "19",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": "1ade",
+      "fecha_pedido": "2025-06-19T20:39:37.944Z",
+      "estado": "pendiente",
+      "direccion_entrega": "No existe dirección",
+      "id_cliente": "1",
+      "id_repartidor": null,
+      "id_comercio": "2",
+      "productos": [
+        {
+          "id_producto": "1d01",
+          "cantidad": 4
+        },
+        {
+          "id_producto": "19",
+          "cantidad": 2
+        }
+      ]
+    }
+  ],
+  "pedido_producto": [
+    {
+      "id": "c1de",
+      "id_pedido": "1ade",
+      "id_producto": "1d01",
+      "cantidad": 4,
+      "status": "completado"
+    },
+    {
+      "id": "c016",
+      "id_pedido": "1ade",
+      "id_producto": "19",
+      "cantidad": 2,
+      "status": "completado"
+    }
+  ],
+  "pagos": [
+    {
+      "id": "c380",
+      "metodo": "efectivo",
+      "monto": 3488,
+      "fecha_pago": "2025-06-18T15:06:37.435Z",
+      "id_pedido": "ab54"
+    },
+    {
+      "id": "2751",
+      "metodo": "efectivo",
+      "monto": 2782,
+      "fecha_pago": "2025-06-18T17:42:07.859Z",
+      "id_pedido": "10e4"
+    },
+    {
+      "id": "6dee",
+      "metodo": "efectivo",
+      "monto": 2782,
+      "fecha_pago": "2025-06-19T20:24:36.468Z",
+      "id_pedido": "d7c0"
+    },
+    {
+      "id": "2bdc",
+      "metodo": "efectivo",
+      "monto": 2500,
+      "fecha_pago": "2025-06-19T20:25:50.789Z",
+      "id_pedido": "7a42"
+    },
+    {
+      "id": "0aa3",
+      "metodo": "efectivo",
+      "monto": 10000,
+      "fecha_pago": "2025-06-19T20:27:28.436Z",
+      "id_pedido": "b23a"
+    },
+    {
+      "id": "e25b",
+      "metodo": "efectivo",
+      "monto": 7500,
+      "fecha_pago": "2025-06-19T20:29:27.299Z",
+      "id_pedido": "d173"
+    },
+    {
+      "id": "33b3",
+      "metodo": "efectivo",
+      "monto": 4608,
+      "fecha_pago": "2025-06-19T20:38:31.738Z",
+      "id_pedido": "a65e"
+    },
+    {
+      "id": "5f96",
+      "metodo": "efectivo",
+      "monto": 14216,
+      "fecha_pago": "2025-06-19T20:39:38.004Z",
+      "id_pedido": "1ade"
+    }
+  ],
+  "comercios": [
+    {
+      "id": "1",
+      "nombre_comercio": "Supermercado Vea",
+      "direccion": "Calle Ejemplo 1",
+      "telefono": "3800000001",
+      "descripcion": "Descripción de Supermercado Vea",
+      "rating": 4,
+      "activo": true,
+      "time": "20 - 40 min",
+      "id_admin": "1",
+      "id_rubro": "7",
+      "url_imagen": "https://www.webretail.com.ar/wp-content/uploads/2023/04/Vea-Cencosud.jpg"
+    },
+    {
+      "id": "2",
+      "nombre_comercio": "Mc Donalds",
+      "direccion": "Calle Ejemplo 2",
+      "telefono": "3800000002",
+      "descripcion": "Descripción de Mc Donalds",
+      "rating": 4.2,
+      "activo": true,
+      "time": "15 - 35 min",
+      "id_admin": "2",
+      "id_rubro": "1",
+      "url_imagen": "https://i.blogs.es/988895/istock_000056360048_small/1366_2000.jpg"
+    },
+    {
+      "id": "3",
+      "nombre_comercio": "Farmacia del Pueblo",
+      "direccion": "Calle Ejemplo 3",
+      "telefono": "3800000003",
+      "descripcion": "Descripción de Farmacia del Pueblo",
+      "rating": 4.3,
+      "activo": true,
+      "time": "10 - 20 min",
+      "id_admin": "3",
+      "id_rubro": "2",
+      "url_imagen": "https://images.rappi.com.ar/marketplace/store_type_1626975357300.jpg"
+    },
+    {
+      "id": "4",
+      "nombre_comercio": "Libreria San Pablo",
+      "direccion": "Calle Ejemplo 4",
+      "telefono": "3800000004",
+      "descripcion": "Descripción de Libreria San Pablo",
+      "rating": 4.5,
+      "activo": true,
+      "time": "20 - 40 min",
+      "id_admin": "4",
+      "id_rubro": "3",
+      "url_imagen": "https://recursos-we-us-east-1.s3.amazonaws.com/Weyop/Libreria%20San%20Pablo/Contenidos/2024-09-24%2012%3A49%3A51/2.Logotipo-Libreria-San-Pablo-RGB-3570x847px-Digital.png"
+    },
+    {
+      "id": "5",
+      "nombre_comercio": "La Pizzada",
+      "direccion": "Calle Ejemplo 5",
+      "telefono": "3800000005",
+      "descripcion": "Descripción de La Pizzada",
+      "rating": 3.6,
+      "activo": true,
+      "time": "15 - 30 min",
+      "id_admin": "5",
+      "id_rubro": "1",
+      "url_imagen": "https://www.tucumanturismo.gob.ar/public/img/pizzada%20bar%20ok_b9nt3x6v_12-08-2024.png"
+    },
+    {
+      "id": "9164",
+      "nombre_comercio": "Google",
+      "direccion": "google 123",
+      "telefono": "4824671",
+      "activo": true,
+      "url_imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_Homepage.svg/1200px-Google_Homepage.svg.png",
+      "rating": "4.1",
+      "time": "10 - 20 min",
+      "id_rubro": "4",
+      "rol": "vendedor",
+      "nombre_admin": "CEO Esteban",
+      "email": "google@gmail.com",
+      "password": "comercio123"
+    },
+    {
+      "id": "1abe",
+      "nombre_comercio": "Los tuercas",
+      "direccion": "Av Roca 212",
+      "telefono": "97473334",
+      "activo": true,
+      "url_imagen": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/69/a8/12/don-pepe.jpg?w=900&h=500&s=1",
+      "rating": "4",
+      "time": "25 - 45 min",
+      "id_rubro": "1",
+      "nombre_usuario": "Don Pepe",
+      "email": "pepe@gmail.com",
+      "password": "donpepe",
+      "rol": "comercio"
+    }
+  ],
+  "rubros": [
+    {
+      "id": "1",
+      "nombre_rubro": "Restaurante"
+    },
+    {
+      "id": "2",
+      "nombre_rubro": "Farmacia"
+    },
+    {
+      "id": "3",
+      "nombre_rubro": "Libreria"
+    },
+    {
+      "id": "4",
+      "nombre_rubro": "Ferreteria"
+    },
+    {
+      "id": "5",
+      "nombre_rubro": "Carniceria"
+    },
+    {
+      "id": "6",
+      "nombre_rubro": "Panaderia"
+    },
+    {
+      "id": "7",
+      "nombre_rubro": "Supermercado"
+    },
+    {
+      "id": "8",
+      "nombre_rubro": "Bebidas"
+    }
+  ],
+  "categorias": [
+    {
+      "id": "0",
+      "nombre_categoria": "Todos"
+    },
+    {
+      "id": "1",
+      "nombre_categoria": "Hamburguesas"
+    },
+    {
+      "id": "2",
+      "nombre_categoria": "Pizzas"
+    },
+    {
+      "id": "3",
+      "nombre_categoria": "Medicamentos"
+    },
+    {
+      "id": "4",
+      "nombre_categoria": "Fideos"
+    },
+    {
+      "id": "5",
+      "nombre_categoria": "Panificados"
+    },
+    {
+      "id": "6",
+      "nombre_categoria": "Gaseosas"
+    },
+    {
+      "id": "7",
+      "nombre_categoria": "Limpieza"
+    },
+    {
+      "id": "8",
+      "nombre_categoria": "Snacks"
+    }
+  ],
+  "productos": [
+    {
+      "nombre": "Hamburguesa Argenta",
+      "descripcion": "Descripción de Hamburguesa Argenta.",
+      "precio": 1199,
+      "rating": 4.4,
+      "disponible": true,
+      "id_comercio": "4",
+      "id_categoria": "1",
+      "url_imagen": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=400&q=80",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "nombre": "Pizza Calabresa",
+      "descripcion": "Descripción de Pizza Calabresa",
+      "precio": 2836,
+      "rating": 3.7,
+      "disponible": true,
+      "id_comercio": "3",
+      "id_categoria": "2",
+      "url_imagen": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "3",
+      "nombre": "Fideos Matarazzo x 500g",
+      "descripcion": "Descripción de Fideos Matarazzo x 500g",
+      "precio": 2782,
+      "rating": 3.6,
+      "disponible": true,
+      "id_comercio": "1",
+      "id_categoria": "4",
+      "url_imagen": "https://hiperlibertad.vtexassets.com/arquivos/ids/221053/FIDEOS-MATARAZZO-TALLAR-N-N-5-X-500-GR-1-47792.jpg?v=638463837939970000"
+    },
+    {
+      "id": "4",
+      "nombre": "Tafirol Paracetamol 500mg",
+      "descripcion": "Descripción de Tafirol Paracetamol 500mg",
+      "precio": 2671,
+      "rating": 4.3,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "3",
+      "url_imagen": "https://tafirol.com/hubfs/Tafirol-1.png"
+    },
+    {
+      "id": "5",
+      "nombre": "Producto Genérico 5",
+      "descripcion": "Descripción de Producto Genérico 5",
+      "precio": 1122,
+      "rating": 4.2,
+      "disponible": true,
+      "id_comercio": "4",
+      "id_categoria": "2",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+    },
+    {
+      "nombre": "Producto Genérico 6",
+      "descripcion": "Descripción de Producto Genérico 6",
+      "precio": 9490,
+      "rating": 4.2,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "8",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
+      "id": "6"
+    },
+    {
+      "id": "7",
+      "nombre": "Producto Genérico 7",
+      "descripcion": "Descripción de Producto Genérico 7",
+      "precio": 1439,
+      "rating": 4.3,
+      "disponible": true,
+      "id_comercio": "1",
+      "id_categoria": "1",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+    },
+    {
+      "id": "8",
+      "nombre": "Producto Genérico 8",
+      "descripcion": "Descripción de Producto Genérico 8",
+      "precio": 1559,
+      "rating": 4.8,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "5",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+    },
+    {
+      "id": "9",
+      "nombre": "Producto Genérico 9",
+      "descripcion": "Descripción de Producto Genérico 9",
+      "precio": 1476,
+      "rating": 3.6,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "6",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+    },
+    {
+      "id": "10",
+      "nombre": "Producto Genérico 10",
+      "descripcion": "Descripción de Producto Genérico 10",
+      "precio": 1004,
+      "rating": 3.5,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "8",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+    },
+    {
+      "id": "11",
+      "nombre": "Producto Genérico 11",
+      "descripcion": "Descripción de Producto Genérico 11",
+      "precio": 652,
+      "rating": 3.9,
+      "disponible": true,
+      "id_comercio": "3",
+      "id_categoria": "3",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+    },
+    {
+      "id": "12",
+      "nombre": "Producto Genérico 12",
+      "descripcion": "Descripción de Producto Genérico 12",
+      "precio": 2387,
+      "rating": 3.5,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "8",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+    },
+    {
+      "id": "13",
+      "nombre": "Producto Genérico 13",
+      "descripcion": "Descripción de Producto Genérico 13",
+      "precio": 2921,
+      "rating": 3.9,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "2",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+    },
+    {
+      "id": "14",
+      "nombre": "Producto Genérico 14",
+      "descripcion": "Descripción de Producto Genérico 14",
+      "precio": 2847,
+      "rating": 3.2,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "1",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+    },
+    {
+      "id": "15",
+      "nombre": "Producto Genérico 15",
+      "descripcion": "Descripción de Producto Genérico 15",
+      "precio": 1382,
+      "rating": 4.6,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "2",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+    },
+    {
+      "id": "16",
+      "nombre": "Producto Genérico 16",
+      "descripcion": "Descripción de Producto Genérico 16",
+      "precio": 2592,
+      "rating": 4.1,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "7",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+    },
+    {
+      "id": "17",
+      "nombre": "Producto Genérico 17",
+      "descripcion": "Descripción de Producto Genérico 17",
+      "precio": 1447,
+      "rating": 3.4,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "2",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+    },
+    {
+      "id": "18",
+      "nombre": "Producto Genérico 18",
+      "descripcion": "Descripción de Producto Genérico 18",
+      "precio": 2315,
+      "rating": 4.7,
+      "disponible": true,
+      "id_comercio": "1",
+      "id_categoria": "5",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+    },
+    {
+      "id": "19",
+      "nombre": "Producto Genérico 19",
+      "descripcion": "Descripción de Producto Genérico 19",
+      "precio": 2108,
+      "rating": 3.5,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "2",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+    },
+    {
+      "id": "20",
+      "nombre": "Producto Genérico 20",
+      "descripcion": "Descripción de Producto Genérico 20",
+      "precio": 2618,
+      "rating": 3.2,
+      "disponible": true,
+      "id_comercio": "5",
+      "id_categoria": "3",
+      "url_imagen": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
+    },
+    {
+      "nombre": "coca cola",
+      "descripcion": "coca cola 0",
+      "precio": 3,
+      "rating": 0,
+      "disponible": true,
+      "id_comercio": "2",
+      "id_categoria": "6",
+      "url_imagen": "https://www.coca-cola.com/content/dam/onexp/mx/es/brands/coca-cola/coca-cola-original/Product-Information-Section-Coca-Cola-Original.jpg",
+      "id": "1d01"
+    }
+  ]
+}

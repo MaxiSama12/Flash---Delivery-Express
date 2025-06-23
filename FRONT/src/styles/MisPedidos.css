@@ -1,0 +1,56 @@
+.container {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.tus-pedidos {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #5a2e58;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 3px solid #9b5893;
+  display: inline-block;
+  padding-bottom: 0.4rem;
+}
+
+.mis-pedidos {
+  background-color: #faf5f9;
+  border-left: 5px solid #9b5893;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 8px rgba(155, 88, 147, 0.2);
+  transition: transform 0.2s ease-in-out, background-color 0.2s;
+}
+
+.mis-pedidos:hover {
+  transform: scale(1.02);
+  background-color: #eee9ed;
+}
+
+.mis-pedidos strong {
+  font-size: 1.2rem;
+  color: #9b5893;
+}
+
+.mis-pedidos b {
+  color: #5a2e58;
+}
+
+.tus-pedidos-title {
+  color: #6c3e67;
+  font-size: 2.1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
