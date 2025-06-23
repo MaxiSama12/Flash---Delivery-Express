@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/ListaComercios.css";
-import axios from "axios";
-import { COMERCIOS } from "../../endpoints/endpoints";
+// import axios from "axios";
+// import { COMERCIOS } from "../../endpoints/endpoints";
+import { axiosInstance } from "../../router/axiosInstance";
+import { FaStopwatch } from "react-icons/fa6";
+import { FaBriefcase } from "react-icons/fa6";
 
 const ListaComerciosPage = () => {
   const [comercios, setComercios] = useState([]);
 
   const getComercios = async () => {
     try {
-      const res = await axios.get(COMERCIOS);
-      setComercios(res.data);
-      console.log(res.data);
+      const { data } = await axiosInstance.get("/comercios");
+      setComercios(data.comercios);
+      console.log(data);
     } catch (error) {
       console.error("Error al obtener los restaurantes:", error);
     }
@@ -32,8 +35,8 @@ const ListaComerciosPage = () => {
       <h3>{comercios.length} comercios</h3>
       {comercios.map((comercio) => (
         <Link
-          to={`${comercio.id}`}
-          key={comercio.id}
+          to={`${comercio.id_comercio}`}
+          key={comercio.id_comercio}
           className="restaurant-item"
         >
           <div className="logo">
@@ -44,16 +47,18 @@ const ListaComerciosPage = () => {
             />
           </div>
           <div className="info">
-            <p className="h4 my-2">{comercio.nombre}</p>
+            <p className="h4 my-2">{comercio.nombre_comercio}</p>
             <p>
-              {comercio.direccion} <br /> <span>{comercio.telefono}</span>
+              <FaStopwatch />{comercio.demora_promedio ? (" " +comercio.demora_promedio + " min") : " no tiene" } 
+              <br /> 
+              <span><FaBriefcase />{" " + comercio.nombre_rubro}</span>
               <p style={{ color: comercio.activo ? "green" : "red" }}>
                 {comercio.activo ? "Abierto" : "Cerrado"}{" "}
               </p>
             </p>
           </div>
           <span style={{ color: "goldenrod", fontSize: "1rem" }}>
-            ★{comercio.rating}
+            ★{comercio.rating ? comercio.rating : "sin calificacion"}
           </span>
         </Link>
       ))}

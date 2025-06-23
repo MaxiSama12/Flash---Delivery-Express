@@ -5,10 +5,10 @@ import "../../styles/card.css";
 import "../../styles/home.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const Card = ({ producto, onAddToCartAnimation }) => {
+const Card = ({ producto }) => {
   const addToCart = useCartStore((state) => state.addToCart);
   const cart = useCartStore((state) => state.cart);
-  const isInCart = cart.some((item) => item.id === producto.id);
+  const isInCart = cart.some((item) => item.id_producto === producto.id_producto);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -19,8 +19,8 @@ const Card = ({ producto, onAddToCartAnimation }) => {
     if (isInsideComercioPage) {
       if (!isInCart) {
         addToCart(producto);
+        console.log("producto agregado", producto);
         toast.success("Producto agregado al carrito");
-        onAddToCartAnimation();
       }
     } else {
       navigate(`/comercios/${producto.id_comercio}`);

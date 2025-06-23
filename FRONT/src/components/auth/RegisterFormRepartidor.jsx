@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "../../styles/RegisterForm.css";
-import { CLIENTES, REPARTIDORES } from "../../endpoints/endpoints";
+import { CLIENTES } from "../../endpoints/endpoints";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { LOGIN } from "../../router/route";
+import Swal from "sweetalert2"; // ✅ Importación de SweetAlert2
+import { axiosInstance } from "../../router/axiosInstance";
 
 const RegisterFormRepartidor = () => {
   const [formData, setFormData] = useState({
@@ -12,9 +14,10 @@ const RegisterFormRepartidor = () => {
     email: "",
     vehiculo: "",
     activo: true,
-    password: "",
+    pass_repartidor: "",
     rol: "repartidor",
   });
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -24,12 +27,17 @@ const RegisterFormRepartidor = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      await axios.post(CLIENTES, formData);
-      alert(`!Repartidor Registrado!, Bienvenido ${formData.nombre}`);
+      await axiosInstance.post("registro-repartidor", formData);
+      Swal.fire(
+        "¡Repartidor Registrado!",
+        `Ahora debes iniciar sesión!`,
+        "success"
+      );
       console.log(formData);
       navigate(LOGIN);
     } catch (error) {
-      console.log("Ocurrió un error registrando al cliente: ", error);
+      console.log("Ocurrió un error registrando al repartidor: ", error.response.data.mensaje);
+      Swal.fire("Error", error.response.data.mensaje);
     }
   };
 
@@ -90,13 +98,14 @@ const RegisterFormRepartidor = () => {
           Contraseña:
           <input
             type="password"
-            name="password"
-            value={formData.password}
+            name="pass_repartidor"
+            value={formData.pass_repartidor}
             onChange={handleChange}
             className="registro-input"
             required
           />
         </label>
+
         <br />
         <br />
         <button type="submit" className="registro-button">
@@ -105,7 +114,7 @@ const RegisterFormRepartidor = () => {
 
         <div className="text-center my-2">
           <p>
-            Ya tienes una cuenta?,<Link to={LOGIN}>inicia sesión aquí</Link>
+            ¿Ya tienes una cuenta? <Link to={LOGIN}>Inicia sesión aquí</Link>
           </p>
         </div>
       </form>

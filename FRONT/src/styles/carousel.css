@@ -14,6 +14,11 @@
   align-self: center;
 }
 
+.link-carousel{
+  text-decoration: none !important;
+  color: #9c5698;
+}
+
 .rating-badge {
   position: absolute;
   bottom: 10px;

@@ -11,10 +11,10 @@ export const useCartStore = create((set, get) => ({
       toast.error("Solo puedes agregar productos del mismo comercio.");
       return;
     }
-    const existing = cart.find((item) => item.id === producto.id);
+    const existing = cart.find((item) => item.id_producto === producto.id_producto);
     if (existing) {
       const updatedCart = cart.map((item) =>
-        item.id === producto.id
+        item.id_producto === producto.id_producto
           ? { ...item, cantidad: item.cantidad + 1 }
           : item
       );
