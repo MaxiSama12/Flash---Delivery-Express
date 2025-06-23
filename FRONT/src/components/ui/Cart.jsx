@@ -100,7 +100,7 @@ const Cart = ({ isBouncing }) => {
         <ul>
           {cart.length === 0 && <p>Tu carrito está vacío</p>}
           {cart.map((product) => (
-            <CartItem key={product.id} product={product} />
+            <CartItem key={product.id_producto} product={product} />
           ))}
         </ul>
 

@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import "../../styles/home.css";
 import Card from "./Card";
 
-const CatalogoHomePage = ({ onAddToCartAnimation }) => {
+const CatalogoHomePage = () => {
   const [activeFilter, setActiveFilter] = useState("0");
   const [productos, setProductos] = useState([]);
   const [categorias, setCategorias] = useState([]);
@@ -94,7 +94,6 @@ const CatalogoHomePage = ({ onAddToCartAnimation }) => {
               <Card
                 key={producto.id}
                 producto={producto}
-                onAddToCartAnimation={onAddToCartAnimation}
               />
             ))
           ) : (
