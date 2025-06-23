@@ -38,7 +38,7 @@ const ProductosComercioPage = () => {
     try {
       const {data} = await axiosInstance.get("categorias");
       setCategorias(data.categorias);
-      console.log("Categorías cargadas:", data.categorias);
+     
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -57,7 +57,7 @@ const ProductosComercioPage = () => {
     if (!categoriaSeleccionada) {
       setFilteredProductos(productos);
     } else {
-      console.log("categoriaseleccionada",categoriaSeleccionada)
+    
       setFilteredProductos(
         productos.filter((p) => p.id_categoria === categoriaSeleccionada)
       );

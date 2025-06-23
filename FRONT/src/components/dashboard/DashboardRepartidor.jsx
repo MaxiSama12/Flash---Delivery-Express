@@ -162,7 +162,7 @@ export default function RepartidorDashboard() {
 
       <Row>
         {/* Pedidos disponibles */}
-        <Col md={4}>
+        <Col md={12} lg={4}>
           <h3 className="mb-3">Pedidos Disponibles</h3>
           {pedidosDisponibles.length === 0 ? (
             <p>No hay pedidos disponibles</p>
@@ -170,8 +170,7 @@ export default function RepartidorDashboard() {
             <ListGroup>
               {pedidosDisponibles.map((order) => (
                 <ListGroup.Item key={order.id_pedido}>
-                  <strong>Pedido #{order.id_pedido}</strong> - $
-                  {order.total || "no existe"}
+                  <strong>Pedido #{order.id_pedido}</strong>
                   <br />
                   Recoger en: {order.direccion || "no hay"} <br />
                   Entregar en: {order.direccion_entrega || "no hay"} <br />
@@ -192,7 +191,7 @@ export default function RepartidorDashboard() {
         </Col>
 
         {/* Pedidos en camino */}
-        <Col md={4}>
+        <Col md={12} lg={4}>
           <h3 className="mb-3">Pedidos a entregar</h3>
           {pedidosEntregar.length === 0 ? (
             <p>No tienes rutas asignadas</p>
@@ -200,17 +199,19 @@ export default function RepartidorDashboard() {
             <ListGroup>
               {pedidosEntregar.map((pedido) => (
                 <ListGroup.Item key={pedido.id_pedido}>
+                  
                   <strong>Pedido #{pedido.id_pedido}</strong>
                   <br />
                   Desde: {pedido.direccion} - Hasta: {pedido.direccion_entrega}
                   <br />
                   Estado:{" "}
                   <Badge
-                    bg={pedido.estado === "entregado" ? "success" : "secondary"}
+                    bg={pedido.estado === "entregado" ? "success" : "secondary"} 
                   >
                     {pedido.estado}
-                  </Badge>{" "}
-                  - Tiempo estimado: {pedido.tiempo_demora || "no hay"} minutos
+                  </Badge>{" "} <br />
+                  Tiempo estimado: {pedido.demora_promedio || "no hay"} minutos <br />
+                   Recibe: {pedido.nombre}
                   <div className="mt-2">
                     <Button
                       variant="primary"
@@ -227,7 +228,7 @@ export default function RepartidorDashboard() {
         </Col>
 
         {/* Pedidos entregados */}
-        <Col md={4}>
+        <Col md={12} lg={4}>
           <h3 className="mb-3">Pedidos entregados</h3>
           {pedidosEntregados.length === 0 ? (
             <p>No tienes pedidos entregados</p>
@@ -239,8 +240,7 @@ export default function RepartidorDashboard() {
                   <br />
                   Entregado en: {pedido.direccion_entrega}
                   <br />
-                  Estado: <Badge bg="success">{pedido.estado}</Badge> - Tiempo
-                  estimado: {pedido.tiempo_demora || "no hay"} minutos
+                  Estado: <Badge bg="success">{pedido.estado}</Badge>
                 </ListGroup.Item>
               ))}
             </ListGroup>

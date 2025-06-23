@@ -19,7 +19,6 @@ const Card = ({ producto }) => {
     if (isInsideComercioPage) {
       if (!isInCart) {
         addToCart(producto);
-        console.log("producto agregado", producto);
         toast.success("Producto agregado al carrito");
       }
     } else {

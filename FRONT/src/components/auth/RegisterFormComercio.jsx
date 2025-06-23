@@ -26,7 +26,7 @@ const RegisterFormComercio = () => {
   const getRubros = async () => {
     try {
       const res = await axiosInstance.get("rubros");
-      console.log(res.data.rubros)
+    
       setRubros(res.data.rubros);
     } catch (error) {
       console.log("Error trayendo los rubros: ", error);
@@ -51,7 +51,7 @@ const RegisterFormComercio = () => {
         "Ahora vamos a iniciar sesión.",
         "success"
       );
-      console.log(formData);
+   
       navigate(LOGIN);
     } catch (error) {
       console.log("Ocurrió un error registrando el comercio: ", error);

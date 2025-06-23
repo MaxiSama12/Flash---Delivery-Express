@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-// import axios from "axios";
 import { useAuthStore } from "../../store/authStore";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/Footer";
 import { axiosInstance } from "../../router/axiosInstance";
 import { Col, ListGroup } from "react-bootstrap";
+import "../../styles/MisPedidos.css";
 
 export default function MisPedidos() {
   const usuario = useAuthStore((state) => state.usuario);
@@ -14,7 +14,7 @@ export default function MisPedidos() {
   useEffect(() => {
     const fetchPedidos = async () => {
       if (!usuario) return;
-      console.log("usuario id", usuario);
+     
       try {
         const { data } = await axiosInstance.get(
           `/pedidos-cliente/${usuario.id_cliente}`
@@ -56,31 +56,31 @@ export default function MisPedidos() {
       <Navbar />
       <div className="d-flex flex-column min-vh-100">
         <div className="container flex-fill mt-5 pt-4">
-          <h2 className="text-center mb-4">Mis Pedidos</h2>
-
+          {" "}
+          <br />
           {cargando ? (
             <p className="text-center">Cargando...</p>
           ) : pedidos.length === 0 ? (
             <p className="text-center">No tenés pedidos aún.</p>
           ) : (
             <Col md={12}>
-              <h3 className="mb-3">Tus pedidos</h3>
               {pedidos.length === 0 ? (
                 <p>No hay pedidos disponibles</p>
               ) : (
-                <ListGroup>
+                <ListGroup >
+                  <h2 className="tus-pedidos-title  tus-pedidos my-4 text-center ">Tus Pedidos</h2>
                   {pedidos.map((order) => (
-                    <ListGroup.Item key={order.id_pedido}>
-                      <strong>Pedido #{order.id_pedido}</strong> - $
-                      {order.monto_total || "no existe"}
-                      <br />
-                      Compra realizada en: {order.nombre_comercio ||
-                        "no hay"}{" "}
-                      <br />
-                      Direccion entrega: {order.direccion_entrega ||
-                        "no hay"}{" "}
-                      <br />
-                      Estado del pedido: {order.estado}
+                    <ListGroup.Item key={order.id_pedido} className="mis-pedidos">
+                      <div >
+                        <strong>Pedido de #{order.id_pedido}</strong> - $
+                        {order.monto_total || "no existe"}
+                        <br />
+                        <b>Compra realizada en:</b>{" "}
+                        {order.nombre_comercio || "no hay"} <br />
+                        <b>Direccion entrega:</b>{" "}
+                        {order.direccion_entrega || "no hay"} <br />
+                        <b>Estado del pedido:</b> {order.estado}
+                      </div>
                     </ListGroup.Item>
                   ))}
                 </ListGroup>

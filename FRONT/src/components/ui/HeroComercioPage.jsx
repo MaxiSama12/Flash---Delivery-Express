@@ -18,9 +18,9 @@ const HeroComercioPage = () => {
   useEffect(() => {
     const getComercio = async () => {
       try {
-        console.log("id en hero comercio", id);
+     
         const { data } = await axiosInstance.get(`comercio/${id}`);
-        console.log("data en hero", data);
+     
         setComercio(data.comercio[0]);
       } catch (error) {
         Swal.fire({

@@ -73,7 +73,7 @@ const VendedorDashboard = () => {
         .reduce((sum, p) => sum + p.total, 0) || 0;
 
     setStats({ totalOrders, pendingOrders, completedOrders, totalEarnings });
-    console.log(stats);
+ 
   };
 
   const updateEstadoPedido = async (id_pedido) => {
@@ -133,24 +133,24 @@ const VendedorDashboard = () => {
     try {
       const resComercio = await axiosInstance.get(`/comercio/${id}`);
       setComercio(resComercio.data.comercio[0]);
-      console.log("comercio en dashboard", resComercio.data.comercio[0]);
+       
 
       const resProductos = await axiosInstance.get(`/productos/${id}`);
       setProductos(resProductos.data.productos);
-      console.log("productos en comercio", resProductos.data.productos); // -------------------------------------
+     
 
       const pedidoProductoRes = await axiosInstance.get(
         `/pedidos-comercio/${id}`
       );
 
       setPedidoProductos(pedidoProductoRes.data.pedidos);
-      console.log("pedidos en dashboard", pedidoProductoRes.data.pedidos); //---------------------------------------------------
+      
 
       const categoriasRes = await axiosInstance.get("/categorias");
-      console.log("categiruas eb dashboard", categoriasRes);
+      
       setCategorias(categoriasRes.data.categorias);
 
-      calcularStats(pedidoProductoRes.data.pedidos); //---------------------------------------------------
+       
     } catch (error) {
       console.error("Error al obtener datos:", error);
       Swal.fire({
@@ -187,7 +187,7 @@ const VendedorDashboard = () => {
     e.preventDefault();
     const { nombre, descripcion, precio, url_imagen, id_categoria } =
       nuevoProducto;
-    console.log("producto a agregar", nuevoProducto);
+     
     if (
       !nombre.trim() ||
       !descripcion.trim() ||
@@ -216,7 +216,7 @@ const VendedorDashboard = () => {
         id_categoria,
         url_imagen: url_imagen.trim(),
       };
-      console.log("nuevo producto antes de axios", nuevo); //----------------------------------------------
+   
       await axiosInstance.post("/crear/producto", nuevo);
       const { data } = await axiosInstance.get(`/productos/${id}`);
       setProductos(data.productos);
@@ -327,7 +327,7 @@ const VendedorDashboard = () => {
 
     try {
       const res = await axiosInstance.delete(`/producto/${prodId}/eliminar`);
-      console.log("respuesta al eliminar", res);
+ 
       const { data } = await axiosInstance.get(`/productos/${id}`);
       setProductos(data.productos);
       Swal.fire({
