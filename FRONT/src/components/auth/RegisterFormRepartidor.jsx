@@ -33,7 +33,7 @@ const RegisterFormRepartidor = () => {
         `Ahora debes iniciar sesión!`,
         "success"
       );
-      console.log(formData);
+    
       navigate(LOGIN);
     } catch (error) {
       console.log("Ocurrió un error registrando al repartidor: ", error.response.data.mensaje);

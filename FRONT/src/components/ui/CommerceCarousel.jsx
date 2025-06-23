@@ -17,7 +17,7 @@ const TopRatedStoresCarousel = () => {
     try {
       const { data } = await axiosInstance.get("/comercios");
       setComercios(data.comercios);
-      console.log("Comercios cargados:", data.comercios);
+      
     } catch (error) {
       Swal.fire({
         icon: "error",

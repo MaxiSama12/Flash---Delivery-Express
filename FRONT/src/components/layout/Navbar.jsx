@@ -51,7 +51,6 @@ const Navbar = () => {
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 992);
-      console.log("usuario en Nav",usuario)
     };
 
     window.addEventListener("resize", handleResize);

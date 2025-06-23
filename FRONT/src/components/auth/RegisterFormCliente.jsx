@@ -31,7 +31,7 @@ const RegisterFormCliente = () => {
         `Cliente registrado correctamente. Bienvenido, ${formData.nombre}!`,
         "success"
       );
-      console.log(formData);
+   
       navigate(LOGIN);
     } catch (error) {
       console.log("Ocurrió un error registrando al cliente: ", error);

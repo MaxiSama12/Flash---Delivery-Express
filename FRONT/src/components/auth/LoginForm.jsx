@@ -31,9 +31,9 @@ const LoginForm = () => {
     e.preventDefault()
     try {
       const {data} = await axiosInstance.post("login", formData)
-      console.log(data)
+      
       login(data.user)
-      console.log(usuario)
+     
       if (data.user.rol === "cliente") {
             Swal.fire(
               "¡Bienvenido!",
@@ -47,7 +47,7 @@ const LoginForm = () => {
               `Inicio de sesión exitoso, bienvenido ${data.user.nombre_admin}, dueño de ${data.user.nombre_comercio}`,
               "success"
             );
-            console.log(data.user)
+          
             navigate(`/dashboard-vendedor/${data.user.id_comercio}`);
           } else if (data.user.rol === "repartidor") {
             Swal.fire(
