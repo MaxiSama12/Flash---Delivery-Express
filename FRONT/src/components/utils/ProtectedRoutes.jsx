@@ -1,12 +1,14 @@
 import { useAuthStore } from "../../store/authStore";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation, useParams } from "react-router-dom";
 
 export default function ProtectedRoutes({ children, allowedRoles }) {
   const user = useAuthStore((state) => state.usuario);
+  const location = useLocation();
+  const rol = user?.rol || "anonimo";
+  const path = location.pathname;
+  // modificable
 
-  if (!user || !allowedRoles.includes(user.rol)) {
-    return <Navigate to="/unauthorized" replace />;
-  }
 
+  
   return <>{children}</>;
 }

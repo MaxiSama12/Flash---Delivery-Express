@@ -37,6 +37,7 @@ function App() {
       {!ocultarCart && <Cart isBouncing={isBouncing} />}
       <ToastContainer />
       <Routes>
+        {/* DASHBOARD VENDEDOR */}
         <Route
           path="/dashboard-vendedor/:id"
           element={
@@ -48,26 +49,72 @@ function App() {
 
         {/* <Route path="/repartidor" element={<DashboardRepartidor />} /> */}
 
+        {/* HOME */}
         <Route
           path={HOME}
           element={
+            <ProtectedRoutes allowedRoles={["cliente", "anonimo"]}>
               <HomePage
                 onAddToCartAnimation={() => {
                   setIsBouncing(true);
                   setTimeout(() => setIsBouncing(false), 400);
                 }}
               />
+            </ProtectedRoutes>
           }
         />
-        <Route path={LOGIN} element={<LoginPages />} />
-        <Route path={LISTACOMERCIO} element={<ListaComerciosPage />} />
-        <Route path={REGISTERCLIENTE} element={<RegisterClientePages />} />
+
+        {/* LOGIN */}
+        <Route
+          path={LOGIN}
+          element={
+            <ProtectedRoutes allowedRoles={["anonimo"]}>
+              <LoginPages />
+            </ProtectedRoutes>
+          }
+        />
+
+        {/* LISTA COMERCIO */}
+        <Route
+          path={LISTACOMERCIO}
+          element={
+            <ProtectedRoutes allowedRoles={["anonimo", "cliente"]}>
+              <ListaComerciosPage />
+            </ProtectedRoutes>
+          }
+        />
+
+        {/* REGISTRO CLIENTES */}
+        <Route
+          path={REGISTERCLIENTE}
+          element={
+            <ProtectedRoutes allowedRoles={["anonimo"]}>
+              <RegisterClientePages />
+            </ProtectedRoutes>
+          }
+        />
+
+        {/* REGISTRO REPARTIDOR */}
         <Route
           path={REGISTERREPARTIDOR}
-          element={<RegisterRepartidorPages />}
+          element={
+            <ProtectedRoutes allowedRoles={["anonimo"]}>
+              <RegisterRepartidorPages />
+            </ProtectedRoutes>
+          }
         />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/mis-direcciones" element={<MisDirecciones />} />
+
+        {/* MIS DIRECCIONES */}
+        <Route
+          path="/mis-direcciones"
+          element={
+            <ProtectedRoutes allowedRoles={["cliente"]}>
+              <MisDirecciones />
+            </ProtectedRoutes>
+          }
+        />
+
+        {/* DASHBOARD REPARTIDOR */}
         <Route
           path="/dashboard-repartidor/:id"
           element={
@@ -76,10 +123,24 @@ function App() {
             </ProtectedRoutes>
           }
         />
+
+        {/* ERROR 404 */}
         <Route path="*" element={<NotFound />} />
-        <Route path={REGISTERCOMERCIO} element={<RegisterComercioPages />} />
-        {/* <Route path={DASHBOARDVENDEDOR} element={<DashboardVendedor />} /> */}
-        <Route path={`${COMERCIO}/:id`} element={<ComercioPage />} />
+        <Route path={REGISTERCOMERCIO} element={
+          <ProtectedRoutes allowedRoles={["anonimo"]}>
+          <RegisterComercioPages />
+          </ProtectedRoutes>
+          } />
+
+        {/* COMERCIO POR ID */}
+        <Route
+          path={`${COMERCIO}/:id`}
+          element={
+            <ProtectedRoutes allowedRoles={["anonimo", "cliente"]}>
+              <ComercioPage />
+            </ProtectedRoutes>
+          }
+        />
       </Routes>
     </>
   );
