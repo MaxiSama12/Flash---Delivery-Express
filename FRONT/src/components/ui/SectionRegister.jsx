@@ -14,21 +14,22 @@ const SectionRegister = () => {
         <div className="services-container">
           <div className="service-card">
             <img
-              src="https://www.menuspararestaurantes.com/wp-content/uploads/2018/02/restaurantes-exitosos.jpg"
+              src="https://www.buzina.pt/wp-content/uploads/2019/10/online-shopping.jpg"
               alt="restaurante"
               className="service-img"
             />
-            <h3>Registra tu restaurante</h3>
+            <h3>¡Regístrate y comprá!</h3>
             <p>
-              Descubre los beneficios que tienen los +40.000 aliados en 9 países
-              que ya trabajan con Flash.
+              Descubre los <b>beneficios</b> que tienen los
+              <b> +40.000 aliados</b> en <b>9 países </b>
+              que ya trabajan con <b>Flash</b>.
             </p>
             <div className="d-grid mx-2">
               <Link
-                to="register-vendedor-comercio"
+                to="/register-cliente"
                 className="btn btn-outline-success btn-lg mb-2"
               >
-                Regístrate ya!
+                ¡Regístrate ya!
               </Link>
             </div>
           </div>
@@ -38,17 +39,17 @@ const SectionRegister = () => {
               alt="Comercio"
               className="service-img"
             />
-            <h3>Registra tu comercio</h3>
+            <h3>¡Registra tu comercio!</h3>
             <p>
-              Accede a millones de usuarios de Flash y disfrute de una logística
-              inmediata sin salir de tu tienda.
+              Accede a <b>millones</b> de usuarios de <b>Flash</b> y disfrute de
+              una <b>logística inmediata</b> sin salir de tu tienda.
             </p>
             <div className="d-grid mx-2">
               <Link
-                to="register-vendedor-comercio"
+                to="/register-vendedor-comercio"
                 className="btn btn-outline-success btn-lg mb-2"
               >
-                Regístrate ya!
+                ¡Regístrate ya!
               </Link>
             </div>
           </div>
@@ -60,7 +61,7 @@ const SectionRegister = () => {
             />
             <h3>¡Únete como repartidor!</h3>
             <p>
-              Gana dinero extra entregando domicilios, tenemos las mejores
+              Gana <b>dinero extra</b> entregando pedidos a domicilio, tenemos las mejores
               tarifas y beneficios.
             </p>
             <div className="d-grid mx-2">
@@ -68,7 +69,7 @@ const SectionRegister = () => {
                 to="/register-repartidor"
                 className="btn btn-outline-success btn-lg mb-2"
               >
-                ¡Regístrate ahora!
+                ¡Regístrate ya!
               </Link>
             </div>
           </div>
