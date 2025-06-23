@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Row,
@@ -9,7 +9,6 @@ import {
   Badge,
 } from "react-bootstrap";
 import { axiosInstance } from "../../router/axiosInstance";
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 export default function RepartidorDashboard() {
@@ -21,36 +20,54 @@ export default function RepartidorDashboard() {
     totalEarnings: 0,
     activeRoutes: 0,
   });
-
+  const [repartidor, setRepartidor] = useState({});
   const [pedidosDisponibles, setPedidosDisponibles] = useState([]);
-  // const [pedidosRepartidor, setPedidosRepartidor] = useState([]);
   const [pedidosEntregar, setPedidosEntregar] = useState([]);
   const [pedidosEntregados, setPedidosEntregados] = useState([]);
 
   const fetchPedidos = async () => {
     try {
-      console.log("id de rep", id);
       const resDisponibles = await axiosInstance.get("/pedidos-disponibles");
-      console.log("disponibles", resDisponibles);
       setPedidosDisponibles(resDisponibles.data.pedidos);
-      const resAsignados = await axiosInstance.get(
-        `/pedidos-repartidor/${id}`
+
+      const resAsignados = await axiosInstance.get(`/pedidos-repartidor/${id}`);
+      const todos = resAsignados.data.pedidos;
+
+      const entregados = todos.filter((ped) => ped.estado === "entregado");
+      const enCamino = todos.filter((ped) => ped.estado === "en camino");
+
+      setPedidosEntregados(entregados);
+      setPedidosEntregar(enCamino);
+
+      const hoy = new Date().toISOString().split("T")[0];
+      const entregasHoy = entregados.filter((p) =>
+        p.fecha_pedido?.startsWith(hoy)
       );
-      setPedidosEntregar(
-        resAsignados.data.pedidos.filter((ped) => ped.estado === "en camino")
-      );
-      setPedidosEntregados(
-        resAsignados.data.pedidos.filter((ped) => ped.estado === "entregado")
-      );
+
+      setStats({
+        totalDeliveries: entregados.length,
+        todayDeliveries: entregasHoy.length,
+        totalEarnings: entregados.length * 5000,
+        activeRoutes: enCamino.length,
+      });
     } catch (err) {
       console.error("Error cargando pedidos", err);
     }
   };
+
+  const getRepartidor = async () => {
+    try {
+      const { data } = await axiosInstance.get(`/repartidor/${id}`);
+      setRepartidor(data.resultado[0]);
+    } catch (error) {
+      console.error("Error cargando repartidor", error);
+    }
+  };
+
   useEffect(() => {
     fetchPedidos();
+    getRepartidor();
   }, []);
-
-  // const [myRoutes, setMyRoutes] = useState([]);
 
   const aceptarPedido = async (pedido) => {
     try {
@@ -58,66 +75,28 @@ export default function RepartidorDashboard() {
         id_repartidor: id,
         nuevo_estado: "en camino",
       });
-      // const res = await axiosInstance.get(`/pedidos-repartidor/${id}`);
-      // setPedidosEntregar(
-      //   res.data.pedidos.filter((ped) => ped.estado === "en camino")
-      // );
-      // setPedidosEntregados(
-      //   res.data.pedidos.filter((ped) => ped.estado === "entregado")
-      // );
-      // console.log(res.data.pedidos);
-      // const { data } = await axiosInstance.get("/pedidos-disponibles");
-      // setPedidosDisponibles(data.pedidos);
       fetchPedidos();
     } catch (error) {
-      console.error("Error cargando pedidos", error);
+      console.error("Error al aceptar pedido", error);
     }
-
-    // const nuevaRuta = {
-    //   id: Math.floor(Math.random() * 1000) + 200,
-    //   pickupAddress: pedido.comercioAddress,
-    //   deliveryAddress: pedido.deliveryAddress,
-    //   estimatedTime: 30,
-    //   status: 'asignada',
-    //   total: pedido.total,
-    // };
-
-    // setMyRoutes((prevRoutes) => [...prevRoutes, nuevaRuta]);
-
-    // setStats((prev) => ({
-    //   ...prev,
-    //   totalEarnings: prev.totalEarnings + pedido.total,
-    //   activeRoutes: prev.activeRoutes + 1,
-    // }));
   };
 
-  const marcarEntregado = async (id) => {
+  const marcarEntregado = async (id_pedido) => {
     try {
-      await axiosInstance.put(`/pedido/${id}/editar`, {
+      await axiosInstance.put(`/pedido/${id_pedido}/editar`, {
         id_repartidor: id,
         nuevo_estado: "entregado",
       });
-      // const res = await axiosInstance.get(`/pedidos-repartidor/${id}`);
-      // setPedidosEntregados(
-      //   res.data.pedidos.filter((ped) => ped.estado === "entregado")
-      // );
       fetchPedidos();
     } catch (error) {
       console.log(error);
     }
-
-    // setStats((prev) => ({
-    //   ...prev,
-    //   totalDeliveries: prev.totalDeliveries + 1,
-    //   todayDeliveries: prev.todayDeliveries + 1,
-    //   activeRoutes: prev.activeRoutes > 0 ? prev.activeRoutes - 1 : 0,
-    // }));
   };
 
   return (
     <Container className="py-4">
       <h2 className="mb-4 text-primary">Panel de Repartidor</h2>
-      {/* <h2 className="fs-1 mb-1 ">Bienvenido/a {comercio.nombre_admin}</h2> */}
+      <h2 className="fs-1 mb-1">Bienvenido/a {repartidor.nombre}</h2>
 
       {/* Estadísticas */}
       <Row className="mb-4">
@@ -125,9 +104,7 @@ export default function RepartidorDashboard() {
           <Card className="text-center">
             <Card.Body>
               <Card.Title>Total Entregas</Card.Title>
-              <h4>
-                <Badge bg="primary">{stats.totalDeliveries}</Badge>
-              </h4>
+              <h4><Badge bg="primary">{stats.totalDeliveries}</Badge></h4>
             </Card.Body>
           </Card>
         </Col>
@@ -135,9 +112,7 @@ export default function RepartidorDashboard() {
           <Card className="text-center">
             <Card.Body>
               <Card.Title>Hoy</Card.Title>
-              <h4>
-                <Badge bg="success">{stats.todayDeliveries}</Badge>
-              </h4>
+              <h4><Badge bg="success">{stats.todayDeliveries}</Badge></h4>
             </Card.Body>
           </Card>
         </Col>
@@ -145,9 +120,7 @@ export default function RepartidorDashboard() {
           <Card className="text-center">
             <Card.Body>
               <Card.Title>Ganancias</Card.Title>
-              <h4>
-                <Badge bg="warning">${stats.totalEarnings}</Badge>
-              </h4>
+              <h4><Badge bg="warning">${stats.totalEarnings}</Badge></h4>
             </Card.Body>
           </Card>
         </Col>
@@ -155,17 +128,15 @@ export default function RepartidorDashboard() {
           <Card className="text-center">
             <Card.Body>
               <Card.Title>Rutas Activas</Card.Title>
-              <h4>
-                <Badge bg="info">{stats.activeRoutes}</Badge>
-              </h4>
+              <h4><Badge bg="info">{stats.activeRoutes}</Badge></h4>
             </Card.Body>
           </Card>
         </Col>
       </Row>
 
-      {/* Pedidos Disponibles */}
-      <div className="row">
-        <div className="col-4">
+      <Row>
+        {/* Pedidos disponibles */}
+        <Col md={4}>
           <h3 className="mb-3">Pedidos Disponibles</h3>
           {pedidosDisponibles.length === 0 ? (
             <p>No hay pedidos disponibles</p>
@@ -177,8 +148,7 @@ export default function RepartidorDashboard() {
                   {order.total || "no existe"}
                   <br />
                   Recoger en: {order.direccion || "no hay"} <br />
-                  Entregar en: {order.direccion_entrega || "no hay"}
-                  <br />
+                  Entregar en: {order.direccion_entrega || "no hay"} <br />
                   Recibe: {order.nombre_cliente}
                   <div className="mt-2">
                     <Button
@@ -193,8 +163,10 @@ export default function RepartidorDashboard() {
               ))}
             </ListGroup>
           )}
-        </div>
-        <div className="col-4">
+        </Col>
+
+        {/* Pedidos en camino */}
+        <Col md={4}>
           <h3 className="mb-3">Pedidos a entregar</h3>
           {pedidosEntregar.length === 0 ? (
             <p>No tienes rutas asignadas</p>
@@ -213,26 +185,25 @@ export default function RepartidorDashboard() {
                     {pedido.estado}
                   </Badge>{" "}
                   - Tiempo estimado: {pedido.tiempo_demora || "no hay"} minutos
-                  {pedido.estado !== "entregado" && (
-                    <div className="mt-2">
-                      <Button
-                        variant="primary"
-                        size="sm"
-                        onClick={() => marcarEntregado(pedido.id_pedido)}
-                      >
-                        Marcar como Entregado
-                      </Button>
-                    </div>
-                  )}
+                  <div className="mt-2">
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      onClick={() => marcarEntregado(pedido.id_pedido)}
+                    >
+                      Marcar como Entregado
+                    </Button>
+                  </div>
                 </ListGroup.Item>
               ))}
             </ListGroup>
           )}
-        </div>
-        <div className="col-4">
+        </Col>
+
+        {/* Pedidos entregados */}
+        <Col md={4}>
           <h3 className="mb-3">Pedidos entregados</h3>
-          {pedidosEntregados.estado === "entregado" &&
-          pedidosEntregados.length === 0 ? (
+          {pedidosEntregados.length === 0 ? (
             <p>No tienes pedidos entregados</p>
           ) : (
             <ListGroup>
@@ -243,29 +214,14 @@ export default function RepartidorDashboard() {
                   Entregado en: {pedido.direccion_entrega}
                   <br />
                   Estado:{" "}
-                  <Badge
-                    bg={pedido.estado === "entregado" ? "success" : "secondary"}
-                  >
-                    {pedido.estado}
-                  </Badge>{" "}
+                  <Badge bg="success">{pedido.estado}</Badge>{" "}
                   - Tiempo estimado: {pedido.tiempo_demora || "no hay"} minutos
-                  {pedido.estado !== "entregado" && (
-                    <div className="mt-2">
-                      <Button
-                        variant="primary"
-                        size="sm"
-                        onClick={() => marcarEntregado(pedido.id_pedido)}
-                      >
-                        Marcar como Entregado
-                      </Button>
-                    </div>
-                  )}
                 </ListGroup.Item>
               ))}
             </ListGroup>
           )}
-        </div>
-      </div>
+        </Col>
+      </Row>
     </Container>
   );
 }
