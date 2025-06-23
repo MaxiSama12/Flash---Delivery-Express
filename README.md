@@ -247,9 +247,9 @@ Esto dispara una solicitud PUT al backend (ej., PUT /api/pedidos/:id_pedido/entr
 
 Este proyecto fue desarrollado colaborativamente por el siguiente equipo:
 
-Giacobbe Franco
-Samaniego Esteban
-Timo Gabriel 
-Morales Juan
-Ponce Micaela
+Giacobbe Franco,
+Samaniego Esteban,
+Timo Gabriel, 
+Morales Juan,
+Ponce Micaela,
 Ruiz Pablo
