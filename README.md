@@ -25,11 +25,18 @@ BASE DE DATOS
 Crear la base de datos con el archivo query.sql
 
 FRONT
-git clone https://github.com/MaxiSama12/Flash---Delivery-Express
-cd Flash---Delivery-Express
-cd FRONT
-npm install
-npm run dev
+1_  git clone https://github.com/MaxiSama12/Flash---Delivery-Express
+2_  cd Flash---Delivery-Express
+3_  cd FRONT
+4_  npm install
+5_  npm run dev
+       |
+       |_  VITE v6.3.5  ready in 1127 ms
+
+     ➜  Local:   http://localhost:5173/          
+     ➜  Network: use --host to expose
+     ➜  press h + enter to show help
+
 
 BACK
 1_  git clone https://github.com/MaxiSama12/Flash---Delivery-Express---Back.git  BACK
