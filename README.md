@@ -135,7 +135,7 @@ FRONT
 
 
 ```
- ===========================================================[ 🧭 Navegación y Rutas de la Aplicación ]===============================================================================
+## 🧭 Navegación y Rutas de la Aplicación 
  
 La plataforma Flash Delivery Express organiza sus vistas y funcionalidades a través de un sistema de enrutamiento declarativo utilizando React Router DOM. Cada ruta está diseñada para guiar al usuario a la sección apropiada de la aplicación, y la mayoría de ellas están protegidas para asegurar que solo los usuarios con el rol adecuado puedan acceder.
 
@@ -184,7 +184,7 @@ Manejo de roles: Similar a las rutas de comercio, ProtectedRoutes garantiza que 
 
 
 
- ===========================================================[ 🧠 Funcionalidades Principales ]===============================================================================
+## 🧠 Funcionalidades Principales 
 
  El frontend de Flash Delivery Express implementa un conjunto de funcionalidades clave para permitir una interacción fluida y completa para cada tipo de usuario.
 
@@ -240,7 +240,7 @@ Esto dispara una solicitud PUT al backend (ej., PUT /api/pedidos/:id_pedido/entr
 
 
 
- ===========================================================[ 🛠️ Desarrollado por ]===============================================================================
+## 🛠️ Desarrollado por
 
 Este proyecto fue desarrollado colaborativamente por el siguiente equipo:
 
