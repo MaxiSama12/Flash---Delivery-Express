@@ -31,6 +31,7 @@ npm run dev
 BACK
 |_config
 |   |_db.js
+|  
 |_Controller
 |   |_categoria.controller.js
 |   |_cliente.controller.js
@@ -41,8 +42,10 @@ BACK
 |   |_producto.controller.js
 |   |_repartidor.controller.js
 |   |_rubro.controller.js
+|
 |_router
 |   |_index.js
+|
 |_.env
 |_.env.example
 |_index.js
