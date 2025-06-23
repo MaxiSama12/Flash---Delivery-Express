@@ -25,11 +25,13 @@ BASE DE DATOS
 Crear la base de datos con el archivo query.sql
 
 FRONT
-1_  git clone https://github.com/MaxiSama12/Flash---Delivery-Express
-2_  cd Flash---Delivery-Express
-3_  cd FRONT
-4_  npm install
-5_  npm run dev
+1_  Crear una Nueva Carpeta (donde se quiera guardar el proyecto) y abrirla con VS Code. Luego trabajaremos desde la terminal de VS Code
+2_  git clone https://github.com/MaxiSama12/Flash---Delivery-Express
+3_  cd Flash---Delivery-Express
+4_  cd FRONT
+5_  npm install
+6_  (Antes de iniciar el proyecto pasaremos al BACK)
+7_  npm run dev  ()
        |
        |_  VITE v6.3.5  ready in 1127 ms
 
@@ -39,13 +41,17 @@ FRONT
 
 
 BACK
-1_  git clone https://github.com/MaxiSama12/Flash---Delivery-Express---Back.git  BACK
-2_  cd BACK (En la raiz del proyecto crear el archivo .env con los datos de la base de datos como en el ejemplo del archivo .env.example)  
-3_  install npm
-4_  npm install -g nodemon
-5_  Si se conecto con exito saldra este msj en la consola de VS Code:
+Continuando con el paso anterior en la terminal :
+1_  cd..   (para volver a a carpeta Flash---Delivery-Express)
+2_  git clone https://github.com/MaxiSama12/Flash---Delivery-Express---Back.git  BACK
+3_  cd BACK
+4_  (En la raiz del proyecto crear el archivo ".env" y copiar el codigo que esta en ".env.example" y completarlos con los los datos de su base de datos
+5_  install npm
+6_  npm install -g nodemon
+7_  Si se conecto con exito saldra este msj en la consola de VS Code:
            mi servidor está funcionando en el puerto 8080
              Conexión a la base de datos MySQL exitosa!
+8_  (Volver al ultimo paso del FRONT)
 
 ```
 ## 📁 Estructura del proyecto
