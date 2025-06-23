@@ -93,37 +93,37 @@ FRONT
 |  |     |
 |  |     |_pages
 |  |      |   |_MisDirecciones
-|  |     |   |    |_misDirecciones.css
-|  |     |   |    |_MisDirecciones.jsx
-|  |     |   |    |_ModalAgregarDireccion.jsx
-|  |     |   |_ComercioPage.jsx
-|  |     |   |_HomePage.jsx
-|  |     |   |_ListaComerciosPage.jsx
-|  |     |   |_LoginPages.jsx
-|  |     |   |_NotFound.jsx
-|  |     |   |_RegisterClientePages.jsx
-|  |     |   |_RegisterComercioPages.jsx
-|  |     |   |_RegisterRepartidorPages.jsx
-|  |     |
-|  |     |_router
-|  |     |   |_axiosInstance.js
-|  |     |   |_route.js
-|  |     |
-|  |     |_store
-|  |     |   |_authStore.js
-|  |     |
-|  |     |_styles
-|  |         |_card.css
-|  |         |_carousel.css
-|  |         |_cart.css
-|  |         |_comercio.css
-|  |         |_home.css
-|  |         |_ListaComercios.css
-|  |         |_LoginForm.css
-|  |         |_navbar.css
-|  |         |_notfound.css
-|  |         |_RegisterForm.css
-|  |         |_sectionRegister.css
+|  |      |   |    |_misDirecciones.css
+|  |      |   |    |_MisDirecciones.jsx
+|  |      |   |    |_ModalAgregarDireccion.jsx
+|  |      |   |_ComercioPage.jsx
+|  |      |   |_HomePage.jsx
+|  |      |   |_ListaComerciosPage.jsx
+|  |      |   |_LoginPages.jsx
+|  |      |   |_NotFound.jsx
+|  |      |   |_RegisterClientePages.jsx
+|  |      |   |_RegisterComercioPages.jsx
+|  |      |   |_RegisterRepartidorPages.jsx
+|  |      |
+|  |      |_router
+|  |      |   |_axiosInstance.js
+|  |      |   |_route.js
+|  |      |
+|  |      |_store
+|  |      |   |_authStore.js
+|  |      |
+|  |      |_styles
+|  |          |_card.css
+|  |          |_carousel.css
+|  |          |_cart.css
+|  |          |_comercio.css
+|  |          |_home.css
+|  |          |_ListaComercios.css
+|  |          |_LoginForm.css
+|  |          |_navbar.css
+|  |          |_notfound.css
+|  |          |_RegisterForm.css
+|  |          |_sectionRegister.css
 |  | 
 |  |_App.jsx      
 |  |_index.css
