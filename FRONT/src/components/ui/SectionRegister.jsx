@@ -25,7 +25,7 @@ const SectionRegister = () => {
             </p>
             <div className="d-grid mx-2">
               <Link
-                to="/register-vendedor"
+                to="register-vendedor-comercio"
                 className="btn btn-outline-success btn-lg mb-2"
               >
                 Regístrate ya!
@@ -45,7 +45,7 @@ const SectionRegister = () => {
             </p>
             <div className="d-grid mx-2">
               <Link
-                to="/register-vendedor"
+                to="register-vendedor-comercio"
                 className="btn btn-outline-success btn-lg mb-2"
               >
                 Regístrate ya!

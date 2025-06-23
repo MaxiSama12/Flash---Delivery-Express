@@ -9,6 +9,8 @@ import { IoAdd } from "react-icons/io5";
 import { toast } from "react-toastify";
 import { useAuthStore } from "../../store/authStore";
 import { axiosInstance } from "../../router/axiosInstance";
+import ModalPago from "./ModalPago";
+import { useState } from "react";
 
 const CartItem = ({ product }) => {
   const addToCart = useCartStore((state) => state.addToCart);
@@ -61,12 +63,17 @@ const Cart = ({ isBouncing }) => {
   const total = useCartStore((state) => state.total)();
   const itemsCount = useCartStore((state) => state.itemsCount)();
   const user = useAuthStore((state) => state.usuario);
+  const [showModal, setShowModal] = useState(false);
 
-  const handleCheckout = async () => {
+  const handleCheckout = () => {
     if (!user) {
       toast.warn("Debes iniciar sesión para realizar una compra");
       return;
     }
+    setShowModal(true);
+  };
+
+  const confirmarPago = async () => {
     const pedidoPayload = {
       fecha_pedido: new Date().toISOString(),
       estado: "pendiente",
@@ -78,6 +85,7 @@ const Cart = ({ isBouncing }) => {
         id_producto: item.id_producto,
         cantidad: item.cantidad,
       })),
+      monto_total: total
     };
 
     try {
@@ -134,6 +142,11 @@ const Cart = ({ isBouncing }) => {
         <FaCartShopping />
         {itemsCount > 0 && <span className="cart-badge">{itemsCount}</span>}
       </label>
+      <ModalPago
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        onConfirm={confirmarPago}
+      />
     </div>
   );
 };
