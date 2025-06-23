@@ -97,7 +97,7 @@ export default function RepartidorDashboard() {
       });
       fetchPedidos();
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

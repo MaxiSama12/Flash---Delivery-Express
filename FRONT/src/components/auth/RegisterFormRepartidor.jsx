@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../../styles/RegisterForm.css";
-import { CLIENTES } from "../../endpoints/endpoints";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { LOGIN } from "../../router/route";
 import Swal from "sweetalert2"; // ✅ Importación de SweetAlert2
@@ -36,7 +34,7 @@ const RegisterFormRepartidor = () => {
     
       navigate(LOGIN);
     } catch (error) {
-      console.log("Ocurrió un error registrando al repartidor: ", error.response.data.mensaje);
+      console.error("Ocurrió un error registrando al repartidor: ", error.response.data.mensaje);
       Swal.fire("Error", error.response.data.mensaje);
     }
   };

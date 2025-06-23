@@ -8,15 +8,13 @@ import {
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/LoginForm.css";
-import { useLogin } from "../../context/useLogin.js";
 import { useAuthStore } from "../../store/authStore";
 import Swal from "sweetalert2"; // ✅ Importación de SweetAlert2
 import { axiosInstance } from "../../router/axiosInstance.js";
 
 const LoginForm = () => {
-  const { login, usuario } = useAuthStore();
+  const { login } = useAuthStore();
   const navigate = useNavigate();
-  const [loginError, setLoginError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
     password: "", 
@@ -60,7 +58,7 @@ const LoginForm = () => {
 
       
     } catch (error) {
-      console.log("error trayendo los usuarios:", error);
+      console.error("error trayendo los usuarios:", error);
       Swal.fire(
         "Error",
         "Hubo un problema al conectarse con el servidor",
@@ -102,9 +100,6 @@ const LoginForm = () => {
         <button type="submit" className="login-button mb-3">
           Ingresar
         </button>
-        {loginError && (
-          <p className="p-1 text-center alert alert-danger">{loginError}</p>
-        )}
 
         <div className="login-links">
           <p>¿No tienes una cuenta?</p>

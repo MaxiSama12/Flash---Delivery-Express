@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "../../styles/RegisterForm.css";
 import { CLIENTES } from "../../endpoints/endpoints";
 import { LOGIN } from "../../router/route";
@@ -34,7 +33,7 @@ const RegisterFormCliente = () => {
    
       navigate(LOGIN);
     } catch (error) {
-      console.log("Ocurrió un error registrando al cliente: ", error);
+      console.error("Ocurrió un error registrando al cliente: ", error);
       Swal.fire(
         "Error",
          error.response.data.mensaje,
