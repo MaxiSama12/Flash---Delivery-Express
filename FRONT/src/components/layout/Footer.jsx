@@ -3,7 +3,7 @@ import { FaInfoCircle, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <div style={{position:"relative", bottom:"0", width:"100%" }}>
+    <div className="footer-demierda">
       <footer
         className="text-white text-center py-4 d-none d-lg-block "
         style={{ backgroundColor: "#9c5698" }}

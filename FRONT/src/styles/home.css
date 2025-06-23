@@ -433,6 +433,20 @@ body {
   font-weight: bold;
 }
 
+.en-delivery {
+  display: inline-block;
+  margin-left: 0.5rem;
+  background: #9c5698;
+  color: white;
+  padding: 0.1em 0.5em;
+  transform: skew(-20deg);
+  font-weight: bold;
+}
+
+.en-delivery span {
+  transform: skew(20deg);
+}
+
 .en-flash span {
   display: none;
   transform: skew(20deg);

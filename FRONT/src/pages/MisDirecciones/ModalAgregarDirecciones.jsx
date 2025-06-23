@@ -95,7 +95,7 @@ export default function ModalAgregarDireccion({ cerrarModal, onAgregar }) {
             ))}
           </div>
 
-          <button type="submit" className="btn btn-danger w-100">
+          <button type="submit" className="btn btn-dark w-100">
             Agregar dirección
           </button>
         </form>

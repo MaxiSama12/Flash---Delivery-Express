@@ -7,7 +7,8 @@
       "telefono": "3819212354",
       "direccion": "avenida siempre viva 123",
       "password": "cliente123",
-      "rol": "cliente"
+      "rol": "cliente",
+      "direcciones": []
     },
     {
       "id": "0c9a",
@@ -77,7 +78,7 @@
       "estado": "completado",
       "direccion_entrega": "No existe dirección",
       "id_cliente": "1",
-      "id_repartidor": null,
+      "id_repartidor": "ba35",
       "id_comercio": "4",
       "productos": [
         {
@@ -93,10 +94,10 @@
     {
       "id": "b1a2",
       "fecha_pedido": "2025-06-18T14:55:04.123Z",
-      "estado": "pendiente",
+      "estado": "en reparto",
       "direccion_entrega": "No existe dirección",
       "id_cliente": "1",
-      "id_repartidor": null,
+      "id_repartidor": "ba35",
       "id_comercio": "3",
       "productos": [
         {

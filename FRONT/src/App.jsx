@@ -26,6 +26,8 @@ import { useState } from "react";
 import MisDirecciones from "./pages/MisDirecciones/MisDirecciones";
 import LoginForm from "./components/auth/LoginForm";
 import ProtectedRoutes from "./components/utils/ProtectedRoutes";
+import MiPerfil from "./pages/MiPerfil/MiPerfil";
+import MisPedidos from "./pages/MisPedidos/MisPedidos";
 
 function App() {
   const [isBouncing, setIsBouncing] = useState(false);
@@ -46,8 +48,6 @@ function App() {
             </ProtectedRoutes>
           }
         />
-
-        {/* <Route path="/repartidor" element={<DashboardRepartidor />} /> */}
 
         {/* HOME */}
         <Route
@@ -114,6 +114,26 @@ function App() {
           }
         />
 
+         {/* MIS PEDIDOS */}
+        <Route
+          path="/mis-pedidos"
+          element={
+            <ProtectedRoutes allowedRoles={["cliente"]}>
+              <MisPedidos /> 
+            </ProtectedRoutes>
+          }
+        />
+
+         {/* MI PERFIL */}
+        <Route
+          path="/mi-perfil"
+          element={
+            <ProtectedRoutes allowedRoles={["cliente"]}>
+              <MiPerfil /> 
+            </ProtectedRoutes>
+          }
+        />
+
         {/* DASHBOARD REPARTIDOR */}
         <Route
           path="/dashboard-repartidor/:id"
@@ -126,11 +146,16 @@ function App() {
 
         {/* ERROR 404 */}
         <Route path="*" element={<NotFound />} />
-        <Route path={REGISTERCOMERCIO} element={
-          <ProtectedRoutes allowedRoles={["anonimo"]}>
-          <RegisterComercioPages />
-          </ProtectedRoutes>
-          } />
+
+        {/* REGISTRO COMERCIO */}
+        <Route
+          path={REGISTERCOMERCIO}
+          element={
+            <ProtectedRoutes allowedRoles={["anonimo"]}>
+              <RegisterComercioPages />
+            </ProtectedRoutes>
+          }
+        />
 
         {/* COMERCIO POR ID */}
         <Route
