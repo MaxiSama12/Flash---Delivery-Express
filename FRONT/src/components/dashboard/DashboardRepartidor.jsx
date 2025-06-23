@@ -95,40 +95,52 @@ export default function RepartidorDashboard() {
 
   return (
     <Container className="py-4">
-      <h2 className="mb-4 text-primary">Panel de Repartidor</h2>
-      <h2 className="fs-1 mb-1">Bienvenido/a {repartidor.nombre}</h2>
+      <div className="d-flex align-items-center mb-4">
+        <div className="fs-1 me-3">Panel de Repartidor | {repartidor.nombre}</div>
+        <Button className="p-2" variant="danger" onClick={() => console.log("hoal")}>
+          Cerrar Sesión
+        </Button>
+      </div>
 
       {/* Estadísticas */}
       <Row className="mb-4">
         <Col md={3}>
-          <Card className="text-center">
+          <Card className="text-center" style={{ minHeight: "120px" }}>
             <Card.Body>
               <Card.Title>Total Entregas</Card.Title>
-              <h4><Badge bg="primary">{stats.totalDeliveries}</Badge></h4>
+              <h4>
+                <Badge bg="primary">{stats.totalDeliveries}</Badge>
+              </h4>
             </Card.Body>
           </Card>
         </Col>
         <Col md={3}>
-          <Card className="text-center">
+          <Card className="text-center" style={{ minHeight: "120px" }}>
             <Card.Body>
               <Card.Title>Hoy</Card.Title>
-              <h4><Badge bg="success">{stats.todayDeliveries}</Badge></h4>
+              <h4>
+                <Badge bg="success">{stats.todayDeliveries}</Badge>
+              </h4>
             </Card.Body>
           </Card>
         </Col>
         <Col md={3}>
-          <Card className="text-center">
+          <Card className="text-center" style={{ minHeight: "120px" }}>
             <Card.Body>
               <Card.Title>Ganancias</Card.Title>
-              <h4><Badge bg="warning">${stats.totalEarnings}</Badge></h4>
+              <h4>
+                <Badge bg="warning">${stats.totalEarnings}</Badge>
+              </h4>
             </Card.Body>
           </Card>
         </Col>
         <Col md={3}>
-          <Card className="text-center">
+          <Card className="text-center" style={{ minHeight: "120px" }}>
             <Card.Body>
               <Card.Title>Rutas Activas</Card.Title>
-              <h4><Badge bg="info">{stats.activeRoutes}</Badge></h4>
+              <h4>
+                <Badge bg="info">{stats.activeRoutes}</Badge>
+              </h4>
             </Card.Body>
           </Card>
         </Col>
@@ -213,9 +225,8 @@ export default function RepartidorDashboard() {
                   <br />
                   Entregado en: {pedido.direccion_entrega}
                   <br />
-                  Estado:{" "}
-                  <Badge bg="success">{pedido.estado}</Badge>{" "}
-                  - Tiempo estimado: {pedido.tiempo_demora || "no hay"} minutos
+                  Estado: <Badge bg="success">{pedido.estado}</Badge> - Tiempo
+                  estimado: {pedido.tiempo_demora || "no hay"} minutos
                 </ListGroup.Item>
               ))}
             </ListGroup>

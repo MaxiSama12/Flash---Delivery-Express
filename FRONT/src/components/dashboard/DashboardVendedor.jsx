@@ -437,7 +437,7 @@ const VendedorDashboard = () => {
               {comercio.activo ? "Cerrar comercio" : "Abrir comercio"}
             </Button>
             <Button variant="danger" onClick={() => console.log("hoal")}>
-              Salir Sesión
+              Cerrar Sesión
             </Button>
           </Col>
         </Row>

@@ -29,7 +29,7 @@ import LoginForm from "./components/auth/LoginForm";
 function App() {
   const [isBouncing, setIsBouncing] = useState(false);
   const location = useLocation();
-  const ocultarCart = /vendedor/.test(location.pathname);
+  const ocultarCart = /(dashboard|login|register)/.test(location.pathname);
 
   return (
     <>
