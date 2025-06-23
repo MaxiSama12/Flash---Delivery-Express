@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Button,
   Modal,
@@ -14,6 +14,7 @@ import {
 } from "react-bootstrap";
 import { axiosInstance } from "../../router/axiosInstance";
 import HeroComercioPage from "../ui/HeroComercioPage";
+import { useAuthStore } from "../../store/authStore";
 
 const VendedorDashboard = () => {
   const { id } = useParams();
@@ -24,6 +25,8 @@ const VendedorDashboard = () => {
   const [modalAgregarEditar, setModalAgregarEditar] = useState(null);
   const [modalPedidos, setModalPedidos] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { logout } = useAuthStore();
+  const navigate = useNavigate();
 
   const [stats, setStats] = useState({
     totalOrders: 0,
@@ -50,6 +53,11 @@ const VendedorDashboard = () => {
     url_imagen: "",
     id_categoria: "",
   });
+
+  const logoutSesion = async () => {
+    await logout();
+    navigate("/");
+  };
 
   const calcularStats = (listaPedidoProductos) => {
     const totalOrders = listaPedidoProductos.length;
@@ -436,7 +444,7 @@ const VendedorDashboard = () => {
             >
               {comercio.activo ? "Cerrar comercio" : "Abrir comercio"}
             </Button>
-            <Button variant="danger" onClick={() => console.log("hoal")}>
+            <Button variant="danger" onClick={() => logoutSesion()}>
               Cerrar Sesión
             </Button>
           </Col>

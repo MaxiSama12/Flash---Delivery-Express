@@ -9,7 +9,8 @@ import {
   Badge,
 } from "react-bootstrap";
 import { axiosInstance } from "../../router/axiosInstance";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuthStore } from "../../store/authStore";
 
 export default function RepartidorDashboard() {
   const { id } = useParams();
@@ -24,6 +25,8 @@ export default function RepartidorDashboard() {
   const [pedidosDisponibles, setPedidosDisponibles] = useState([]);
   const [pedidosEntregar, setPedidosEntregar] = useState([]);
   const [pedidosEntregados, setPedidosEntregados] = useState([]);
+  const { logout } = useAuthStore();
+  const navigate = useNavigate();
 
   const fetchPedidos = async () => {
     try {
@@ -53,6 +56,11 @@ export default function RepartidorDashboard() {
     } catch (err) {
       console.error("Error cargando pedidos", err);
     }
+  };
+
+  const logoutSesion = async () => {
+    await logout();
+    navigate("/");
   };
 
   const getRepartidor = async () => {
@@ -96,8 +104,14 @@ export default function RepartidorDashboard() {
   return (
     <Container className="py-4">
       <div className="d-flex align-items-center mb-4">
-        <div className="fs-1 me-3">Panel de Repartidor | {repartidor.nombre}</div>
-        <Button className="p-2" variant="danger" onClick={() => console.log("hoal")}>
+        <div className="fs-1 me-3">
+          Panel de Repartidor | {repartidor.nombre}
+        </div>
+        <Button
+          className="p-2"
+          variant="danger"
+          onClick={() => logoutSesion()}
+        >
           Cerrar Sesión
         </Button>
       </div>
