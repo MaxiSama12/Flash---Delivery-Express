@@ -1,12 +1,3 @@
-/*import { create } from "zustand";
-
-export const useAuthStore = create((set) => ({
-  usuario: null,
-
-  login: (usuarioData) => set({ usuario: usuarioData }),
-
-  logout: () => set({ usuario: null }),
-}));*/
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 

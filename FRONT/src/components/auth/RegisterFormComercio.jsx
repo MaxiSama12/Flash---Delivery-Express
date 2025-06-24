@@ -29,7 +29,7 @@ const RegisterFormComercio = () => {
     
       setRubros(res.data.rubros);
     } catch (error) {
-      console.log("Error trayendo los rubros: ", error);
+      console.error("Error trayendo los rubros: ", error);
       Swal.fire("Error", "No se pudieron cargar los rubros", "error");
     }
   };
@@ -54,7 +54,7 @@ const RegisterFormComercio = () => {
    
       navigate(LOGIN);
     } catch (error) {
-      console.log("Ocurrió un error registrando el comercio: ", error);
+      console.error("Ocurrió un error registrando el comercio: ", error);
       Swal.fire(
         "Error",
         error.response.data.mensaje,
