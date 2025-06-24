@@ -102,7 +102,7 @@ export default function RepartidorDashboard() {
   };
 
   return (
-    <Container className="py-4">
+    <Container className="py-4" style={{backgroundImage:"url(https://watermark.lovepik.com/photo/20211203/large/lovepik-profile-portrait-of-a-young-man-picture_501462489.jpg)"}}>
       <div className="d-flex align-items-center mb-4">
         <div className="fs-1 me-3">
           Panel de Repartidor | {repartidor.nombre}
@@ -211,7 +211,7 @@ export default function RepartidorDashboard() {
                     {pedido.estado}
                   </Badge>{" "} <br />
                   Tiempo estimado: {pedido.demora_promedio || "no hay"} minutos <br />
-                   Recibe: {pedido.nombre}
+                   Recibe: {pedido.nombre_cliente}
                   <div className="mt-2">
                     <Button
                       variant="primary"
