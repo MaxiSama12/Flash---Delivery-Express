@@ -10,7 +10,7 @@ const CatalogoHomePage = () => {
   const [categorias, setCategorias] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const limit = 8;
+  const limit = 16;
 
   const getProductos = async (pageToLoad = 1) => {
     try {
@@ -92,7 +92,7 @@ const CatalogoHomePage = () => {
           {filteredProducts.length !== 0 ? (
             filteredProducts.map((producto) => (
               <Card
-                key={producto.id}
+                key={producto.id_producto}
                 producto={producto}
               />
             ))

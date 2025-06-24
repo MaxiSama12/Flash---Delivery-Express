@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { useCartStore } from "../../context/useCartStore";
+import { useCartStore } from "../../store/useCartStore";
 import { AiFillStar } from "react-icons/ai";
 import "../../styles/card.css";
 import "../../styles/home.css";
@@ -43,9 +43,9 @@ const Card = ({ producto }) => {
               : "Ver comercio"}
           </button>
         </div>
-        <div className="rating">
+        {/* <div className="rating">
           <AiFillStar className="star" /> {producto.rating}
-        </div>
+        </div> */}
       </div>
       <div className="card-content">
         <h3 className="title">{producto.nombre}</h3>

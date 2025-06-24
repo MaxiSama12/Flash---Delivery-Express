@@ -22,9 +22,8 @@
   opacity: 0.75;
 }
 
-/* Colores y animación */
 .ping-green {
-  background-color: #34d399; /* verde */
+  background-color: #34d399; 
 }
 
 .ping-green::before {
@@ -32,7 +31,7 @@
 }
 
 .ping-yellow {
-  background-color: #facc15; /* amarillo */
+  background-color: #facc15;
 }
 
 .ping-yellow::before {
@@ -40,7 +39,7 @@
 }
 
 .ping-red {
-  background-color: #f87171; /* rojo */
+  background-color: #f87171;
 }
 
 .ping-red::before {
@@ -48,7 +47,7 @@
 }
 
 .ping-orange {
-  background-color: #fb923c; /* naranja */
+  background-color: #fb923c; 
 }
 
 .ping-orange::before {

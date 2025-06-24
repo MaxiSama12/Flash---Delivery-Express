@@ -14,32 +14,11 @@ export default function MisPedidos() {
   useEffect(() => {
     const fetchPedidos = async () => {
       if (!usuario) return;
-     
+
       try {
         const { data } = await axiosInstance.get(
           `/pedidos-cliente/${usuario.id_cliente}`
         );
-        // const resComercios = await axiosInstance.get(
-        //   "http://localhost:3000/comercios"
-        // );
-
-        // // Filtrar solo los pedidos del cliente logueado
-        // const pedidosCliente = resPedidos.data.filter(
-        //   (pedido) => pedido.id_cliente === usuario.id
-        // );
-
-        // // Añadir nombre del comercio al pedido
-        // const pedidosConComercio = pedidosCliente.map((pedido) => {
-        //   const comercio = resComercios.data.find(
-        //     (com) => com.id === pedido.id_comercio
-        //   );
-
-        //   return {
-        //     ...pedido,
-        //     comercioNombre: comercio?.nombre || "Comercio desconocido",
-        //   };
-        // });
-
         setPedidos(data.pedidos);
       } catch (error) {
         console.error("Error al traer pedidos:", error);
@@ -67,11 +46,16 @@ export default function MisPedidos() {
               {pedidos.length === 0 ? (
                 <p>No hay pedidos disponibles</p>
               ) : (
-                <ListGroup >
-                  <h2 className="tus-pedidos-title  tus-pedidos my-4 text-center ">Tus Pedidos</h2>
+                <ListGroup>
+                  <h2 className="tus-pedidos-title  tus-pedidos my-4 text-center ">
+                    Tus Pedidos
+                  </h2>
                   {pedidos.map((order) => (
-                    <ListGroup.Item key={order.id_pedido} className="mis-pedidos">
-                      <div >
+                    <ListGroup.Item
+                      key={order.id_pedido}
+                      className="mis-pedidos"
+                    >
+                      <div>
                         <strong>Pedido de #{order.id_pedido}</strong> - $
                         {order.monto_total || "no existe"}
                         <br />
@@ -79,7 +63,21 @@ export default function MisPedidos() {
                         {order.nombre_comercio || "no hay"} <br />
                         <b>Direccion entrega:</b>{" "}
                         {order.direccion_entrega || "no hay"} <br />
-                        <b>Estado del pedido:</b> {order.estado}
+                        <b>Estado del pedido: </b>
+                        <span
+                          className={`ping-container ${
+                            order.estado === "entregado"
+                              ? "ping-green"
+                              : order.estado === "en camino"
+                              ? "ping-orange"
+                              : order.estado === "completado"
+                              ? "ping-yellow"
+                              : order.estado === "pendiente"
+                              ? "ping-red"
+                              : "no hay"
+                          }`}
+                        ></span>{" "}
+                        {order.estado}
                       </div>
                     </ListGroup.Item>
                   ))}

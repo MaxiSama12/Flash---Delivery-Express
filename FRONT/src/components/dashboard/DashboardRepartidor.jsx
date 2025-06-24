@@ -206,7 +206,7 @@ export default function RepartidorDashboard() {
                   <br />
                   Estado:{" "}
                   <Badge
-                    bg={pedido.estado === "entregado" ? "success" : "secondary"} 
+                    bg={pedido.estado === "entregado" ? "success" : "warning"} 
                   >
                     {pedido.estado}
                   </Badge>{" "} <br />
