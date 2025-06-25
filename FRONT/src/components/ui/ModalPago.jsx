@@ -2,13 +2,13 @@ import { Modal, Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import Swal from "sweetalert2";
 
-const ModalPago = ({ show, onHide, onConfirm }) => {
-  const [metodoPago, setMetodoPago] = useState("tarjeta");
+const ModalPago = ({ show, onHide, onConfirm, metodoPago, setMetodoPago }) => {
   const [formData, setFormData] = useState({
     nombre: "",
     numero: "",
     vencimiento: "",
     cvv: "",
+    metodoPago: metodoPago,
   });
 
   const handleChange = (e) => {
@@ -35,6 +35,13 @@ const ModalPago = ({ show, onHide, onConfirm }) => {
       }
     }
     onConfirm();
+    setFormData({
+      nombre: "",
+      numero: "",
+      vencimiento: "",
+      cvv: "",
+      metodoPago: metodoPago,
+    });
     onHide();
   };
 
