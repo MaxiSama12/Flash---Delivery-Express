@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-// const puerto = 8080;
+const puerto = 3030;
 
 export const axiosInstance = axios.create({
-    baseURL: `https://a704-2803-9800-9444-76e6-a49d-efc-8555-1412.ngrok-free.app`,
+    baseURL: `http://localhost:${puerto}`,
     headers: {
     "ngrok-skip-browser-warning": "true", 
   }
