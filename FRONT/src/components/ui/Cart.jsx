@@ -64,6 +64,7 @@ const Cart = ({ isBouncing }) => {
   const itemsCount = useCartStore((state) => state.itemsCount)();
   const user = useAuthStore((state) => state.usuario);
   const [showModal, setShowModal] = useState(false);
+  const [metodoPago, setMetodoPago] = useState("tarjeta");
 
   const handleCheckout = () => {
     if (!user) {
@@ -85,7 +86,8 @@ const Cart = ({ isBouncing }) => {
         id_producto: item.id_producto,
         cantidad: item.cantidad,
       })),
-      monto_total: total
+      monto_total: total,
+      metodo: metodoPago
     };
 
     try {
@@ -145,7 +147,9 @@ const Cart = ({ isBouncing }) => {
       <ModalPago
         show={showModal}
         onHide={() => setShowModal(false)}
-        onConfirm={confirmarPago}
+        onConfirm={() => confirmarPago()}
+        setMetodoPago={setMetodoPago}
+        metodoPago={metodoPago}
       />
     </div>
   );
