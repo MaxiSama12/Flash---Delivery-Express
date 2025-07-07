@@ -85,7 +85,9 @@ const Navbar = () => {
           <NavLink
             to="/comercios"
             className={({ isActive }) =>
-              `mobile-nav-item d-flex flex-column align-items-center link-comercio ${isActive ? "active fw-bold" : ""}`
+              `mobile-nav-item d-flex flex-column align-items-center link-comercio ${
+                isActive ? "active fw-bold" : ""
+              }`
             }
           >
             <FaMapMarkerAlt size={22} />
@@ -142,7 +144,7 @@ const Navbar = () => {
         </div>
       ) : (
         <nav
-          className="navbar fixed-top d-flex flex-column"
+          className="navbar position-relative fixed-top d-flex flex-column"
           style={{
             backgroundColor: "#f6f6f6",
             padding: 10,
@@ -168,46 +170,52 @@ const Navbar = () => {
               <NavLink
                 to="/comercios"
                 className={({ isActive }) =>
-                  `${isActive ? "active fw-bold link-comercio" : "link-comercio"}`
+                  `${
+                    isActive ? "active fw-bold link-comercio" : "link-comercio"
+                  }`
                 }
               >
                 Comercios
               </NavLink>
             </div>
-<div className="position-relative">
+            <div className="position-relative">
               <div
                 className="d-flex align-items-center gap-2"
                 style={{ cursor: "pointer" }}
               >
-
                 {!usuario ? (
                   <div
                     className="nav-item-hover d-flex align-items-center gap-1"
                     onClick={toggleMenu}
                   >
-                  <FaUserCircle size={22} />
-                  <span>Mi Perfil</span>
-                  <FaChevronDown className={`nav-item-hover chevron-rotate ${showMenu ? "open" : ""}`}/>
+                    <FaUserCircle size={22} />
+                    <span>Mi Perfil</span>
+                    <FaChevronDown
+                      className={`nav-item-hover chevron-rotate ${
+                        showMenu ? "open" : ""
+                      }`}
+                    />
                   </div>
                 ) : (
                   <>
-                  <Link
-                    to="/mi-perfil"
-                    className="nav-item-hover d-flex align-items-center gap-1"
-                  >
-                  <FaUserCircle size={22} />
-                  <span>{usuario ? usuario.nombre : "Mi perfil"}</span>
-                </Link>
+                    <Link
+                      to="/mi-perfil"
+                      className="nav-item-hover d-flex align-items-center gap-1"
+                    >
+                      <FaUserCircle size={22} />
+                      <span>{usuario ? usuario.nombre : "Mi perfil"}</span>
+                    </Link>
 
-                  <FaChevronDown
-                    className={`nav-item-hover chevron-rotate ${showMenu ? "open" : ""}`}
-                    style={{ cursor: "pointer" }}
-                    onClick={toggleMenu}
-                  />
-
+                    <FaChevronDown
+                      className={`nav-item-hover chevron-rotate ${
+                        showMenu ? "open" : ""
+                      }`}
+                      style={{ cursor: "pointer" }}
+                      onClick={toggleMenu}
+                    />
                   </>
                 )}
-                </div>
+              </div>
 
               {showMenu && (
                 <div

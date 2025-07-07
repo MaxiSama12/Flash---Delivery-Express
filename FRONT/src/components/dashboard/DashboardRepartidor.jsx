@@ -202,7 +202,7 @@ export default function RepartidorDashboard() {
                   
                   <strong>Pedido #{pedido.id_pedido}</strong>
                   <br />
-                  Desde: {pedido.direccion} - Hasta: {pedido.direccion_entrega}
+                  Hasta: {pedido.direccion_entrega}
                   <br />
                   Estado:{" "}
                   <Badge
@@ -211,7 +211,7 @@ export default function RepartidorDashboard() {
                     {pedido.estado}
                   </Badge>{" "} <br />
                   Tiempo estimado: {pedido.demora_promedio || "no hay"} minutos <br />
-                   Recibe: {pedido.nombre}
+                   Recibe: {pedido.nombre_cliente}
                   <div className="mt-2">
                     <Button
                       variant="primary"

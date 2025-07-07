@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   justify-content: start;
-  align-items: center; /* centrado vertical */
+  align-items: center; 
   color: white;
   height: 40vh;
   padding: 0.5rem;
