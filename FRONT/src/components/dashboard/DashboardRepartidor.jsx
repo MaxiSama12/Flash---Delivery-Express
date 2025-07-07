@@ -202,7 +202,7 @@ export default function RepartidorDashboard() {
                   
                   <strong>Pedido #{pedido.id_pedido}</strong>
                   <br />
-                  Desde: {pedido.direccion} - Hasta: {pedido.direccion_entrega}
+                  Hasta: {pedido.direccion_entrega}
                   <br />
                   Estado:{" "}
                   <Badge

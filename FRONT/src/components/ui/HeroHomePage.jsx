@@ -15,7 +15,7 @@ const HeroHomePage = () => {
         </div>
         <div className="home-text-section">
           <h1 className="primary-heading">
-            Tu <span className=" mt-3 en-delivery">Delivery</span> Favorito, Más
+            Tu <span className="en-delivery">Delivery</span> Favorito, Más
             Cerca Que Nunca
             <span className=" mt-3 en-flash">EN FLASH</span>
           </h1>

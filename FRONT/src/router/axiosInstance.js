@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const puerto = 3030;
 
 export const axiosInstance = axios.create({
-    baseURL: `http://localhost:${puerto}`,
+
+    baseURL: `https://flash-delivery-express-back.onrender.com`,
 
     headers: {
     "ngrok-skip-browser-warning": "true", 
