@@ -1,5 +1,5 @@
-import BannerBackground from "../../Assets/homePage/home-banner-background.png";
-import BannerImage from "../../Assets/homePage/inicio_img.png";
+import BannerBackground from "../../assets/homePage/home-banner-background.png";
+import BannerImage from "../../assets/homePage/inicio_img.png";
 import { FiArrowRight } from "react-icons/fi";
 import "../../styles/home.css";
 import { useNavigate } from "react-router-dom";
