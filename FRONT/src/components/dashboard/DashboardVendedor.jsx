@@ -15,6 +15,10 @@ import {
 import { axiosInstance } from "../../router/axiosInstance";
 import HeroComercioPage from "../ui/HeroComercioPage";
 import { useAuthStore } from "../../store/authStore";
+import { BsBoxSeamFill, BsShop } from "react-icons/bs";
+import { FaShoppingBasket } from "react-icons/fa";
+import { IoCheckmarkDoneOutline } from "react-icons/io5";
+import { PiTrendUpDuotone } from "react-icons/pi";
 
 const VendedorDashboard = () => {
   const { id } = useParams();
@@ -73,7 +77,6 @@ const VendedorDashboard = () => {
         .reduce((sum, p) => sum + p.total, 0) || 0;
 
     setStats({ totalOrders, pendingOrders, completedOrders, totalEarnings });
- 
   };
 
   const updateEstadoPedido = async (id_pedido) => {
@@ -133,24 +136,19 @@ const VendedorDashboard = () => {
     try {
       const resComercio = await axiosInstance.get(`/comercio/${id}`);
       setComercio(resComercio.data.comercio[0]);
-       
 
       const resProductos = await axiosInstance.get(`/productos/${id}`);
       setProductos(resProductos.data.productos);
-     
 
       const pedidoProductoRes = await axiosInstance.get(
         `/pedidos-comercio/${id}`
       );
 
       setPedidoProductos(pedidoProductoRes.data.pedidos);
-      
 
       const categoriasRes = await axiosInstance.get("/categorias");
-      
-      setCategorias(categoriasRes.data.categorias);
 
-       
+      setCategorias(categoriasRes.data.categorias);
     } catch (error) {
       console.error("Error al obtener datos:", error);
       Swal.fire({
@@ -187,7 +185,7 @@ const VendedorDashboard = () => {
     e.preventDefault();
     const { nombre, descripcion, precio, url_imagen, id_categoria } =
       nuevoProducto;
-     
+
     if (
       !nombre.trim() ||
       !descripcion.trim() ||
@@ -216,7 +214,7 @@ const VendedorDashboard = () => {
         id_categoria,
         url_imagen: url_imagen.trim(),
       };
-   
+
       await axiosInstance.post("/crear/producto", nuevo);
       const { data } = await axiosInstance.get(`/productos/${id}`);
       setProductos(data.productos);
@@ -327,7 +325,7 @@ const VendedorDashboard = () => {
 
     try {
       const res = await axiosInstance.delete(`/producto/${prodId}/eliminar`);
- 
+
       const { data } = await axiosInstance.get(`/productos/${id}`);
       setProductos(data.productos);
       Swal.fire({
@@ -347,7 +345,7 @@ const VendedorDashboard = () => {
   };
 
   return (
-    <>
+    <div style={{ backgroundColor: "rgb(250, 250, 250)" }}>
       <HeroComercioPage />
       <Container className="py-4">
         <h2 className="fs-1 mb-1 ">Bienvenido/a {comercio.nombre_admin}</h2>
@@ -362,22 +360,22 @@ const VendedorDashboard = () => {
           {[
             {
               title: "Total Pedidos",
-              variant: "primary",
+              icon: <BsShop style={{ color: "dodgerblue" }} />,
               value: stats.totalOrders,
             },
             {
               title: "Pendientes",
-              variant: "warning",
+              icon: <BsBoxSeamFill style={{ color: "orange" }} />,
               value: stats.pendingOrders,
             },
             {
               title: "Completados",
-              variant: "success",
+              icon: <IoCheckmarkDoneOutline style={{ color: "green" }} />,
               value: stats.completedOrders,
             },
             {
               title: "Ingresos",
-              variant: "info",
+
               value: `$${pedidoProductos
                 .filter((p) => p.estado === "completado")
                 .reduce((total, p) => {
@@ -398,57 +396,88 @@ const VendedorDashboard = () => {
             },
             {
               title: "Total Productos",
-              variant: "dark",
+              icon: <PiTrendUpDuotone style={{ color: "purple" }} />,
               value: productos.length,
             },
           ].map((item, idx) => (
             <Col md={4} key={idx} className="mb-3">
-              <Card
-                className={`text-center p-2 bg-${item.variant}`}
-                style={{ minHeight: "120px" }}
+              <article
+                className={`p-3`}
+                style={{
+                  minHeight: "120px",
+                  border: "1px solid  rgb(211, 211, 211)",
+                  borderRadius: "12px",
+                  backgroundColor: "white",
+                }}
               >
                 <Card.Body className="p-2">
-                  <Card.Title className="mb-1 fs-5 fw-bold text-light">
+                  <Card.Title className="mb-1 fs-5 fw-bold ">
                     {item.title}
                   </Card.Title>
-                  <h6 className="fs-4">
-                    <Badge bg={item.variant}>{item.value}</Badge>
-                  </h6>
+                  <h3 className="fw-bold">
+                    {item.value} {item.icon}
+                  </h3>
                 </Card.Body>
-              </Card>
+              </article>
             </Col>
           ))}
         </Row>
 
         {/* Botones para gestión de productos y pedidos */}
         <Row className="mb-4">
-          <Col>
-            <Button
-              variant="success"
-              className="me-2"
-              onClick={() => setModalGestionProductos(true)}
-            >
-              Gestionar Productos
-            </Button>
-            <Button
-              variant="primary"
-              className="me-2"
-              onClick={() => setModalPedidos(true)}
-            >
-              Ver Pedidos
-            </Button>
-            <Button
-              variant="dark"
-              className="me-2"
-              onClick={() => cerrarComercio()}
-            >
-              {comercio.activo ? "Cerrar comercio" : "Abrir comercio"}
-            </Button>
-            <Button variant="danger" onClick={() => logoutSesion()}>
-              Cerrar Sesión
-            </Button>
-          </Col>
-        </Row>
+  <Col>
+    <article
+      className="p-3 bg-white rounded-3 border"
+      style={{
+        minHeight: "80px",
+      }}
+    >
+      <Row className="g-3 justify-content-center">
+        <Col xs={12} md="auto">
+          <Button
+            variant="success"
+            className="w-100 fw-bold"
+            style={{ maxHeight: "5rem", minWidth: "12rem", backgroundColor:"white", color:"green", border:"2px solid" }}
+            onClick={() => setModalGestionProductos(true)}
+          >
+            Gestionar Productos
+          </Button>
+        </Col>
+        <Col xs={12} md="auto">
+          <Button
+            variant="primary"
+            className="w-100 fw-bold"
+            style={{ maxHeight: "5rem", minWidth: "12rem", backgroundColor:"white", color:"blue", border:"2px solid" }}
+            onClick={() => setModalPedidos(true)}
+          >
+            Ver Pedidos
+          </Button>
+        </Col>
+        <Col xs={12} md="auto">
+          <Button
+            variant="dark"
+            className="w-100 fw-bold"
+            style={{ maxHeight: "5rem", minWidth: "12rem", backgroundColor:"white", color:"black", border:"2px solid" }}
+            onClick={() => cerrarComercio()}
+          >
+            {comercio.activo ? "Cerrar comercio" : "Abrir comercio"}
+          </Button>
+        </Col>
+        <Col xs={12} md="auto">
+          <Button
+            variant="danger"
+            className="w-100 fw-bold" 
+            style={{ maxHeight: "5rem", minWidth: "12rem", backgroundColor:"white", color:"red", border:"2px solid" }}
+            onClick={() => logoutSesion()}
+          >
+            Cerrar Sesión
+          </Button>
+        </Col>
+      </Row>
+    </article>
+  </Col>
+</Row>
+
 
         {/* Modal Gestionar Productos */}
         <Modal
@@ -748,7 +777,7 @@ const VendedorDashboard = () => {
           </Modal.Body>
         </Modal>
       </Container>
-    </>
+    </div>
   );
 };
 
