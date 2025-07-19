@@ -3,7 +3,7 @@
 Este repositorio contiene el frontend de una plataforma multirubro tipo PedidosYa, desarrollada con React + Vite. Permite a usuarios interactuar como clientes, comercios o repartidores, gestionando pedidos y navegación según el rol.
 
 ---
-
+LINK DEL BACK: https://github.com/MaxiSama12/Flash---Delivery-Express---Back
 ## 🚀 Tecnologías utilizadas
 
 - [React](https://reactjs.org/)
